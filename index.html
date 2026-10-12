@@ -113,6 +113,24 @@ main{padding-bottom:150px}
 }
 main>*{flex-shrink:0}
 @media (max-height:520px){.item{width:27vh}.spellpic{width:22vh}.hint{display:none}#mascot .bub{display:none}.roomsrow{margin-top:8px}}
+
+/* full 16:9 cards, never cropped */
+.pic{aspect-ratio:16/9}.pic img,.item img{object-fit:contain;background:#fff}
+.item{aspect-ratio:16/9;width:min(420px,80vw)}
+.usewrap .pic{width:min(460px,45vw)}.spellpic{width:min(420px,70vw)}
+@media (orientation:portrait){
+ .choices.pics{grid-template-columns:1fr;gap:10px;max-width:min(560px,100%)}
+ .choices.pics>*:nth-child(3){grid-column:auto;width:auto}
+ .usewrap .pic{width:min(460px,100%)}.spellpic{width:min(380px,92vw)}.item{width:min(380px,88vw)}
+}
+@media (orientation:portrait) and (max-width:600px){
+ header{padding:6px 10px}.title{font-size:20px}.back{min-height:44px;min-width:52px;font-size:24px}.pill{font-size:15px;padding:6px 10px}
+ .prompt{font-size:22px;padding:6px 14px;margin:4px 0 8px;border-width:4px}.say{width:42px;height:42px;font-size:20px}
+ .bar{height:16px;margin-bottom:4px}.bar b{font-size:11px}main{padding:6px 10px 96px}
+ .pic{border-width:4px;border-radius:18px;box-shadow:0 4px 0 #c98a00}
+ .opt{min-height:60px;padding:12px;font-size:19px}
+ #mascot .face{font-size:44px}#mascot .bub{display:none}
+}
 </style></head><body>
 <div id="app">
 <header>
@@ -180,8 +198,8 @@ const BEDROOM_ITEMS=[
 ["fan","A fan keeps us cool."]
 ].map((a,i)=>({name:a[0],use:a[1],id:String(i+1).padStart(2,'0'),room:'bedroom',prefix:'b/'}));
 const OPEN_ROOMS=new Set(['kitchen','bedroom','bathroom','living room']);
-const crop=it=>IMG+(it.prefix||'')+'c'+it.id+'.jpg', full=it=>IMG+(it.prefix||'')+'f'+it.id+'.jpg';
-const hideName=it=>it.use.replace(new RegExp('^(A|An) '+it.name,'i'),'It').replace(new RegExp('\b(a|an|the) '+it.name,'i'),'it');
+const crop=it=>IMG+(it.prefix||'')+'f'+it.id+'.jpg', full=it=>IMG+(it.prefix||'')+'f'+it.id+'.jpg';
+const hideName=it=>it.use.replace(new RegExp('^(A|An) '+it.name,'i'),'It').replace(new RegExp('\\b(a|an|the) '+it.name,'i'),'it');
 const OTHER=[
 {name:"toothbrush",em:"🪥",room:"bathroom"},{name:"bathtub",em:"🛁",room:"bathroom"},{name:"soap",em:"🧼",room:"bathroom"},{name:"toilet",em:"🚽",room:"bathroom"},
 {name:"sofa",em:"🛋️",room:"living room"},{name:"TV",em:"📺",room:"living room"}];
@@ -255,7 +273,15 @@ const sfx={
  right(){[523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.25,'triangle'))},
  wrong(){tone(392,0,.25,'sine',.1);tone(349,.18,.3,'sine',.08)},
  win(){[523,659,784,659,784,1047,1319].forEach((f,i)=>tone(f,i*.13,.35,'triangle',.16))}};
-function say(t,h){mascot(t,h);try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=.9;u.pitch=1.15;u.lang='en-US';speechSynthesis.speak(u)}catch(e){}}
+const VOICE='voice/';const vh=t=>{let h=0x811c9dc5;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h.toString(16).padStart(8,'0')};
+let vAud=null,vTok=0;
+function stopVoice(){vTok++;if(vAud){try{vAud.pause()}catch(e){}vAud=null}try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
+function ttsFallback(t,done){try{if(!('speechSynthesis' in window))return done();const u=new SpeechSynthesisUtterance(t);u.rate=.9;u.pitch=1.15;u.lang='en-US';u.onend=u.onerror=done;speechSynthesis.speak(u)}catch(e){done()}}
+function say(t,h){const parts=(Array.isArray(t)?t:[t]).filter(Boolean);mascot(parts.join(' '),h);stopVoice();const tok=vTok;let i=0;
+ const next=()=>{if(tok!==vTok||i>=parts.length)return;const txt=parts[i++];const a=new Audio(VOICE+vh(txt)+'.mp3');vAud=a;let fell=false;
+  const fb=()=>{if(fell||tok!==vTok)return;fell=true;ttsFallback(txt,next)};
+  a.onended=next;a.onerror=fb;const pr=a.play();if(pr&&pr.catch)pr.catch(e=>{if(e&&e.name==='NotAllowedError')return;fb()})};
+ next()}
 function burst(x,y){for(let i=0;i<8;i++){const s=document.createElement('div');s.className='burst';s.textContent=['⭐','✨','🌟'][i%3];s.style.left=x+'px';s.style.top=y+'px';const a=i/8*6.28;s.style.setProperty('--dx',Math.cos(a)*140+'px');s.style.setProperty('--dy',Math.sin(a)*140+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
 const PRAISE=["Great job!","Well done!","Super!","You got it!","Awesome!","Brilliant!"];
 const TRY=["Oops! Try again!","Almost! Try again!","Good try! Look again!"];
@@ -272,7 +298,7 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  for(let i=0;i<n;i++)parts.push({x:innerWidth*Math.random(),y:-20-Math.random()*innerHeight*.4,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:8+Math.random()*8,c:cols[i%6]});
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
-function go(s,arg){screen=s;speechSynthesis&&speechSynthesis.cancel&&speechSynthesis.cancel();document.querySelectorAll('.pop').forEach(p=>p.remove());
+function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();document.querySelectorAll('.pop').forEach(p=>p.remove());
  $('#backBtn').classList.toggle('hidden',s==='home');({home,kitchen,bedroom,bathroom,living,find,use,room,spell,reward})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
@@ -302,7 +328,7 @@ function find(){$('#title').textContent='🔍 Find It';const P=pool();const t=ne
  main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
 function use(){$('#title').textContent='🤔 What Is It Used For?';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`What is the ${t.name} used for?`;
  main.innerHTML=header(txt)+`<div class="usewrap"><div class="pic"><img src="${crop(t)}" alt=""></div><div class="opts">${ch.map(c=>`<button class="opt" data-n="${c.name}">${hideName(c)}</button>`).join('')}</div></div>`;
- main.querySelector('.say').onclick=()=>say(txt+' '+ch.map(hideName).join(' Or, '));say(txt);
+ main.querySelector('.say').onclick=()=>say([txt,...ch.map(hideName).flatMap((o,i)=>i?['Or,',o]:[o])]);say(txt);
  main.querySelectorAll('.opt').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
 function room(){$('#title').textContent='🏠 Which Room?';
  if(state.round===0){
@@ -321,7 +347,7 @@ function room(){$('#title').textContent='🏠 Which Room?';
 function spell(){$('#title').textContent='🔤 Spell It';const SPELL=spellPool();const t=newTarget(SPELL);const w=t.name.toUpperCase();state.pos=0;
  const txt=`Spell ${t.name}!`;
  main.innerHTML=header(`Spell the word! <span style="color:#e8261c">${w}</span>`)+`<div class="pic spellpic"><img src="${crop(t)}" alt=""></div><div class="slots">${[...w].map(()=>`<div class="slot"></div>`).join('')}</div><div class="letters">${shuffle([...w].map((c,i)=>({c,i}))).map(o=>`<button class="btn letter" data-c="${o.c}">${o.c}</button>`).join('')}</div>`;
- bindSay(`${txt} ${[...w].join(', ')}`);
+ bindSay([txt,...w]);
  const slots=main.querySelectorAll('.slot');
  main.querySelectorAll('.letter').forEach(b=>b.onclick=()=>{if(b.dataset.c===w[state.pos]){sfx.tap();say(b.dataset.c);slots[state.pos].textContent=b.dataset.c;b.classList.add('used');state.pos++;
    if(state.pos===w.length){say(t.name);setTimeout(()=>correct(main.querySelector('.slots'),nextRound,t),500)}}
