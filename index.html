@@ -179,12 +179,66 @@ const BEDROOM_ITEMS=[
 ["clock","A clock tells us the time."],
 ["fan","A fan keeps us cool."]
 ].map((a,i)=>({name:a[0],use:a[1],id:String(i+1).padStart(2,'0'),room:'bedroom',prefix:'b/'}));
-const OPEN_ROOMS=new Set(['kitchen','bedroom']);
+const OPEN_ROOMS=new Set(['kitchen','bedroom','bathroom','living room']);
 const crop=it=>IMG+(it.prefix||'')+'c'+it.id+'.jpg', full=it=>IMG+(it.prefix||'')+'f'+it.id+'.jpg';
 const hideName=it=>it.use.replace(new RegExp('^(A|An) '+it.name,'i'),'It').replace(new RegExp('\b(a|an|the) '+it.name,'i'),'it');
 const OTHER=[
 {name:"toothbrush",em:"🪥",room:"bathroom"},{name:"bathtub",em:"🛁",room:"bathroom"},{name:"soap",em:"🧼",room:"bathroom"},{name:"toilet",em:"🚽",room:"bathroom"},
 {name:"sofa",em:"🛋️",room:"living room"},{name:"TV",em:"📺",room:"living room"}];
+const BATHROOM_ITEMS=[
+{name:"toothbrush",use:"We brush our teeth with a toothbrush.",id:"01",room:"bathroom",prefix:"a/"},
+{name:"toothpaste",use:"Toothpaste helps clean our teeth.",id:"02",room:"bathroom",prefix:"a/"},
+{name:"soap",use:"Soap washes dirt off our hands.",id:"03",room:"bathroom",prefix:"a/"},
+{name:"towel",use:"A towel dries our wet skin.",id:"04",room:"bathroom",prefix:"a/"},
+{name:"bathtub",use:"We take a bath in the bathtub.",id:"05",room:"bathroom",prefix:"a/"},
+{name:"shower",use:"We wash under the shower.",id:"06",room:"bathroom",prefix:"a/"},
+{name:"toilet",use:"We use the toilet in the bathroom.",id:"07",room:"bathroom",prefix:"a/"},
+{name:"shampoo",use:"Shampoo washes our hair clean.",id:"08",room:"bathroom",prefix:"a/"},
+{name:"hairbrush",use:"A hairbrush makes our hair neat.",id:"09",room:"bathroom",prefix:"a/"},
+{name:"washcloth",use:"A washcloth cleans our face.",id:"10",room:"bathroom",prefix:"a/"},
+{name:"rubber duck",use:"A rubber duck is a fun bath toy.",id:"11",room:"bathroom",prefix:"a/"},
+{name:"toilet paper",use:"Toilet paper keeps us clean.",id:"12",room:"bathroom",prefix:"a/"},
+{name:"bath mat",use:"A bath mat stops us from slipping.",id:"13",room:"bathroom",prefix:"a/"},
+{name:"comb",use:"A comb smooths our hair.",id:"14",room:"bathroom",prefix:"a/"},
+{name:"bathrobe",use:"A bathrobe keeps us warm after a bath.",id:"15",room:"bathroom",prefix:"a/"},
+{name:"nail clippers",use:"Nail clippers trim our nails.",id:"16",room:"bathroom",prefix:"a/"},
+{name:"dental floss",use:"Dental floss cleans between our teeth.",id:"17",room:"bathroom",prefix:"a/"},
+{name:"bubble bath",use:"Bubble bath makes fun bubbles.",id:"18",room:"bathroom",prefix:"a/"},
+{name:"lotion",use:"Lotion softens dry skin.",id:"19",room:"bathroom",prefix:"a/"},
+{name:"faucet",use:"A faucet turns the water on and off.",id:"20",room:"bathroom",prefix:"a/"},
+{name:"sponge",use:"A sponge helps wash our body.",id:"21",room:"bathroom",prefix:"a/"},
+{name:"plunger",use:"A plunger clears a clogged drain.",id:"22",room:"bathroom",prefix:"a/"},
+{name:"tissue",use:"Tissues wipe our nose.",id:"23",room:"bathroom",prefix:"a/"},
+{name:"laundry basket",use:"A laundry basket holds dirty clothes.",id:"24",room:"bathroom",prefix:"a/"},
+{name:"mouthwash",use:"Mouthwash rinses our mouth clean.",id:"25",room:"bathroom",prefix:"a/"}
+];
+const LIVING_ITEMS=[
+{name:"sofa",use:"We sit on a sofa to rest.",id:"01",room:"living room",prefix:"l/"},
+{name:"TV",use:"A TV shows cartoons and movies.",id:"02",room:"living room",prefix:"l/"},
+{name:"remote",use:"A remote changes the TV channel.",id:"03",room:"living room",prefix:"l/"},
+{name:"coffee table",use:"A coffee table holds drinks and books.",id:"04",room:"living room",prefix:"l/"},
+{name:"armchair",use:"We sit in a soft armchair.",id:"05",room:"living room",prefix:"l/"},
+{name:"cushion",use:"A cushion makes sitting soft.",id:"06",room:"living room",prefix:"l/"},
+{name:"bookshelf",use:"A bookshelf holds our books.",id:"07",room:"living room",prefix:"l/"},
+{name:"floor lamp",use:"A floor lamp lights the room.",id:"08",room:"living room",prefix:"l/"},
+{name:"fireplace",use:"A fireplace keeps the room warm.",id:"09",room:"living room",prefix:"l/"},
+{name:"speaker",use:"A speaker plays music out loud.",id:"10",room:"living room",prefix:"l/"},
+{name:"vase",use:"A vase holds pretty flowers.",id:"11",room:"living room",prefix:"l/"},
+{name:"ottoman",use:"An ottoman is a soft footrest.",id:"12",room:"living room",prefix:"l/"},
+{name:"plant",use:"A plant makes the room fresh.",id:"13",room:"living room",prefix:"l/"},
+{name:"chandelier",use:"A chandelier lights the ceiling.",id:"14",room:"living room",prefix:"l/"},
+{name:"board game",use:"A board game is fun to play together.",id:"15",room:"living room",prefix:"l/"},
+{name:"magazine",use:"A magazine has stories and pictures.",id:"16",room:"living room",prefix:"l/"},
+{name:"coat rack",use:"A coat rack holds coats and hats.",id:"17",room:"living room",prefix:"l/"},
+{name:"window",use:"A window lets in light and air.",id:"18",room:"living room",prefix:"l/"},
+{name:"door",use:"A door opens and closes a room.",id:"19",room:"living room",prefix:"l/"},
+{name:"throw pillow",use:"A throw pillow decorates the sofa.",id:"20",room:"living room",prefix:"l/"},
+{name:"side table",use:"A side table holds a lamp or drink.",id:"21",room:"living room",prefix:"l/"},
+{name:"ceiling fan",use:"A ceiling fan cools the room.",id:"22",room:"living room",prefix:"l/"},
+{name:"picture",use:"A picture hangs on the wall.",id:"23",room:"living room",prefix:"l/"},
+{name:"blinds",use:"Blinds cover the window.",id:"24",room:"living room",prefix:"l/"},
+{name:"stool",use:"We sit on a stool.",id:"25",room:"living room",prefix:"l/"}
+];
 const ROOMS=[{k:"kitchen",em:"🍳",n:"Kitchen"},{k:"bedroom",em:"🛏️",n:"Bedroom"},{k:"bathroom",em:"🛁",n:"Bathroom"},{k:"living room",em:"🛋️",n:"Living Room"}];
 const ROUNDS=8;
 let stars=+localStorage.getItem('emmaStars')||0, screen='home', state={};
@@ -192,7 +246,7 @@ const $=s=>document.querySelector(s), main=$('#main');
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const pick=(arr,n,ex=[])=>shuffle(arr.filter(x=>!ex.includes(x))).slice(0,n);
 function setScore(){$('#score').textContent='⭐ '+stars;localStorage.setItem('emmaStars',stars)}
-function pool(){return state.room==='bedroom'?BEDROOM_ITEMS:ITEMS}
+function pool(){return state.room==='bedroom'?BEDROOM_ITEMS:state.room==='bathroom'?BATHROOM_ITEMS:state.room==='living room'?LIVING_ITEMS:ITEMS}
 function spellPool(){return pool().filter(i=>!i.name.includes(' ')&&i.name.length<=6)}
 let ac;function actx(){if(!ac){const C=window.AudioContext||window.webkitAudioContext;if(C)ac=new C()}if(ac&&ac.state==='suspended')ac.resume();return ac}
 function tone(f,t0,d,type='sine',v=.18){const a=actx();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,a.currentTime+t0);g.gain.linearRampToValueAtTime(v,a.currentTime+t0+.02);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+t0+d);o.connect(g).connect(a.destination);o.start(a.currentTime+t0);o.stop(a.currentTime+t0+d+.05)}
@@ -219,11 +273,11 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
 function go(s,arg){screen=s;speechSynthesis&&speechSynthesis.cancel&&speechSynthesis.cancel();document.querySelectorAll('.pop').forEach(p=>p.remove());
- $('#backBtn').classList.toggle('hidden',s==='home');({home,kitchen,bedroom,find,use,room,spell,reward})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ $('#backBtn').classList.toggle('hidden',s==='home');({home,kitchen,bedroom,bathroom,living,find,use,room,spell,reward})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
-  if(screen==='kitchen'||screen==='bedroom')go('home');
-  else go(state.room==='bedroom'?'bedroom':'kitchen');
+  if(['kitchen','bedroom','bathroom','living'].includes(screen))go('home');
+  else go(state.room==='living room'?'living':(state.room||'kitchen'));
 };
 function home(){$('#title').textContent='Emmavengers House Adventure';
  main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?'Tap to play!':'Coming soon'}</div></button>`}).join('')}</div>`;
@@ -235,6 +289,8 @@ function roomMenu(title,welcome){$('#title').textContent=title;
  main.querySelector('.say').onclick=()=>say('Choose a game!');say(welcome);
  main.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{sfx.tap();state={mode:b.dataset.m,room:state.room,round:0,score:0,miss:0,used:[]};go(b.dataset.m)})}
 function kitchen(){state.room='kitchen';roomMenu('🍳 Kitchen','Welcome to the kitchen! Choose a game!')}
+function bathroom(){state.room='bathroom';roomMenu('🛁 Bathroom','Welcome to the bathroom! Choose a game!')}
+function living(){state.room='living room';roomMenu('🛋️ Living Room','Welcome to the living room! Choose a game!')}
 function bedroom(){state.room='bedroom';roomMenu('🛏️ Bedroom','Welcome to the bedroom! Choose a game!')}
 function header(text){const T=state.total||ROUNDS;return `<div class="bar"><i style="width:${state.round/T*100}%"></i><b>${state.round+1} / ${T}</b></div><div class="prompt"><span>${text}</span><button class="say" aria-label="Read aloud">🔊</button></div>`}
 function bindSay(t){main.querySelector('.say').onclick=()=>say(t);say(t)}
@@ -250,7 +306,7 @@ function use(){$('#title').textContent='🤔 What Is It Used For?';const P=pool(
  main.querySelectorAll('.opt').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
 function room(){$('#title').textContent='🏠 Which Room?';
  if(state.round===0){
-   const mix=[...pick(ITEMS,4).map(i=>({...i,room:'kitchen'})),...pick(BEDROOM_ITEMS,4).map(i=>({...i,room:'bedroom'})),...pick(OTHER,2)];
+   const mix=[...pick(ITEMS,2).map(i=>({...i,room:'kitchen'})),...pick(BEDROOM_ITEMS,2).map(i=>({...i,room:'bedroom'})),...pick(BATHROOM_ITEMS,2).map(i=>({...i,room:'bathroom'})),...pick(LIVING_ITEMS,2).map(i=>({...i,room:'living room'}))];
    state.queue=shuffle(mix);state.total=state.queue.length;
  }
  const t=state.queue[state.round];const txt=`Where does the ${t.name} go?`;
@@ -274,7 +330,7 @@ function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=st
  main.innerHTML=`<div class="reward"><h1>Level Complete!</h1><div class="prompt" style="display:inline-flex">🎉 Great Job! 🎉</div><br><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">You finished ${n} of ${tot}! Total stars: ⭐ ${stars}</div><img class="heroimg" src="img/end.jpg" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">🔁 Play Again</button><button class="btn" id="more">🎮 More Games</button></div></div>`;
  say('Great job! You are a super star!',1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
  $('#again').onclick=()=>{sfx.tap();const m=state.mode,r=state.room;state={mode:m,room:r,round:0,score:0,miss:0,used:[]};go(m)};
- $('#more').onclick=()=>{sfx.tap();go(state.room==='bedroom'?'bedroom':'kitchen')}}
+ $('#more').onclick=()=>{sfx.tap();go(state.room==='living room'?'living':(state.room||'kitchen'))}}
 setScore();go('home');
 
 </script></body></html>
