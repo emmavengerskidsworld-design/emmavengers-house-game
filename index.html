@@ -151,12 +151,38 @@ const ITEMS=[
 ["tray","We use a tray to carry food and drinks."],
 ["dish rack","A dish rack holds clean dishes to dry."],
 ["grater","A grater makes cheese and carrots into tiny pieces."]
-].map((a,i)=>({name:a[0],use:a[1],id:String(i+1).padStart(2,'0')}));
-const crop=it=>IMG+'c'+it.id+'.jpg', full=it=>IMG+'f'+it.id+'.jpg';
-// Use text with the item name hidden, for answer options
-const hideName=it=>it.use.replace(new RegExp('^(A|An) '+it.name,'i'),'It').replace(new RegExp('\\b(a|an|the) '+it.name,'i'),'it');
+].map((a,i)=>({name:a[0],use:a[1],id:String(i+1).padStart(2,'0'),room:'kitchen',prefix:''}));
+const BEDROOM_ITEMS=[
+["bed","We sleep on a bed at night."],
+["pillow","We rest our head on a pillow."],
+["blanket","A blanket keeps us warm in bed."],
+["lamp","A lamp gives us light to see."],
+["wardrobe","A wardrobe holds our clothes."],
+["dresser","A dresser stores shirts and socks."],
+["mirror","We look in a mirror to see ourselves."],
+["alarm clock","An alarm clock wakes us up."],
+["teddy bear","A teddy bear is soft to cuddle."],
+["nightstand","A nightstand holds a lamp and books."],
+["curtain","Curtains cover the window."],
+["rug","A rug softens the floor."],
+["hanger","A hanger holds clothes up."],
+["pajamas","We wear pajamas to sleep."],
+["slippers","Slippers keep our feet warm."],
+["quilt","A quilt covers the bed."],
+["photo frame","A photo frame shows our pictures."],
+["toy box","A toy box keeps toys tidy."],
+["desk","We sit at a desk to draw and write."],
+["chair","We sit on a chair."],
+["drawer","A drawer stores our things."],
+["mattress","A mattress makes the bed soft."],
+["crib","A crib is a safe bed for a baby."],
+["clock","A clock tells us the time."],
+["fan","A fan keeps us cool."]
+].map((a,i)=>({name:a[0],use:a[1],id:String(i+1).padStart(2,'0'),room:'bedroom',prefix:'b/'}));
+const OPEN_ROOMS=new Set(['kitchen','bedroom']);
+const crop=it=>IMG+(it.prefix||'')+'c'+it.id+'.jpg', full=it=>IMG+(it.prefix||'')+'f'+it.id+'.jpg';
+const hideName=it=>it.use.replace(new RegExp('^(A|An) '+it.name,'i'),'It').replace(new RegExp('\b(a|an|the) '+it.name,'i'),'it');
 const OTHER=[
-{name:"bed",em:"🛏️",room:"bedroom"},{name:"teddy bear",em:"🧸",room:"bedroom"},{name:"pillow",em:"💤",room:"bedroom"},
 {name:"toothbrush",em:"🪥",room:"bathroom"},{name:"bathtub",em:"🛁",room:"bathroom"},{name:"soap",em:"🧼",room:"bathroom"},{name:"toilet",em:"🚽",room:"bathroom"},
 {name:"sofa",em:"🛋️",room:"living room"},{name:"TV",em:"📺",room:"living room"}];
 const ROOMS=[{k:"kitchen",em:"🍳",n:"Kitchen"},{k:"bedroom",em:"🛏️",n:"Bedroom"},{k:"bathroom",em:"🛁",n:"Bathroom"},{k:"living room",em:"🛋️",n:"Living Room"}];
@@ -166,7 +192,8 @@ const $=s=>document.querySelector(s), main=$('#main');
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const pick=(arr,n,ex=[])=>shuffle(arr.filter(x=>!ex.includes(x))).slice(0,n);
 function setScore(){$('#score').textContent='⭐ '+stars;localStorage.setItem('emmaStars',stars)}
-// ---- sound ----
+function pool(){return state.room==='bedroom'?BEDROOM_ITEMS:ITEMS}
+function spellPool(){return pool().filter(i=>!i.name.includes(' ')&&i.name.length<=6)}
 let ac;function actx(){if(!ac){const C=window.AudioContext||window.webkitAudioContext;if(C)ac=new C()}if(ac&&ac.state==='suspended')ac.resume();return ac}
 function tone(f,t0,d,type='sine',v=.18){const a=actx();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,a.currentTime+t0);g.gain.linearRampToValueAtTime(v,a.currentTime+t0+.02);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+t0+d);o.connect(g).connect(a.destination);o.start(a.currentTime+t0);o.stop(a.currentTime+t0+d+.05)}
 const sfx={
@@ -174,7 +201,6 @@ const sfx={
  right(){[523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.25,'triangle'))},
  wrong(){tone(392,0,.25,'sine',.1);tone(349,.18,.3,'sine',.08)},
  win(){[523,659,784,659,784,1047,1319].forEach((f,i)=>tone(f,i*.13,.35,'triangle',.16))}};
-// ---- speech ----
 function say(t,h){mascot(t,h);try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=.9;u.pitch=1.15;u.lang='en-US';speechSynthesis.speak(u)}catch(e){}}
 function burst(x,y){for(let i=0;i<8;i++){const s=document.createElement('div');s.className='burst';s.textContent=['⭐','✨','🌟'][i%3];s.style.left=x+'px';s.style.top=y+'px';const a=i/8*6.28;s.style.setProperty('--dx',Math.cos(a)*140+'px');s.style.setProperty('--dy',Math.sin(a)*140+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
 const PRAISE=["Great job!","Well done!","Super!","You got it!","Awesome!","Brilliant!"];
@@ -186,41 +212,47 @@ function wrong(el){sfx.wrong();state.miss=(state.miss||0)+1;el.classList.add('no
 function lockAll(){main.querySelectorAll('button').forEach(b=>b.disabled=true)}
 function showCard(it,next){const d=document.createElement('div');d.className='pop';d.innerHTML=`<img src="${full(it)}" alt="${it.name}"><button class="btn">Next ➜</button>`;document.body.appendChild(d);
  say(it.use);d.querySelector('button').onclick=()=>{sfx.tap();d.remove();next()}}
-
-// mascot + confetti
 let bubT;function mascot(t,happy){const m=$('#mascot');$('#bub').textContent=t;m.classList.add('talk');if(happy){m.classList.remove('happy');void m.offsetWidth;m.classList.add('happy')}clearTimeout(bubT);bubT=setTimeout(()=>m.classList.remove('talk'),3500)}
 const cv=$('#confetti'),cx=cv.getContext('2d');let parts=[],raf;
 function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#ffd21f','#2f86e8','#ff5a5a','#2ecc40','#ff9f1c','#b46cff'];
  for(let i=0;i<n;i++)parts.push({x:innerWidth*Math.random(),y:-20-Math.random()*innerHeight*.4,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:8+Math.random()*8,c:cols[i%6]});
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
-// ---- navigation ----
 function go(s,arg){screen=s;speechSynthesis&&speechSynthesis.cancel&&speechSynthesis.cancel();document.querySelectorAll('.pop').forEach(p=>p.remove());
- $('#backBtn').classList.toggle('hidden',s==='home');({home,kitchen,find,use,room,spell,reward})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
-$('#backBtn').onclick=()=>{sfx.tap();go(['home','kitchen'].includes(screen)?'home':'kitchen')};
+ $('#backBtn').classList.toggle('hidden',s==='home');({home,kitchen,bedroom,find,use,room,spell,reward})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+$('#backBtn').onclick=()=>{sfx.tap();
+  if(screen==='home')return;
+  if(screen==='kitchen'||screen==='bedroom')go('home');
+  else go(state.room==='bedroom'?'bedroom':'kitchen');
+};
 function home(){$('#title').textContent='Emmavengers House Adventure';
- main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>`<button class="room ${r.k==='kitchen'?'':'locked'}" data-k="${r.k}">${r.k==='kitchen'?'':'<span class="lock">🔒</span>'}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${r.k==='kitchen'?'Tap to play!':'Coming soon'}</div></button>`).join('')}</div>`;
+ main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?'Tap to play!':'Coming soon'}</div></button>`}).join('')}</div>`;
  main.querySelector('.say').onclick=()=>say('Pick a room to play!');
- main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{if(b.dataset.k==='kitchen'){sfx.tap();go('kitchen')}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
+ main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(OPEN_ROOMS.has(k)){sfx.tap();go(k)}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
 const MODES=[["find","🔍","Find It","Find the right picture"],["use","🤔","What Is It Used For?","Pick the right use"],["room","🏠","Which Room?","Put it in the right room"],["spell","🔤","Spell It","Tap the letters in order"]];
-function kitchen(){$('#title').textContent='🍳 Kitchen';
+function roomMenu(title,welcome){$('#title').textContent=title;
  main.innerHTML=`<div class="prompt">Choose a game! <button class="say">🔊</button></div><div class="grid">${MODES.map(m=>`<button class="room mode" data-m="${m[0]}"><span class="em">${m[1]}</span><span><div class="nm">${m[2]}</div><div class="sub">${m[3]}</div></span></button>`).join('')}</div>`;
- main.querySelector('.say').onclick=()=>say('Choose a game!');say('Welcome to the kitchen! Choose a game!');
- main.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{sfx.tap();state={mode:b.dataset.m,round:0,score:0,miss:0,used:[]};go(b.dataset.m)})}
+ main.querySelector('.say').onclick=()=>say('Choose a game!');say(welcome);
+ main.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{sfx.tap();state={mode:b.dataset.m,room:state.room,round:0,score:0,miss:0,used:[]};go(b.dataset.m)})}
+function kitchen(){state.room='kitchen';roomMenu('🍳 Kitchen','Welcome to the kitchen! Choose a game!')}
+function bedroom(){state.room='bedroom';roomMenu('🛏️ Bedroom','Welcome to the bedroom! Choose a game!')}
 function header(text){const T=state.total||ROUNDS;return `<div class="bar"><i style="width:${state.round/T*100}%"></i><b>${state.round+1} / ${T}</b></div><div class="prompt"><span>${text}</span><button class="say" aria-label="Read aloud">🔊</button></div>`}
 function bindSay(t){main.querySelector('.say').onclick=()=>say(t);say(t)}
 function nextRound(){state.round++;if(state.round>=(state.total||ROUNDS))go('reward');else go(state.mode)}
-function newTarget(pool){const it=pick(pool,1,state.used)[0]||pick(pool,1)[0];state.used.push(it);return it}
+function newTarget(p){const it=pick(p,1,state.used)[0]||pick(p,1)[0];state.used.push(it);return it}
 const article=n=>/^[aeiou]/.test(n)?'an':'a';
-function find(){$('#title').textContent='🔍 Find It';const t=newTarget(ITEMS);const ch=shuffle([t,...pick(ITEMS,2,[t])]);const txt=`Find the ${t.name}!`;
+function find(){$('#title').textContent='🔍 Find It';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`Find the ${t.name}!`;
  main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${crop(c)}" alt=""></button>`).join('')}</div>`;bindSay(txt);
  main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
-function use(){$('#title').textContent='🤔 What Is It Used For?';const t=newTarget(ITEMS);const ch=shuffle([t,...pick(ITEMS,2,[t])]);const txt=`What is the ${t.name} used for?`;
+function use(){$('#title').textContent='🤔 What Is It Used For?';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`What is the ${t.name} used for?`;
  main.innerHTML=header(txt)+`<div class="usewrap"><div class="pic"><img src="${crop(t)}" alt=""></div><div class="opts">${ch.map(c=>`<button class="opt" data-n="${c.name}">${hideName(c)}</button>`).join('')}</div></div>`;
  main.querySelector('.say').onclick=()=>say(txt+' '+ch.map(hideName).join(' Or, '));say(txt);
  main.querySelectorAll('.opt').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
 function room(){$('#title').textContent='🏠 Which Room?';
- if(state.round===0){state.queue=shuffle([...pick(ITEMS,5).map(i=>({...i,room:'kitchen'})),...pick(OTHER,3)])}
+ if(state.round===0){
+   const mix=[...pick(ITEMS,4).map(i=>({...i,room:'kitchen'})),...pick(BEDROOM_ITEMS,4).map(i=>({...i,room:'bedroom'})),...pick(OTHER,2)];
+   state.queue=shuffle(mix);state.total=state.queue.length;
+ }
  const t=state.queue[state.round];const txt=`Where does the ${t.name} go?`;
  main.innerHTML=header(txt)+`<div class="item" id="drag">${t.em?t.em:`<img src="${crop(t)}" alt="">`}</div><div class="hint">Drag it to a room, or tap a room!</div><div class="roomsrow">${ROOMS.map(r=>`<button class="drop" data-k="${r.k}"><div class="em">${r.em}</div>${r.n}</button>`).join('')}</div>`;bindSay(txt);
  const check=d=>{if(d.dataset.k===t.room)correct(d,nextRound,t.em?null:t);else{wrong(d);d.disabled=false;setTimeout(()=>d.classList.remove('no'),500)}};
@@ -230,8 +262,7 @@ function room(){$('#title').textContent='🏠 Which Room?';
  const over=e=>[...main.querySelectorAll('.drop')].find(d=>{const r=d.getBoundingClientRect();return e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom});
  el.addEventListener('pointermove',e=>{if(!dragging)return;el.style.transform=`translate(${e.clientX-sx}px,${e.clientY-sy}px) scale(.6)`;main.querySelectorAll('.drop').forEach(d=>d.classList.toggle('hover',d===over(e)))});
  el.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;const d=over(e);main.querySelectorAll('.drop').forEach(x=>x.classList.remove('hover'));el.style.transition='transform .25s';el.style.transform='';if(d)check(d)})}
-const SPELL=ITEMS.filter(i=>!i.name.includes(' ')&&i.name.length<=6);
-function spell(){$('#title').textContent='🔤 Spell It';const t=newTarget(SPELL);const w=t.name.toUpperCase();state.pos=0;
+function spell(){$('#title').textContent='🔤 Spell It';const SPELL=spellPool();const t=newTarget(SPELL);const w=t.name.toUpperCase();state.pos=0;
  const txt=`Spell ${t.name}!`;
  main.innerHTML=header(`Spell the word! <span style="color:#e8261c">${w}</span>`)+`<div class="pic spellpic"><img src="${crop(t)}" alt=""></div><div class="slots">${[...w].map(()=>`<div class="slot"></div>`).join('')}</div><div class="letters">${shuffle([...w].map((c,i)=>({c,i}))).map(o=>`<button class="btn letter" data-c="${o.c}">${o.c}</button>`).join('')}</div>`;
  bindSay(`${txt} ${[...w].join(', ')}`);
@@ -242,6 +273,8 @@ function spell(){$('#title').textContent='🔤 Spell It';const t=newTarget(SPELL
 function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=state.score,tot=state.total||ROUNDS,s=state.miss<=1?3:state.miss<=4?2:1;
  main.innerHTML=`<div class="reward"><h1>Level Complete!</h1><div class="prompt" style="display:inline-flex">🎉 Great Job! 🎉</div><br><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">You finished ${n} of ${tot}! Total stars: ⭐ ${stars}</div><img class="heroimg" src="img/end.jpg" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">🔁 Play Again</button><button class="btn" id="more">🎮 More Games</button></div></div>`;
  say('Great job! You are a super star!',1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
- $('#again').onclick=()=>{sfx.tap();const m=state.mode;state={mode:m,round:0,score:0,miss:0,used:[]};go(m)};$('#more').onclick=()=>{sfx.tap();go('kitchen')}}
+ $('#again').onclick=()=>{sfx.tap();const m=state.mode,r=state.room;state={mode:m,room:r,round:0,score:0,miss:0,used:[]};go(m)};
+ $('#more').onclick=()=>{sfx.tap();go(state.room==='bedroom'?'bedroom':'kitchen')}}
 setScore();go('home');
+
 </script></body></html>
