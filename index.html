@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1e6fd9">
+<title>Emmavengers House Adventure</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+html,body{margin:0;height:100%;font-family:"Arial Rounded MT Bold","Trebuchet MS","Segoe UI",system-ui,sans-serif;font-weight:900;color:#123a7a}
+body{background:radial-gradient(circle at 50% 0%,#7cc8ff 0%,#2f86e8 55%,#1a56b8 100%);overflow:hidden}
+#app{height:100%;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:10px;padding:10px 14px;padding-top:max(10px,env(safe-area-inset-top))}
+.title{flex:1;text-align:center;color:#ffd21f;font-size:clamp(20px,4.2vw,40px);text-shadow:0 3px 0 #b8560a,0 6px 10px rgba(0,0,0,.3);letter-spacing:1px;line-height:1.05}
+.btn{border:none;cursor:pointer;font:inherit;border-radius:22px;padding:12px 20px;font-size:clamp(18px,3vw,28px);background:linear-gradient(#ffe45c,#ffb800);color:#7a3a00;box-shadow:0 6px 0 #c77800,0 10px 16px rgba(0,0,0,.25);transition:transform .08s}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #c77800}
+.back{min-width:64px;min-height:56px;font-size:30px;padding:6px 16px}
+.pill{background:#fff;border-radius:999px;padding:8px 16px;font-size:clamp(16px,2.6vw,26px);box-shadow:0 4px 0 #c9d9f2;white-space:nowrap}
+main{flex:1;overflow:auto;padding:10px 16px 20px;display:flex;flex-direction:column;align-items:center}
+.hidden{display:none!important}
+.grid{display:grid;gap:18px;width:100%;max-width:1100px;grid-template-columns:repeat(2,1fr)}
+@media (orientation:landscape) and (min-width:800px){.grid.rooms{grid-template-columns:repeat(4,1fr)}}
+.room{position:relative;border:6px solid #ffc400;border-radius:30px;background:linear-gradient(#fff8d6,#ffe9a0);padding:16px 10px;text-align:center;cursor:pointer;box-shadow:0 8px 0 #c98a00,0 14px 22px rgba(0,0,0,.25);font:inherit;color:#123a7a}
+.room:active{transform:translateY(4px)}
+.room .em{font-size:clamp(60px,11vw,110px);line-height:1.1}
+.room .nm{font-size:clamp(22px,3.6vw,34px)}
+.room .sub{font-size:clamp(14px,2.2vw,20px);color:#2f86e8}
+.room.locked{filter:grayscale(.8);opacity:.75;cursor:default;box-shadow:0 8px 0 #888}
+.room.locked .lock{position:absolute;top:8px;right:12px;font-size:34px}
+.room.locked .sub{color:#666}
+.heroimg{width:min(560px,90%);border-radius:24px;border:6px solid #ffc400;box-shadow:0 10px 20px rgba(0,0,0,.3);margin:6px 0 14px}
+.mode{display:flex;align-items:center;gap:14px;text-align:left;padding:18px}
+.mode .em{font-size:clamp(44px,7vw,70px)}
+.prompt{background:#fff;border:5px solid #ffc400;border-radius:28px;padding:12px 24px;font-size:clamp(24px,5vw,46px);text-align:center;margin:6px 0 16px;box-shadow:0 6px 0 #c98a00;max-width:1000px;display:flex;align-items:center;gap:12px;justify-content:center}
+.say{font-size:28px;background:#2f86e8;color:#fff;border:none;border-radius:50%;width:54px;height:54px;flex:none;cursor:pointer;box-shadow:0 4px 0 #1a56b8}
+.choices{display:grid;gap:16px;width:100%;max-width:1000px;grid-template-columns:repeat(3,1fr)}
+@media (orientation:portrait){.choices.pics{grid-template-columns:repeat(2,1fr)}.choices.pics>*:nth-child(3){grid-column:1/3;justify-self:center;width:calc(50% - 8px)}}
+.pic{border:6px solid #ffc400;border-radius:26px;overflow:hidden;background:#fff;cursor:pointer;padding:0;box-shadow:0 7px 0 #c98a00;aspect-ratio:1}
+.pic img{width:100%;height:100%;display:block;object-fit:cover}
+.opt{border:5px solid #ffc400;border-radius:24px;background:#fff;font:inherit;font-size:clamp(20px,3.4vw,32px);color:#123a7a;padding:20px 14px;cursor:pointer;box-shadow:0 6px 0 #c98a00;min-height:90px}
+.ok{border-color:#2ecc40!important;box-shadow:0 6px 0 #1f8a2b!important;background:#e9ffe9!important}
+.no{animation:shake .4s;opacity:.45}
+@keyframes shake{25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-5px)}}
+.usewrap{display:flex;gap:18px;align-items:center;width:100%;max-width:1000px}
+.usewrap .pic{width:min(300px,40vw);flex:none;cursor:default}
+.opts{display:flex;flex-direction:column;gap:14px;flex:1}
+@media (orientation:portrait){.usewrap{flex-direction:column}.usewrap .pic{width:min(280px,60vw)}.opts{width:100%}}
+.roomsrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:1000px;margin-top:14px}
+.drop{font:inherit;color:#123a7a;border:5px dashed #ffc400;border-radius:22px;background:rgba(255,255,255,.92);text-align:center;padding:10px 4px;font-size:clamp(14px,2.4vw,22px);cursor:pointer;min-height:110px}
+.drop .em{font-size:clamp(34px,6vw,56px)}
+.drop.hover{background:#fff3b0;border-style:solid}
+.item{width:min(240px,46vw);aspect-ratio:1;border:6px solid #ffc400;border-radius:26px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:clamp(90px,18vw,150px);overflow:hidden;touch-action:none;cursor:grab;box-shadow:0 7px 0 #c98a00;position:relative;z-index:5}
+.item img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hint{color:#fff;font-size:clamp(14px,2.4vw,20px);margin-top:8px;text-shadow:0 2px 3px rgba(0,0,0,.4)}
+.slots{display:flex;gap:10px;margin:10px 0;flex-wrap:wrap;justify-content:center}
+.slot{width:clamp(48px,9vw,78px);height:clamp(58px,11vw,92px);border-radius:16px;background:#fff;border:4px solid #ffc400;font-size:clamp(32px,6vw,58px);display:flex;align-items:center;justify-content:center;color:#e8261c}
+.letters{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:900px;margin-top:10px}
+.letter{width:clamp(62px,11vw,96px);height:clamp(62px,11vw,96px);font-size:clamp(34px,6vw,56px);padding:0}
+.letter.used{visibility:hidden}
+.spellpic{width:min(220px,40vw);cursor:default}
+.reward{text-align:center;color:#fff}
+.reward h1{font-size:clamp(48px,10vw,96px);color:#ffd21f;margin:6px;text-shadow:0 4px 0 #b8560a,0 8px 14px rgba(0,0,0,.35)}
+.bigstars{font-size:clamp(50px,10vw,90px);letter-spacing:6px}
+.pop{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;background:rgba(10,40,100,.55);z-index:50}
+.pop img{width:min(860px,94vw);border-radius:22px;border:6px solid #ffc400;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.pop .btn{margin-top:16px}
+.burst{position:fixed;font-size:40px;pointer-events:none;z-index:60;animation:fly 1s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
+.progress{color:#fff;font-size:clamp(16px,2.6vw,24px)}
+
+main.enter>*{animation:rise .45s cubic-bezier(.2,1.4,.4,1) both}
+main.enter>*:nth-child(2){animation-delay:.06s}main.enter>*:nth-child(3){animation-delay:.12s}main.enter>*:nth-child(4){animation-delay:.18s}
+@keyframes rise{from{opacity:0;transform:translateY(30px) scale(.94)}}
+.room,.pic,.opt,.drop{transition:transform .15s}
+@media (hover:hover){.room:not(.locked):hover,.pic:hover,.opt:hover{transform:translateY(-4px) scale(1.02)}}
+.ok{animation:bounce .5s}
+@keyframes bounce{40%{transform:scale(1.12)}70%{transform:scale(.96)}}
+.bar{width:min(700px,92%);height:22px;background:rgba(255,255,255,.35);border-radius:99px;overflow:hidden;border:3px solid #fff;margin-bottom:6px;position:relative}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#ffe45c,#ffb800);border-radius:99px;transition:width .5s}
+.bar b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:#123a7a}
+#mascot{position:fixed;left:10px;bottom:max(10px,env(safe-area-inset-bottom));display:flex;align-items:flex-end;gap:6px;z-index:40;pointer-events:none}
+#mascot .face{font-size:clamp(44px,7vw,64px);filter:drop-shadow(0 4px 4px rgba(0,0,0,.3));animation:bob 2s ease-in-out infinite}
+#mascot .bub{background:#fff;border:4px solid #ffc400;border-radius:20px 20px 20px 4px;padding:8px 14px;font-size:clamp(14px,2.2vw,20px);max-width:min(60vw,360px);margin-bottom:30px;opacity:0;transform:scale(.6);transform-origin:bottom left;transition:.25s}
+#mascot.talk .bub{opacity:1;transform:none}
+#mascot.happy .face{animation:jump .6s}
+@keyframes bob{50%{transform:translateY(-6px)}}
+@keyframes jump{30%{transform:translateY(-30px) rotate(-10deg)}60%{transform:translateY(0) rotate(8deg)}}
+main{padding-bottom:110px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+.pop{animation:fadein .25s}.pop img{animation:rise .5s cubic-bezier(.2,1.4,.4,1)}
+@keyframes fadein{from{opacity:0}}
+.bigstars span{display:inline-block;animation:starin .5s cubic-bezier(.2,1.6,.4,1) both}
+.bigstars span:nth-child(2){animation-delay:.3s}.bigstars span:nth-child(3){animation-delay:.6s}
+@keyframes starin{from{transform:scale(0) rotate(-180deg)}}
+.title{font-family:inherit}
+
+.reward .prompt{color:#123a7a}
+.choices{max-width:min(1000px,125vh)}
+#mascot .face{font-size:clamp(56px,9vw,96px)}
+main{padding-bottom:150px}
+@media (max-width:600px){#mascot .bub{margin-bottom:20px}main{padding-bottom:130px}}
+@media (max-height:520px){
+ header{padding:4px 10px}.title{font-size:22px}.back{min-height:44px}
+ .prompt{font-size:22px;padding:6px 16px;margin:4px 0 8px}.say{width:42px;height:42px;font-size:20px}
+ .choices{max-width:105vh}.usewrap .pic{width:44vh}.opt{min-height:56px;padding:10px;font-size:18px}
+ .item{width:36vh;font-size:70px}.drop{min-height:70px;padding:4px}.drop .em{font-size:30px}
+ .room{padding:8px}.room .em{font-size:52px}.mode{padding:10px}.spellpic{width:30vh}
+ .slot{height:56px;width:46px;font-size:32px}.letter{width:58px;height:58px;font-size:32px}
+ #mascot .face{font-size:46px}main{padding-bottom:80px}.bar{height:16px}.bar b{font-size:11px}
+ .reward h1{font-size:40px}.bigstars{font-size:44px}.heroimg{width:min(360px,60%)}
+ .pop img{width:auto;max-height:72vh;max-width:94vw}
+}
+main>*{flex-shrink:0}
+@media (max-height:520px){.item{width:27vh}.spellpic{width:22vh}.hint{display:none}#mascot .bub{display:none}.roomsrow{margin-top:8px}}
+</style></head><body>
+<div id="app">
+<header>
+ <button class="btn back hidden" id="backBtn" aria-label="Back">⬅</button>
+ <div class="title" id="title">Emmavengers House Adventure</div>
+ <div class="pill" id="score">⭐ 0</div>
+</header>
+<main id="main"></main>
+<div id="mascot"><div class="face">🦸🏾‍♂️</div><div class="bub" id="bub"></div></div><canvas id="confetti"></canvas>
+</div>
+<script>
+const IMG='img/';
+const ITEMS=[
+["cup","We use a cup to drink water, milk and juice."],
+["spoon","We use a spoon to eat soup and cereal."],
+["fork","We use a fork to pick up food and eat it."],
+["plate","We put our food on a plate to eat."],
+["bowl","We use a bowl for soup, rice or cereal."],
+["knife","We use a knife to cut bread and food."],
+["pot","We use a pot to cook soup and stew."],
+["frying pan","We use a frying pan to fry eggs."],
+["kettle","We use a kettle to boil water."],
+["fridge","A fridge keeps food cold and fresh."],
+["stove","We cook food on top of the stove."],
+["microwave","A microwave heats up food fast."],
+["sink","We wash dishes and hands in the sink."],
+["blender","A blender mixes fruit into smoothies."],
+["toaster","A toaster makes bread crispy and warm."],
+["jug","A jug holds juice or water to pour."],
+["ladle","We use a ladle to scoop soup."],
+["whisk","We use a whisk to mix eggs fast."],
+["rolling pin","We use a rolling pin to flatten dough."],
+["cutting board","We cut fruit and vegetables on a cutting board."],
+["oven mitt","An oven mitt keeps our hands safe from hot pans."],
+["apron","An apron keeps our clothes clean when we cook."],
+["tray","We use a tray to carry food and drinks."],
+["dish rack","A dish rack holds clean dishes to dry."],
+["grater","A grater makes cheese and carrots into tiny pieces."]
+].map((a,i)=>({name:a[0],use:a[1],id:String(i+1).padStart(2,'0')}));
+const crop=it=>IMG+'c'+it.id+'.jpg', full=it=>IMG+'f'+it.id+'.jpg';
+// Use text with the item name hidden, for answer options
+const hideName=it=>it.use.replace(new RegExp('^(A|An) '+it.name,'i'),'It').replace(new RegExp('\\b(a|an|the) '+it.name,'i'),'it');
+const OTHER=[
+{name:"bed",em:"🛏️",room:"bedroom"},{name:"teddy bear",em:"🧸",room:"bedroom"},{name:"pillow",em:"💤",room:"bedroom"},
+{name:"toothbrush",em:"🪥",room:"bathroom"},{name:"bathtub",em:"🛁",room:"bathroom"},{name:"soap",em:"🧼",room:"bathroom"},{name:"toilet",em:"🚽",room:"bathroom"},
+{name:"sofa",em:"🛋️",room:"living room"},{name:"TV",em:"📺",room:"living room"}];
+const ROOMS=[{k:"kitchen",em:"🍳",n:"Kitchen"},{k:"bedroom",em:"🛏️",n:"Bedroom"},{k:"bathroom",em:"🛁",n:"Bathroom"},{k:"living room",em:"🛋️",n:"Living Room"}];
+const ROUNDS=8;
+let stars=+localStorage.getItem('emmaStars')||0, screen='home', state={};
+const $=s=>document.querySelector(s), main=$('#main');
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=(arr,n,ex=[])=>shuffle(arr.filter(x=>!ex.includes(x))).slice(0,n);
+function setScore(){$('#score').textContent='⭐ '+stars;localStorage.setItem('emmaStars',stars)}
+// ---- sound ----
+let ac;function actx(){if(!ac){const C=window.AudioContext||window.webkitAudioContext;if(C)ac=new C()}if(ac&&ac.state==='suspended')ac.resume();return ac}
+function tone(f,t0,d,type='sine',v=.18){const a=actx();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,a.currentTime+t0);g.gain.linearRampToValueAtTime(v,a.currentTime+t0+.02);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+t0+d);o.connect(g).connect(a.destination);o.start(a.currentTime+t0);o.stop(a.currentTime+t0+d+.05)}
+const sfx={
+ tap(){tone(660,0,.08,'triangle',.12)},
+ right(){[523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.25,'triangle'))},
+ wrong(){tone(392,0,.25,'sine',.1);tone(349,.18,.3,'sine',.08)},
+ win(){[523,659,784,659,784,1047,1319].forEach((f,i)=>tone(f,i*.13,.35,'triangle',.16))}};
+// ---- speech ----
+function say(t,h){mascot(t,h);try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=.9;u.pitch=1.15;u.lang='en-US';speechSynthesis.speak(u)}catch(e){}}
+function burst(x,y){for(let i=0;i<8;i++){const s=document.createElement('div');s.className='burst';s.textContent=['⭐','✨','🌟'][i%3];s.style.left=x+'px';s.style.top=y+'px';const a=i/8*6.28;s.style.setProperty('--dx',Math.cos(a)*140+'px');s.style.setProperty('--dy',Math.sin(a)*140+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
+const PRAISE=["Great job!","Well done!","Super!","You got it!","Awesome!","Brilliant!"];
+const TRY=["Oops! Try again!","Almost! Try again!","Good try! Look again!"];
+function correct(el,next,reward){sfx.right();stars++;setScore();state.score++;const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2);el.classList.add('ok');lockAll();
+ const p=PRAISE[Math.random()*PRAISE.length|0];say(p,1);confetti(60);
+ setTimeout(()=>{if(reward)showCard(reward,next);else next()},900)}
+function wrong(el){sfx.wrong();state.miss=(state.miss||0)+1;el.classList.add('no');say(TRY[Math.random()*TRY.length|0]);if(el.tagName==='BUTTON')el.disabled=true}
+function lockAll(){main.querySelectorAll('button').forEach(b=>b.disabled=true)}
+function showCard(it,next){const d=document.createElement('div');d.className='pop';d.innerHTML=`<img src="${full(it)}" alt="${it.name}"><button class="btn">Next ➜</button>`;document.body.appendChild(d);
+ say(it.use);d.querySelector('button').onclick=()=>{sfx.tap();d.remove();next()}}
+
+// mascot + confetti
+let bubT;function mascot(t,happy){const m=$('#mascot');$('#bub').textContent=t;m.classList.add('talk');if(happy){m.classList.remove('happy');void m.offsetWidth;m.classList.add('happy')}clearTimeout(bubT);bubT=setTimeout(()=>m.classList.remove('talk'),3500)}
+const cv=$('#confetti'),cx=cv.getContext('2d');let parts=[],raf;
+function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#ffd21f','#2f86e8','#ff5a5a','#2ecc40','#ff9f1c','#b46cff'];
+ for(let i=0;i<n;i++)parts.push({x:innerWidth*Math.random(),y:-20-Math.random()*innerHeight*.4,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:8+Math.random()*8,c:cols[i%6]});
+ if(!raf)loop()}
+function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
+// ---- navigation ----
+function go(s,arg){screen=s;speechSynthesis&&speechSynthesis.cancel&&speechSynthesis.cancel();document.querySelectorAll('.pop').forEach(p=>p.remove());
+ $('#backBtn').classList.toggle('hidden',s==='home');({home,kitchen,find,use,room,spell,reward})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+$('#backBtn').onclick=()=>{sfx.tap();go(['home','kitchen'].includes(screen)?'home':'kitchen')};
+function home(){$('#title').textContent='Emmavengers House Adventure';
+ main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>`<button class="room ${r.k==='kitchen'?'':'locked'}" data-k="${r.k}">${r.k==='kitchen'?'':'<span class="lock">🔒</span>'}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${r.k==='kitchen'?'Tap to play!':'Coming soon'}</div></button>`).join('')}</div>`;
+ main.querySelector('.say').onclick=()=>say('Pick a room to play!');
+ main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{if(b.dataset.k==='kitchen'){sfx.tap();go('kitchen')}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
+const MODES=[["find","🔍","Find It","Find the right picture"],["use","🤔","What Is It Used For?","Pick the right use"],["room","🏠","Which Room?","Put it in the right room"],["spell","🔤","Spell It","Tap the letters in order"]];
+function kitchen(){$('#title').textContent='🍳 Kitchen';
+ main.innerHTML=`<div class="prompt">Choose a game! <button class="say">🔊</button></div><div class="grid">${MODES.map(m=>`<button class="room mode" data-m="${m[0]}"><span class="em">${m[1]}</span><span><div class="nm">${m[2]}</div><div class="sub">${m[3]}</div></span></button>`).join('')}</div>`;
+ main.querySelector('.say').onclick=()=>say('Choose a game!');say('Welcome to the kitchen! Choose a game!');
+ main.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{sfx.tap();state={mode:b.dataset.m,round:0,score:0,miss:0,used:[]};go(b.dataset.m)})}
+function header(text){const T=state.total||ROUNDS;return `<div class="bar"><i style="width:${state.round/T*100}%"></i><b>${state.round+1} / ${T}</b></div><div class="prompt"><span>${text}</span><button class="say" aria-label="Read aloud">🔊</button></div>`}
+function bindSay(t){main.querySelector('.say').onclick=()=>say(t);say(t)}
+function nextRound(){state.round++;if(state.round>=(state.total||ROUNDS))go('reward');else go(state.mode)}
+function newTarget(pool){const it=pick(pool,1,state.used)[0]||pick(pool,1)[0];state.used.push(it);return it}
+const article=n=>/^[aeiou]/.test(n)?'an':'a';
+function find(){$('#title').textContent='🔍 Find It';const t=newTarget(ITEMS);const ch=shuffle([t,...pick(ITEMS,2,[t])]);const txt=`Find the ${t.name}!`;
+ main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${crop(c)}" alt=""></button>`).join('')}</div>`;bindSay(txt);
+ main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
+function use(){$('#title').textContent='🤔 What Is It Used For?';const t=newTarget(ITEMS);const ch=shuffle([t,...pick(ITEMS,2,[t])]);const txt=`What is the ${t.name} used for?`;
+ main.innerHTML=header(txt)+`<div class="usewrap"><div class="pic"><img src="${crop(t)}" alt=""></div><div class="opts">${ch.map(c=>`<button class="opt" data-n="${c.name}">${hideName(c)}</button>`).join('')}</div></div>`;
+ main.querySelector('.say').onclick=()=>say(txt+' '+ch.map(hideName).join(' Or, '));say(txt);
+ main.querySelectorAll('.opt').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
+function room(){$('#title').textContent='🏠 Which Room?';
+ if(state.round===0){state.queue=shuffle([...pick(ITEMS,5).map(i=>({...i,room:'kitchen'})),...pick(OTHER,3)])}
+ const t=state.queue[state.round];const txt=`Where does the ${t.name} go?`;
+ main.innerHTML=header(txt)+`<div class="item" id="drag">${t.em?t.em:`<img src="${crop(t)}" alt="">`}</div><div class="hint">Drag it to a room, or tap a room!</div><div class="roomsrow">${ROOMS.map(r=>`<button class="drop" data-k="${r.k}"><div class="em">${r.em}</div>${r.n}</button>`).join('')}</div>`;bindSay(txt);
+ const check=d=>{if(d.dataset.k===t.room)correct(d,nextRound,t.em?null:t);else{wrong(d);d.disabled=false;setTimeout(()=>d.classList.remove('no'),500)}};
+ main.querySelectorAll('.drop').forEach(d=>d.onclick=()=>check(d));
+ const el=$('#drag');let sx,sy,dragging=false;
+ el.addEventListener('pointerdown',e=>{dragging=true;sx=e.clientX;sy=e.clientY;el.setPointerCapture(e.pointerId);el.style.transition='none'});
+ const over=e=>[...main.querySelectorAll('.drop')].find(d=>{const r=d.getBoundingClientRect();return e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom});
+ el.addEventListener('pointermove',e=>{if(!dragging)return;el.style.transform=`translate(${e.clientX-sx}px,${e.clientY-sy}px) scale(.6)`;main.querySelectorAll('.drop').forEach(d=>d.classList.toggle('hover',d===over(e)))});
+ el.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;const d=over(e);main.querySelectorAll('.drop').forEach(x=>x.classList.remove('hover'));el.style.transition='transform .25s';el.style.transform='';if(d)check(d)})}
+const SPELL=ITEMS.filter(i=>!i.name.includes(' ')&&i.name.length<=6);
+function spell(){$('#title').textContent='🔤 Spell It';const t=newTarget(SPELL);const w=t.name.toUpperCase();state.pos=0;
+ const txt=`Spell ${t.name}!`;
+ main.innerHTML=header(`Spell the word! <span style="color:#e8261c">${w}</span>`)+`<div class="pic spellpic"><img src="${crop(t)}" alt=""></div><div class="slots">${[...w].map(()=>`<div class="slot"></div>`).join('')}</div><div class="letters">${shuffle([...w].map((c,i)=>({c,i}))).map(o=>`<button class="btn letter" data-c="${o.c}">${o.c}</button>`).join('')}</div>`;
+ bindSay(`${txt} ${[...w].join(', ')}`);
+ const slots=main.querySelectorAll('.slot');
+ main.querySelectorAll('.letter').forEach(b=>b.onclick=()=>{if(b.dataset.c===w[state.pos]){sfx.tap();say(b.dataset.c);slots[state.pos].textContent=b.dataset.c;b.classList.add('used');state.pos++;
+   if(state.pos===w.length){say(t.name);setTimeout(()=>correct(main.querySelector('.slots'),nextRound,t),500)}}
+  else{sfx.wrong();state.miss++;b.classList.add('no');setTimeout(()=>b.classList.remove('no'),450)}})}
+function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=state.score,tot=state.total||ROUNDS,s=state.miss<=1?3:state.miss<=4?2:1;
+ main.innerHTML=`<div class="reward"><h1>Level Complete!</h1><div class="prompt" style="display:inline-flex">🎉 Great Job! 🎉</div><br><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">You finished ${n} of ${tot}! Total stars: ⭐ ${stars}</div><img class="heroimg" src="img/end.jpg" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">🔁 Play Again</button><button class="btn" id="more">🎮 More Games</button></div></div>`;
+ say('Great job! You are a super star!',1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
+ $('#again').onclick=()=>{sfx.tap();const m=state.mode;state={mode:m,round:0,score:0,miss:0,used:[]};go(m)};$('#more').onclick=()=>{sfx.tap();go('kitchen')}}
+setScore();go('home');
+</script></body></html>
