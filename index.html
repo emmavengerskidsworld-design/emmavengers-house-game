@@ -943,24 +943,24 @@ function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=st
 /* ===== Mia's Morning Routine (logic) ===== */
 const MORNING_IMG='img/morning/';
 const MORNING=[
- {id:'pray', title:'Pray', img:'pray.jpg', img2:'pray2.jpg', ask:'What do I do after waking up?', wrong:'Hmm, not yet! What should I do first?',
+ {id:'pray', title:'Pray', img:'pray.jpg', vid:'pray', img2:'pray2.jpg', ask:'What do I do after waking up?', wrong:'Hmm, not yet! What should I do first?',
   narr:'I pray first. Thank You, God!', prayer:'Thank You, God, for this new day. Amen!', ok:'pray',
   distract:['sleep','tv','ball','dance']},
- {id:'bed', title:'Make my bed', img:'makebed.jpg', ask:'What do I do after I pray?', wrong:'Hmm, not yet! What should I do next?',
+ {id:'bed', title:'Make my bed', img:'makebed.jpg', vid:'makebed', ask:'What do I do after I pray?', wrong:'Hmm, not yet! What should I do next?',
   narr:'I make my bed neat and tidy!', ok:'bed', distract:['tv','play','run','yawn']},
- {id:'greet', title:'Greet Mummy and Daddy', img:'greet.jpg', ask:'What do I do after I make my bed?', wrong:'Hmm, not yet! What should I do next?',
+ {id:'greet', title:'Greet Mummy and Daddy', img:'greet.jpg', vid:'greet', ask:'What do I do after I make my bed?', wrong:'Hmm, not yet! What should I do next?',
   narr:'Good morning, Mummy! Good morning, Daddy!', ok:'hug', distract:['phone','game','snack','tv']},
  {id:'brush', title:'Brush my teeth', img:'brush.jpg', vid:'brush', ask:'What do I do after I greet Mummy and Daddy?', wrong:'Hmm, not yet! What should I do next?',
   narr:'I brush my teeth until they sparkle!', ok:'brush', distract:['food','play','dance','sleep']},
- {id:'bath', title:'Take a bath', img:'bath.jpg', ask:'What do I do after I brush my teeth?', wrong:'Hmm, not yet! What should I do next?',
+ {id:'bath', title:'Take a bath', img:'bath.jpg', vid:'bath', ask:'What do I do after I brush my teeth?', wrong:'Hmm, not yet! What should I do next?',
   narr:'Splash! Time for a nice warm bath!', ok:'bath', distract:['run','game','snack','tv']},
- {id:'dress', title:'Get dressed', img:'dress.jpg', ask:'What do I do after my bath?', wrong:'Hmm, not yet! What should I do next?',
+ {id:'dress', title:'Get dressed', img:'dress.jpg', vid:'dress', ask:'What do I do after my bath?', wrong:'Hmm, not yet! What should I do next?',
   narr:'I get dressed and look so smart!', ok:'clothes', distract:['sleep','play','ball','yawn']},
- {id:'breakfast', title:'Eat breakfast', img:'breakfast.jpg', ask:'What do I do after I get dressed?', wrong:'Hmm, not yet! What should I do next?',
+ {id:'breakfast', title:'Eat breakfast', img:'breakfast.jpg', vid:'breakfast', ask:'What do I do after I get dressed?', wrong:'Hmm, not yet! What should I do next?',
   narr:'Yummy breakfast! Time to eat!', ok:'food', distract:['door','game','phone','run']},
- {id:'clean', title:'Help clean', img:'clean.jpg', ask:'What do I do after breakfast?', wrong:'Hmm, not yet! What should I do next?',
+ {id:'clean', title:'Help clean', img:'clean.jpg', vid:'clean', ask:'What do I do after breakfast?', wrong:'Hmm, not yet! What should I do next?',
   narr:'I help wash the plates. What a helper!', ok:'plates', distract:['tv','ball','dance','snack']},
- {id:'day', title:'Off to the day', img:'day.jpg', ask:'What do I do after I help clean?', wrong:'Hmm, not yet! What should I do next?',
+ {id:'day', title:'Off to the day', img:'day.jpg', vid:'day', ask:'What do I do after I help clean?', wrong:'Hmm, not yet! What should I do next?',
   narr:'Off to the day! Good morning!', ok:'door', distract:['sleep','bath','yawn','game']}
 ];
 window.__extraVoice=[
@@ -1070,7 +1070,7 @@ function mstep(a){
         say(['Amen!']); sfx.pop(); confetti(50);
         setTimeout(()=>{ if(tok!==mTok)return;
           const sc=main.querySelector('#msc'); const img=sc&&sc.querySelector('img');
-          if(step.img2&&img){ img.src=MORNING_IMG+step.img2; sc.classList.remove('xfade'); void sc.offsetWidth; sc.classList.add('xfade'); }
+          if(step.img2&&img){ mPauseVids(); sc.querySelectorAll('video.mvid').forEach(v=>{v.dataset.fb='1';v.style.display='none'}); img.src=MORNING_IMG+step.img2; sc.classList.remove('xfade'); void sc.offsetWidth; sc.classList.add('xfade'); }
           note.remove(); armNext(advance);
         },1400);
       }, 3800);
