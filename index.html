@@ -488,7 +488,8 @@ function levelmap(){
       <div class="info"><div class="nm">${L.em} ${L.n}</div><div class="sub">${open?L.sub:'Get 2⭐ on Level '+(L.id-1)+' to unlock'}</div></div>
       <div class="stars">${st?('⭐'.repeat(st)+'☆'.repeat(3-st)):'☆☆☆'}</div>
     </button>`}).join('')}</div></div>`;
-  main.querySelector('.say').onclick=()=>say(welcome);say(welcome);
+  const T4=L4[room],wv=(T4&&levelUnlocked(room,4)&&levelGet(room,4)<PASS_STARS)?[welcome,T4.n,T4.sub]:[welcome]; // announce the room's Level 4 twist once it is open
+  main.querySelector('.say').onclick=()=>say(wv);say(wv);
   main.querySelectorAll('.lnode').forEach(b=>b.onclick=()=>{
     const lv=+b.dataset.l;
     if(!levelUnlocked(room,lv)){sfx.wrong();say('This level is locked! Get 2 stars on the level before it.');return}
@@ -795,7 +796,7 @@ function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=st
   const T4=state.level===4?L4[state.room]:null;
   const unlockMsg=(state.level&&state.level<4&&s>=PASS_STARS)?'You unlocked the next level!':(trop?'You earned a room trophy! Amazing!':'Great job! Level complete!');
  main.innerHTML=`<div class="reward"><h1>${T4?T4.em+' '+T4.h1:'Level Complete!'}</h1><div class="prompt" style="display:inline-flex">${T4?T4.conf.slice(0,2).join(' '):'🎉'} Great Job! ${T4?T4.conf.slice(2,4).join(' '):'🎉'}</div><br><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">${unlockMsg}<br>You finished ${n} of ${tot}! Total stars: ⭐ ${stars}</div>${trop?'<div class="ltrophy">🏆</div>':''}<img class="heroimg" src="img/end.jpg" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">🔁 Play Again</button><button class="btn" id="more">🗺️ Level Map</button></div></div>`;
- say(T4?[T4.win,trop?'You earned a room trophy! Amazing!':'Great job! Level complete!']:trop?['Great job! Level complete!','You earned a room trophy! Amazing!']:(state.level&&state.level<4&&s>=PASS_STARS)?['Great job! Level complete!','You unlocked the next level!']:['Great job! Level complete!'],1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
+ say(T4?[T4.h1,T4.win,trop?'You earned a room trophy! Amazing!':'Great job! Level complete!']:trop?['Great job! Level complete!','You earned a room trophy! Amazing!']:(state.level&&state.level<4&&s>=PASS_STARS)?['Great job! Level complete!','You unlocked the next level!']:['Great job! Level complete!'],1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
  $('#again').onclick=()=>{sfx.tap();startLevel(state.level||1)};
  $('#more').onclick=()=>{sfx.tap();const r=state.room;state={room:r};go('levelmap')}}
 
