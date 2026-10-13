@@ -134,9 +134,10 @@ main>*{flex-shrink:0}
 
 
 /* ===== Level map & progression ===== */
-.lmap{width:100%;max-width:900px;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;padding:10px 0 20px}
-.lpath{width:100%;display:flex;flex-direction:column;gap:14px;position:relative}
-.lnode{position:relative;display:flex;align-items:center;gap:14px;width:100%;font:inherit;color:#123a7a;border:5px solid #ffc400;border-radius:28px;background:linear-gradient(#fff8d6,#ffe9a0);padding:14px 18px;cursor:pointer;box-shadow:0 7px 0 #c98a00,0 12px 18px rgba(0,0,0,.22);text-align:left}
+.lmap{width:100%;max-width:900px;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;padding:4px 0 12px}
+.lpath{width:100%;display:flex;flex-direction:column;gap:10px;position:relative}
+.lnode{position:relative;display:flex;align-items:center;gap:12px;width:100%;font:inherit;color:#123a7a;border:5px solid #ffc400;border-radius:24px;background:linear-gradient(#fff8d6,#ffe9a0);padding:10px 16px;cursor:pointer;box-shadow:0 6px 0 #c98a00,0 10px 16px rgba(0,0,0,.22);text-align:left}
+@media (max-height:860px){.ltrophy{font-size:clamp(40px,7vw,72px)}.lpath{gap:8px}.lnode{padding:8px 14px}}
 .lnode:active{transform:translateY(3px)}
 .lnode .num{width:clamp(54px,9vw,72px);height:clamp(54px,9vw,72px);border-radius:50%;background:linear-gradient(#ffe45c,#ffb800);display:flex;align-items:center;justify-content:center;font-size:clamp(26px,4.5vw,36px);box-shadow:0 4px 0 #c77800;flex:none}
 .lnode .info{flex:1;min-width:0}
