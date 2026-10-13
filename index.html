@@ -5,6 +5,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1e6fd9">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>Emmavengers House Adventure</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
@@ -839,4 +841,10 @@ function bdone(a){const b=BIBLE[a.b];$('#title').textContent='🏆 Great Job!';s
  $('#again').onclick=()=>{sfx.tap();go('reader',{b:a.b,i:0})};$('#lib').onclick=()=>{sfx.tap();go('bible')}}
 setScore();go('home');
 
+</script>
+<script>/* offline: service worker (see README) */
+if('serviceWorker' in navigator)addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').then(reg=>{
+ // A new version downloaded in the background last time: switch to it now, as the game opens.
+ if(reg.waiting&&navigator.serviceWorker.controller){let done=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!done){done=true;location.reload()}});reg.waiting.postMessage('skipWaiting')}
+ addEventListener('online',()=>reg.update().catch(()=>{}));setInterval(()=>navigator.onLine&&reg.update().catch(()=>{}),30*60*1000)}).catch(()=>{})})
 </script></body></html>
