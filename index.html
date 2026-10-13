@@ -154,6 +154,9 @@ main>*{flex-shrink:0}
 .failbox{text-align:center;color:#fff;max-width:720px}
 .failbox h1{font-size:clamp(36px,8vw,64px);color:#ffd21f;text-shadow:0 4px 0 #b8560a;margin:8px}
 .choices.four{grid-template-columns:repeat(2,1fr)}
+body.onmap #mascot{display:none}
+body.onmap main{padding-bottom:16px}
+body.onmap .ltrophy{font-size:clamp(36px,6vw,64px);margin:0}
 @media (orientation:landscape) and (min-width:800px){.choices.four{grid-template-columns:repeat(4,1fr)}.lpath{max-width:820px}}
 
 /* ===== Bible Library ===== */
@@ -378,7 +381,7 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
 function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();document.querySelectorAll('.pop').forEach(p=>p.remove());
- $('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,reward,fail,bible,reader,bquiz,bdone})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ document.body.classList.toggle('onmap',s==='levelmap');$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,reward,fail,bible,reader,bquiz,bdone})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
   if(screen==='levelmap'){go('home');return}
