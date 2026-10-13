@@ -258,6 +258,58 @@ body.l4 main{padding-bottom:14px}
 .pic.mess.sel{border-color:#2ecc40;box-shadow:0 0 0 6px rgba(46,204,64,.45),0 7px 0 #1f8a2b}
 @media (hover:hover){.pic.mess:hover{transform:rotate(var(--rot)) translate(var(--dx),var(--dy)) scale(1.04)}}
 @media (max-height:520px){.mat{width:22vh}.tabletop{padding:20px 10px 10px}.zone{min-height:70px}.zone .em{font-size:28px}}
+
+/* ===== Mia's Morning Routine ===== */
+body.morning #mascot{display:none}
+body.morning main{padding:0;overflow:hidden;position:relative}
+.mstage{position:relative;width:100%;height:100%;min-height:calc(100dvh - 70px);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;overflow:auto;background:linear-gradient(#9ad0ff,#ffe9b8 55%,#ffd6a8)}
+.mscene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.mscene img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transform-origin:center 60%;animation:mbob 3.2s ease-in-out infinite;filter:drop-shadow(0 8px 18px rgba(0,0,0,.2))}
+.mscene.xfade img{animation:mfade .55s ease-out,mbob 3.2s ease-in-out .55s infinite}
+@keyframes mbob{50%{transform:translateY(-8px) scale(1.02)}}
+@keyframes mfade{from{opacity:0;transform:scale(1.06)}to{opacity:1}}
+.msparks{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}
+.msparks i{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff6a0;box-shadow:0 0 10px #ffe45c;animation:mspark 2.4s ease-in-out infinite}
+@keyframes mspark{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.3)}}
+.mui{position:relative;z-index:5;width:100%;max-width:1100px;padding:10px 14px max(16px,env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:10px}
+.mq{background:rgba(255,255,255,.96);border:5px solid #ffc400;border-radius:28px;padding:12px 18px;font-size:clamp(20px,4.2vw,36px);text-align:center;box-shadow:0 6px 0 #c98a00,0 12px 24px rgba(0,0,0,.2);max-width:920px;display:flex;align-items:center;gap:10px;justify-content:center;color:#123a7a}
+.mq .say{width:48px;height:48px;font-size:24px}
+.mopts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;width:100%;max-width:980px}
+.mopt{width:clamp(88px,18vw,132px);height:clamp(88px,18vw,132px);border-radius:50%;border:5px solid #ffc400;padding:6px;background:#fff;cursor:pointer;box-shadow:0 7px 0 #c98a00,0 12px 18px rgba(0,0,0,.22);overflow:hidden;animation:mpop .45s cubic-bezier(.2,1.5,.4,1) both;transition:transform .12s}
+.mopt:nth-child(2){animation-delay:.05s}.mopt:nth-child(3){animation-delay:.1s}.mopt:nth-child(4){animation-delay:.15s}.mopt:nth-child(5){animation-delay:.2s}
+@keyframes mpop{from{opacity:0;transform:scale(.4) translateY(30px)}}
+.mopt img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;pointer-events:none}
+.mopt:active{transform:translateY(3px)}
+.mopt.ok{border-color:#2ecc40!important;box-shadow:0 7px 0 #1f8a2b!important;animation:bounce .5s}
+.mopt.no{animation:shake .4s;opacity:.5}
+.mnote{position:absolute;z-index:8;left:50%;top:12%;transform:translateX(-50%);background:linear-gradient(#fffdf3,#ffe9a8);border:5px solid #ffc400;border-radius:22px;padding:14px 22px;max-width:min(560px,90vw);text-align:center;font-size:clamp(18px,3.6vw,28px);color:#123a7a;box-shadow:0 10px 0 #c98a00,0 18px 30px rgba(0,0,0,.25);animation:rise .45s cubic-bezier(.2,1.4,.4,1)}
+.mnote .amen{display:inline-block;margin-top:8px;background:#2f86e8;color:#fff;border-radius:999px;padding:6px 18px;font-size:clamp(20px,4vw,32px);box-shadow:0 4px 0 #1a56b8;animation:bounce .6s}
+.mprog{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:2px}
+.mprog b{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.45);border:2px solid #fff}
+.mprog b.on{background:#ffe45c;box-shadow:0 0 8px #ffd21f}
+.mprog b.done{background:#2ecc40}
+.mbadge{position:relative;z-index:6;text-align:center;color:#fff;padding:10px;animation:rise .5s cubic-bezier(.2,1.4,.4,1)}
+.mbadge .seal{width:min(280px,60vw);aspect-ratio:1;margin:0 auto 10px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff6a0,#ffd21f 45%,#ff9f1c 80%);border:10px solid #fff;box-shadow:0 0 0 8px #ffc400,0 16px 40px rgba(0,0,0,.35),inset 0 -12px 20px rgba(180,80,0,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;animation:badgein .7s cubic-bezier(.2,1.6,.4,1)}
+@keyframes badgein{from{transform:scale(0) rotate(-20deg)}}
+.mbadge .seal .em{font-size:clamp(54px,12vw,90px);line-height:1}
+.mbadge .seal .tx{font-size:clamp(16px,3.2vw,24px);color:#7a3a00;padding:0 12px;line-height:1.1}
+.mbadge h1{font-size:clamp(36px,8vw,64px);color:#ffd21f;margin:6px;text-shadow:0 4px 0 #b8560a,0 8px 14px rgba(0,0,0,.35)}
+.mmontage{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(720px,94vw);margin:10px auto;max-height:none}
+.mmontage img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:3px solid #ffc400;background:#fff;animation:rise .4s both}
+.mmontage img:nth-child(2){animation-delay:.05s}.mmontage img:nth-child(3){animation-delay:.1s}.mmontage img:nth-child(4){animation-delay:.15s}.mmontage img:nth-child(5){animation-delay:.2s}.mmontage img:nth-child(6){animation-delay:.25s}
+.mhome{grid-column:1/-1;display:flex;align-items:center;gap:clamp(12px,3vw,28px);background:linear-gradient(135deg,#ffe9f3,#ffd21f 60%,#7cc8ff);padding:10px 14px;position:relative}
+.mhome .cv{width:clamp(120px,28vw,220px);aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:4px solid #fff;flex:none;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.mhome .cv img{width:100%;height:100%;object-fit:cover;display:block}
+.mhome .txt{text-align:left;flex:1}
+.mhome .new{position:absolute;top:-12px;right:16px;background:#e8261c;color:#fff;border-radius:999px;padding:4px 14px;font-size:clamp(14px,2vw,20px);box-shadow:0 4px 0 #a3150c;transform:rotate(4deg)}
+@media (orientation:landscape) and (max-height:520px){
+ .mstage{min-height:calc(100dvh - 52px)}.mq{font-size:18px;padding:6px 12px;border-width:4px}.mopt{width:72px;height:72px;border-width:4px}.mopts{gap:8px}
+ .mnote{top:6%;padding:8px 14px;font-size:16px}.mmontage{grid-template-columns:repeat(5,1fr);gap:4px}
+}
+@media (orientation:portrait) and (max-width:600px){
+ .mopt{width:clamp(76px,22vw,110px);height:clamp(76px,22vw,110px)}.mq{font-size:20px;padding:8px 12px}
+}
+
 </style></head><body>
 <div id="app">
 <header>
@@ -463,11 +515,11 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);if(p.e){cx.font=(p.w*2.6|0)+'px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(p.e,0,0)}else{cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2)}cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
 function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();document.querySelectorAll('.pop').forEach(p=>p.remove());
- document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone})[s](arg);bgmFor(screen);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone,morning,mstep,mwin,morningAsk})[s](arg);bgmFor(screen);document.body.classList.toggle('morning',['morning','mstep','mwin','morningAsk'].includes(s));if(s!=='mstep'&&typeof mTok!=='undefined')mTok++;main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
   if(screen==='levelmap'){go('home');return}
-  if(['kitchen','bedroom','bathroom','living','bible'].includes(screen))go('home');
+  if(['kitchen','bedroom','bathroom','living','bible','morning','mstep','mwin','morningAsk'].includes(screen))go('home');
   else if(['reader','bquiz','bdone'].includes(screen))go('bible');
   else if(['learnmenu','learn','find','use','room','spell','find2','used3','mix4',...L4_SCREENS,'reward','fail'].includes(screen)){
     if(state.fromLevel)go('levelmap');
@@ -475,9 +527,9 @@ $('#backBtn').onclick=()=>{sfx.tap();
   } else go('home');
 };
 function home(){$('#title').textContent='Emmavengers House Adventure';
- main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);const tr=open&&roomTrophy(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}${tr?'<span class="trophy">🏆</span>':''}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?(tr?'Trophy earned!':'4 levels to play!'):'Coming soon'}</div></button>`}).join('')}<button class="room bible" data-k="bible"><span class="new">NEW!</span><div class="em">📖</div><div class="txt"><div class="nm">Bible Library</div><div class="sub">Tap to read Bible stories!</div></div></button></div>`;
+ main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);const tr=open&&roomTrophy(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}${tr?'<span class="trophy">🏆</span>':''}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?(tr?'Trophy earned!':'4 levels to play!'):'Coming soon'}</div></button>`}).join('')}<button class="room mhome" data-k="morning"><span class="new">NEW!</span><div class="cv"><img src="img/morning/card.jpg" alt="Morning Routine"></div><div class="txt"><div class="nm">☀️ Mia's Morning Routine</div><div class="sub">Help Mia start her day!</div></div></button><button class="room bible" data-k="bible"><span class="new">NEW!</span><div class="em">📖</div><div class="txt"><div class="nm">Bible Library</div><div class="sub">Tap to read Bible stories!</div></div></button></div>`;
  main.querySelector('.say').onclick=()=>say('Pick a room to play!');
- main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k==='bible'){sfx.tap();go('bible');return}if(OPEN_ROOMS.has(k)){sfx.tap();go(k)}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
+ main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k==='bible'){sfx.tap();go('bible');return}if(k==='morning'){sfx.tap();go('morning');return}if(OPEN_ROOMS.has(k)){sfx.tap();go(k)}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
 const MODES=[["find","🔍","Find It","Find the right picture"],["use","🤔","What Is It Used For?","Pick the right use"],["room","🏠","Which Room?","Put it in the right room"],["spell","🔤","Spell It","Tap the letters in order"]];
 function kitchen(){state.room='kitchen';go('levelmap')}
 function bathroom(){state.room='bathroom';go('levelmap')}
@@ -784,7 +836,7 @@ function bgmPlay(room){if(muted||!BGM[room]){bgmStop();return}if(bgm&&bgm.room==
  bgm={room,bus,lp,iv:setInterval(tick,60)};tick()}
 function bgmStop(){if(!bgm)return;const b=bgm;bgm=null;clearInterval(b.iv);try{const a=ac,n=a.currentTime;b.bus.gain.cancelScheduledValues(n);b.bus.gain.setValueAtTime(b.bus.gain.value,n);b.bus.gain.linearRampToValueAtTime(0,n+.4)}catch(e){}
  setTimeout(()=>{try{b.bus.disconnect();b.lp.disconnect()}catch(e){}},700)}
-const NO_MUSIC=['home','bible','reader','bquiz','bdone'];
+const NO_MUSIC=['home','bible','reader','bquiz','bdone','morning','mstep','mwin','morningAsk'];
 function bgmFor(s){if(NO_MUSIC.includes(s)||!state||!BGM[state.room])bgmStop();else bgmPlay(state.room)}
 function setMuteBtn(){const b=$('#muteBtn');b.textContent=muted?'🔇':'🎵';b.classList.toggle('off',muted);b.setAttribute('aria-label',muted?'Turn music on':'Turn music off')}
 $('#muteBtn').onclick=()=>{muted=!muted;localStorage.setItem('emmaMute',muted?'1':'0');setMuteBtn();if(muted)bgmStop();else{sfx.tap();bgmFor(screen)}};
@@ -811,6 +863,145 @@ function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=st
  $('#again').onclick=()=>{sfx.tap();startLevel(state.level||1)};
  $('#more').onclick=()=>{sfx.tap();const r=state.room;state={room:r};go('levelmap')}}
 
+
+
+
+/* ===== Mia's Morning Routine (logic) ===== */
+const MORNING_IMG='img/morning/';
+const MORNING=[
+ {id:'pray', title:'Pray', img:'pray.jpg', img2:'pray2.jpg', ask:'What do I do after waking up?', wrong:'Hmm, not yet! What should I do first?',
+  narr:'I pray first. Thank You, God!', prayer:'Thank You, God, for this new day. Amen!', ok:'pray',
+  distract:['sleep','tv','ball','dance']},
+ {id:'bed', title:'Make my bed', img:'makebed.jpg', ask:'What do I do after I pray?', wrong:'Hmm, not yet! What should I do next?',
+  narr:'I make my bed neat and tidy!', ok:'bed', distract:['tv','play','run','yawn']},
+ {id:'greet', title:'Greet Mummy and Daddy', img:'greet.jpg', ask:'What do I do after I make my bed?', wrong:'Hmm, not yet! What should I do next?',
+  narr:'Good morning, Mummy! Good morning, Daddy!', ok:'hug', distract:['phone','game','snack','tv']},
+ {id:'brush', title:'Brush my teeth', img:'brush.jpg', ask:'What do I do after I greet Mummy and Daddy?', wrong:'Hmm, not yet! What should I do next?',
+  narr:'I brush my teeth until they sparkle!', ok:'brush', distract:['food','play','dance','sleep']},
+ {id:'bath', title:'Take a bath', img:'bath.jpg', ask:'What do I do after I brush my teeth?', wrong:'Hmm, not yet! What should I do next?',
+  narr:'Splash! Time for a nice warm bath!', ok:'bath', distract:['run','game','snack','tv']},
+ {id:'dress', title:'Get dressed', img:'dress.jpg', ask:'What do I do after my bath?', wrong:'Hmm, not yet! What should I do next?',
+  narr:'I get dressed and look so smart!', ok:'clothes', distract:['sleep','play','ball','yawn']},
+ {id:'breakfast', title:'Eat breakfast', img:'breakfast.jpg', ask:'What do I do after I get dressed?', wrong:'Hmm, not yet! What should I do next?',
+  narr:'Yummy breakfast! Time to eat!', ok:'food', distract:['door','game','phone','run']},
+ {id:'clean', title:'Help clean', img:'clean.jpg', ask:'What do I do after breakfast?', wrong:'Hmm, not yet! What should I do next?',
+  narr:'I help wash the plates. What a helper!', ok:'plates', distract:['tv','ball','dance','snack']},
+ {id:'day', title:'Off to the day', img:'day.jpg', ask:'What do I do after I help clean?', wrong:'Hmm, not yet! What should I do next?',
+  narr:'Off to the day! Good morning!', ok:'door', distract:['sleep','bath','yawn','game']}
+];
+window.__extraVoice=[
+ 'What do I do after waking up?','Hmm, not yet! What should I do first?','Hmm, not yet! What should I do next?',
+ 'Thank You, God, for this new day. Amen!','Amen!','I pray first. Thank You, God!',
+ 'I make my bed neat and tidy!','Good morning, Mummy! Good morning, Daddy!',
+ 'I brush my teeth until they sparkle!','Splash! Time for a nice warm bath!',
+ 'I get dressed and look so smart!','Yummy breakfast! Time to eat!',
+ 'I help wash the plates. What a helper!','Off to the day! Good morning!','Good morning!',
+ 'You are a Morning Champion!','Morning Champion!','What a wonderful morning!',
+ "Let's start Mia's Morning Routine!",'What do I do next?',
+ 'What do I do after I pray?','What do I do after I make my bed?',
+ 'What do I do after I greet Mummy and Daddy?','What do I do after I brush my teeth?',
+ 'What do I do after my bath?','What do I do after I get dressed?',
+ 'What do I do after breakfast?','What do I do after I help clean?'
+];
+function mSparks(n=14){return Array.from({length:n},(_,i)=>`<i style="left:${(6+i*7)%94}%;top:${10+(i*13)%70}%;animation-delay:${(i*.18).toFixed(2)}s"></i>`).join('')}
+function mProg(i){return `<div class="mprog">${MORNING.map((_,k)=>`<b class="${k<i?'done':k===i?'on':''}"></b>`).join('')}</div>`}
+function morning(){
+  state={m:0, seen:[]}; $('#title').textContent="☀️ Mia's Morning Routine";
+  main.innerHTML=`<div class="mstage"><div class="mscene xfade"><img src="${MORNING_IMG}wake.jpg" alt="Mia waking up"></div><div class="msparks">${mSparks()}</div>
+  <div class="mui">${mProg(0)}<div class="mq"><span>What do I do after waking up?</span><button class="say" aria-label="Read aloud">🔊</button></div>
+  <div class="mopts" id="mopts"></div></div></div>`;
+  say(["Let's start Mia's Morning Routine!",'What do I do after waking up?']);
+  main.querySelector('.say').onclick=()=>say('What do I do after waking up?');
+  renderMOpts(0);
+}
+function renderMOpts(i){
+  const step=MORNING[i];
+  const opts=shuffle([{k:step.ok,ok:1},...shuffle(step.distract).slice(0,4).map(k=>({k,ok:0}))]);
+  const box=$('#mopts'); if(!box)return;
+  box.innerHTML=opts.map(o=>`<button class="mopt" data-ok="${o.ok}" aria-label="choice"><img src="${MORNING_IMG}opts/${o.k}.jpg" alt=""></button>`).join('');
+  box.querySelectorAll('.mopt').forEach(b=>b.onclick=()=>pickMOpt(b,i));
+}
+function pickMOpt(b,i){
+  if(b.disabled)return;
+  const step=MORNING[i];
+  if(b.dataset.ok==='1'){
+    sfx.right(); b.classList.add('ok');
+    main.querySelectorAll('.mopt').forEach(x=>x.disabled=true);
+    const r=b.getBoundingClientRect(); burst(r.left+r.width/2,r.top+r.height/2,['✨','⭐','🌟','💛']);
+    confetti(40);
+    setTimeout(()=>go('mstep',{i}),700);
+  } else {
+    sfx.wrong(); b.classList.add('no'); b.disabled=true;
+    say(step.wrong);
+    setTimeout(()=>b.classList.remove('no'),500);
+  }
+}
+let mTok=0;
+function mstep(a){
+  const i=a.i|0; const step=MORNING[i]; const tok=++mTok;
+  state={m:i, seen:[...(state.seen||[]), step.img]};
+  $('#title').textContent='☀️ '+step.title;
+  main.innerHTML=`<div class="mstage"><div class="mscene xfade" id="msc"><img src="${MORNING_IMG}${step.img}" alt="${step.title}"></div><div class="msparks">${mSparks(18)}</div>
+  <div class="mui">${mProg(i)}<div class="mq"><span>${step.narr}</span><button class="say">🔊</button></div>
+  <button class="btn" id="mnext" style="opacity:0;pointer-events:none">Next ➜</button></div></div>`;
+  const armNext=(fn)=>{const btn=$('#mnext'); if(btn&&tok===mTok){btn.style.opacity=1; btn.style.pointerEvents='auto'; btn.onclick=()=>{if(tok!==mTok)return; sfx.tap(); fn()}}};
+  const advance=()=>{if(tok!==mTok)return; if(i+1<MORNING.length) go('morningAsk',{i:i+1}); else go('mwin')};
+  if(step.prayer){
+    say([step.narr]);
+    // Show prayer note quickly, then Amen, then stand + Next (token-guarded so leaving the screen cancels leftovers)
+    setTimeout(()=>{ if(tok!==mTok)return;
+      const stage=main.querySelector('.mstage'); if(!stage)return;
+      const note=document.createElement('div'); note.className='mnote'; note.id='mnote';
+      note.innerHTML=`<div>${step.prayer}</div>`; stage.appendChild(note);
+      say([step.prayer]);
+      setTimeout(()=>{ if(tok!==mTok)return;
+        note.innerHTML=`<div>${step.prayer}</div><div class="amen">Amen!</div>`;
+        say(['Amen!']); sfx.pop(); confetti(50);
+        setTimeout(()=>{ if(tok!==mTok)return;
+          const sc=main.querySelector('#msc'); const img=sc&&sc.querySelector('img');
+          if(step.img2&&img){ img.src=MORNING_IMG+step.img2; sc.classList.remove('xfade'); void sc.offsetWidth; sc.classList.add('xfade'); }
+          note.remove(); armNext(advance);
+        },1400);
+      }, 3800);
+    }, 900);
+    main.querySelector('.say').onclick=()=>say([step.narr, step.prayer, 'Amen!']);
+  } else {
+    say([step.narr]);
+    main.querySelector('.say').onclick=()=>say(step.narr);
+    setTimeout(()=>armNext(advance), 1100);
+  }
+}
+function morningAsk(a){
+  const i=a.i|0; const step=MORNING[i]; state={...state, m:i};
+  $('#title').textContent="☀️ Mia's Morning Routine";
+  const prev=MORNING[Math.max(0,i-1)];
+  main.innerHTML=`<div class="mstage"><div class="mscene"><img src="${MORNING_IMG}${prev.img}" alt=""></div><div class="msparks">${mSparks()}</div>
+  <div class="mui">${mProg(i)}<div class="mq"><span>${step.ask}</span><button class="say">🔊</button></div>
+  <div class="mopts" id="mopts"></div></div></div>`;
+  say([step.ask]);
+  main.querySelector('.say').onclick=()=>say(step.ask);
+  renderMOpts(i);
+}
+function mwin(){
+  $('#title').textContent='🏆 Morning Champion!';
+  const shots=MORNING.map(s=>s.img);
+  main.innerHTML=`<div class="mstage" style="justify-content:flex-start;padding-top:8px;background:radial-gradient(circle at 50% 30%,#7cc8ff,#2f86e8 60%,#1a56b8)">
+  <div class="mbadge">
+    <div class="seal"><div class="em">☀️</div><div class="tx">Morning Champion</div></div>
+    <h1>Morning Champion!</h1>
+    <div class="prompt" style="display:inline-flex;color:#123a7a">Good morning!</div>
+    <div class="mmontage">${shots.map(s=>`<img src="${MORNING_IMG}${s}" alt="">`).join('')}</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" id="magain">🔁 Play Again</button>
+      <button class="btn" id="mhomebtn">🏠 Home</button>
+    </div>
+  </div></div>`;
+  sfx.win(); confetti(220);
+  for(let i=0;i<5;i++) setTimeout(()=>burst(innerWidth*(.15+.17*i), innerHeight*.3, ['⭐','✨','☀️','🌟']), i*200);
+  say(['Good morning!','You are a Morning Champion!','What a wonderful morning!'],1);
+  $('#magain').onclick=()=>{sfx.tap();go('morning')};
+  $('#mhomebtn').onclick=()=>{sfx.tap();go('home')};
+}
 
 
 /* ===== Bible Library ===== */

@@ -8,7 +8,7 @@ ENUM=r"""()=>{const S=new Set(),A=x=>{(Array.isArray(x)?x:[x]).forEach(t=>t&&S.a
 A(PRAISE);A(TRY);A(['Pick a room to play!',"Let's learn!",'This level is locked! Get 2 stars on the level before it.',
 "Let's try again!","You need 2 stars to pass. Try again!",'Great job! Level complete!','You earned a room trophy! Amazing!','You unlocked the next level!',
 'Pick a story to read!','Welcome to the Bible Library! Pick a story to read!',"Quiz time! Let's see what you remember!",'Or,']);
-document.querySelectorAll('.room:not([data-k="bible"]) .nm').forEach(e=>A(e.textContent+' is coming soon!'));
+document.querySelectorAll('.room.locked .nm').forEach(e=>A(e.textContent+' is coming soon!'));
 ROOMS.forEach(r=>A('Welcome to the '+r.n.toLowerCase()+'! Pick a level!'));
 for(const it of ITEMS){A([it.name,it.use,`Find the ${it.name}!`,`Where is the ${it.name}?`,`What is the ${it.name} used for?`,`Where does the ${it.name} go?`,`Spell ${it.name}!`,useQuestion(it),hideName(it)]);
  for(const c of it.name.toUpperCase())if(c.trim())A(c)}
