@@ -356,13 +356,21 @@ const sfx={
  wrong(){tone(392,0,.25,'sine',.1);tone(349,.18,.3,'sine',.08)},
  win(){[523,659,784,659,784,1047,1319].forEach((f,i)=>tone(f,i*.13,.35,'triangle',.16))}};
 const VOICE='voice/';const vh=t=>{let h=0x811c9dc5;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h.toString(16).padStart(8,'0')};
-let vAud=null,vTok=0;
-function stopVoice(){vTok++;if(vAud){try{vAud.pause()}catch(e){}vAud=null}try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
+let vAud=null,vTok=0,vPend=null;
+// One reusable <audio> element: once it has played inside a tap, iOS/Android let it play later clips from timers too.
+const vEl=new Audio();vEl.preload='auto';let vUnlocked=false;
+function audioUnlock(){const a=actx();if(a&&a.state!=='running')a.resume();
+ if(!vUnlocked){vUnlocked=true;if(!vEl.src){vEl.muted=true;vEl.src=VOICE+vh("Let's learn!")+'.mp3';const pr=vEl.play();if(pr&&pr.then)pr.then(()=>{if(vEl.muted){vEl.pause();vEl.muted=false}}).catch(()=>{vUnlocked=false;vEl.muted=false})}}
+ if(vPend){const p=vPend;vPend=null;say(p.t,p.h,1)}}
+['pointerdown','touchend','click','keydown'].forEach(e=>addEventListener(e,audioUnlock,{capture:true,passive:true}));
+function stopVoice(){vTok++;vEl.onended=vEl.onerror=null;try{vEl.pause()}catch(e){}vAud=null;try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
 function ttsFallback(t,done){try{if(!('speechSynthesis' in window))return done();const u=new SpeechSynthesisUtterance(t);u.rate=.9;u.pitch=1.15;u.lang='en-US';u.onend=u.onerror=done;speechSynthesis.speak(u)}catch(e){done()}}
-function say(t,h){const parts=(Array.isArray(t)?t:[t]).filter(Boolean);mascot(parts.join(' '),h);stopVoice();const tok=vTok;let i=0;
- const next=()=>{if(tok!==vTok||i>=parts.length)return;const txt=parts[i++];const a=new Audio(VOICE+vh(txt)+'.mp3');vAud=a;let fell=false;
+function say(t,h,quiet){const parts=(Array.isArray(t)?t:[t]).filter(Boolean);if(!quiet)mascot(parts.join(' '),h);stopVoice();vPend=null;const tok=vTok;let i=0;
+ const next=()=>{if(tok!==vTok||i>=parts.length)return;const txt=parts[i++];const a=vEl;vAud=a;let fell=false;a.muted=false;
   const fb=()=>{if(fell||tok!==vTok)return;fell=true;ttsFallback(txt,next)};
-  a.onended=next;a.onerror=fb;const pr=a.play();if(pr&&pr.catch)pr.catch(e=>{if(e&&e.name==='NotAllowedError')return;fb()})};
+  a.onended=()=>{if(tok===vTok)next()};a.onerror=fb;a.src=VOICE+vh(txt)+'.mp3';const pr=a.play();
+  // Blocked by autoplay rules (no tap yet): keep the line and speak it on the very next tap instead of going silent.
+  if(pr&&pr.catch)pr.catch(e=>{if(tok!==vTok)return;if(e&&e.name==='NotAllowedError'){vPend={t:parts.slice(i-1),h};return}if(e&&e.name==='AbortError')return;fb()})};
  next()}
 function burst(x,y){for(let i=0;i<8;i++){const s=document.createElement('div');s.className='burst';s.textContent=['⭐','✨','🌟'][i%3];s.style.left=x+'px';s.style.top=y+'px';const a=i/8*6.28;s.style.setProperty('--dx',Math.cos(a)*140+'px');s.style.setProperty('--dy',Math.sin(a)*140+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
 const PRAISE=["Great job!","Well done!","Super!","You got it!","Awesome!","Brilliant!"];
