@@ -131,6 +131,43 @@ main>*{flex-shrink:0}
  .opt{min-height:60px;padding:12px;font-size:19px}
  #mascot .face{font-size:44px}#mascot .bub{display:none}
 }
+
+/* ===== Bible Library ===== */
+.room.bible{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,30px);background:linear-gradient(135deg,#fff3d1,#ffd98a);padding:12px 16px}
+.room.bible .em{font-size:clamp(54px,9vw,90px)}.room.bible .txt{text-align:left}
+.room.bible .new{position:absolute;top:-14px;right:18px;background:#e8261c;color:#fff;border-radius:999px;padding:4px 14px;font-size:clamp(14px,2vw,20px);box-shadow:0 4px 0 #a3150c;transform:rotate(4deg)}
+.shelf{width:100%;max-width:1100px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;align-items:end;padding:20px 18px 34px;background:linear-gradient(#b5773a,#8a4f1f);border:6px solid #5a300f;border-radius:28px;box-shadow:0 8px 0 #3e2009,0 14px 22px rgba(0,0,0,.25),inset 0 -20px 0 #5a300f}
+.book{position:relative;font:inherit;color:#123a7a;cursor:pointer;background:#fff8d6;border:5px solid #ffc400;border-radius:18px;padding:7px;box-shadow:0 6px 0 #c98a00;display:flex;flex-direction:column;gap:6px;text-align:center}
+.book.feat{grid-column:span 2}
+.book .cv{aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center}
+.book .cv img{width:100%;height:100%;object-fit:contain;display:block}
+.book .bt{font-size:clamp(15px,2.3vw,26px);line-height:1.1}
+.book .bs{font-size:clamp(13px,1.9vw,20px);color:#2f86e8}
+.book.locked{cursor:default;filter:grayscale(.75);opacity:.8;box-shadow:0 6px 0 #888}
+.book.locked .cv{background:linear-gradient(#cfe6ff,#9cc8f5);font-size:clamp(36px,6vw,64px)}
+.book.locked .lock{position:absolute;top:6px;right:8px;font-size:clamp(20px,3vw,30px)}
+.book.locked .bs{color:#666}
+@media (orientation:portrait){.shelf{grid-template-columns:repeat(3,1fr);gap:12px;padding:14px 12px 28px}.book.feat{grid-column:1/-1}}
+body.reading #mascot{display:none}body.reading main{padding-bottom:16px}
+.reader{width:100%;display:flex;flex-direction:column;align-items:center;gap:12px}
+.bpage{position:relative;flex:none;width:min(100%,calc((100vh - 200px)*16/9));width:min(100%,calc((100dvh - 200px)*16/9));border:6px solid #ffc400;border-radius:22px;overflow:hidden;background:#123a7a;box-shadow:0 8px 0 #c98a00,0 14px 26px rgba(0,0,0,.3);touch-action:pan-y;perspective:1400px}
+.bpage img{width:100%;height:auto;aspect-ratio:16/9;display:block;pointer-events:none;-webkit-user-drag:none;transform-origin:left center}
+.bpage.outL img{animation:outL .2s ease-in forwards}.bpage.outR img{animation:outR .2s ease-in forwards}
+.bpage.inR img{animation:inR .28s ease-out}.bpage.inL img{animation:inL .28s ease-out}
+@keyframes outL{to{transform:rotateY(-70deg);opacity:.2}}@keyframes outR{to{transform:translateX(40%) rotateY(30deg);opacity:0}}
+@keyframes inR{from{transform:translateX(35%) rotateY(25deg);opacity:0}}@keyframes inL{from{transform:rotateY(-70deg);opacity:.2}}
+.rctl{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:nowrap;width:100%;max-width:900px}
+.rctl .nav{min-width:clamp(104px,20vw,190px);min-height:64px}
+.rctl .nav:disabled{opacity:.35;filter:grayscale(1)}
+.rctl .say{width:64px;height:64px;font-size:32px}
+@media (orientation:portrait) and (max-width:600px){.rctl .nav{min-width:118px;font-size:22px;padding:10px 12px}.rctl .pill{font-size:16px}}
+@media (max-height:520px){.reader{display:grid;grid-template-columns:auto auto auto;grid-template-areas:"prev page next" "cnt page say";justify-content:center;align-items:center;gap:8px 12px}
+ .bpage{grid-area:page;width:min(calc(100vw - 280px),calc((100vh - 92px)*16/9))}.rctl{display:contents}
+ #bprev{grid-area:prev;align-self:end}#bnext{grid-area:next;align-self:end}#bcount{grid-area:cnt;align-self:start;justify-self:center}#bsay{grid-area:say;align-self:start;justify-self:center}
+ .rctl .nav{min-width:110px;min-height:54px;font-size:20px;padding:8px}.rctl .say{width:48px;height:48px;font-size:24px}}
+.btext{display:none;white-space:pre-line;background:#fff;border:5px solid #ffc400;border-radius:24px;box-shadow:0 6px 0 #c98a00;padding:14px 18px;font-size:clamp(22px,5.6vw,30px);line-height:1.25;text-align:center;width:100%;max-width:600px}
+@media (orientation:portrait) and (max-width:700px){.btext:not(:empty){display:block}}
+.bquiz .opt{min-height:clamp(64px,10vh,96px)}
 </style></head><body>
 <div id="app">
 <header>
@@ -299,16 +336,17 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
 function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();document.querySelectorAll('.pop').forEach(p=>p.remove());
- $('#backBtn').classList.toggle('hidden',s==='home');({home,kitchen,bedroom,bathroom,living,find,use,room,spell,reward})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ $('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,find,use,room,spell,reward,bible,reader,bquiz,bdone})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
-  if(['kitchen','bedroom','bathroom','living'].includes(screen))go('home');
+  if(['kitchen','bedroom','bathroom','living','bible'].includes(screen))go('home');
+  else if(['reader','bquiz','bdone'].includes(screen))go('bible');
   else go(state.room==='living room'?'living':(state.room||'kitchen'));
 };
 function home(){$('#title').textContent='Emmavengers House Adventure';
- main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?'Tap to play!':'Coming soon'}</div></button>`}).join('')}</div>`;
+ main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?'Tap to play!':'Coming soon'}</div></button>`}).join('')}<button class="room bible" data-k="bible"><span class="new">NEW!</span><div class="em">📖</div><div class="txt"><div class="nm">Bible Library</div><div class="sub">Tap to read Bible stories!</div></div></button></div>`;
  main.querySelector('.say').onclick=()=>say('Pick a room to play!');
- main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(OPEN_ROOMS.has(k)){sfx.tap();go(k)}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
+ main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k==='bible'){sfx.tap();go('bible');return}if(OPEN_ROOMS.has(k)){sfx.tap();go(k)}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
 const MODES=[["find","🔍","Find It","Find the right picture"],["use","🤔","What Is It Used For?","Pick the right use"],["room","🏠","Which Room?","Put it in the right room"],["spell","🔤","Spell It","Tap the letters in order"]];
 function roomMenu(title,welcome){$('#title').textContent=title;
  main.innerHTML=`<div class="prompt">Choose a game! <button class="say">🔊</button></div><div class="grid">${MODES.map(m=>`<button class="room mode" data-m="${m[0]}"><span class="em">${m[1]}</span><span><div class="nm">${m[2]}</div><div class="sub">${m[3]}</div></span></button>`).join('')}</div>`;
@@ -357,6 +395,42 @@ function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=st
  say('Great job! You are a super star!',1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
  $('#again').onclick=()=>{sfx.tap();const m=state.mode,r=state.room;state={mode:m,room:r,round:0,score:0,miss:0,used:[]};go(m)};
  $('#more').onclick=()=>{sfx.tap();go(state.room==='living room'?'living':(state.room||'kitchen'))}}
+
+/* ===== Bible Library ===== */
+const BIBLE=/*BIBLE_DATA*/{"noah": {"title": "Noah's Ark", "dir": "img/bible/noah/", "pages": [{"img": "cover", "say": ["Noah's Ark.", "An Emmavengers World Story, by Cletus Emmanuel."], "text": ""}, {"img": "p01", "say": ["Long ago, the world was full of fighting and wrongdoing. But one man still loved God. His name was Noah."], "text": "Long ago, the world was full of fighting and wrongdoing. But one man still loved God. His name was Noah."}, {"img": "p02", "say": ["One day, God spoke to Noah. \"A great flood is coming. Build a giant boat, an ark, and I will keep you safe.\""], "text": "One day, God spoke to Noah. “A great flood is coming. Build a giant boat, an ark, and I will keep you safe.”"}, {"img": "p03", "say": ["Noah and his sons built for years and years. The neighbours laughed, \"A boat on dry land? Silly Noah!\" But Noah kept on obeying God."], "text": "Noah and his sons built for years and years. The neighbours laughed, “A boat on dry land? Silly Noah!” But Noah kept on obeying God."}, {"img": "p04", "say": ["When the ark was ready, the animals came, two by two! Big ones and small ones marched inside. Then God Himself shut the door."], "text": "When the ark was ready, the animals came, two by two! Big ones and small ones marched inside. Then God Himself shut the door."}, {"img": "p05", "say": ["Drip... drop... SPLASH! Rain poured down for forty days and forty nights. The water covered even the mountains, but the ark floated safely."], "text": "Drip… drop… SPLASH! Rain poured down for forty days and forty nights. The water covered even the mountains, but the ark floated safely."}, {"img": "p06", "say": ["Inside, it was noisy and dark. Moo! Roar! Tweet! Noah's family waited and waited. Would they ever see dry land again?"], "text": "Inside, it was noisy and dark. Moo! Roar! Tweet! Noah’s family waited and waited. Would they ever see dry land again?"}, {"img": "p07", "say": ["God remembered Noah, and the water went down. Noah sent out a raven, then a dove. The dove came back with a fresh olive leaf!"], "text": "God remembered Noah, and the water went down. Noah sent out a raven, then a dove. The dove came back with a fresh olive leaf!"}, {"img": "p08", "say": ["The next time, the dove did not come back. The land was dry! Everyone stepped out, and Noah thanked God."], "text": "The next time, the dove did not come back. The land was dry! Everyone stepped out, and Noah thanked God."}, {"img": "p09", "say": ["Then God put a beautiful rainbow in the sky. \"I promise I will never flood the whole earth again.\" God always keeps His promises!"], "text": "Then God put a beautiful rainbow in the sky. “I promise I will never flood the whole earth again.” God always keeps His promises!"}, {"img": "verse", "say": ["Memory verse.", "I have put my rainbow in the clouds. It will be the sign of the covenant between me and the earth.", "Genesis, chapter nine, verse thirteen."], "text": "Memory Verse\n“I have put my rainbow in the clouds. It will be the sign of the covenant between me and the earth.” — Genesis 9:13 (NIrV)"}, {"img": "prayer", "say": ["Let's pray.", "Dear God, thank You for keeping Noah safe.", "Help me to obey You, even when others laugh.", "Thank You for the rainbow, and for always keeping Your promises. Amen."], "text": "Let’s Pray\nDear God, thank You for keeping Noah safe. Help me to obey You, even when others laugh. Thank You for the rainbow, and for always keeping Your promises. Amen."}, {"img": "moral", "say": ["The moral of the story.", "Obey and trust God, even when others laugh. God always keeps His promises!"], "text": "The Moral\nObey and trust God, even when others laugh. God always keeps His promises!"}, {"img": "lessons", "say": ["Lessons.", "Do what is right, even when nobody else does.", "Keep obeying God, even when the job is long and hard.", "Be patient. God takes care of us while we wait.", "God keeps His promises. The rainbow reminds us!"], "text": "1. Do what is right, even when nobody else does.\n2. Keep obeying God, even when the job is long and hard.\n3. Be patient. God takes care of us while we wait.\n4. God keeps His promises. The rainbow reminds us!"}], "quiz": [{"q": "Why did Noah build the ark?", "a": "Because God told him to", "opts": ["Because God told him to", "To go fishing", "To win a race"], "img": "p02"}, {"q": "What did the dove bring back?", "a": "A fresh olive leaf", "opts": ["A shiny stone", "A fresh olive leaf", "A little fish"], "img": "p07"}, {"q": "What does the rainbow remind us?", "a": "God always keeps His promises", "opts": ["It is time to play", "It will rain again", "God always keeps His promises"], "img": "p09"}], "done": "Great job! You finished Noah's Ark!"}}/*END_BIBLE_DATA*/;
+const BIBLE_SOON=[["David and Goliath","🪨"],["Jonah and the Big Fish","🐋"],["Daniel and the Lions","🦁"]];
+const bibleSave=()=>{try{return JSON.parse(localStorage.getItem('emmaBible')||'{}')}catch(e){return{}}};
+const bImg=(b,k)=>b.dir+k+'.jpg';
+function bible(){document.body.classList.remove('reading');state={room:'bible'};$('#title').textContent='📖 Bible Library';const sv=bibleSave();
+ main.innerHTML=`<div class="prompt">Pick a story to read! <button class="say" aria-label="Read aloud">🔊</button></div><div class="shelf">${Object.entries(BIBLE).map(([k,b])=>{const best=(sv[k]||{}).stars||0;return `<button class="book feat" data-b="${k}"><div class="cv"><img src="${bImg(b,'cover')}" alt="${b.title}"></div><div class="bt">${b.title}</div><div class="bs">${best?'⭐'.repeat(best):'Tap to read!'}</div></button>`}).join('')}${BIBLE_SOON.map(([n,e])=>`<button class="book locked" data-n="${n}"><span class="lock">🔒</span><div class="cv">${e}</div><div class="bt">${n}</div><div class="bs">Coming soon</div></button>`).join('')}</div>`;
+ main.querySelector('.say').onclick=()=>say('Pick a story to read!');say('Welcome to the Bible Library! Pick a story to read!');
+ main.querySelectorAll('.book').forEach(el=>el.onclick=()=>{if(el.dataset.b){sfx.tap();go('reader',{b:el.dataset.b,i:0})}else{sfx.wrong();say(el.dataset.n+' is coming soon!')}})}
+function reader(a){document.body.classList.add('reading');const b=BIBLE[a.b];state={room:'bible',book:a.b,i:a.i||0};$('#title').textContent='📖 '+b.title;const P=b.pages,L=P.length;
+ main.innerHTML=`<div class="reader"><div class="bpage" id="bpage"><img id="bimg" src="${bImg(b,P[state.i].img)}" alt="Page"></div><div class="rctl"><button class="btn nav" id="bprev" aria-label="Back page">◀ Back</button><span class="pill" id="bcount"></span><button class="say" id="bsay" aria-label="Read again">🔊</button><button class="btn nav" id="bnext" aria-label="Next page">Next ▶</button></div><div class="btext" id="btext"></div></div>`;
+ const img=$('#bimg'),pg=$('#bpage');let busy=false;
+ const pre=i=>{if(P[i]){const im=new Image();im.src=bImg(b,P[i].img)}};
+ const show=()=>{const i=state.i;$('#bcount').textContent=(i+1)+' / '+L;$('#bprev').disabled=i===0;$('#bnext').textContent=i===L-1?'Quiz ▶':'Next ▶';$('#btext').textContent=P[i].text||'';pre(i+1);pre(i+2);say(P[i].say)};
+ const turn=d=>{if(busy)return;const j=state.i+d;if(j<0)return;sfx.tap();if(j>=L){go('bquiz',{b:a.b});return}busy=true;stopVoice();
+  pg.classList.remove('inL','inR');pg.classList.add(d>0?'outL':'outR');
+  setTimeout(()=>{state.i=j;img.src=bImg(b,P[j].img);pg.classList.remove('outL','outR');void pg.offsetWidth;pg.classList.add(d>0?'inR':'inL');busy=false;show()},200)};
+ $('#bprev').onclick=()=>turn(-1);$('#bnext').onclick=()=>turn(1);$('#bsay').onclick=()=>say(P[state.i].say);
+ let sx=null,sy=0;pg.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY});
+ pg.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))turn(dx<0?1:-1)});
+ pg.addEventListener('pointercancel',()=>{sx=null});
+ show()}
+document.addEventListener('keydown',e=>{if(screen!=='reader')return;if(e.key==='ArrowRight')$('#bnext').click();if(e.key==='ArrowLeft')$('#bprev').click()});
+function bquiz(a){document.body.classList.remove('reading');const b=BIBLE[a.b];if(!a.r){state={room:'bible',book:a.b,round:0,total:b.quiz.length,score:0,miss:0}}
+ const q=b.quiz[state.round];$('#title').textContent='🧩 Quiz Time!';const opts=shuffle(q.opts);
+ main.innerHTML=header(q.q)+`<div class="usewrap bquiz"><div class="pic"><img src="${bImg(b,q.img)}" alt=""></div><div class="opts">${opts.map(o=>`<button class="opt" data-a="${o===q.a?1:0}">${o}</button>`).join('')}</div></div>`;
+ const voice=[q.q,...opts.flatMap((o,i)=>i?['Or,',o]:[o])];main.querySelector('.say').onclick=()=>say(voice);
+ if(state.round===0&&!a.r)say(["Quiz time! Let's see what you remember!",...voice]);else say(voice);
+ const nxt=()=>{state.round++;if(state.round>=state.total)go('bdone',{b:a.b});else go('bquiz',{b:a.b,r:1})};
+ main.querySelectorAll('.opt').forEach(el=>el.onclick=()=>el.dataset.a==='1'?correct(el,nxt):wrong(el))}
+function bdone(a){const b=BIBLE[a.b];$('#title').textContent='🏆 Great Job!';sfx.win();const s=state.miss<=0?3:state.miss<=2?2:1;
+ const sv=bibleSave();sv[a.b]={stars:Math.max(s,(sv[a.b]||{}).stars||0),done:true,at:Date.now()};localStorage.setItem('emmaBible',JSON.stringify(sv));
+ main.innerHTML=`<div class="reward"><h1>Great Job!</h1><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">You finished ${b.title}! Total stars: ⭐ ${stars}</div><img class="heroimg" src="${bImg(b,b.pages[b.pages.length-5].img)}" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">📖 Read Again</button><button class="btn" id="lib">📚 Back to Library</button></div></div>`;
+ say(b.done,1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
+ $('#again').onclick=()=>{sfx.tap();go('reader',{b:a.b,i:0})};$('#lib').onclick=()=>{sfx.tap();go('bible')}}
 setScore();go('home');
 
 </script></body></html>
