@@ -132,6 +132,29 @@ main>*{flex-shrink:0}
  #mascot .face{font-size:44px}#mascot .bub{display:none}
 }
 
+
+/* ===== Level map & progression ===== */
+.lmap{width:100%;max-width:900px;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;padding:10px 0 20px}
+.lpath{width:100%;display:flex;flex-direction:column;gap:14px;position:relative}
+.lnode{position:relative;display:flex;align-items:center;gap:14px;width:100%;font:inherit;color:#123a7a;border:5px solid #ffc400;border-radius:28px;background:linear-gradient(#fff8d6,#ffe9a0);padding:14px 18px;cursor:pointer;box-shadow:0 7px 0 #c98a00,0 12px 18px rgba(0,0,0,.22);text-align:left}
+.lnode:active{transform:translateY(3px)}
+.lnode .num{width:clamp(54px,9vw,72px);height:clamp(54px,9vw,72px);border-radius:50%;background:linear-gradient(#ffe45c,#ffb800);display:flex;align-items:center;justify-content:center;font-size:clamp(26px,4.5vw,36px);box-shadow:0 4px 0 #c77800;flex:none}
+.lnode .info{flex:1;min-width:0}
+.lnode .nm{font-size:clamp(22px,3.6vw,32px);line-height:1.1}
+.lnode .sub{font-size:clamp(14px,2.2vw,20px);color:#2f86e8}
+.lnode .stars{font-size:clamp(22px,3.5vw,30px);letter-spacing:2px;flex:none}
+.lnode.locked{filter:grayscale(.85);opacity:.8;cursor:default;box-shadow:0 7px 0 #888}
+.lnode.locked .num{background:#ccc;box-shadow:0 4px 0 #888}
+.lnode .lk{position:absolute;top:8px;right:14px;font-size:28px}
+.lnode.done{border-color:#2ecc40;background:linear-gradient(#e9ffe9,#c8f7c8)}
+.ltrophy{font-size:clamp(64px,12vw,110px);filter:drop-shadow(0 6px 8px rgba(0,0,0,.3));animation:bob 2s ease-in-out infinite}
+.ltrophy.dim{filter:grayscale(1) opacity(.35);animation:none}
+.room .trophy{position:absolute;top:6px;left:10px;font-size:28px}
+.failbox{text-align:center;color:#fff;max-width:720px}
+.failbox h1{font-size:clamp(36px,8vw,64px);color:#ffd21f;text-shadow:0 4px 0 #b8560a;margin:8px}
+.choices.four{grid-template-columns:repeat(2,1fr)}
+@media (orientation:landscape) and (min-width:800px){.choices.four{grid-template-columns:repeat(4,1fr)}.lpath{max-width:820px}}
+
 /* ===== Bible Library ===== */
 .room.bible{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,30px);background:linear-gradient(135deg,#fff3d1,#ffd98a);padding:12px 16px}
 .room.bible .em{font-size:clamp(54px,9vw,90px)}.room.bible .txt{text-align:left}
@@ -294,6 +317,24 @@ const LIVING_ITEMS=[
 {name:"blinds",use:"Blinds cover the window.",id:"24",room:"living room",prefix:"l/"},
 {name:"stool",use:"We sit on a stool.",id:"25",room:"living room",prefix:"l/"}
 ];
+
+const USE_Q={"kitchen": ["Which one do we use to drink water?", "Which one do we use to eat soup?", "Which one do we use to pick up food?", "Which one do we put food on?", "Which one is for soup or cereal?", "Which one do we use to cut food?", "Which one do we use to cook soup?", "Which one do we use to fry eggs?", "Which one do we use to boil water?", "Which one keeps food cold?", "Which one do we cook food on?", "Which one heats food fast?", "Which one do we wash dishes in?", "Which one mixes fruit into smoothies?", "Which one makes bread crispy?", "Which one holds juice to pour?", "Which one do we use to scoop soup?", "Which one mixes eggs fast?", "Which one flattens dough?", "Which one do we cut fruit on?", "Which one keeps hands safe from hot pans?", "Which one keeps clothes clean when we cook?", "Which one do we use to carry food?", "Which one holds clean dishes to dry?", "Which one makes cheese into tiny pieces?"], "bedroom": ["Which one do we sleep on?", "Which one do we rest our head on?", "Which one keeps us warm in bed?", "Which one gives us light?", "Which one holds our clothes?", "Which one stores shirts and socks?", "Which one do we look in to see ourselves?", "Which one wakes us up?", "Which one is soft to cuddle?", "Which one holds a lamp and books?", "Which one covers the window?", "Which one softens the floor?", "Which one holds clothes up?", "Which one do we wear to sleep?", "Which one keeps our feet warm?", "Which one covers the bed?", "Which one shows our pictures?", "Which one keeps toys tidy?", "Which one do we sit at to draw?", "Which one do we sit on?", "Which one stores our things?", "Which one makes the bed soft?", "Which one is a safe bed for a baby?", "Which one tells us the time?", "Which one keeps us cool?"], "bathroom": ["Which one do we brush our teeth with?", "Which one helps clean our teeth?", "Which one washes dirt off our hands?", "Which one dries our wet skin?", "Which one do we take a bath in?", "Which one do we wash under?", "Which one do we use in the bathroom?", "Which one washes our hair clean?", "Which one makes our hair neat?", "Which one cleans our face?", "Which one is a fun bath toy?", "Which one keeps us clean after the toilet?", "Which one stops us from slipping?", "Which one smooths our hair?", "Which one keeps us warm after a bath?", "Which one trims our nails?", "Which one cleans between our teeth?", "Which one makes fun bubbles?", "Which one softens dry skin?", "Which one turns the water on and off?", "Which one helps wash our body?", "Which one clears a clogged drain?", "Which one wipes our nose?", "Which one holds dirty clothes?", "Which one rinses our mouth clean?"], "living room": ["Which one do we sit on to rest?", "Which one shows cartoons and movies?", "Which one changes the TV channel?", "Which one holds drinks and books?", "Which one is a soft chair to sit in?", "Which one makes sitting soft?", "Which one holds our books?", "Which one lights the room from the floor?", "Which one keeps the room warm?", "Which one plays music out loud?", "Which one holds pretty flowers?", "Which one is a soft footrest?", "Which one makes the room fresh?", "Which one lights the ceiling?", "Which one is fun to play together?", "Which one has stories and pictures?", "Which one holds coats and hats?", "Which one lets in light and air?", "Which one opens and closes a room?", "Which one decorates the sofa?", "Which one holds a lamp or drink?", "Which one cools the room from above?", "Which one hangs on the wall?", "Which one covers the window?", "Which one is a stool to sit on?"]};
+const plain=it=>IMG+(it.prefix||'')+'p'+it.id+'.jpg';
+const LEVEL_NAMES=[{id:1,em:'📚',n:'Learn',sub:'See names and uses'},{id:2,em:'🔍',n:'Find It',sub:'Find the picture!'},{id:3,em:'🤔',n:'Used For',sub:'Which one do we use?'},{id:4,em:'🔀',n:'Mix-Up',sub:'All rooms mixed!'}];
+const PASS_STARS=2; // need 2 of 3 to unlock next
+function levelSave(){try{return JSON.parse(localStorage.getItem('emmaLevels')||'{}')}catch(e){return{}}}
+function levelGet(room,lv){const s=levelSave();return ((s[room]||{})[lv])||0}
+function levelSet(room,lv,stars){const s=levelSave();if(!s[room])s[room]={};s[room][lv]=Math.max(s[room][lv]||0,stars);localStorage.setItem('emmaLevels',JSON.stringify(s));return s[room][lv]}
+function levelUnlocked(room,lv){if(lv<=1)return true;return levelGet(room,lv-1)>=PASS_STARS}
+function roomTrophy(room){return [1,2,3,4].every(l=>levelGet(room,l)>=PASS_STARS)}
+function starsForMiss(miss){return miss<=1?3:miss<=2?2:1} // at most 2 mistakes to pass (2+ stars)
+function allPool(){return [...ITEMS,...BEDROOM_ITEMS,...BATHROOM_ITEMS,...LIVING_ITEMS]}
+function useQuestion(it){
+  const list=USE_Q[it.room]||[];
+  const idx=parseInt(it.id,10)-1;
+  return list[idx]||('Which one: '+hideName(it));
+}
+
 const ROOMS=[{k:"kitchen",em:"🍳",n:"Kitchen"},{k:"bedroom",em:"🛏️",n:"Bedroom"},{k:"bathroom",em:"🛁",n:"Bathroom"},{k:"living room",em:"🛋️",n:"Living Room"}];
 const ROUNDS=8;
 let stars=+localStorage.getItem('emmaStars')||0, screen='home', state={};
@@ -325,7 +366,7 @@ const TRY=["Oops! Try again!","Almost! Try again!","Good try! Look again!"];
 function correct(el,next,reward){sfx.right();stars++;setScore();state.score++;const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2);el.classList.add('ok');lockAll();
  const p=PRAISE[Math.random()*PRAISE.length|0];say(p,1);confetti(60);
  setTimeout(()=>{if(reward)showCard(reward,next);else next()},900)}
-function wrong(el){sfx.wrong();state.miss=(state.miss||0)+1;el.classList.add('no');say(TRY[Math.random()*TRY.length|0]);if(el.tagName==='BUTTON')el.disabled=true}
+function wrong(el,it){sfx.wrong();state.miss=(state.miss||0)+1;if(it&&state.missed&&!state.missed.some(x=>x.name===it.name&&x.room===it.room))state.missed.push(it);el.classList.add('no');say(TRY[Math.random()*TRY.length|0]);if(el.tagName==='BUTTON')el.disabled=true}
 function lockAll(){main.querySelectorAll('button').forEach(b=>b.disabled=true)}
 function showCard(it,next){const d=document.createElement('div');d.className='pop';d.innerHTML=`<img src="${full(it)}" alt="${it.name}"><button class="btn">Next ➜</button>`;document.body.appendChild(d);
  say(it.use);d.querySelector('button').onclick=()=>{sfx.tap();d.remove();next()}}
@@ -336,34 +377,78 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
 function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();document.querySelectorAll('.pop').forEach(p=>p.remove());
- $('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,find,use,room,spell,reward,bible,reader,bquiz,bdone})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ $('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,reward,fail,bible,reader,bquiz,bdone})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
+  if(screen==='levelmap'){go('home');return}
   if(['kitchen','bedroom','bathroom','living','bible'].includes(screen))go('home');
   else if(['reader','bquiz','bdone'].includes(screen))go('bible');
-  else go(state.room==='living room'?'living':(state.room||'kitchen'));
+  else if(['learnmenu','learn','find','use','room','spell','find2','used3','mix4','reward','fail'].includes(screen)){
+    if(state.fromLevel)go('levelmap');
+    else go('levelmap');
+  } else go('home');
 };
 function home(){$('#title').textContent='Emmavengers House Adventure';
- main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?'Tap to play!':'Coming soon'}</div></button>`}).join('')}<button class="room bible" data-k="bible"><span class="new">NEW!</span><div class="em">📖</div><div class="txt"><div class="nm">Bible Library</div><div class="sub">Tap to read Bible stories!</div></div></button></div>`;
+ main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);const tr=open&&roomTrophy(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}${tr?'<span class="trophy">🏆</span>':''}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?(tr?'Trophy earned!':'4 levels to play!'):'Coming soon'}</div></button>`}).join('')}<button class="room bible" data-k="bible"><span class="new">NEW!</span><div class="em">📖</div><div class="txt"><div class="nm">Bible Library</div><div class="sub">Tap to read Bible stories!</div></div></button></div>`;
  main.querySelector('.say').onclick=()=>say('Pick a room to play!');
  main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k==='bible'){sfx.tap();go('bible');return}if(OPEN_ROOMS.has(k)){sfx.tap();go(k)}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
 const MODES=[["find","🔍","Find It","Find the right picture"],["use","🤔","What Is It Used For?","Pick the right use"],["room","🏠","Which Room?","Put it in the right room"],["spell","🔤","Spell It","Tap the letters in order"]];
-function roomMenu(title,welcome){$('#title').textContent=title;
- main.innerHTML=`<div class="prompt">Choose a game! <button class="say">🔊</button></div><div class="grid">${MODES.map(m=>`<button class="room mode" data-m="${m[0]}"><span class="em">${m[1]}</span><span><div class="nm">${m[2]}</div><div class="sub">${m[3]}</div></span></button>`).join('')}</div>`;
- main.querySelector('.say').onclick=()=>say('Choose a game!');say(welcome);
- main.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{sfx.tap();state={mode:b.dataset.m,room:state.room,round:0,score:0,miss:0,used:[]};go(b.dataset.m)})}
-function kitchen(){state.room='kitchen';roomMenu('🍳 Kitchen','Welcome to the kitchen! Choose a game!')}
-function bathroom(){state.room='bathroom';roomMenu('🛁 Bathroom','Welcome to the bathroom! Choose a game!')}
-function living(){state.room='living room';roomMenu('🛋️ Living Room','Welcome to the living room! Choose a game!')}
-function bedroom(){state.room='bedroom';roomMenu('🛏️ Bedroom','Welcome to the bedroom! Choose a game!')}
+function kitchen(){state.room='kitchen';go('levelmap')}
+function bathroom(){state.room='bathroom';go('levelmap')}
+function living(){state.room='living room';go('levelmap')}
+function bedroom(){state.room='bedroom';go('levelmap')}
+function roomTitle(){return ({kitchen:'🍳 Kitchen',bedroom:'🛏️ Bedroom',bathroom:'🛁 Bathroom','living room':'🛋️ Living Room'})[state.room]||'Room'}
+function levelmap(){
+  const room=state.room;$('#title').textContent=roomTitle();
+  const trop=roomTrophy(room);
+  const welcome='Welcome to the '+room+'! Pick a level!';
+  main.innerHTML=`<div class="prompt">Pick a level! <button class="say">🔊</button></div>
+  <div class="ltrophy ${trop?'':'dim'}">🏆</div>
+  <div class="sub" style="color:#fff;margin-bottom:8px">${trop?'Room trophy earned!':'Pass all 4 levels for a trophy!'}</div>
+  <div class="lmap"><div class="lpath">${LEVEL_NAMES.map(L=>{
+    const st=levelGet(room,L.id); const open=levelUnlocked(room,L.id); const done=st>=PASS_STARS;
+    return `<button class="lnode ${open?'':'locked'} ${done?'done':''}" data-l="${L.id}">
+      ${open?'':`<span class="lk">🔒</span>`}
+      <div class="num">${L.id}</div>
+      <div class="info"><div class="nm">${L.em} ${L.n}</div><div class="sub">${open?L.sub:'Get 2⭐ on Level '+(L.id-1)+' to unlock'}</div></div>
+      <div class="stars">${st?('⭐'.repeat(st)+'☆'.repeat(3-st)):'☆☆☆'}</div>
+    </button>`}).join('')}</div></div>`;
+  main.querySelector('.say').onclick=()=>say(welcome);say(welcome);
+  main.querySelectorAll('.lnode').forEach(b=>b.onclick=()=>{
+    const lv=+b.dataset.l;
+    if(!levelUnlocked(room,lv)){sfx.wrong();say('This level is locked! Get 2 stars on the level before it.');return}
+    sfx.tap(); startLevel(lv);
+  });
+}
+function startLevel(lv, retryMissed){
+  const room=state.room;
+  const base={room, level:lv, fromLevel:true, round:0, score:0, miss:0, used:[], missed:[], retryMissed:retryMissed||[]};
+  state=base;
+  if(lv===1){go('learnmenu')}
+  else if(lv===2){state.mode='find2';go('find2')}
+  else if(lv===3){state.mode='used3';go('used3')}
+  else {state.mode='mix4'; go(level4Handler(room))}
+}
+/* Modular Level 4 — room-specific twists can replace mix4 later */
+function level4Handler(room){
+  const handlers={kitchen:'mix4',bedroom:'mix4',bathroom:'mix4','living room':'mix4'};
+  return handlers[room]||'mix4';
+}
+function learnmenu(){
+  /* Level 1 also offers classic mini-games with full cards */
+  $('#title').textContent=roomTitle()+' · Learn';
+  main.innerHTML=`<div class="prompt">Choose a Learn game! <button class="say">🔊</button></div><div class="grid">${MODES.map(m=>`<button class="room mode" data-m="${m[0]}"><span class="em">${m[1]}</span><span><div class="nm">${m[2]}</div><div class="sub">${m[3]}</div></span></button>`).join('')}<button class="room mode" data-m="learnquiz"><span class="em">📚</span><span><div class="nm">Quick Learn</div><div class="sub">8 picture questions</div></span></button></div>`;
+  main.querySelector('.say').onclick=()=>say('Let\'s learn!');say('Let\'s learn!');
+  main.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{sfx.tap();
+    if(b.dataset.m==='learnquiz'){state={...state,mode:'learn',round:0,score:0,miss:0,used:[],missed:[],fromLevel:true,level:1};go('learn');return}
+    state={mode:b.dataset.m,room:state.room,level:1,fromLevel:true,round:0,score:0,miss:0,used:[],missed:[]};go(b.dataset.m)})
+}
 function header(text){const T=state.total||ROUNDS;return `<div class="bar"><i style="width:${state.round/T*100}%"></i><b>${state.round+1} / ${T}</b></div><div class="prompt"><span>${text}</span><button class="say" aria-label="Read aloud">🔊</button></div>`}
 function bindSay(t){main.querySelector('.say').onclick=()=>say(t);say(t)}
-function nextRound(){state.round++;if(state.round>=(state.total||ROUNDS))go('reward');else go(state.mode)}
-function newTarget(p){const it=pick(p,1,state.used)[0]||pick(p,1)[0];state.used.push(it);return it}
 const article=n=>/^[aeiou]/.test(n)?'an':'a';
 function find(){$('#title').textContent='🔍 Find It';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`Find the ${t.name}!`;
  main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${crop(c)}" alt=""></button>`).join('')}</div>`;bindSay(txt);
- main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
+ if(!state.missed)state.missed=[];main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b,t))}
 function use(){$('#title').textContent='🤔 What Is It Used For?';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`What is the ${t.name} used for?`;
  main.innerHTML=header(txt)+`<div class="usewrap"><div class="pic"><img src="${crop(t)}" alt=""></div><div class="opts">${ch.map(c=>`<button class="opt" data-n="${c.name}">${hideName(c)}</button>`).join('')}</div></div>`;
  main.querySelector('.say').onclick=()=>say([txt,...ch.map(hideName).flatMap((o,i)=>i?['Or,',o]:[o])]);say(txt);
@@ -390,11 +475,108 @@ function spell(){$('#title').textContent='🔤 Spell It';const SPELL=spellPool()
  main.querySelectorAll('.letter').forEach(b=>b.onclick=()=>{if(b.dataset.c===w[state.pos]){sfx.tap();say(b.dataset.c);slots[state.pos].textContent=b.dataset.c;b.classList.add('used');state.pos++;
    if(state.pos===w.length){say(t.name);setTimeout(()=>correct(main.querySelector('.slots'),nextRound,t),500)}}
   else{sfx.wrong();state.miss++;b.classList.add('no');setTimeout(()=>b.classList.remove('no'),450)}})}
-function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=state.score,tot=state.total||ROUNDS,s=state.miss<=1?3:state.miss<=4?2:1;
- main.innerHTML=`<div class="reward"><h1>Level Complete!</h1><div class="prompt" style="display:inline-flex">🎉 Great Job! 🎉</div><br><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">You finished ${n} of ${tot}! Total stars: ⭐ ${stars}</div><img class="heroimg" src="img/end.jpg" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">🔁 Play Again</button><button class="btn" id="more">🎮 More Games</button></div></div>`;
- say('Great job! You are a super star!',1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
- $('#again').onclick=()=>{sfx.tap();const m=state.mode,r=state.room;state={mode:m,room:r,round:0,score:0,miss:0,used:[]};go(m)};
- $('#more').onclick=()=>{sfx.tap();go(state.room==='living room'?'living':(state.room||'kitchen'))}}
+
+function finishLevel(){
+  const tot=state.total||ROUNDS;
+  const s=starsForMiss(state.miss||0);
+  if(state.level&&state.fromLevel){
+    if(s>=PASS_STARS){
+      levelSet(state.room, state.level, s);
+      go('reward');
+    } else {
+      go('fail');
+    }
+  } else {
+    // classic mini-game path (from Learn menu)
+    if(state.level===1&&state.fromLevel) levelSet(state.room,1, Math.max(levelGet(state.room,1), s));
+    go('reward');
+  }
+}
+function nextRound(){state.round++;if(state.round>=(state.total||ROUNDS))finishLevel();else go(state.mode)}
+function newTarget(p){
+  // On retry, prefer missed items first
+  if(state.retryMissed&&state.retryMissed.length){
+    const it=state.retryMissed.shift();
+    state.used.push(it);return it;
+  }
+  const it=pick(p,1,state.used)[0]||pick(p,1)[0];state.used.push(it);return it;
+}
+function trackMiss(it){if(it&&!state.missed.some(x=>x.name===it.name&&x.room===it.room))state.missed.push(it)}
+
+function learn(){
+  // Level 1 Quick Learn: Find It with FULL cards (names/uses visible)
+  $('#title').textContent='📚 Learn';
+  const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);
+  const txt=`Find the ${t.name}!`;
+  main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${full(c)}" alt="${c.name}"></button>`).join('')}</div>`;
+  bindSay(txt);
+  main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b,t));
+}
+function find2(){
+  $('#title').textContent='🔍 Find It';
+  const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);
+  const prompts=[`Find the ${t.name}!`,`Where is the ${t.name}?`];
+  const txt=prompts[state.round%2];
+  main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${plain(c)}" alt=""></button>`).join('')}</div>`;
+  bindSay(txt);
+  main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound):wrong(b,t));
+}
+function used3(){
+  $('#title').textContent='🤔 Used For';
+  const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);
+  const txt=useQuestion(t);
+  main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${plain(c)}" alt=""></button>`).join('')}</div>`;
+  bindSay(txt);
+  main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b,t));
+}
+function mix4(){
+  // Default Mix-Up: even rounds = 4-choice find from all rooms; odd = sort into room
+  $('#title').textContent='🔀 Mix-Up';
+  if(state.round===0 && !state.mixReady){
+    state.mixReady=1;
+    state.total=ROUNDS;
+  }
+  if(state.round%2===1){
+    // room sorting with plain pic
+    const t=newTarget(allPool());
+    const txt=`Where does the ${t.name} go?`;
+    main.innerHTML=header(txt)+`<div class="item" id="drag"><img src="${plain(t)}" alt=""></div><div class="hint">Drag it to a room, or tap a room!</div><div class="roomsrow">${ROOMS.map(r=>`<button class="drop" data-k="${r.k}"><div class="em">${r.em}</div>${r.n}</button>`).join('')}</div>`;
+    bindSay(txt);
+    const check=d=>{if(d.dataset.k===t.room)correct(d,nextRound,t);else{wrong(d,t);d.disabled=false;setTimeout(()=>d.classList.remove('no'),500)}};
+    main.querySelectorAll('.drop').forEach(d=>d.onclick=()=>check(d));
+    const el=$('#drag');let sx,sy,dragging=false;
+    el.addEventListener('pointerdown',e=>{dragging=true;sx=e.clientX;sy=e.clientY;el.setPointerCapture(e.pointerId);el.style.transition='none'});
+    const over=e=>[...main.querySelectorAll('.drop')].find(d=>{const r=d.getBoundingClientRect();return e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom});
+    el.addEventListener('pointermove',e=>{if(!dragging)return;el.style.transform=`translate(${e.clientX-sx}px,${e.clientY-sy}px) scale(.6)`;main.querySelectorAll('.drop').forEach(d=>d.classList.toggle('hover',d===over(e)))});
+    el.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;const d=over(e);main.querySelectorAll('.drop').forEach(x=>x.classList.remove('hover'));el.style.transition='transform .25s';el.style.transform='';if(d)check(d)});
+  } else {
+    const P=allPool();const t=newTarget(P);const ch=shuffle([t,...pick(P,3,[t])]);
+    const txt=`Find the ${t.name}!`;
+    main.innerHTML=header(txt)+`<div class="choices pics four">${ch.map(c=>`<button class="pic" data-n="${c.name}" data-r="${c.room}"><img src="${plain(c)}" alt=""></button>`).join('')}</div>`;
+    bindSay(txt);
+    main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>(b.dataset.n===t.name&&b.dataset.r===t.room)?correct(b,nextRound):wrong(b,t));
+  }
+}
+function fail(){
+  $('#title').textContent='💪 Try Again!';
+  const s=starsForMiss(state.miss||0);
+  main.innerHTML=`<div class="failbox"><h1>Let's try again!</h1><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">You need 2 stars to pass. You can do it!</div><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:16px"><button class="btn" id="retry">🔁 Try Again</button><button class="btn" id="backmap">🗺️ Level Map</button></div></div>`;
+  say(["Let's try again!","You need 2 stars to pass. Try again!"]);
+  const missed=(state.missed||[]).slice();
+  const lv=state.level, room=state.room;
+  $('#retry').onclick=()=>{sfx.tap();startLevel(lv, missed)};
+  $('#backmap').onclick=()=>{sfx.tap();state={room};go('levelmap')};
+}
+function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=state.score,tot=state.total||ROUNDS,s=starsForMiss(state.miss||0);
+  if(state.level&&state.fromLevel&&s>=PASS_STARS) levelSet(state.room,state.level,s);
+  const trop=roomTrophy(state.room);
+  const unlockMsg=(state.level&&state.level<4&&s>=PASS_STARS)?'You unlocked the next level!':(trop?'You earned a room trophy! Amazing!':'Great job! Level complete!');
+ main.innerHTML=`<div class="reward"><h1>Level Complete!</h1><div class="prompt" style="display:inline-flex">🎉 Great Job! 🎉</div><br><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">${unlockMsg}<br>You finished ${n} of ${tot}! Total stars: ⭐ ${stars}</div>${trop?'<div class="ltrophy">🏆</div>':''}<img class="heroimg" src="img/end.jpg" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">🔁 Play Again</button><button class="btn" id="more">🗺️ Level Map</button></div></div>`;
+ say(trop?['Great job! Level complete!','You earned a room trophy! Amazing!']:(state.level&&state.level<4&&s>=PASS_STARS)?['Great job! Level complete!','You unlocked the next level!']:['Great job! Level complete!'],1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
+ $('#again').onclick=()=>{sfx.tap();startLevel(state.level||1)};
+ $('#more').onclick=()=>{sfx.tap();const r=state.room;state={room:r};go('levelmap')}}
+
+
 
 /* ===== Bible Library ===== */
 const BIBLE=/*BIBLE_DATA*/{"noah": {"title": "Noah's Ark", "dir": "img/bible/noah/", "pages": [{"img": "cover", "say": ["Noah's Ark.", "An Emmavengers World Story, by Cletus Emmanuel."], "text": ""}, {"img": "p01", "say": ["Long ago, the world was full of fighting and wrongdoing. But one man still loved God. His name was Noah."], "text": "Long ago, the world was full of fighting and wrongdoing. But one man still loved God. His name was Noah."}, {"img": "p02", "say": ["One day, God spoke to Noah. \"A great flood is coming. Build a giant boat, an ark, and I will keep you safe.\""], "text": "One day, God spoke to Noah. “A great flood is coming. Build a giant boat, an ark, and I will keep you safe.”"}, {"img": "p03", "say": ["Noah and his sons built for years and years. The neighbours laughed, \"A boat on dry land? Silly Noah!\" But Noah kept on obeying God."], "text": "Noah and his sons built for years and years. The neighbours laughed, “A boat on dry land? Silly Noah!” But Noah kept on obeying God."}, {"img": "p04", "say": ["When the ark was ready, the animals came, two by two! Big ones and small ones marched inside. Then God Himself shut the door."], "text": "When the ark was ready, the animals came, two by two! Big ones and small ones marched inside. Then God Himself shut the door."}, {"img": "p05", "say": ["Drip... drop... SPLASH! Rain poured down for forty days and forty nights. The water covered even the mountains, but the ark floated safely."], "text": "Drip… drop… SPLASH! Rain poured down for forty days and forty nights. The water covered even the mountains, but the ark floated safely."}, {"img": "p06", "say": ["Inside, it was noisy and dark. Moo! Roar! Tweet! Noah's family waited and waited. Would they ever see dry land again?"], "text": "Inside, it was noisy and dark. Moo! Roar! Tweet! Noah’s family waited and waited. Would they ever see dry land again?"}, {"img": "p07", "say": ["God remembered Noah, and the water went down. Noah sent out a raven, then a dove. The dove came back with a fresh olive leaf!"], "text": "God remembered Noah, and the water went down. Noah sent out a raven, then a dove. The dove came back with a fresh olive leaf!"}, {"img": "p08", "say": ["The next time, the dove did not come back. The land was dry! Everyone stepped out, and Noah thanked God."], "text": "The next time, the dove did not come back. The land was dry! Everyone stepped out, and Noah thanked God."}, {"img": "p09", "say": ["Then God put a beautiful rainbow in the sky. \"I promise I will never flood the whole earth again.\" God always keeps His promises!"], "text": "Then God put a beautiful rainbow in the sky. “I promise I will never flood the whole earth again.” God always keeps His promises!"}, {"img": "verse", "say": ["Memory verse.", "I have put my rainbow in the clouds. It will be the sign of the covenant between me and the earth.", "Genesis, chapter nine, verse thirteen."], "text": "Memory Verse\n“I have put my rainbow in the clouds. It will be the sign of the covenant between me and the earth.” — Genesis 9:13 (NIrV)"}, {"img": "prayer", "say": ["Let's pray.", "Dear God, thank You for keeping Noah safe.", "Help me to obey You, even when others laugh.", "Thank You for the rainbow, and for always keeping Your promises. Amen."], "text": "Let’s Pray\nDear God, thank You for keeping Noah safe. Help me to obey You, even when others laugh. Thank You for the rainbow, and for always keeping Your promises. Amen."}, {"img": "moral", "say": ["The moral of the story.", "Obey and trust God, even when others laugh. God always keeps His promises!"], "text": "The Moral\nObey and trust God, even when others laugh. God always keeps His promises!"}, {"img": "lessons", "say": ["Lessons.", "Do what is right, even when nobody else does.", "Keep obeying God, even when the job is long and hard.", "Be patient. God takes care of us while we wait.", "God keeps His promises. The rainbow reminds us!"], "text": "1. Do what is right, even when nobody else does.\n2. Keep obeying God, even when the job is long and hard.\n3. Be patient. God takes care of us while we wait.\n4. God keeps His promises. The rainbow reminds us!"}], "quiz": [{"q": "Why did Noah build the ark?", "a": "Because God told him to", "opts": ["Because God told him to", "To go fishing", "To win a race"], "img": "p02"}, {"q": "What did the dove bring back?", "a": "A fresh olive leaf", "opts": ["A shiny stone", "A fresh olive leaf", "A little fish"], "img": "p07"}, {"q": "What does the rainbow remind us?", "a": "God always keeps His promises", "opts": ["It is time to play", "It will rain again", "God always keeps His promises"], "img": "p09"}], "done": "Great job! You finished Noah's Ark!"}}/*END_BIBLE_DATA*/;
