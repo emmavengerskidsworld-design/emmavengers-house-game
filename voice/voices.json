@@ -1,0 +1,51 @@
+[
+  {
+    "id": "mia",
+    "kokoro": "af_heart",
+    "gender": "girl",
+    "label": "Mia",
+    "emoji": "\ud83d\udc67",
+    "default": true,
+    "preview": "Hi! I'm Mia. Let's play!"
+  },
+  {
+    "id": "lily",
+    "kokoro": "af_jessica",
+    "gender": "girl",
+    "label": "Lily",
+    "emoji": "\ud83c\udf38",
+    "preview": "Hi! I'm Lily. Let's play!"
+  },
+  {
+    "id": "zara",
+    "kokoro": "af_bella",
+    "gender": "girl",
+    "label": "Zara",
+    "emoji": "\u2b50",
+    "preview": "Hi! I'm Zara. Let's play!"
+  },
+  {
+    "id": "sam",
+    "kokoro": "am_puck",
+    "gender": "boy",
+    "label": "Sam",
+    "emoji": "\ud83e\uddd2",
+    "preview": "Hi! I'm Sam. Let's play!"
+  },
+  {
+    "id": "leo",
+    "kokoro": "am_liam",
+    "gender": "boy",
+    "label": "Leo",
+    "emoji": "\ud83e\udd81",
+    "preview": "Hi! I'm Leo. Let's play!"
+  },
+  {
+    "id": "max",
+    "kokoro": "am_fenrir",
+    "gender": "boy",
+    "label": "Max",
+    "emoji": "\ud83d\ude80",
+    "preview": "Hi! I'm Max. Let's play!"
+  }
+]

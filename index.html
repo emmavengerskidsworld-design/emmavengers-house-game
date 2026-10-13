@@ -330,11 +330,38 @@ body.morning main.enter>*{animation:none!important}
  .mbadge .seal{width:min(180px,48vw)}
 }
 
+
+/* ===== Voice Settings ===== */
+.vsetbtn{width:52px;height:52px;min-width:52px;border-radius:50%;padding:0;font-size:26px;display:flex;align-items:center;justify-content:center;flex:none}
+@media (orientation:portrait) and (max-width:600px){.vsetbtn{width:44px;height:44px;min-width:44px;font-size:21px}}
+.vpanel{position:fixed;inset:0;z-index:90;background:rgba(10,40,100,.55);display:flex;align-items:center;justify-content:center;padding:12px;animation:fadein .2s}
+.vpanel .box{width:min(720px,96vw);max-height:min(92vh,860px);overflow:auto;background:linear-gradient(#fff8d6,#ffe9a0);border:6px solid #ffc400;border-radius:28px;box-shadow:0 14px 0 #c98a00,0 22px 40px rgba(0,0,0,.35);padding:16px 18px 20px;color:#123a7a}
+.vpanel h2{margin:0 0 10px;text-align:center;font-size:clamp(26px,5vw,40px);color:#ffd21f;text-shadow:0 3px 0 #b8560a,0 6px 10px rgba(0,0,0,.25)}
+.vpanel .subh{text-align:center;font-size:clamp(14px,2.4vw,20px);color:#2f86e8;margin-bottom:12px}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+@media (max-width:560px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+.vcard{font:inherit;color:#123a7a;border:5px solid #ffc400;border-radius:22px;background:#fff;padding:12px 8px;cursor:pointer;box-shadow:0 6px 0 #c98a00;text-align:center;position:relative;transition:transform .1s}
+.vcard:active{transform:translateY(3px)}
+.vcard .em{font-size:clamp(36px,7vw,52px);line-height:1}
+.vcard .nm{font-size:clamp(18px,3.2vw,26px);margin-top:2px}
+.vcard .gd{font-size:clamp(12px,2vw,16px);color:#2f86e8}
+.vcard .def{display:inline-block;margin-top:4px;background:#2f86e8;color:#fff;border-radius:999px;padding:2px 10px;font-size:12px}
+.vcard.on{border-color:#2ecc40;background:#e9ffe9;box-shadow:0 6px 0 #1f8a2b}
+.vcard.on::after{content:"✓";position:absolute;top:6px;right:10px;font-size:22px;color:#1f8a2b}
+.vsliders{display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,.75);border:4px solid #ffc400;border-radius:20px;padding:12px 14px;margin-bottom:12px}
+.vsliders label{display:flex;align-items:center;gap:10px;font-size:clamp(16px,2.8vw,22px)}
+.vsliders label span{min-width:4.5em}
+.vsliders input[type=range]{flex:1;height:28px;accent-color:#2f86e8}
+.vsliders .val{min-width:3.2em;text-align:right;color:#2f86e8}
+.vpanel .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.vdl{font-size:clamp(13px,2.2vw,17px);color:#1a56b8;text-align:center;min-height:1.2em}
+
 </style></head><body>
 <div id="app">
 <header>
  <button class="btn back hidden" id="backBtn" aria-label="Back">⬅</button>
  <div class="title" id="title">Emmavengers House Adventure</div>
+ <button class="btn vsetbtn" id="voiceBtn" aria-label="Voice settings">🔊</button>
  <button class="btn mute" id="muteBtn" aria-label="Music on/off">🎵</button>
  <div class="pill" id="score">⭐ 0</div>
 </header>
@@ -501,20 +528,47 @@ const sfx={
  wrong(){tone(392,0,.25,'sine',.1);tone(349,.18,.3,'sine',.08)},
  win(){return fanfare()},
  pop(){if(muted)return;const a=actx();if(!a)return;const o=a.createOscillator(),g=a.createGain(),t=a.currentTime;o.type='sine';o.frequency.setValueAtTime(380,t);o.frequency.exponentialRampToValueAtTime(1300,t+.09);g.gain.setValueAtTime(.22,t);g.gain.exponentialRampToValueAtTime(.001,t+.14);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.16)}};
-const VOICE='voice/';const vh=t=>{let h=0x811c9dc5;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h.toString(16).padStart(8,'0')};
+const VOICES=[
+ {id:'mia',label:'Mia',emoji:'👧',gender:'girl',def:1,preview:"Hi! I'm Mia. Let's play!"},
+ {id:'lily',label:'Lily',emoji:'🌸',gender:'girl',preview:"Hi! I'm Lily. Let's play!"},
+ {id:'zara',label:'Zara',emoji:'⭐',gender:'girl',preview:"Hi! I'm Zara. Let's play!"},
+ {id:'sam',label:'Sam',emoji:'🧒',gender:'boy',preview:"Hi! I'm Sam. Let's play!"},
+ {id:'leo',label:'Leo',emoji:'🦁',gender:'boy',preview:"Hi! I'm Leo. Let's play!"},
+ {id:'max',label:'Max',emoji:'🚀',gender:'boy',preview:"Hi! I'm Max. Let's play!"}
+];
+function loadVoiceSet(){try{const o=JSON.parse(localStorage.getItem('emmaVoice')||'{}');return{
+ id:VOICES.some(v=>v.id===o.id)?o.id:'mia',
+ speed:Math.min(1.4,Math.max(.8,+(o.speed||1)||1)),
+ pitch:Math.min(1.25,Math.max(.85,+(o.pitch||1)||1))
+}}catch(e){return{id:'mia',speed:1,pitch:1}}}
+let vSet=loadVoiceSet();
+function saveVoiceSet(){localStorage.setItem('emmaVoice',JSON.stringify(vSet))}
+function voiceBase(){return vSet.id==='mia'?'voice/':('voice/'+vSet.id+'/')}
+const vh=t=>{let h=0x811c9dc5;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h.toString(16).padStart(8,'0')};
+function voiceUrl(t){return voiceBase()+vh(t)+'.mp3'}
 let vAud=null,vTok=0,vPend=null;
 // One reusable <audio> element: once it has played inside a tap, iOS/Android let it play later clips from timers too.
 const vEl=new Audio();vEl.preload='auto';let vUnlocked=false;
+function applyVoiceRates(){
+ const s=+vSet.speed||1, p=+vSet.pitch||1;
+ // Speed uses pitch-preserving playbackRate. Pitch uses a mild rate nudge (preservesPitch off) so defaults stay artifact-free.
+ if(Math.abs(p-1)<0.02){try{vEl.preservesPitch=true}catch(e){} try{vEl.mozPreservesPitch=true}catch(e){} vEl.playbackRate=s}
+ else{try{vEl.preservesPitch=false}catch(e){} try{vEl.mozPreservesPitch=false}catch(e){} vEl.playbackRate=Math.min(2,Math.max(.5,s*p))}
+}
+function cacheVoicePack(id){
+ if(!('serviceWorker' in navigator)||!navigator.serviceWorker.controller)return;
+ navigator.serviceWorker.controller.postMessage({type:'cacheVoice',id:id||vSet.id});
+}
 function audioUnlock(){const a=actx();if(a&&a.state!=='running')a.resume();
- if(!vUnlocked){vUnlocked=true;if(!vEl.src){vEl.muted=true;vEl.src=VOICE+vh("Let's learn!")+'.mp3';const pr=vEl.play();if(pr&&pr.then)pr.then(()=>{if(vEl.muted){vEl.pause();vEl.muted=false}}).catch(()=>{vUnlocked=false;vEl.muted=false})}}
+ if(!vUnlocked){vUnlocked=true;if(!vEl.src){vEl.muted=true;vEl.src=voiceUrl("Let's learn!");applyVoiceRates();const pr=vEl.play();if(pr&&pr.then)pr.then(()=>{if(vEl.muted){vEl.pause();vEl.muted=false}}).catch(()=>{vUnlocked=false;vEl.muted=false})}}
  if(vPend){const p=vPend;vPend=null;say(p.t,p.h,1)}}
 ['pointerdown','touchend','click','keydown'].forEach(e=>addEventListener(e,audioUnlock,{capture:true,passive:true}));
 function stopVoice(){vTok++;vEl.onended=vEl.onerror=null;try{vEl.pause()}catch(e){}vAud=null;try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
-function ttsFallback(t,done){try{if(!('speechSynthesis' in window))return done();const u=new SpeechSynthesisUtterance(t);u.rate=.9;u.pitch=1.15;u.lang='en-US';u.onend=u.onerror=done;speechSynthesis.speak(u)}catch(e){done()}}
+function ttsFallback(t,done){try{if(!('speechSynthesis' in window))return done();const u=new SpeechSynthesisUtterance(t);u.rate=.9*vSet.speed;u.pitch=1.15*vSet.pitch;u.lang='en-US';u.onend=u.onerror=done;speechSynthesis.speak(u)}catch(e){done()}}
 function say(t,h,quiet){const parts=(Array.isArray(t)?t:[t]).filter(Boolean);if(!quiet)mascot(parts.join(' '),h);stopVoice();vPend=null;const tok=vTok;let i=0;
  const next=()=>{if(tok!==vTok||i>=parts.length)return;const txt=parts[i++];const a=vEl;vAud=a;let fell=false;a.muted=false;
   const fb=()=>{if(fell||tok!==vTok)return;fell=true;ttsFallback(txt,next)};
-  a.onended=()=>{if(tok===vTok)setTimeout(next,250)};a.onerror=fb;a.src=VOICE+vh(txt)+'.mp3';const pr=a.play();
+  a.onended=()=>{if(tok===vTok)setTimeout(next,250)};a.onerror=fb;a.src=voiceUrl(txt);applyVoiceRates();const pr=a.play();
   // Blocked by autoplay rules (no tap yet): keep the line and speak it on the very next tap instead of going silent.
   if(pr&&pr.catch)pr.catch(e=>{if(tok!==vTok)return;if(e&&e.name==='NotAllowedError'){vPend={t:parts.slice(i-1),h};return}if(e&&e.name==='AbortError')return;fb()})};
  {const w=sayHold-Date.now();if(w>0)setTimeout(()=>{if(tok===vTok)next()},w);else next()}}
@@ -922,6 +976,8 @@ window.__extraVoice=[
  'What do I do after I greet Mummy and Daddy?','What do I do after I brush my teeth?',
  'What do I do after my bath?','What do I do after I get dressed?',
  'What do I do after breakfast?','What do I do after I help clean?'
+,
+ "Hi! I'm Mia. Let's play!","Hi! I'm Lily. Let's play!","Hi! I'm Zara. Let's play!","Hi! I'm Sam. Let's play!","Hi! I'm Leo. Let's play!","Hi! I'm Max. Let's play!"
 ];
 function mSparks(n=14){return Array.from({length:n},(_,i)=>`<i style="left:${(6+i*7)%94}%;top:${10+(i*13)%70}%;animation-delay:${(i*.18).toFixed(2)}s"></i>`).join('')}
 function mProg(i){return `<div class="mprog">${MORNING.map((_,k)=>`<b class="${k<i?'done':k===i?'on':''}"></b>`).join('')}</div>`}
@@ -1105,6 +1161,51 @@ function bdone(a){const b=BIBLE[a.b];$('#title').textContent='🏆 Great Job!';s
  main.innerHTML=`<div class="reward"><h1>Great Job!</h1><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">You finished ${b.title}! Total stars: ⭐ ${stars}</div><img class="heroimg" src="${bImg(b,b.pages[b.pages.length-5].img)}" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">📖 Read Again</button><button class="btn" id="lib">📚 Back to Library</button></div></div>`;
  say(b.done,1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
  $('#again').onclick=()=>{sfx.tap();go('reader',{b:a.b,i:0})};$('#lib').onclick=()=>{sfx.tap();go('bible')}}
+
+function openVoiceSettings(){
+ audioUnlock();sfx.tap();
+ const d=document.createElement('div');d.className='vpanel';d.id='vpanel';
+ const cards=VOICES.map(v=>`<button type="button" class="vcard ${vSet.id===v.id?'on':''}" data-id="${v.id}">
+   <div class="em">${v.emoji}</div><div class="nm">${v.label}</div><div class="gd">${v.gender==='girl'?'Girl':'Boy'}</div>
+   ${v.def?'<div class="def">Default</div>':''}</button>`).join('');
+ d.innerHTML=`<div class="box" role="dialog" aria-label="Voice Settings">
+  <h2>🔊 Voice Settings</h2>
+  <div class="subh">Pick a friend voice — tap to hear them!</div>
+  <div class="vgrid">${cards}</div>
+  <div class="vsliders">
+   <label><span>Speed</span><input id="vSpeed" type="range" min="0.8" max="1.4" step="0.05" value="${vSet.speed}"><b class="val" id="vSpeedV">${vSet.speed.toFixed(2)}×</b></label>
+   <label><span>Pitch</span><input id="vPitch" type="range" min="0.85" max="1.25" step="0.05" value="${vSet.pitch}"><b class="val" id="vPitchV">${vSet.pitch.toFixed(2)}×</b></label>
+  </div>
+  <div class="vdl" id="vDl"></div>
+  <div class="row"><button type="button" class="btn" id="vClose">Done ✓</button></div>
+ </div>`;
+ document.body.appendChild(d);
+ const dl=$('#vDl');
+ const setDl=t=>{dl.textContent=t||''};
+ d.querySelectorAll('.vcard').forEach(b=>b.onclick=()=>{
+  const id=b.dataset.id; if(!id)return;
+  vSet.id=id; saveVoiceSet();
+  d.querySelectorAll('.vcard').forEach(x=>x.classList.toggle('on',x.dataset.id===id));
+  const v=VOICES.find(x=>x.id===id);
+  setDl(id==='mia'?'Ready!':'Downloading '+v.label+"'s voice for offline…");
+  cacheVoicePack(id);
+  say(v.preview,1,1);
+ });
+ const sync=()=>{applyVoiceRates();saveVoiceSet()};
+ $('#vSpeed').oninput=e=>{vSet.speed=+e.target.value;$('#vSpeedV').textContent=vSet.speed.toFixed(2)+'×';sync();};
+ $('#vPitch').oninput=e=>{vSet.pitch=+e.target.value;$('#vPitchV').textContent=vSet.pitch.toFixed(2)+'×';sync();};
+ $('#vSpeed').onchange=$('#vPitch').onchange=()=>{const v=VOICES.find(x=>x.id===vSet.id);say(v.preview,1,1)};
+ $('#vClose').onclick=()=>{sfx.tap();d.remove()};
+ d.addEventListener('click',e=>{if(e.target===d){sfx.tap();d.remove()}});
+ if(navigator.serviceWorker)navigator.serviceWorker.addEventListener('message',function onM(ev){
+  if(!ev.data||ev.data.type!=='voiceCached')return;
+  if(ev.data.id===vSet.id)setDl(ev.data.ok? (VOICES.find(x=>x.id===vSet.id).label+"'s voice is ready offline!"):'Could not download — will retry online.');
+ });
+}
+$('#voiceBtn').onclick=()=>openVoiceSettings();
+// Warm offline cache for the saved non-default voice
+if(vSet.id!=='mia')addEventListener('load',()=>setTimeout(()=>cacheVoicePack(vSet.id),800));
+
 setScore();go('home');
 
 </script>
