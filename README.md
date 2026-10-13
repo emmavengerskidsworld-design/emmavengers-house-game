@@ -18,4 +18,4 @@ python3 tools/build_sw.py         # regenerates sw.js: precache list + new build
 python3 tools/test_offline.py     # optional: offline Playwright test
 ```
 `sw.js` is generated: never edit it by hand, and always rebuild it before committing, or phones keep the old version.
-Voice clips: Kokoro `af_heart`, pitched up 1.18 (see /workspace/kok/gen.py), file name = FNV-1a hash of the exact text.
+Voice clips: Kokoro `af_heart`, speed 0.53 (~125 wpm, a good pace for young kids), pitched up 1.18, +150 ms trailing silence: `tools/gen_voice.py jobs.json` (list of [text, voice/<hash>.mp3]; needs kokoro-v1.0.int8.onnx + voices-v1.0.bin). File name = FNV-1a hash of the exact text.
