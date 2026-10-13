@@ -1,32 +1,35 @@
 """Offline PWA test: python3 tools/test_offline.py [URL]  (default: serves repo on localhost).
-Loads online, waits for full precache, goes offline, reloads, plays every room/level + Bible story,
+Loads online, waits for full precache (core + background Bible-book prefetch), goes offline, reloads, plays every room/level + Bible story,
 and checks that every image/voice request is served by the service worker."""
 import sys,os,asyncio,threading,http.server,functools,json,re
 from playwright.async_api import async_playwright
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def serve():
-    h=functools.partial(http.server.SimpleHTTPRequestHandler,directory=ROOT);h.log_message=lambda *a:None
+    class Q(http.server.SimpleHTTPRequestHandler):
+        def log_message(self,*a):pass
+    h=functools.partial(Q,directory=ROOT)
     s=http.server.ThreadingHTTPServer(('127.0.0.1',0),h);threading.Thread(target=s.serve_forever,daemon=True).start();return f'http://127.0.0.1:{s.server_port}/'
 async def main(url):
     async with async_playwright() as p:
         b=await p.chromium.launch(args=['--autoplay-policy=no-user-gesture-required'])
         ctx=await b.new_context(viewport={'width':1180,'height':820});pg=await ctx.new_page()
-        bad=[];stats={'sw':0,'net':0,'voice':0,'img':0}
+        bad=[];stats={'sw':0,'net':0,'voice':0,'img':0};off={'on':False}
         def onresp(r):
-            if r.url.startswith(url) and re.search(r'/(img|voice)/',r.url):
+            if off['on'] and r.url.startswith(url) and re.search(r'/(img|voice)/',r.url):
                 stats['voice' if '/voice/' in r.url else 'img']+=1
                 if r.from_service_worker: stats['sw']+=1
                 else: stats['net']+=1
                 if r.status>=400: bad.append((r.status,r.url))
-        pg.on('requestfailed',lambda r:bad.append(('FAIL',r.url,r.failure)));pg.on('pageerror',lambda e:bad.append(('PAGEERR',str(e))))
+        pg.on('response',onresp);pg.on('requestfailed',lambda r:bad.append(('FAIL',r.url,r.failure)));pg.on('pageerror',lambda e:bad.append(('PAGEERR',str(e))))
         await pg.goto(url,wait_until='networkidle')
         info=await pg.evaluate("""async()=>{await navigator.serviceWorker.ready;const t0=Date.now();
           const n=async()=>{const k=(await caches.keys()).filter(k=>k.startsWith('emma-house-'));let c=0;for(const x of k)c+=(await (await caches.open(x)).keys()).length;return [k,c]};
           for(;;){const r=await fetch('sw.js').then(r=>r.text());const want=JSON.parse(r.match(/ASSETS=(\\[.*?\\]);/)[1]).length;const [k,c]=await n();
-            if(c>=want&&navigator.serviceWorker.controller)return {caches:k,entries:c,want,ms:Date.now()-t0,quota:(await navigator.storage.estimate()).usage};
+            const man=await fetch('bible-manifest.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>({books:{}}));const bk=(await (await caches.open('emma-books')).keys()).map(r=>r.url);const booksReady=Object.entries(man.books).every(([s,b])=>bk.some(u=>u.includes('/__book__/'+s+'/'+b.v+'/')));
+            if(c>=want&&navigator.serviceWorker.controller&&booksReady)return {caches:k,entries:c,want,ms:Date.now()-t0,quota:(await navigator.storage.estimate()).usage};
             if(Date.now()-t0>240000)return {timeout:true,c,want};await new Promise(z=>setTimeout(z,1000))}}""")
         print('precache',json.dumps(info))
-        await ctx.set_offline(True);await pg.reload(wait_until='load');await pg.wait_for_timeout(800)
+        await ctx.set_offline(True);off['on']=True;await pg.reload(wait_until='load');await pg.wait_for_timeout(800)
         await pg.evaluate('localStorage.clear()')
         played=[]
         await pg.evaluate("""()=>{const o=say;window.__said=[];say=function(t,h,q){__said.push(t);return o(t,h,q)};

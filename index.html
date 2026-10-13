@@ -1135,7 +1135,7 @@ function bible(){document.body.classList.remove('reading');state={room:'bible'};
  main.innerHTML=`<div class="prompt">Pick a story to read! <button class="say" aria-label="Read aloud">🔊</button></div><div class="shelf">${Object.entries(BIBLE).map(([k,b])=>{const best=(sv[k]||{}).stars||0;return `<button class="book feat" data-b="${k}"><div class="cv"><img src="${bImg(b,'cover')}" alt="${b.title}"></div><div class="bt">${b.title}</div><div class="bs">${best?'⭐'.repeat(best):'Tap to read!'}</div></button>`}).join('')}${BIBLE_SOON.map(([n,e])=>`<button class="book locked" data-n="${n}"><span class="lock">🔒</span><div class="cv">${e}</div><div class="bt">${n}</div><div class="bs">Coming soon</div></button>`).join('')}</div>`;
  main.querySelector('.say').onclick=()=>say('Pick a story to read!');say('Welcome to the Bible Library! Pick a story to read!');
  main.querySelectorAll('.book').forEach(el=>el.onclick=()=>{if(el.dataset.b){sfx.tap();go('reader',{b:el.dataset.b,i:0})}else{sfx.wrong();say(el.dataset.n+' is coming soon!')}})}
-function reader(a){document.body.classList.add('reading');const b=BIBLE[a.b];state={room:'bible',book:a.b,i:a.i||0};$('#title').textContent='📖 '+b.title;const P=b.pages,L=P.length;
+function reader(a){document.body.classList.add('reading');const b=BIBLE[a.b];if(!a.i)cacheBook(a.b);state={room:'bible',book:a.b,i:a.i||0};$('#title').textContent='📖 '+b.title;const P=b.pages,L=P.length;
  main.innerHTML=`<div class="reader"><div class="bpage" id="bpage"><img id="bimg" src="${bImg(b,P[state.i].img)}" alt="Page"></div><div class="rctl"><button class="btn nav" id="bprev" aria-label="Back page">◀ Back</button><span class="pill" id="bcount"></span><button class="say" id="bsay" aria-label="Read again">🔊</button><button class="btn nav" id="bnext" aria-label="Next page">Next ▶</button></div><div class="btext" id="btext"></div></div>`;
  const img=$('#bimg'),pg=$('#bpage');let busy=false;
  const pre=i=>{if(P[i]){const im=new Image();im.src=bImg(b,P[i].img)}};
@@ -1203,6 +1203,12 @@ function openVoiceSettings(){
  });
 }
 $('#voiceBtn').onclick=()=>openVoiceSettings();
+/* Offline Bible books: cache the whole book when it is opened, and prefetch every book (incl. newly added ones) whenever online. */
+function swPost(m){if(!('serviceWorker' in navigator))return false;const c=navigator.serviceWorker.controller;if(c){c.postMessage(m);return true}navigator.serviceWorker.ready.then(r=>r.active&&r.active.postMessage(m)).catch(()=>{});return true}
+function cacheBook(slug){if(navigator.onLine!==false)swPost({type:'cacheBook',slug,voice:vSet.id})}
+function prefetchBooks(){if(navigator.onLine!==false)swPost({type:'cacheBooks',voice:vSet.id})}
+addEventListener('load',()=>setTimeout(prefetchBooks,4000));addEventListener('online',()=>setTimeout(prefetchBooks,1500));setInterval(prefetchBooks,30*60*1000);
+if(navigator.serviceWorker)navigator.serviceWorker.addEventListener('controllerchange',()=>setTimeout(prefetchBooks,2500));
 // Warm offline cache for the saved non-default voice
 if(vSet.id!=='mia')addEventListener('load',()=>setTimeout(()=>cacheVoicePack(vSet.id),800));
 

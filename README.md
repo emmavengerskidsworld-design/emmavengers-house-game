@@ -11,6 +11,12 @@ Kids' learning game (GitHub Pages): https://emmavengerskidsworld-design.github.i
   in the background, downloads only changed files (unchanged ones are copied from the old cache),
   then the new version is switched in the next time the game is opened and old caches are deleted.
 
+### Bible Library books (offline)
+- **Core precache** (installed on the first online visit): the app, all rooms, Morning Routine, default Mia voice and every Bible book **cover**.
+- **Each Bible book** (`img/bible/<slug>/*` + its narration clips) lives in a separate `emma-books` cache that survives app updates. A book is cached in full the first time it is opened online, and **every book listed in `bible-manifest.json` is prefetched in the background whenever the game is online** — so newly published books download automatically. A book re-downloads only when its version hash changes.
+- Other voice packs (Lily, Zara, Sam, Leo, Max) stay on demand.
+- After adding a book: `python3 tools/build_sw.py` (writes `sw.js` + `bible-manifest.json`), then `python3 tools/test_offline_bible.py` (one online visit → airplane mode → home, library, every book with pages + voice + quiz).
+
 ## After ANY change (new room, images, voice clips, index.html)
 ```
 python3 tools/check_voice.py      # lists every spoken line without a voice/<fnv>.mp3 clip (must be 0)
