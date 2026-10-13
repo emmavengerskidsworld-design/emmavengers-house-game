@@ -265,7 +265,11 @@ body.morning main{padding:0;overflow:hidden;position:relative}
 body.morning main.enter>*{animation:none!important}
 .mstage{position:relative;width:100%;height:100%;min-height:calc(100dvh - 70px);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;overflow:hidden;background:linear-gradient(#9ad0ff,#ffe9b8 55%,#ffd6a8)}
 .mscene{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:1}
-.mscene img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;opacity:1;transform:none}
+.mscene img,.mscene video{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;transform:none}
+.mscene img{opacity:1}
+.mscene{/* ensure video can overlay still fallback */}
+.mscene video.mvid{position:absolute;inset:0;z-index:1;background:transparent}
+.mscene img.mstill{position:relative;z-index:0}
 .mscene.xfade img{animation:mfade .5s ease-out both}
 @keyframes mfade{from{opacity:.4;transform:scale(1.04)}to{opacity:1;transform:scale(1)}}
 .msparks{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}
@@ -530,7 +534,7 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  for(let i=0;i<n;i++)parts.push({x:innerWidth*Math.random(),y:-20-Math.random()*innerHeight*.4,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:8+Math.random()*8,c:cols[i%6],e:th&&i%2?th[i%th.length]:null});
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);if(p.e){cx.font=(p.w*2.6|0)+'px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(p.e,0,0)}else{cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2)}cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
-function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();document.querySelectorAll('.pop').forEach(p=>p.remove());
+function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();if(typeof mPauseVids==='function')mPauseVids();document.querySelectorAll('.pop').forEach(p=>p.remove());
  document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone,morning,mstep,mwin,morningAsk})[s](arg);bgmFor(screen);document.body.classList.toggle('morning',['morning','mstep','mwin','morningAsk'].includes(s));if(s!=='mstep'&&typeof mTok!=='undefined')mTok++;main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
@@ -892,7 +896,7 @@ const MORNING=[
   narr:'I make my bed neat and tidy!', ok:'bed', distract:['tv','play','run','yawn']},
  {id:'greet', title:'Greet Mummy and Daddy', img:'greet.jpg', ask:'What do I do after I make my bed?', wrong:'Hmm, not yet! What should I do next?',
   narr:'Good morning, Mummy! Good morning, Daddy!', ok:'hug', distract:['phone','game','snack','tv']},
- {id:'brush', title:'Brush my teeth', img:'brush.jpg', ask:'What do I do after I greet Mummy and Daddy?', wrong:'Hmm, not yet! What should I do next?',
+ {id:'brush', title:'Brush my teeth', img:'brush.jpg', vid:'brush', ask:'What do I do after I greet Mummy and Daddy?', wrong:'Hmm, not yet! What should I do next?',
   narr:'I brush my teeth until they sparkle!', ok:'brush', distract:['food','play','dance','sleep']},
  {id:'bath', title:'Take a bath', img:'bath.jpg', ask:'What do I do after I brush my teeth?', wrong:'Hmm, not yet! What should I do next?',
   narr:'Splash! Time for a nice warm bath!', ok:'bath', distract:['run','game','snack','tv']},
@@ -954,15 +958,48 @@ function pickMOpt(b,i){
     setTimeout(()=>b.classList.remove('no'),500);
   }
 }
+
+function mPauseVids(){main.querySelectorAll('video.mvid').forEach(v=>{try{v.pause();v.removeAttribute('src');v.load()}catch(e){}})}
+function mSceneHTML(step,alt){
+  const a=alt||step.title||'';
+  const still=`<img class="mstill" src="${MORNING_IMG}${step.img}" alt="${a}">`;
+  if(step.vid){
+    return still+`<video class="mvid" muted autoplay loop playsinline preload="auto" poster="${MORNING_IMG}${step.img}" aria-label="${a}">
+      <source src="${MORNING_IMG}${step.vid}.webm" type="video/webm">
+      <source src="${MORNING_IMG}${step.vid}.mp4" type="video/mp4">
+    </video>`;
+  }
+  return `<img src="${MORNING_IMG}${step.img}" alt="${a}">`;
+}
+function mArmVidFallback(){
+  const v=main.querySelector('video.mvid'); if(!v)return;
+  // Keep still visible until we have a real playing frame
+  v.style.opacity='0';
+  const hide=()=>{if(!v||v.dataset.fb)return; v.dataset.fb='1'; v.style.display='none'; v.style.opacity='0'; try{v.pause()}catch(e){}};
+  const reveal=()=>{if(v.dataset.fb)return; if(v.videoWidth>0) v.style.opacity='1'};
+  v.addEventListener('error',hide);
+  v.querySelectorAll('source').forEach(s=>s.addEventListener('error',hide));
+  v.addEventListener('playing',reveal);
+  v.addEventListener('loadeddata',()=>{if(v.videoWidth>0) reveal()});
+  const tryPlay=()=>{if(v.dataset.fb)return; const p=v.play(); if(p&&p.catch)p.catch(hide)};
+  if(v.readyState>=2) tryPlay(); else {v.addEventListener('loadeddata',tryPlay,{once:true}); v.addEventListener('canplay',tryPlay,{once:true});}
+  [800,1800,3000].forEach(ms=>setTimeout(()=>{
+    if(v.dataset.fb)return;
+    if(v.error||v.networkState===3||v.readyState<2||v.videoWidth===0) hide();
+    else reveal();
+  },ms));
+}
+
 let mTok=0, mSlideTimer=0;
 function mstep(a){
   const i=a.i|0; const step=MORNING[i]; const tok=++mTok;
+  mPauseVids();
   state={m:i, seen:[...(state.seen||[]), step.img]};
   $('#title').textContent='☀️ '+step.title;
-  main.innerHTML=`<div class="mstage"><div class="mscene" id="msc"><img src="${MORNING_IMG}${step.img}" alt="${step.title}"></div><div class="msparks">${mSparks(18)}</div>
+  main.innerHTML=`<div class="mstage"><div class="mscene" id="msc">${mSceneHTML(step)}</div><div class="msparks">${mSparks(18)}</div>
   <div class="mui" id="mui">${mProg(i)}<div class="mq"><span>${step.narr}</span><button class="say">🔊</button></div>
   <button class="btn" id="mnext" style="opacity:0;pointer-events:none">Next ➜</button></div></div>`;
-  mShowUI();
+  mShowUI(); mArmVidFallback();
   const armNext=(fn)=>{const btn=$('#mnext'); if(btn&&tok===mTok){btn.style.opacity=1; btn.style.pointerEvents='auto'; btn.onclick=()=>{if(tok!==mTok)return; sfx.tap(); fn()}}};
   const advance=()=>{if(tok!==mTok)return; if(i+1<MORNING.length) go('morningAsk',{i:i+1}); else go('mwin')};
   if(step.prayer){
