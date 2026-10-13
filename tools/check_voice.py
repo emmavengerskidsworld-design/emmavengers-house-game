@@ -36,4 +36,4 @@ async def main(target):
     print(f'{len(rows)} prompt strings, {len(rows)-len(miss)} with clips, {len(miss)} missing',file=sys.stderr)
     print(json.dumps(miss,ensure_ascii=False,indent=0))
     return 1 if miss else 0
-sys.exit(asyncio.run(main(sys.argv[1] if len(sys.argv)>1 else ROOT)))
+if __name__=="__main__": sys.exit(asyncio.run(main(sys.argv[1] if len(sys.argv)>1 else ROOT)))
