@@ -195,11 +195,73 @@ body.reading #mascot{display:none}body.reading main{padding-bottom:16px}
 .btext{display:none;white-space:pre-line;background:#fff;border:5px solid #ffc400;border-radius:24px;box-shadow:0 6px 0 #c98a00;padding:14px 18px;font-size:clamp(22px,5.6vw,30px);line-height:1.25;text-align:center;width:100%;max-width:600px}
 @media (orientation:portrait) and (max-width:700px){.btext:not(:empty){display:block}}
 .bquiz .opt{min-height:clamp(64px,10vh,96px)}
+
+/* ===== Level 4 room twists ===== */
+.mute{width:52px;height:52px;min-width:52px;border-radius:50%;padding:0;font-size:26px;display:flex;align-items:center;justify-content:center;flex:none}
+.mute.off{filter:grayscale(1);opacity:.75}
+@media (orientation:portrait) and (max-width:600px){.mute{width:44px;height:44px;min-width:44px;font-size:21px}}
+body.l4 #mascot{display:none}
+body.l4 main{padding-bottom:14px}
+.l4hint{color:#fff;font-size:clamp(14px,2.2vw,20px);text-shadow:0 2px 3px rgba(0,0,0,.4);margin:2px 0 8px;text-align:center}
+.dragc{touch-action:none;cursor:grab}
+.dragc img,.hid img,.bbl img,.mat img,.zone img{pointer-events:none;-webkit-user-drag:none;user-drag:none}
+.dragc.lift{position:relative;z-index:30;cursor:grabbing;transition:none!important;box-shadow:0 18px 28px rgba(0,0,0,.35)!important}
+.gone{visibility:hidden}
+/* Kitchen: Set the Table */
+.tabletop{position:relative;width:100%;max-width:820px;display:flex;align-items:center;justify-content:center;gap:clamp(12px,4vw,40px);padding:26px 16px 16px;border:8px solid #8a4f1f;border-radius:30px;background:repeating-conic-gradient(#ff7a7a 0 25%,#fff 0 50%) 0 0/44px 44px;box-shadow:0 10px 0 #5a300f,0 16px 24px rgba(0,0,0,.28);margin-top:10px}
+.tabletop.hover{outline:6px solid #fff3b0;outline-offset:3px}
+.mealtag{position:absolute;top:-20px;left:50%;transform:translateX(-50%);background:#fff;border:4px solid #ffc400;border-radius:999px;padding:3px 16px;font-size:clamp(16px,2.6vw,24px);white-space:nowrap;box-shadow:0 4px 0 #c98a00}
+.mat{width:clamp(130px,30vw,250px);aspect-ratio:16/9;border:5px dashed #ffc400;border-radius:24px;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-size:clamp(30px,6vw,54px);overflow:hidden}
+.mat img{width:100%;height:100%;object-fit:cover;display:block}
+.mat.full{border:5px solid #2ecc40;background:#fff;animation:bounce .5s}
+.tray{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:820px}
+@media (orientation:portrait){.tray{grid-template-columns:repeat(2,1fr);gap:10px}}
+/* shared playfield */
+.field{position:relative;width:100%;max-width:1100px;min-height:300px;border:6px solid #ffc400;border-radius:28px;overflow:hidden;box-shadow:0 8px 0 #c98a00,0 14px 22px rgba(0,0,0,.3);touch-action:none}
+/* Bedroom: Bedtime Hunt */
+.night{background:linear-gradient(#26306e,#151b47 62%,#3b2b62 62%,#2d2150);--x:50%;--y:50%;--r:120px}
+.night .moon{position:absolute;top:10px;right:16px;font-size:clamp(36px,6vw,60px);z-index:6;pointer-events:none;filter:drop-shadow(0 0 14px #fff6b0)}
+.hid{position:absolute;padding:0;border:4px solid #ffc400;border-radius:16px;overflow:hidden;background:#fff;cursor:pointer;aspect-ratio:16/9;box-shadow:0 6px 12px rgba(0,0,0,.4);transform:rotate(var(--rot,0deg))}
+.hid img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.hid.ok{border-color:#2ecc40}
+.dark{position:absolute;inset:0;z-index:4;pointer-events:none;background:radial-gradient(circle var(--r) at var(--x) var(--y),rgba(255,236,160,.12) 0%,rgba(255,236,160,0) 70%,rgba(3,6,26,.93) 100%);transition:opacity .7s}
+.beam{position:absolute;z-index:5;pointer-events:none;width:calc(var(--r)*2);height:calc(var(--r)*2);left:calc(var(--x) - var(--r));top:calc(var(--y) - var(--r));border-radius:50%;box-shadow:0 0 0 3px rgba(255,240,170,.35),inset 0 0 50px rgba(255,230,140,.3)}
+.field.lit .dark{opacity:.12}.field.lit .beam{opacity:0}
+.twk{position:absolute;z-index:6;color:#fff6b0;pointer-events:none;font-size:14px;animation:twk 2.4s ease-in-out infinite}
+@keyframes twk{50%{opacity:.2;transform:scale(.6)}}
+.fhint{position:absolute;z-index:6;left:50%;bottom:8px;transform:translateX(-50%);color:#fff6b0;font-size:clamp(13px,2vw,18px);white-space:nowrap;pointer-events:none;text-shadow:0 2px 4px #000}
+/* Bathroom: Bath Time Bubbles */
+.bath{background:repeating-linear-gradient(0deg,transparent 0 62px,rgba(255,255,255,.55) 62px 65px),repeating-linear-gradient(90deg,transparent 0 62px,rgba(255,255,255,.55) 62px 65px),linear-gradient(#d4f1ff,#86cff7)}
+.foam{position:absolute;left:0;right:0;bottom:0;height:52px;z-index:3;pointer-events:none;background:radial-gradient(circle at 50% 100%,#fff 0 30px,transparent 31px) 0 100%/58px 52px repeat-x,radial-gradient(circle at 50% 100%,#eaf8ff 0 22px,transparent 23px) 29px 100%/58px 40px repeat-x}
+.duck{position:absolute;bottom:18px;right:24px;z-index:4;font-size:clamp(34px,6vw,54px);pointer-events:none;animation:bob 2.2s ease-in-out infinite}
+.bbl{position:absolute;left:0;top:0;z-index:2;padding:0;border-radius:50%;border:4px solid rgba(255,255,255,.95);background:rgba(255,255,255,.3);overflow:hidden;cursor:pointer;box-shadow:0 0 0 4px rgba(120,200,255,.45),0 10px 22px rgba(0,60,120,.25);will-change:transform;touch-action:none}
+.bbl img{width:100%;height:100%;object-fit:cover;object-position:45% 55%;transform:scale(1.3);display:block;pointer-events:none}
+.bbl::after{content:'';position:absolute;inset:0;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.95) 0 7%,rgba(255,255,255,0) 20%),radial-gradient(circle at 50% 50%,rgba(255,255,255,0) 58%,rgba(200,235,255,.6) 100%)}
+.bbl.popd{animation:bpop .35s ease-out forwards}
+@keyframes bpop{to{scale:1.6;opacity:0}}
+.bbl.dud{opacity:.35;filter:grayscale(.7)}
+/* Living room: Tidy Up */
+.zones{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:1000px}
+.zone{font:inherit;color:#123a7a;border:5px dashed #ffc400;border-radius:22px;background:rgba(255,255,255,.94);padding:6px 4px;min-height:clamp(96px,15vh,140px);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.15)}
+.zone .em{font-size:clamp(30px,5.5vw,52px);line-height:1.05}
+.zone .zn{font-size:clamp(13px,2.1vw,21px)}
+.zone .got{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.zone .got img{width:clamp(38px,6.5vw,72px);aspect-ratio:16/9;object-fit:cover;border-radius:6px;border:3px solid #2ecc40;background:#fff}
+.zone.hover{background:#fff3b0;border-style:solid}
+.zone.ready{border-color:#2ecc40;animation:zpulse 1s ease-in-out infinite}
+@keyframes zpulse{50%{transform:scale(1.04)}}
+.floor{width:100%;max-width:1000px;margin-top:4px;padding:14px;border:6px solid #8a5a2b;border-radius:28px;background:repeating-linear-gradient(90deg,#d9a066 0 70px,#c98f55 70px 73px);display:grid;grid-template-columns:repeat(4,1fr);gap:14px;box-shadow:0 8px 0 #5a3a18}
+@media (orientation:portrait){.floor{grid-template-columns:repeat(2,1fr);gap:12px;padding:10px}}
+.pic.mess{transform:rotate(var(--rot)) translate(var(--dx),var(--dy))}
+.pic.mess.sel{border-color:#2ecc40;box-shadow:0 0 0 6px rgba(46,204,64,.45),0 7px 0 #1f8a2b}
+@media (hover:hover){.pic.mess:hover{transform:rotate(var(--rot)) translate(var(--dx),var(--dy)) scale(1.04)}}
+@media (max-height:520px){.mat{width:22vh}.tabletop{padding:20px 10px 10px}.zone{min-height:70px}.zone .em{font-size:28px}}
 </style></head><body>
 <div id="app">
 <header>
  <button class="btn back hidden" id="backBtn" aria-label="Back">⬅</button>
  <div class="title" id="title">Emmavengers House Adventure</div>
+ <button class="btn mute" id="muteBtn" aria-label="Music on/off">🎵</button>
  <div class="pill" id="score">⭐ 0</div>
 </header>
 <main id="main"></main>
@@ -349,12 +411,13 @@ function setScore(){$('#score').textContent='⭐ '+stars;localStorage.setItem('e
 function pool(){return state.room==='bedroom'?BEDROOM_ITEMS:state.room==='bathroom'?BATHROOM_ITEMS:state.room==='living room'?LIVING_ITEMS:ITEMS}
 function spellPool(){return pool().filter(i=>!i.name.includes(' ')&&i.name.length<=6)}
 let ac;function actx(){if(!ac){const C=window.AudioContext||window.webkitAudioContext;if(C)ac=new C()}if(ac&&ac.state==='suspended')ac.resume();return ac}
-function tone(f,t0,d,type='sine',v=.18){const a=actx();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,a.currentTime+t0);g.gain.linearRampToValueAtTime(v,a.currentTime+t0+.02);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+t0+d);o.connect(g).connect(a.destination);o.start(a.currentTime+t0);o.stop(a.currentTime+t0+d+.05)}
+function tone(f,t0,d,type='sine',v=.18){if(muted)return;const a=actx();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,a.currentTime+t0);g.gain.linearRampToValueAtTime(v,a.currentTime+t0+.02);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+t0+d);o.connect(g).connect(a.destination);o.start(a.currentTime+t0);o.stop(a.currentTime+t0+d+.05)}
 const sfx={
  tap(){tone(660,0,.08,'triangle',.12)},
  right(){[523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.25,'triangle'))},
  wrong(){tone(392,0,.25,'sine',.1);tone(349,.18,.3,'sine',.08)},
- win(){[523,659,784,659,784,1047,1319].forEach((f,i)=>tone(f,i*.13,.35,'triangle',.16))}};
+ win(){[523,659,784,659,784,1047,1319].forEach((f,i)=>tone(f,i*.13,.35,'triangle',.16))},
+ pop(){if(muted)return;const a=actx();if(!a)return;const o=a.createOscillator(),g=a.createGain(),t=a.currentTime;o.type='sine';o.frequency.setValueAtTime(380,t);o.frequency.exponentialRampToValueAtTime(1300,t+.09);g.gain.setValueAtTime(.22,t);g.gain.exponentialRampToValueAtTime(.001,t+.14);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.16)}};
 const VOICE='voice/';const vh=t=>{let h=0x811c9dc5;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h.toString(16).padStart(8,'0')};
 let vAud=null,vTok=0,vPend=null;
 // One reusable <audio> element: once it has played inside a tap, iOS/Android let it play later clips from timers too.
@@ -372,7 +435,7 @@ function say(t,h,quiet){const parts=(Array.isArray(t)?t:[t]).filter(Boolean);if(
   // Blocked by autoplay rules (no tap yet): keep the line and speak it on the very next tap instead of going silent.
   if(pr&&pr.catch)pr.catch(e=>{if(tok!==vTok)return;if(e&&e.name==='NotAllowedError'){vPend={t:parts.slice(i-1),h};return}if(e&&e.name==='AbortError')return;fb()})};
  next()}
-function burst(x,y){for(let i=0;i<8;i++){const s=document.createElement('div');s.className='burst';s.textContent=['⭐','✨','🌟'][i%3];s.style.left=x+'px';s.style.top=y+'px';const a=i/8*6.28;s.style.setProperty('--dx',Math.cos(a)*140+'px');s.style.setProperty('--dy',Math.sin(a)*140+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
+function burst(x,y,set){set=set||theme()||['⭐','✨','🌟'];for(let i=0;i<8;i++){const s=document.createElement('div');s.className='burst';s.textContent=set[i%set.length];s.style.left=x+'px';s.style.top=y+'px';const a=i/8*6.28;s.style.setProperty('--dx',Math.cos(a)*140+'px');s.style.setProperty('--dy',Math.sin(a)*140+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
 const PRAISE=["Great job!","Well done!","Super!","You got it!","Awesome!","Brilliant!"];
 const TRY=["Oops! Try again!","Almost! Try again!","Good try! Look again!"];
 function correct(el,next,reward){sfx.right();stars++;setScore();state.score++;const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2);el.classList.add('ok');lockAll();
@@ -384,18 +447,18 @@ function showCard(it,next){const d=document.createElement('div');d.className='po
  say(it.use);d.querySelector('button').onclick=()=>{sfx.tap();d.remove();next()}}
 let bubT;function mascot(t,happy){const m=$('#mascot');$('#bub').textContent=t;m.classList.add('talk');if(happy){m.classList.remove('happy');void m.offsetWidth;m.classList.add('happy')}clearTimeout(bubT);bubT=setTimeout(()=>m.classList.remove('talk'),3500)}
 const cv=$('#confetti'),cx=cv.getContext('2d');let parts=[],raf;
-function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#ffd21f','#2f86e8','#ff5a5a','#2ecc40','#ff9f1c','#b46cff'];
- for(let i=0;i<n;i++)parts.push({x:innerWidth*Math.random(),y:-20-Math.random()*innerHeight*.4,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:8+Math.random()*8,c:cols[i%6]});
+function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#ffd21f','#2f86e8','#ff5a5a','#2ecc40','#ff9f1c','#b46cff'];const th=theme();
+ for(let i=0;i<n;i++)parts.push({x:innerWidth*Math.random(),y:-20-Math.random()*innerHeight*.4,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:8+Math.random()*8,c:cols[i%6],e:th&&i%2?th[i%th.length]:null});
  if(!raf)loop()}
-function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
+function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);if(p.e){cx.font=(p.w*2.6|0)+'px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(p.e,0,0)}else{cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2)}cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
 function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();document.querySelectorAll('.pop').forEach(p=>p.remove());
- document.body.classList.toggle('onmap',s==='levelmap');$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,reward,fail,bible,reader,bquiz,bdone})[s](arg);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone})[s](arg);bgmFor(screen);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
   if(screen==='levelmap'){go('home');return}
   if(['kitchen','bedroom','bathroom','living','bible'].includes(screen))go('home');
   else if(['reader','bquiz','bdone'].includes(screen))go('bible');
-  else if(['learnmenu','learn','find','use','room','spell','find2','used3','mix4','reward','fail'].includes(screen)){
+  else if(['learnmenu','learn','find','use','room','spell','find2','used3','mix4',...L4_SCREENS,'reward','fail'].includes(screen)){
     if(state.fromLevel)go('levelmap');
     else go('levelmap');
   } else go('home');
@@ -417,7 +480,7 @@ function levelmap(){
   main.innerHTML=`<div class="prompt">Pick a level! <button class="say">🔊</button></div>
   <div class="ltrophy ${trop?'':'dim'}">🏆</div>
   <div class="sub" style="color:#fff;margin-bottom:8px">${trop?'Room trophy earned!':'Pass all 4 levels for a trophy!'}</div>
-  <div class="lmap"><div class="lpath">${LEVEL_NAMES.map(L=>{
+  <div class="lmap"><div class="lpath">${levelNames(room).map(L=>{
     const st=levelGet(room,L.id); const open=levelUnlocked(room,L.id); const done=st>=PASS_STARS;
     return `<button class="lnode ${open?'':'locked'} ${done?'done':''}" data-l="${L.id}">
       ${open?'':`<span class="lk">🔒</span>`}
@@ -439,12 +502,11 @@ function startLevel(lv, retryMissed){
   if(lv===1){go('learnmenu')}
   else if(lv===2){state.mode='find2';go('find2')}
   else if(lv===3){state.mode='used3';go('used3')}
-  else {state.mode='mix4'; go(level4Handler(room))}
+  else {state.mode=level4Handler(room); go(state.mode)}
 }
-/* Modular Level 4 — room-specific twists can replace mix4 later */
+/* Level 4 — each room has its own twist (see L4 below); mix4 stays as a fallback */
 function level4Handler(room){
-  const handlers={kitchen:'mix4',bedroom:'mix4',bathroom:'mix4','living room':'mix4'};
-  return handlers[room]||'mix4';
+  return (L4[room]&&L4[room].scr)||'mix4';
 }
 function learnmenu(){
   /* Level 1 also offers classic mini-games with full cards */
@@ -569,6 +631,154 @@ function mix4(){
     main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>(b.dataset.n===t.name&&b.dataset.r===t.room)?correct(b,nextRound):wrong(b,t));
   }
 }
+/* ===== Level 4: a different twist in every room ===== */
+const L4={
+ kitchen:{scr:'settable',n:'Set the Table',em:'🍽️',sub:'Put the right things on the table!',conf:['🍽️','🥄','⭐','🍳'],h1:'Table Set!',win:'Hooray! The table is all set!',intro:"Let's set the table!"},
+ bedroom:{scr:'bedhunt',n:'Bedtime Hunt',em:'🔦',sub:'Find things in the dark!',conf:['⭐','🌙','💤','🧸'],h1:'Sweet Dreams!',win:'You found everything! Sweet dreams!',intro:'Bedtime hunt! Use your flashlight to find things in the dark!'},
+ bathroom:{scr:'bubbles',n:'Bath Time Bubbles',em:'🫧',sub:'Pop the right bubble!',conf:['🫧','💧','⭐','🦆'],h1:'Bubbles Popped!',win:'Pop, pop, pop! You popped all the right bubbles!',intro:'Bath time bubbles! Pop the right bubble!'},
+ 'living room':{scr:'tidy',n:'Tidy Up',em:'🧹',sub:'Put things back in place!',conf:['🛋️','⭐','✨','🪴'],h1:'All Tidy!',win:'Hooray! The living room is all tidy!',intro:'Tidy up time! Put things back where they belong!'}};
+const L4_SCREENS=['settable','bedhunt','bubbles','tidy'];
+function levelNames(room){const t=L4[room];return LEVEL_NAMES.map(L=>L.id===4&&t?{...L,em:t.em,n:t.n,sub:t.sub}:L)}
+function theme(){return state&&state.level===4&&L4[state.room]?L4[state.room].conf:null}
+function fitField(f){f.style.height=Math.max(300,innerHeight-f.offsetTop-14)+'px'}
+addEventListener('resize',()=>{const f=main.querySelector('.field.fit');if(f)fitField(f)});
+function l4Good(atEl,line){sfx.right();stars++;setScore();state.score++;const r=atEl.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2);lockAll();
+ say(line||PRAISE[Math.random()*PRAISE.length|0],1);confetti(60);setTimeout(nextRound,line?1800:1000)}
+function l4Bad(el,t,line,keep){sfx.wrong();state.miss=(state.miss||0)+1;trackMiss(t);el.classList.remove('no');void el.offsetWidth;el.classList.add('no');
+ say(line||TRY[Math.random()*TRY.length|0]);if(keep)setTimeout(()=>el.classList.remove('no'),500);else el.disabled=true}
+function l4Say(t){const v=state.round===0?[L4[state.room].intro,...t]:t;main.querySelector('.say').onclick=()=>say(t);say(v)}
+/* drag OR tap: onDrop(zone) when dropped on a zone, onTap() for a simple tap */
+function dragTap(el,zones,onDrop,onTap){let sx,sy,drag=false,down=false;
+ el.addEventListener('dragstart',e=>e.preventDefault());
+ const over=e=>zones().find(d=>{const r=d.getBoundingClientRect();return e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom});
+ el.addEventListener('pointerdown',e=>{if(el.disabled)return;down=true;drag=false;sx=e.clientX;sy=e.clientY;try{el.setPointerCapture(e.pointerId)}catch(_){}});
+ el.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx,dy=e.clientY-sy;if(!drag&&Math.hypot(dx,dy)>12){drag=true;el.classList.add('lift')}
+  if(drag){el.style.transform=`translate(${dx}px,${dy}px) scale(.75)`;const o=over(e);zones().forEach(z=>z.classList.toggle('hover',z===o))}});
+ const end=e=>{if(!down)return;down=false;zones().forEach(z=>z.classList.remove('hover'));el.classList.remove('lift');el.style.transform='';
+  if(e.type!=='pointerup'||el.disabled){drag=false;return}if(drag){drag=false;const o=over(e);if(o)onDrop(o)}else onTap()};
+ el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end)}
+
+/* --- Kitchen: Set the Table --- */
+const MEALS=[
+ {k:'breakfast',n:'Breakfast',em:'🍳',line:'Breakfast time!',items:['cup','spoon','bowl','plate','toaster','jug']},
+ {k:'lunch',n:'Lunch',em:'🥪',line:'Lunch time!',items:['plate','fork','knife','bowl','jug','tray']},
+ {k:'snack',n:'Snack',em:'🍪',line:'Snack time!',items:['cup','plate','jug','tray','bowl']},
+ {k:'dinner',n:'Dinner',em:'🍲',line:'Dinner time!',items:['plate','fork','knife','spoon','cup','bowl']}];
+const TABLE_NO=['fridge','blender','grater','oven mitt','rolling pin','whisk','sink','microwave','stove','apron','dish rack','cutting board','frying pan'];
+const kByName=n=>ITEMS.find(i=>i.name===n);
+function planMeals(){const miss=(state.retryMissed||[]).map(i=>i.name);const left=new Set(miss);
+ const order=MEALS.map((m,i)=>({m,i,s:m.items.filter(n=>left.has(n)).length})).sort((a,b)=>b.s-a.s||a.i-b.i).map(o=>o.m); // meals with missed items come first
+ return order.map(m=>{const want=m.items.filter(n=>left.has(n)).slice(0,2);want.forEach(n=>left.delete(n));
+  const need=[...want,...shuffle(m.items.filter(n=>!want.includes(n)))].slice(0,2);
+  return {n:m.n,em:m.em,line:m.line,need,tray:shuffle([...need,...pick(TABLE_NO,4)])}})}
+function settable(){const T=L4.kitchen;$('#title').textContent=T.em+' '+T.n;
+ if(!state.meals){state.meals=planMeals();state.retryMissed=[];state.total=state.meals.length*2}
+ const M=state.meals[state.round>>1],step=state.round%2,tn=M.need[step],t=kByName(tn);state.target=t;state.used.push(t);
+ const txt=`Put the ${tn} on the table!`;
+ main.innerHTML=header(`${M.em} ${txt}`)+`<div class="tabletop" id="tbl"><span class="mealtag">${M.em} ${M.n} table</span>${M.need.map((n,i)=>`<div class="mat ${i<step?'full':''}">${i<step?`<img src="${plain(kByName(n))}" alt="">`:'🍽️'}</div>`).join('')}</div>
+ <div class="l4hint">Drag it to the table, or tap it!</div><div class="tray">${M.tray.filter(n=>!M.need.slice(0,step).includes(n)).map(n=>`<button class="pic dragc" data-n="${n}"><img src="${plain(kByName(n))}" alt=""></button>`).join('')}</div>`;
+ l4Say(step===0?[M.line,txt]:[txt]);
+ const tbl=$('#tbl');
+ const place=b=>{if(b.disabled)return;const n=b.dataset.n;
+  if(n===tn){const mat=tbl.querySelectorAll('.mat')[step];mat.classList.add('full');mat.innerHTML=`<img src="${plain(t)}" alt="">`;b.classList.add('gone');l4Good(mat,step===1?'The table is ready! Yummy!':null)}
+  else l4Bad(b,t,TABLE_NO.includes(n)?'Oops! That does not go on the table. Try again!':null)};
+ main.querySelectorAll('.tray .pic').forEach(b=>dragTap(b,()=>[tbl],()=>place(b),()=>place(b)))}
+
+/* --- Bedroom: Bedtime Hunt (flashlight) --- */
+function bedhunt(){const T=L4.bedroom;$('#title').textContent=T.em+' '+T.n;state.total=ROUNDS;
+ const P=pool(),t=newTarget(P);state.target=t;const ch=shuffle([t,...pick(P,4,[t])]);const txt=`Find the ${t.name}!`;
+ const tw=Array.from({length:9},()=>`<span class="twk" style="left:${(Math.random()*92+3).toFixed(1)}%;top:${(Math.random()*55+3).toFixed(1)}%;animation-delay:${(Math.random()*2).toFixed(2)}s">✦</span>`).join('');
+ main.innerHTML=header(txt)+`<div class="field night fit" id="fld"><div class="moon">🌙</div>${ch.map(c=>`<button class="hid" data-n="${c.name}"><img src="${plain(c)}" alt=""></button>`).join('')}<div class="dark"></div><div class="beam"></div>${tw}<div class="fhint">🔦 Move your finger to shine the light!</div></div>`;
+ const f=$('#fld');fitField(f);const W=f.clientWidth,H=f.clientHeight,port=H>W*1.05,cols=port?2:4,rows=port?4:2;
+ const cw=W/cols,chh=(H-30)/rows,w=Math.min(cw*.84,chh*.84*16/9),h=w*9/16;const cells=shuffle([...Array(cols*rows).keys()]);
+ f.querySelectorAll('.hid').forEach((b,i)=>{const c=cells[i],x=(c%cols)*cw+(cw-w)*(.1+Math.random()*.8),y=((c/cols)|0)*chh+(chh-h)*(.1+Math.random()*.8);
+  b.style.left=(x/W*100)+'%';b.style.top=(y/H*100)+'%';b.style.width=(w/W*100)+'%';b.style.setProperty('--rot',(Math.random()*10-5).toFixed(1)+'deg')});
+ f.style.setProperty('--r',Math.round(Math.max(90,Math.min(W,H)*.24))+'px');f.style.setProperty('--x',W/2+'px');f.style.setProperty('--y',H/2+'px');
+ const mv=e=>{const r=f.getBoundingClientRect();f.style.setProperty('--x',(e.clientX-r.left-f.clientLeft)+'px');f.style.setProperty('--y',(e.clientY-r.top-f.clientTop)+'px')};
+ f.addEventListener('pointermove',mv);f.addEventListener('pointerdown',mv);
+ l4Say([txt]);
+ f.querySelectorAll('.hid').forEach(b=>b.onclick=()=>{if(b.dataset.n===t.name){b.classList.add('ok');f.classList.add('lit');l4Good(b)}else l4Bad(b,t)})}
+
+/* --- Bathroom: Bath Time Bubbles --- */
+function bubbles(){const T=L4.bathroom;$('#title').textContent=T.em+' '+T.n;state.total=ROUNDS;
+ const P=pool(),t=newTarget(P);state.target=t;const txt=`Pop the ${t.name}!`;
+ main.innerHTML=header(txt)+`<div class="field bath fit" id="fld"><div class="foam"></div><div class="duck">🦆</div></div>`;
+ const f=$('#fld');fitField(f);let W=f.clientWidth,H=f.clientHeight;
+ const S=Math.round(Math.max(104,Math.min(180,Math.min(W,H)*.3))),L=Math.max(2,Math.floor(W/(S*1.08))),N=Math.min(7,L*2-1);
+ const others=shuffle(P.filter(x=>x!==t));const lanes=shuffle([...Array(L).keys()]);const speed=lanes.map(()=>H/(10+Math.random()*4));
+ const B=[];for(let i=0;i<N;i++){const lane=lanes[i%L],k=(i/L)|0;B.push({lane,ph:Math.random()*6.3,y:H*(.12+Math.random()*.25)+k*(H+S)/2,it:i===0?t:others[i-1]||others[0]})}
+ const mk=b=>{const el=document.createElement('button');el.className='bbl';el.style.width=el.style.height=S+'px';b.el=el;setItem(b,b.it);f.appendChild(el);
+  el.addEventListener('pointerdown',e=>{e.preventDefault();if(el.disabled||b.dud||b.gone)return;
+   if(b.it===t){b.gone=true;sfx.pop();el.classList.add('popd');l4Good(el)}else{b.dud=true;el.classList.add('dud');sfx.wrong();state.miss=(state.miss||0)+1;trackMiss(t);say(TRY[Math.random()*TRY.length|0])}})};
+ function setItem(b,it){b.it=it;b.dud=false;b.el.classList.remove('dud','no');b.el.dataset.n=it.name;b.el.innerHTML=`<img src="${plain(it)}" alt="">`}
+ const respawn=b=>{const vis=B.filter(o=>o!==b&&!o.gone&&o.y>-S&&o.y<H);
+  if(!vis.some(o=>o.it===t))setItem(b,t);else{const shown=vis.map(o=>o.it);setItem(b,pick(others,1,shown)[0]||others[0])}};
+ B.forEach(mk);l4Say([txt]);
+ let last=performance.now();const tok=state.bubTok=Math.random();
+ const fr=now=>{if(screen!=='bubbles'||state.bubTok!==tok||!f.isConnected)return;const dt=Math.min(.05,(now-last)/1000);last=now;W=f.clientWidth;H=f.clientHeight;const lw=W/L;
+  B.forEach(b=>{if(b.gone)return;b.y-=speed[b.lane]*dt;if(b.y<-S-4){b.y+=H+S;respawn(b)}
+   b.el.style.transform=`translate(${(b.lane+.5)*lw-S/2+Math.sin(now/900+b.ph)*Math.min(S*.1,Math.max(0,(lw-S)/2-2))}px,${b.y}px)`});requestAnimationFrame(fr)};
+ requestAnimationFrame(fr)}
+
+/* --- Living Room: Tidy Up --- */
+const TIDY=[{k:'sofa',em:'🛋️',n:'Sofa',items:['cushion','throw pillow']},{k:'shelf',em:'📚',n:'Shelf',items:['board game','magazine']},
+ {k:'tv',em:'📺',n:'TV Stand',items:['remote','speaker']},{k:'table',em:'🌷',n:'Table',items:['vase','plant']}];
+const lByName=n=>LIVING_ITEMS.find(i=>i.name===n);
+const tidyZone=n=>(TIDY.find(z=>z.items.includes(n))||{}).k;
+function tidy(){const T=L4['living room'];$('#title').textContent=T.em+' '+T.n;
+ if(!state.tidy){const all=TIDY.flatMap(z=>z.items);const miss=[...new Set((state.retryMissed||[]).map(i=>i.name).filter(n=>all.includes(n)))];
+  const look={};shuffle(all).forEach((n,i)=>look[n]={ord:i,rot:(Math.random()*16-8).toFixed(1),dx:(Math.random()*14-7)|0,dy:(Math.random()*12-6)|0});
+  state.tidy={order:[...miss,...shuffle(all.filter(n=>!miss.includes(n)))],look,done:[]};state.retryMissed=[];state.total=all.length}
+ const Z=state.tidy,tn=Z.order[state.round],t=lByName(tn);state.target=t;state.used.push(t);const txt=`Put the ${tn} where it belongs!`;
+ const left=Object.keys(Z.look).filter(n=>!Z.done.includes(n)).sort((a,b)=>Z.look[a].ord-Z.look[b].ord);
+ main.innerHTML=header(txt)+`<div class="zones">${TIDY.map(z=>`<button class="zone" data-k="${z.k}"><span class="em">${z.em}</span><span class="zn">${z.n}</span><span class="got">${z.items.filter(n=>Z.done.includes(n)).map(n=>`<img src="${plain(lByName(n))}" alt="">`).join('')}</span></button>`).join('')}</div>
+ <div class="l4hint">Drag it to its place, or tap it and then tap the place!</div><div class="floor">${left.map(n=>{const k=Z.look[n];return `<button class="pic mess dragc" data-n="${n}" style="--rot:${k.rot}deg;--dx:${k.dx}px;--dy:${k.dy}px"><img src="${plain(lByName(n))}" alt=""></button>`}).join('')}</div>`;
+ l4Say([txt]);
+ let sel=null;const zones=()=>[...main.querySelectorAll('.zone')];
+ const unsel=()=>{if(sel)sel.classList.remove('sel');sel=null;zones().forEach(z=>z.classList.remove('ready'))};
+ const tryPlace=(b,z)=>{if(b.dataset.n!==tn){unsel();l4Bad(b,t,null,true);return}
+  if(z.dataset.k===tidyZone(tn)){unsel();z.querySelector('.got').insertAdjacentHTML('beforeend',`<img src="${plain(t)}" alt="">`);b.classList.add('gone');Z.done.push(tn);z.classList.add('ok');l4Good(z)}
+  else l4Bad(z,t,'Hmm, not there! Try another place!',true)};
+ const pickIt=b=>{if(b.dataset.n!==tn){unsel();l4Bad(b,t,null,true);return}sfx.tap();unsel();sel=b;b.classList.add('sel');zones().forEach(z=>z.classList.add('ready'))};
+ main.querySelectorAll('.floor .pic').forEach(b=>dragTap(b,zones,z=>tryPlace(b,z),()=>pickIt(b)));
+ zones().forEach(z=>z.onclick=()=>{if(z.disabled)return;if(sel)tryPlace(sel,z);else{sfx.tap();say(txt)}})}
+
+/* ===== Gentle background music (WebAudio, no files) ===== */
+let muted=localStorage.getItem('emmaMute')==='1',bgm=null;const BGM_VOL=.07;
+const mtof=m=>440*Math.pow(2,(m-69)/12);
+function bnote(bus,f,t,d,type,v,att=.01,glide){const a=ac,o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,t);
+ if(glide)o.frequency.exponentialRampToValueAtTime(f*glide,t+Math.min(d,.12));g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+att);g.gain.exponentialRampToValueAtTime(.0008,t+Math.max(d,att+.02));
+ o.connect(g).connect(bus);o.start(t);o.stop(t+d+.05)}
+const KM=[72,0,76,79,76,0,72,0,74,0,77,81,77,0,74,0,76,0,79,84,79,0,76,0,74,76,77,74,72,0,0,0];
+const BM=[77,0,72,0,74,0,72,0,69,0,0,0,70,0,74,0,72,0,69,0,65,0,0,0,67,0,69,0,70,0,72,0,74,0,72,0,70,0,69,0,67,0,65,0,0,0,0,0];
+const AM=[79,0,83,0,86,0,83,81,0,79,0,86,88,0,86,0];
+const LM=[74,0,0,71,0,0,74,76,71,0,0,67,0,0,71,0,72,0,0,76,0,74,72,0,74,0,0,78,0,76,74,0];
+const BGM={
+ kitchen:{bpm:112,spb:2,lp:3200,step(i,t,bus,dt){const s=i%32,m=KM[s];if(m)bnote(bus,mtof(m),t,.22,'triangle',.5);
+  if(s%4===0)bnote(bus,mtof([48,48,53,53,55,55,48,48][s>>2]),t,dt*3.5,'sine',.55,.02);
+  if(s%4===2)bnote(bus,mtof([64,64,65,65,67,67,64,64][s>>2]),t,.12,'sine',.16)}},
+ bedroom:{bpm:70,spb:2,lp:1800,step(i,t,bus,dt){const s=i%48,m=BM[s];if(m){bnote(bus,mtof(m),t,1.4,'sine',.42,.03);bnote(bus,mtof(m+12),t,.7,'sine',.07)}
+  if(s%6===0){const r=[41,48,46,41,46,48,48,41][s/6|0];bnote(bus,mtof(r),t,dt*6,'sine',.3,.4);bnote(bus,mtof(r+7),t,dt*6,'sine',.15,.5)}}},
+ bathroom:{bpm:96,spb:2,lp:3600,step(i,t,bus,dt){const s=i%32,m=AM[s%16];if(m)bnote(bus,mtof(m),t,.16,'sine',.42,.005,1.25);
+  if(s%4===0)bnote(bus,mtof([43,48,50,43][s>>3]),t,dt*3,'triangle',.4,.02);
+  if(Math.random()<.18)bnote(bus,700+Math.random()*700,t+dt/2,.07,'sine',.18,.003,1.9)}},
+ 'living room':{bpm:100,spb:2,lp:2200,step(i,t,bus,dt){const s=i%32,c=[[55,59,62],[52,55,59],[48,52,55],[50,54,57]][s>>3];
+  bnote(bus,mtof(c[[0,1,2,1,0,1,2,1][s%8]]+12),t,.3,'triangle',.22);if(s%4===0)bnote(bus,mtof(c[0]-12),t,dt*3.5,'sine',.5,.02);
+  const m=LM[s];if(m)bnote(bus,mtof(m),t,.5,'sine',.28,.02)}}};
+function bgmPlay(room){if(muted||!BGM[room]){bgmStop();return}if(bgm&&bgm.room===room)return;bgmStop();const a=actx();if(!a)return;const cfg=BGM[room];
+ const bus=a.createGain(),lp=a.createBiquadFilter();lp.type='lowpass';lp.frequency.value=cfg.lp;bus.gain.setValueAtTime(0,a.currentTime);bus.gain.linearRampToValueAtTime(BGM_VOL,a.currentTime+1.5);bus.connect(lp).connect(a.destination);
+ const dt=60/cfg.bpm/cfg.spb;let i=0,nt=a.currentTime+.15;
+ const tick=()=>{if(nt<a.currentTime-.1)nt=a.currentTime+.05;while(nt<a.currentTime+.3){try{cfg.step(i,nt,bus,dt)}catch(e){}i++;nt+=dt}};
+ bgm={room,bus,lp,iv:setInterval(tick,60)};tick()}
+function bgmStop(){if(!bgm)return;const b=bgm;bgm=null;clearInterval(b.iv);try{const a=ac,n=a.currentTime;b.bus.gain.cancelScheduledValues(n);b.bus.gain.setValueAtTime(b.bus.gain.value,n);b.bus.gain.linearRampToValueAtTime(0,n+.4)}catch(e){}
+ setTimeout(()=>{try{b.bus.disconnect();b.lp.disconnect()}catch(e){}},700)}
+const NO_MUSIC=['home','bible','reader','bquiz','bdone'];
+function bgmFor(s){if(NO_MUSIC.includes(s)||!state||!BGM[state.room])bgmStop();else bgmPlay(state.room)}
+function setMuteBtn(){const b=$('#muteBtn');b.textContent=muted?'🔇':'🎵';b.classList.toggle('off',muted);b.setAttribute('aria-label',muted?'Turn music on':'Turn music off')}
+$('#muteBtn').onclick=()=>{muted=!muted;localStorage.setItem('emmaMute',muted?'1':'0');setMuteBtn();if(muted)bgmStop();else{sfx.tap();bgmFor(screen)}};
+setMuteBtn();
+document.addEventListener('visibilitychange',()=>{if(!ac)return;if(document.hidden)ac.suspend();else ac.resume()});
+
 function fail(){
   $('#title').textContent='💪 Try Again!';
   const s=starsForMiss(state.miss||0);
@@ -582,9 +792,10 @@ function fail(){
 function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=state.score,tot=state.total||ROUNDS,s=starsForMiss(state.miss||0);
   if(state.level&&state.fromLevel&&s>=PASS_STARS) levelSet(state.room,state.level,s);
   const trop=roomTrophy(state.room);
+  const T4=state.level===4?L4[state.room]:null;
   const unlockMsg=(state.level&&state.level<4&&s>=PASS_STARS)?'You unlocked the next level!':(trop?'You earned a room trophy! Amazing!':'Great job! Level complete!');
- main.innerHTML=`<div class="reward"><h1>Level Complete!</h1><div class="prompt" style="display:inline-flex">🎉 Great Job! 🎉</div><br><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">${unlockMsg}<br>You finished ${n} of ${tot}! Total stars: ⭐ ${stars}</div>${trop?'<div class="ltrophy">🏆</div>':''}<img class="heroimg" src="img/end.jpg" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">🔁 Play Again</button><button class="btn" id="more">🗺️ Level Map</button></div></div>`;
- say(trop?['Great job! Level complete!','You earned a room trophy! Amazing!']:(state.level&&state.level<4&&s>=PASS_STARS)?['Great job! Level complete!','You unlocked the next level!']:['Great job! Level complete!'],1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
+ main.innerHTML=`<div class="reward"><h1>${T4?T4.em+' '+T4.h1:'Level Complete!'}</h1><div class="prompt" style="display:inline-flex">${T4?T4.conf.slice(0,2).join(' '):'🎉'} Great Job! ${T4?T4.conf.slice(2,4).join(' '):'🎉'}</div><br><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">${unlockMsg}<br>You finished ${n} of ${tot}! Total stars: ⭐ ${stars}</div>${trop?'<div class="ltrophy">🏆</div>':''}<img class="heroimg" src="img/end.jpg" alt=""><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><button class="btn" id="again">🔁 Play Again</button><button class="btn" id="more">🗺️ Level Map</button></div></div>`;
+ say(T4?[T4.win,trop?'You earned a room trophy! Amazing!':'Great job! Level complete!']:trop?['Great job! Level complete!','You earned a room trophy! Amazing!']:(state.level&&state.level<4&&s>=PASS_STARS)?['Great job! Level complete!','You unlocked the next level!']:['Great job! Level complete!'],1);confetti(200);for(let i=0;i<4;i++)setTimeout(()=>burst(innerWidth*(.2+.2*i),innerHeight*.35),i*250);
  $('#again').onclick=()=>{sfx.tap();startLevel(state.level||1)};
  $('#more').onclick=()=>{sfx.tap();const r=state.room;state={room:r};go('levelmap')}}
 
