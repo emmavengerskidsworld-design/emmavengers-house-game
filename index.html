@@ -356,11 +356,16 @@ body.morning main.enter>*{animation:none!important}
 .vpanel .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .vdl{font-size:clamp(13px,2.2vw,17px);color:#1a56b8;text-align:center;min-height:1.2em}
 
+.pgate input{font-size:28px;width:5em;text-align:center;padding:8px;border-radius:14px;border:3px solid #2f86e8;font-weight:800}
+.pgate a.btn{text-decoration:none}
+.pgate .err{color:#d33;min-height:1.3em;font-weight:700}
+.pgate .pbtns{display:flex;flex-direction:column;gap:12px;align-items:center;margin:12px 0}
 </style></head><body>
 <div id="app">
 <header>
  <button class="btn back hidden" id="backBtn" aria-label="Back">⬅</button>
  <div class="title" id="title">Emmavengers House Adventure</div>
+ <button class="btn vsetbtn" id="parentBtn" aria-label="Parents corner">🔒</button>
  <button class="btn vsetbtn" id="voiceBtn" aria-label="Voice settings">🔊</button>
  <button class="btn mute" id="muteBtn" aria-label="Music on/off">🎵</button>
  <div class="pill" id="score">⭐ 0</div>
@@ -1203,6 +1208,37 @@ function openVoiceSettings(){
  });
 }
 $('#voiceBtn').onclick=()=>openVoiceSettings();
+/* Parents' corner: math gate (default) or a 4-digit PIN once the parent sets one. */
+const YOUTUBE_URL='https://www.youtube.com/results?search_query=Emmavengers'; // PLACEHOLDER: replace with the real Emmavengers channel URL
+function openParents(){
+ audioUnlock();sfx.tap();
+ const pin=localStorage.getItem('emmaParentPin');
+ const a=12+Math.floor(Math.random()*8),b=6+Math.floor(Math.random()*7);
+ const d=document.createElement('div');d.className='vpanel pgate';d.id='ppanel';
+ const close=()=>{sfx.tap();d.remove()};
+ const gate=()=>{d.innerHTML=`<div class="box" role="dialog" aria-label="Parents corner"><h2>🔒 Parents' Corner</h2>
+  <div class="subh">${pin?'Enter your 4-digit parent PIN':'Grown-ups only: what is '+a+' × '+b+'?'}</div>
+  <div class="row"><input id="pIn" type="password" inputmode="numeric" autocomplete="off" maxlength="${pin?4:4}"></div>
+  <div class="err" id="pErr"></div>
+  <div class="row"><button type="button" class="btn" id="pOk">Open ✓</button><button type="button" class="btn" id="pX">Close</button></div></div>`;
+  $('#pX').onclick=close;
+  $('#pOk').onclick=()=>{const v=$('#pIn').value.trim();if(pin?v===pin:+v===a*b){inside()}else{$('#pErr').textContent='Not quite — please try again.';$('#pIn').value=''}};
+  $('#pIn').onkeydown=e=>{if(e.key==='Enter')$('#pOk').click()};setTimeout(()=>$('#pIn')&&$('#pIn').focus(),50)};
+ const inside=()=>{d.innerHTML=`<div class="box" role="dialog" aria-label="Parents corner"><h2>👨‍👩‍👧 Parents' Corner</h2>
+  <div class="pbtns"><a class="btn" id="pYt" href="${YOUTUBE_URL}" target="_blank" rel="noopener">▶️ Emmavengers on YouTube</a>
+  <button type="button" class="btn" id="pVoice">🔊 Voice Settings</button></div>
+  <div class="subh">${pin?'Change':'Set'} parent PIN (4 digits)</div>
+  <div class="row"><input id="pNew" type="password" inputmode="numeric" maxlength="4"><button type="button" class="btn" id="pSave">Save PIN</button></div>
+  <div class="err" id="pErr"></div><div class="row"><button type="button" class="btn" id="pX">Done ✓</button></div></div>`;
+  $('#pX').onclick=close;$('#pVoice').onclick=()=>{d.remove();openVoiceSettings()};
+  $('#pSave').onclick=()=>{const v=$('#pNew').value.trim();if(/^\d{4}$/.test(v)){localStorage.setItem('emmaParentPin',v);$('#pErr').style.color='#1a8a3a';$('#pErr').textContent='PIN saved!'}else{$('#pErr').textContent='Please use exactly 4 numbers.'}}};
+ d.addEventListener('click',e=>{if(e.target===d)close()});
+ document.body.appendChild(d);gate();
+}
+$('#parentBtn').onclick=()=>openParents();
+/* Android app back button hook: returns true if handled inside the game. */
+window.emmaBack=function(){const pn=document.querySelector('#ppanel,#vpanel,.pop');if(pn){pn.remove();return true}if(screen!=='home'){$('#backBtn').click();return true}return false};
+
 /* Offline Bible books: cache the whole book when it is opened, and prefetch every book (incl. newly added ones) whenever online. */
 function swPost(m){if(!('serviceWorker' in navigator))return false;const c=navigator.serviceWorker.controller;if(c){c.postMessage(m);return true}navigator.serviceWorker.ready.then(r=>r.active&&r.active.postMessage(m)).catch(()=>{});return true}
 function cacheBook(slug){if(navigator.onLine!==false)swPost({type:'cacheBook',slug,voice:vSet.id})}
