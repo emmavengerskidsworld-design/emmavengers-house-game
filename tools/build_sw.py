@@ -11,10 +11,24 @@ Caching layers
   3. VOICE PACKS: voice/<id>/*.mp3 (lily, zara, ...) are cached on demand when a child picks that voice.
 """
 import os, re, hashlib, json
+try:
+    from PIL import Image
+except Exception:
+    Image = None
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_DIRS = {'.git', 'tools', 'node_modules', 'voice-samples'}
 SKIP_FILES = {'sw.js', 'README.md', '.nojekyll', 'bible-manifest.json'}
 SKIP_EXT = ('.bak', '.py', '.log', '.md', '.DS_Store')
+
+def make_thumbs():
+    """Small shelf thumbnails for Bible covers (fast Library screen on slow networks)."""
+    bd = os.path.join(ROOT, 'img', 'bible')
+    if not Image or not os.path.isdir(bd): return
+    for slug in os.listdir(bd):
+        c, t = os.path.join(bd, slug, 'cover.jpg'), os.path.join(bd, slug, 'thumb.jpg')
+        if os.path.exists(c) and (not os.path.exists(t) or os.path.getmtime(t) < os.path.getmtime(c)):
+            im = Image.open(c).convert('RGB'); im.thumbnail((480, 270)); im.save(t, quality=78, optimize=True)
+make_thumbs()
 
 def vh(t):
     h = 0x811c9dc5; b = t.encode('utf-16-le')
@@ -66,7 +80,7 @@ for d, ds, fs in os.walk(ROOT):
             voice_packs.setdefault(rel.split('/')[1], []).append(url)
             continue
         slug = next((s for s, bd in book_dirs.items() if rel.startswith(bd)), None)
-        if slug and f != 'cover.jpg':
+        if slug and f not in ('cover.jpg', 'thumb.jpg'):
             bk = books[slug]; bk['files'].append(url); bk['h'].update(rel.encode() + dig); bk['bytes'] += len(data)
             continue
         if rel_dir == 'voice' and f[:-4] in book_only:

@@ -3,8 +3,17 @@ const BUILD='__BUILD__';const CACHE='emma-house-'+BUILD;const BOOKS_CACHE='emma-
 const ASSETS=__ASSETS__;
 const VOICE_PACKS=__VOICE_PACKS__;
 let BOOKS=__BOOKS__; /* snapshot; refreshed from ./bible-manifest.json when online */
-const BATCH=12,RETRIES=3;
-async function getOne(c,u){for(let t=0;t<RETRIES;t++){try{const r=await fetch(u,{cache:'reload'});if(r.ok){await c.put(u,r);return true}}catch(e){}await new Promise(z=>setTimeout(z,500*(t+1)))}return false}
+const BATCH=4,RETRIES=3,QUIET=6000;
+/* Background downloads yield to the child: any tap/voice in the page marks 'busy'; in-flight background fetches are
+   aborted and nothing new starts until the page has been quiet for QUIET ms, so voice clips never wait in a queue. */
+let lastBusy=0;const inflight=new Set();const sleep=ms=>new Promise(z=>setTimeout(z,ms));
+function markBusy(){lastBusy=Date.now();for(const a of inflight)try{a.abort()}catch(e){};inflight.clear()}
+try{new BroadcastChannel('emma-prio').onmessage=markBusy}catch(e){}
+async function gate(){while(Date.now()-lastBusy<QUIET)await sleep(400)}
+async function getOne(c,u,urgent){for(let t=0;t<RETRIES;){if(!urgent)await gate();const ac=new AbortController();if(!urgent)inflight.add(ac);
+ try{const r=await fetch(u,{cache:'reload',signal:ac.signal});if(r.ok){const b=await r.blob();await c.put(u,new Response(b,{status:200,headers:r.headers}));return true}}
+ catch(e){if(ac.signal.aborted){continue}}finally{inflight.delete(ac)}
+ t++;await sleep(500*t)}return false}
 async function precache(){const c=await caches.open(CACHE);const todo=[];for(const u of ASSETS){if(!(await c.match(u)))todo.push(u)}
  // reuse unchanged files from the previous cache to save data
  const old=(await caches.keys()).filter(k=>k.startsWith('emma-house-')&&k!==CACHE);
@@ -16,7 +25,7 @@ async function cacheVoicePack(id){
   const c=await caches.open(CACHE); let n=0;
   for(let i=0;i<list.length;i+=BATCH){
     const part=list.slice(i,i+BATCH);
-    const ok=await Promise.all(part.map(u=>caches.match(u,{ignoreSearch:true}).then(r=>r?true:getOne(c,u))));
+    const ok=await Promise.all(part.map(u=>caches.match(u,{ignoreSearch:true}).then(r=>r?true:getOne(c,u,true))));
     ok.forEach(x=>{if(x)n++});
   }
   return {ok:n>0,id,n,total:list.length};
@@ -42,6 +51,7 @@ self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const k of await 
 self.addEventListener('message',e=>{
   const d=e.data;
   if(d==='skipWaiting')self.skipWaiting();
+  if(d&&d.type==='busy')markBusy();
   if(d==='build')e.source&&e.source.postMessage({build:BUILD});
   if(d&&d.type==='cacheVoice'){
     e.waitUntil((async()=>{const r=await cacheVoicePack(d.id);tell({type:'voiceCached',...r})})());
