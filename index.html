@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#1e6fd9">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<title>Emmavengers House Adventure</title>
+<title>Emmavengers World</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 html,body{margin:0;height:100%;font-family:"Arial Rounded MT Bold","Trebuchet MS","Segoe UI",system-ui,sans-serif;font-weight:900;color:#123a7a}
@@ -382,11 +382,82 @@ body.morning main.enter>*{animation:none!important}
  body.morning main{height:100%}
  .vpanel .box,.pgate .box{max-width:94vw;box-sizing:border-box}
 }
+
+/* ===== Emmavengers World: map home, lands, activities ===== */
+@font-face{font-family:LG;src:url(fonts/LuckiestGuy-Regular.ttf) format('truetype');font-display:swap}
+body.wmapmode #mascot{display:none}
+body.wmapmode main{padding:6px 8px 8px;overflow:hidden;justify-content:flex-start}
+body.wmapmode main.enter>*{animation:none}
+.wmap{position:relative;flex:none;width:min(100%,560px);aspect-ratio:9/16;background:#1e6fd9 center/100% 100% no-repeat;border-radius:22px;border:4px solid #ffc400;box-shadow:0 7px 0 #c98a00,0 12px 22px rgba(0,0,0,.3);overflow:hidden;container-type:inline-size;animation:fadein .35s}
+.wland{position:absolute;transform:translate(-50%,-50%);border:none;background:transparent;cursor:pointer;border-radius:46%;padding:0;z-index:2}
+.wland::after{content:'';position:absolute;inset:6%;border-radius:46%;animation:wring 2.6s ease-in-out infinite;pointer-events:none}
+.wland:active::after{background:rgba(255,255,255,.25)}
+@keyframes wring{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0),inset 0 0 0 0 rgba(255,255,255,0)}50%{box-shadow:0 0 0 3px rgba(255,255,255,.55),inset 0 0 26px rgba(255,255,200,.35)}}
+.wsignb{position:absolute;transform:translate(-50%,-50%);z-index:3;border:none;background:none;padding:0;cursor:pointer;font:inherit}
+.wsign{display:inline-block;font-family:LG,"Arial Rounded MT Bold",sans-serif;font-weight:400;font-size:clamp(14px,4.6vw,28px);font-size:5.4cqw;letter-spacing:.5px;line-height:1.05;color:#fff;background:var(--c,#ffb800);border:3px solid #fff;border-radius:14px;padding:5px 10px 2px;white-space:nowrap;box-shadow:0 4px 0 rgba(0,0,0,.35),0 8px 12px rgba(0,0,0,.25);text-shadow:0 2px 0 rgba(0,0,0,.35);cursor:pointer;animation:wbob 2.8s ease-in-out infinite}
+.wsignb:nth-of-type(2n) .wsign{animation-delay:.7s}
+@keyframes wbob{50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.wsign,.wplace .ic,.wland::after{animation:none!important}}
+.wsay{position:absolute;right:3%;bottom:2%;z-index:4;width:48px;height:48px}
+.wback{flex:none;margin:0 0 6px;min-height:46px;font-size:clamp(17px,4.6vw,24px);padding:8px 18px}
+.wplace{position:absolute;transform:translate(-50%,-50%);width:38%;display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;padding:0;cursor:pointer;font:inherit;z-index:2;color:#123a7a}
+.wplace .ic{width:74%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff 0,#fff8d6 60%,#ffe49a 100%);border:4px solid #fff;box-shadow:0 0 0 4px #ffc400,0 8px 14px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;overflow:hidden;animation:wfloat 3.2s ease-in-out infinite}
+.wplace:nth-child(2n) .ic{animation-delay:1s}
+.wplace .ic img{width:80%;height:80%;object-fit:contain;pointer-events:none}
+.wplace .ic i{display:block;width:100%;height:100%;background-size:cover;background-repeat:no-repeat}
+.wplace .wsign{font-size:clamp(13px,4vw,24px);font-size:4.7cqw;animation:none}
+.wplace .wst{font-size:clamp(11px,3vw,16px);font-size:3.6cqw;letter-spacing:1px;text-shadow:0 1px 2px #fff}
+.wplace:active .ic{transform:scale(.94)}
+@keyframes wfloat{50%{transform:translateY(-5px)}}
+.wprog{color:#fff;font-size:clamp(16px,4vw,22px);margin:-6px 0 8px;text-shadow:0 2px 3px rgba(0,0,0,.4)}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;width:100%;max-width:900px}
+.wgrid.k-letter,.wgrid.k-number{grid-template-columns:repeat(auto-fill,minmax(66px,1fr))}
+.wtile{position:relative;font:inherit;color:#123a7a;border:4px solid #ffc400;border-radius:18px;background:#fff;box-shadow:0 5px 0 #c98a00;padding:6px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;transition:transform .12s}
+.wtile:active{transform:translateY(3px)}
+.wtile img{width:72%;aspect-ratio:1;object-fit:contain;pointer-events:none}
+.k-country .wtile img{width:92%;aspect-ratio:64/46}
+.wtile .lt{font-family:LG,inherit;font-weight:400;font-size:clamp(28px,8vw,46px);line-height:1;color:var(--lc,#e8261c);text-shadow:0 3px 0 rgba(0,0,0,.18)}
+.k-letter .wtile img,.k-number .wtile img{width:48%}
+.wtile span{font-size:clamp(13px,3.4vw,18px);line-height:1.1}
+.wtile.seen{border-color:#2ecc40;box-shadow:0 5px 0 #1f8a2b}
+.wtile.seen::after{content:'⭐';position:absolute;top:-9px;right:-7px;font-size:18px}
+.pop .wcard{width:min(520px,94vw);max-height:calc(100dvh - 40px);overflow:auto;background:linear-gradient(#fffdf3,#ffe9a8);border:6px solid #ffc400;border-radius:28px;box-shadow:0 10px 0 #c98a00,0 18px 30px rgba(0,0,0,.35);padding:14px 14px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;color:#123a7a;animation:rise .45s cubic-bezier(.2,1.4,.4,1)}
+.pop .wcard img{width:auto;border:none;border-radius:0;box-shadow:none;animation:none;pointer-events:none}
+.wcard .big{font-family:LG,inherit;font-weight:400;font-size:min(96px,24vw);line-height:.95;color:#e8261c;text-shadow:0 5px 0 #a3150c,0 10px 14px rgba(0,0,0,.2)}
+.wcard .big small{font-size:.6em;margin-left:.08em;color:#2f86e8;text-shadow:0 4px 0 #1a56b8}
+.pop .wcard img.hero{width:min(230px,52vw);height:auto;filter:drop-shadow(0 10px 8px rgba(0,0,0,.25));animation:bounce .6s}
+.pop .wcard img.flag{width:min(300px,70vw)}
+.pop .wcard img.food{width:min(120px,30vw)}
+.wcard .wword{font-size:clamp(22px,6vw,34px);line-height:1.15}
+.wcard .wword b{color:#e8261c}
+.wcard .fact{background:#fff;border:4px solid #ffc400;border-radius:18px;padding:8px 12px;font-size:clamp(17px,4.6vw,23px);line-height:1.25;white-space:pre-line}
+.wcard .greet{display:inline-block;background:#2f86e8;color:#fff;border-radius:999px;padding:6px 18px;font-size:clamp(22px,6vw,32px);box-shadow:0 4px 0 #1a56b8}
+.wcard .frow{display:flex;align-items:center;gap:10px;justify-content:center;background:#fff;border:4px solid #ffc400;border-radius:18px;padding:6px 12px;font-size:clamp(16px,4.4vw,22px)}
+.wcard .objs{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;max-width:420px}
+.pop .wcard .objs img{width:min(60px,14vw);animation:mpop .4s cubic-bezier(.2,1.5,.4,1) both}
+.wcard .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+.pop .wcard .btn{margin-top:0}
+.wqpic{display:flex;flex-direction:column;align-items:center;background:#fff;border:5px solid #ffc400;border-radius:26px;padding:8px 22px;box-shadow:0 6px 0 #c98a00;margin-bottom:12px}
+.wqpic img{width:min(170px,40vw);aspect-ratio:1;object-fit:contain}
+.wblank{font-size:clamp(30px,8vw,46px);letter-spacing:1px}
+.wblank b{display:inline-block;min-width:1em;border-bottom:5px solid #e8261c;color:#e8261c;margin-right:2px}
+.choices.wlet,.choices.wnums{grid-template-columns:repeat(3,1fr);max-width:480px;width:100%}
+.opt.wl,.opt.wn{font-family:LG,inherit;font-weight:400;font-size:clamp(40px,11vw,64px);min-height:92px;padding:8px;line-height:1;color:#e8261c}
+.choices.wpics{grid-template-columns:repeat(3,1fr);max-width:640px;width:100%;gap:10px}
+.wpic{border:5px solid #ffc400;border-radius:22px;background:#fff;cursor:pointer;padding:6px;box-shadow:0 6px 0 #c98a00;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.wpic img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+.wpics.flags .wpic{aspect-ratio:64/50}
+.wcount{display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:6px;width:100%;max-width:560px;min-height:120px;background:rgba(255,255,255,.92);border:5px solid #ffc400;border-radius:26px;padding:10px;margin-bottom:4px;box-shadow:0 6px 0 #c98a00}
+.wobj{position:relative;width:clamp(54px,16vw,90px);aspect-ratio:1;border:none;background:none;padding:0;cursor:pointer;animation:mpop .4s cubic-bezier(.2,1.5,.4,1) both}
+.wobj img{width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 4px 3px rgba(0,0,0,.25))}
+.wobj.counted img{filter:drop-shadow(0 0 7px #2ecc40)}
+.wobj.counted::after{content:attr(data-c);position:absolute;top:-4px;right:-4px;background:#2ecc40;color:#fff;border-radius:50%;width:28px;height:28px;font-size:16px;display:flex;align-items:center;justify-content:center;border:3px solid #fff}
+@media (orientation:portrait) and (max-width:600px){.wcount{gap:4px;padding:8px}.opt.wl,.opt.wn{min-height:76px}}
 </style></head><body>
 <div id="app">
 <header>
  <button class="btn back hidden" id="backBtn" aria-label="Back">⬅</button>
- <div class="title" id="title">Emmavengers House Adventure</div>
+ <div class="title" id="title">Emmavengers World</div>
  <button class="btn vsetbtn" id="parentBtn" aria-label="Parents corner">🔒</button>
  <button class="btn vsetbtn" id="voiceBtn" aria-label="Voice settings">🔊</button>
  <button class="btn mute" id="muteBtn" aria-label="Music on/off">🎵</button>
@@ -579,7 +650,11 @@ let lastTap=0,busyAt=0;const prioBC=(()=>{try{return new BroadcastChannel('emma-
 function busy(){lastTap=Date.now();if(Date.now()-busyAt<1500)return;busyAt=Date.now();if(prioBC)prioBC.postMessage(1)}
 addEventListener('pointerdown',busy,{capture:true,passive:true});
 /* Warm the next likely voice lines so they are cached before the child taps. */
-const warmed=new Set();function warmVoice(list){if(navigator.onLine===false||!window.caches)return;(list||[]).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u))return;warmed.add(u);caches.match(u,{ignoreSearch:true}).then(r=>r||(navigator.onLine!==false&&fetch(u,{priority:'low'}).then(r=>r.ok&&r.blob()))).catch(()=>warmed.delete(u))})}
+/* Warm queue: newest requests first, 2 at a time, paused while a voice line is loading/playing so it never competes. */
+const warmed=new Set(),wq=[];let wRun=0;
+function warmPump(){while(wRun<2&&wq.length){if(navigator.onLine===false){wq.length=0;return}if(!vEl.paused||Date.now()-lastTap<350){setTimeout(warmPump,300);return}const u=wq.shift();wRun++;
+ caches.match(u,{ignoreSearch:true}).then(r=>r||fetch(u,{priority:'low'}).then(r=>r.ok&&r.blob())).catch(()=>warmed.delete(u)).finally(()=>{wRun--;warmPump()})}}
+function warmVoice(list){if(navigator.onLine===false||!window.caches)return;const add=[];(list||[]).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u))return;warmed.add(u);add.push(u)});wq.unshift(...add);warmPump()}
 // One reusable <audio> element: once it has played inside a tap, iOS/Android let it play later clips from timers too.
 const vEl=new Audio();vEl.preload='auto';let vUnlocked=false;
 function applyVoiceRates(){
@@ -622,28 +697,32 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);if(p.e){cx.font=(p.w*2.6|0)+'px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(p.e,0,0)}else{cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2)}cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
 function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();if(typeof mPauseVids==='function')mPauseVids();document.querySelectorAll('.pop').forEach(p=>p.remove());
- document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone,morning,mstep,mwin,morningAsk})[s](arg);bgmFor(screen);document.body.classList.toggle('morning',['morning','mstep','mwin','morningAsk'].includes(s));if(s!=='mstep'&&typeof mTok!=='undefined')mTok++;main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('wmapmode',s==='home'||s==='land');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,house,land,wcards,wquiz,wcount,wreward,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone,morning,mstep,mwin,morningAsk})[s](arg);bgmFor(screen);document.body.classList.toggle('morning',['morning','mstep','mwin','morningAsk'].includes(s));if(s!=='mstep'&&typeof mTok!=='undefined')mTok++;if(typeof histSync==='function')histSync(s);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
-  if(screen==='levelmap'){go('home');return}
-  if(['kitchen','bedroom','bathroom','living','bible','morning','mstep','mwin','morningAsk'].includes(screen))go('home');
+  if(screen==='land'){go('home');return}
+  if(['wcards','wquiz','wcount','wreward'].includes(screen)){go('land',{id:curLand});return}
+  if(['house','bible','morning','mstep','mwin','morningAsk'].includes(screen)){go('land',{id:'faith'});return}
+  if(screen==='levelmap'){go('house');return}
+  if(['kitchen','bedroom','bathroom','living'].includes(screen))go('house');
   else if(['reader','bquiz','bdone'].includes(screen))go('bible');
   else if(['learnmenu','learn','find','use','room','spell','find2','used3','mix4',...L4_SCREENS,'reward','fail'].includes(screen)){
     if(state.fromLevel)go('levelmap');
     else go('levelmap');
   } else go('home');
 };
-function home(){$('#title').textContent='Emmavengers House Adventure';
- setTimeout(()=>{if(screen!=='home')return;warmVoice([...['kitchen','bedroom','bathroom','living room'].flatMap(r=>{const T=L4[r];return ['Welcome to the '+r+'! Pick a level!',...(T?[T.n,T.sub]:[])]}),'Welcome to the Bible Library! Pick a story to read!',"Let's start Mia's Morning Routine!",'What do I do after waking up?'])},600);
+/* The Emmavengers House (all rooms + levels). The app home is the Emmavengers World map (world.js). */
+function house(){$('#title').textContent='Emmavengers House';
+ setTimeout(()=>{if(screen!=='house')return;warmVoice([...['kitchen','bedroom','bathroom','living room'].flatMap(r=>{const T=L4[r];return ['Welcome to the '+r+'! Pick a level!',...(T?[T.n,T.sub]:[])]}),'Welcome to the Bible Library! Pick a story to read!',"Let's start Mia's Morning Routine!",'What do I do after waking up?'])},600);
  main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);const tr=open&&roomTrophy(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}${tr?'<span class="trophy">🏆</span>':''}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?(tr?'Trophy earned!':'4 levels to play!'):'Coming soon'}</div></button>`}).join('')}<button class="room mhome" data-k="morning"><span class="new">NEW!</span><div class="cv"><img src="img/morning/card.jpg" alt="Morning Routine"></div><div class="txt"><div class="nm">☀️ Mia's Morning Routine</div><div class="sub">Help Mia start her day!</div></div></button><button class="room bible" data-k="bible"><span class="new">NEW!</span><div class="em">📖</div><div class="txt"><div class="nm">Bible Library</div><div class="sub">Tap to read Bible stories!</div></div></button></div>`;
- main.querySelector('.say').onclick=()=>say('Pick a room to play!');
+ main.querySelector('.say').onclick=()=>say('Pick a room to play!');say('Pick a room to play!');
  main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k==='bible'){sfx.tap();go('bible');return}if(k==='morning'){sfx.tap();go('morning');return}if(OPEN_ROOMS.has(k)){sfx.tap();go(k)}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
 const MODES=[["find","🔍","Find It","Find the right picture"],["use","🤔","What Is It Used For?","Pick the right use"],["room","🏠","Which Room?","Put it in the right room"],["spell","🔤","Spell It","Tap the letters in order"]];
 function kitchen(){state.room='kitchen';go('levelmap')}
 function bathroom(){state.room='bathroom';go('levelmap')}
 function living(){state.room='living room';go('levelmap')}
 function bedroom(){state.room='bedroom';go('levelmap')}
-function roomTitle(){return ({kitchen:'🍳 Kitchen',bedroom:'🛏️ Bedroom',bathroom:'🛁 Bathroom','living room':'🛋️ Living Room'})[state.room]||'Room'}
+function roomTitle(){return ({kitchen:'Kitchen',bedroom:'Bedroom',bathroom:'Bathroom','living room':'Living Room'})[state.room]||'Room'}
 function levelmap(){
   const room=state.room;$('#title').textContent=roomTitle();
   const trop=roomTrophy(room);
@@ -692,14 +771,14 @@ function learnmenu(){
 function header(text){const T=state.total||ROUNDS;return `<div class="bar"><i style="width:${state.round/T*100}%"></i><b>${state.round+1} / ${T}</b></div><div class="prompt"><span>${text}</span><button class="say" aria-label="Read aloud">🔊</button></div>`}
 function bindSay(t){main.querySelector('.say').onclick=()=>say(t);say(t)}
 const article=n=>/^[aeiou]/.test(n)?'an':'a';
-function find(){$('#title').textContent='🔍 Find It';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`Find the ${t.name}!`;
+function find(){$('#title').textContent='Find It';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`Find the ${t.name}!`;
  main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${crop(c)}" alt=""></button>`).join('')}</div>`;bindSay(txt);
  if(!state.missed)state.missed=[];main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b,t))}
-function use(){$('#title').textContent='🤔 What Is It Used For?';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`What is the ${t.name} used for?`;
+function use(){$('#title').textContent='What Is It Used For?';const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);const txt=`What is the ${t.name} used for?`;
  main.innerHTML=header(txt)+`<div class="usewrap"><div class="pic"><img src="${crop(t)}" alt=""></div><div class="opts">${ch.map(c=>`<button class="opt" data-n="${c.name}">${hideName(c)}</button>`).join('')}</div></div>`;
  main.querySelector('.say').onclick=()=>say([txt,...ch.map(hideName).flatMap((o,i)=>i?['Or,',o]:[o])]);say(txt);
  main.querySelectorAll('.opt').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b))}
-function room(){$('#title').textContent='🏠 Which Room?';
+function room(){$('#title').textContent='Which Room?';
  if(state.round===0){
    const mix=[...pick(ITEMS,2).map(i=>({...i,room:'kitchen'})),...pick(BEDROOM_ITEMS,2).map(i=>({...i,room:'bedroom'})),...pick(BATHROOM_ITEMS,2).map(i=>({...i,room:'bathroom'})),...pick(LIVING_ITEMS,2).map(i=>({...i,room:'living room'}))];
    state.queue=shuffle(mix);state.total=state.queue.length;
@@ -713,7 +792,7 @@ function room(){$('#title').textContent='🏠 Which Room?';
  const over=e=>[...main.querySelectorAll('.drop')].find(d=>{const r=d.getBoundingClientRect();return e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom});
  el.addEventListener('pointermove',e=>{if(!dragging)return;el.style.transform=`translate(${e.clientX-sx}px,${e.clientY-sy}px) scale(.6)`;main.querySelectorAll('.drop').forEach(d=>d.classList.toggle('hover',d===over(e)))});
  el.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;const d=over(e);main.querySelectorAll('.drop').forEach(x=>x.classList.remove('hover'));el.style.transition='transform .25s';el.style.transform='';if(d)check(d)})}
-function spell(){$('#title').textContent='🔤 Spell It';const SPELL=spellPool();const t=newTarget(SPELL);const w=t.name.toUpperCase();state.pos=0;
+function spell(){$('#title').textContent='Spell It';const SPELL=spellPool();const t=newTarget(SPELL);const w=t.name.toUpperCase();state.pos=0;
  const txt=`Spell ${t.name}!`;
  main.innerHTML=header(`Spell the word! <span style="color:#e8261c">${w}</span>`)+`<div class="pic spellpic"><img src="${crop(t)}" alt=""></div><div class="slots">${[...w].map(()=>`<div class="slot"></div>`).join('')}</div><div class="letters">${shuffle([...w].map((c,i)=>({c,i}))).map(o=>`<button class="btn letter" data-c="${o.c}">${o.c}</button>`).join('')}</div>`;
  bindSay([txt,...w]);
@@ -751,7 +830,7 @@ function trackMiss(it){if(it&&!state.missed.some(x=>x.name===it.name&&x.room===i
 
 function learn(){
   // Level 1 Quick Learn: Find It with FULL cards (names/uses visible)
-  $('#title').textContent='📚 Learn';
+  $('#title').textContent='Learn';
   const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);
   const txt=`Find the ${t.name}!`;
   main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${full(c)}" alt="${c.name}"></button>`).join('')}</div>`;
@@ -759,7 +838,7 @@ function learn(){
   main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound,t):wrong(b,t));
 }
 function find2(){
-  $('#title').textContent='🔍 Find It';
+  $('#title').textContent='Find It';
   const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);
   const prompts=[`Find the ${t.name}!`,`Where is the ${t.name}?`];
   const txt=prompts[state.round%2];
@@ -768,7 +847,7 @@ function find2(){
   main.querySelectorAll('.pic').forEach(b=>b.onclick=()=>b.dataset.n===t.name?correct(b,nextRound):wrong(b,t));
 }
 function used3(){
-  $('#title').textContent='🤔 Used For';
+  $('#title').textContent='Used For';
   const P=pool();const t=newTarget(P);const ch=shuffle([t,...pick(P,2,[t])]);
   const txt=useQuestion(t);
   main.innerHTML=header(txt)+`<div class="choices pics">${ch.map(c=>`<button class="pic" data-n="${c.name}"><img src="${plain(c)}" alt=""></button>`).join('')}</div>`;
@@ -777,7 +856,7 @@ function used3(){
 }
 function mix4(){
   // Default Mix-Up: even rounds = 4-choice find from all rooms; odd = sort into room
-  $('#title').textContent='🔀 Mix-Up';
+  $('#title').textContent='Mix-Up';
   if(state.round===0 && !state.mixReady){
     state.mixReady=1;
     state.total=ROUNDS;
@@ -843,7 +922,7 @@ function planMeals(){const miss=(state.retryMissed||[]).map(i=>i.name);const lef
  return order.map(m=>{const want=m.items.filter(n=>left.has(n)).slice(0,2);want.forEach(n=>left.delete(n));
   const need=[...want,...shuffle(m.items.filter(n=>!want.includes(n)))].slice(0,2);
   return {n:m.n,em:m.em,line:m.line,need,tray:shuffle([...need,...pick(TABLE_NO,4)])}})}
-function settable(){const T=L4.kitchen;$('#title').textContent=T.em+' '+T.n;
+function settable(){const T=L4.kitchen;$('#title').textContent=T.n;
  if(!state.meals){state.meals=planMeals();state.retryMissed=[];state.total=state.meals.length*2}
  const M=state.meals[state.round>>1],step=state.round%2,tn=M.need[step],t=kByName(tn);state.target=t;state.used.push(t);
  const txt=`Put the ${tn} on the table!`;
@@ -857,7 +936,7 @@ function settable(){const T=L4.kitchen;$('#title').textContent=T.em+' '+T.n;
  main.querySelectorAll('.tray .pic').forEach(b=>dragTap(b,()=>[tbl],()=>place(b),()=>place(b)))}
 
 /* --- Bedroom: Bedtime Hunt (flashlight) --- */
-function bedhunt(){const T=L4.bedroom;$('#title').textContent=T.em+' '+T.n;state.total=ROUNDS;
+function bedhunt(){const T=L4.bedroom;$('#title').textContent=T.n;state.total=ROUNDS;
  const P=pool(),t=newTarget(P);state.target=t;const ch=shuffle([t,...pick(P,4,[t])]);const txt=`Find the ${t.name}!`;
  const tw=Array.from({length:9},()=>`<span class="twk" style="left:${(Math.random()*92+3).toFixed(1)}%;top:${(Math.random()*55+3).toFixed(1)}%;animation-delay:${(Math.random()*2).toFixed(2)}s">✦</span>`).join('');
  main.innerHTML=header(txt)+`<div class="field night fit" id="fld"><div class="moon">🌙</div>${ch.map(c=>`<button class="hid" data-n="${c.name}"><img src="${plain(c)}" alt=""></button>`).join('')}<div class="dark"></div><div class="beam"></div>${tw}<div class="fhint">🔦 Move your finger to shine the light!</div></div>`;
@@ -872,7 +951,7 @@ function bedhunt(){const T=L4.bedroom;$('#title').textContent=T.em+' '+T.n;state
  f.querySelectorAll('.hid').forEach(b=>b.onclick=()=>{if(b.dataset.n===t.name){b.classList.add('ok');f.classList.add('lit');l4Good(b)}else l4Bad(b,t)})}
 
 /* --- Bathroom: Bath Time Bubbles --- */
-function bubbles(){const T=L4.bathroom;$('#title').textContent=T.em+' '+T.n;state.total=ROUNDS;
+function bubbles(){const T=L4.bathroom;$('#title').textContent=T.n;state.total=ROUNDS;
  const P=pool(),t=newTarget(P);state.target=t;const txt=`Pop the ${t.name}!`;
  main.innerHTML=header(txt)+`<div class="field bath fit" id="fld"><div class="foam"></div><div class="duck">🦆</div></div>`;
  const f=$('#fld');fitField(f);let W=f.clientWidth,H=f.clientHeight;
@@ -897,7 +976,7 @@ const TIDY=[{k:'sofa',em:'🛋️',n:'Sofa',items:['cushion','throw pillow']},{k
  {k:'tv',em:'📺',n:'TV Stand',items:['remote','speaker']},{k:'table',em:'🌷',n:'Table',items:['vase','plant']}];
 const lByName=n=>LIVING_ITEMS.find(i=>i.name===n);
 const tidyZone=n=>(TIDY.find(z=>z.items.includes(n))||{}).k;
-function tidy(){const T=L4['living room'];$('#title').textContent=T.em+' '+T.n;
+function tidy(){const T=L4['living room'];$('#title').textContent=T.n;
  if(!state.tidy){const all=TIDY.flatMap(z=>z.items);const miss=[...new Set((state.retryMissed||[]).map(i=>i.name).filter(n=>all.includes(n)))];
   const look={};shuffle(all).forEach((n,i)=>look[n]={ord:i,rot:(Math.random()*16-8).toFixed(1),dx:(Math.random()*14-7)|0,dy:(Math.random()*12-6)|0});
   state.tidy={order:[...miss,...shuffle(all.filter(n=>!miss.includes(n)))],look,done:[]};state.retryMissed=[];state.total=all.length}
@@ -945,14 +1024,14 @@ function bgmPlay(room){if(muted||!BGM[room]){bgmStop();return}if(bgm&&bgm.room==
 function bgmStop(){if(!bgm)return;const b=bgm;bgm=null;clearInterval(b.iv);try{const a=ac,n=a.currentTime;b.bus.gain.cancelScheduledValues(n);b.bus.gain.setValueAtTime(b.bus.gain.value,n);b.bus.gain.linearRampToValueAtTime(0,n+.4)}catch(e){}
  setTimeout(()=>{try{b.bus.disconnect();b.lp.disconnect()}catch(e){}},700)}
 const NO_MUSIC=['home','bible','reader','bquiz','bdone','morning','mstep','mwin','morningAsk'];
-function bgmFor(s){if(NO_MUSIC.includes(s)||!state||!BGM[state.room])bgmStop();else bgmPlay(state.room)}
+function bgmFor(s){if(typeof worldBgm==='function'&&worldBgm(s))return;if(NO_MUSIC.includes(s)||!state||!BGM[state.room])bgmStop();else bgmPlay(state.room)}
 function setMuteBtn(){const b=$('#muteBtn');b.textContent=muted?'🔇':'🎵';b.classList.toggle('off',muted);b.setAttribute('aria-label',muted?'Turn music on':'Turn music off')}
 $('#muteBtn').onclick=()=>{muted=!muted;localStorage.setItem('emmaMute',muted?'1':'0');setMuteBtn();if(muted)bgmStop();else{sfx.tap();bgmFor(screen)}};
 setMuteBtn();
 document.addEventListener('visibilitychange',()=>{if(!ac)return;if(document.hidden)ac.suspend();else ac.resume()});
 
 function fail(){
-  $('#title').textContent='💪 Try Again!';
+  $('#title').textContent='Try Again!';
   const s=starsForMiss(state.miss||0);
   main.innerHTML=`<div class="failbox"><h1>Let's try again!</h1><div class="bigstars">${[0,1,2].map(i=>`<span style="${i<s?'':'filter:grayscale(1);opacity:.35'}">⭐</span>`).join('')}</div><div class="prompt">You need 2 stars to pass. You can do it!</div><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:16px"><button class="btn" id="retry">🔁 Try Again</button><button class="btn" id="backmap">🗺️ Level Map</button></div></div>`;
   say(["Let's try again!","You need 2 stars to pass. Try again!"]);
@@ -961,7 +1040,7 @@ function fail(){
   $('#retry').onclick=()=>{sfx.tap();startLevel(lv, missed)};
   $('#backmap').onclick=()=>{sfx.tap();state={room};go('levelmap')};
 }
-function reward(){$('#title').textContent='🏆 Great Job!';sfx.win();const n=state.score,tot=state.total||ROUNDS,s=starsForMiss(state.miss||0);
+function reward(){$('#title').textContent='Great Job!';sfx.win();const n=state.score,tot=state.total||ROUNDS,s=starsForMiss(state.miss||0);
   if(state.level&&state.fromLevel&&s>=PASS_STARS) levelSet(state.room,state.level,s);
   const trop=roomTrophy(state.room);
   const T4=state.level===4?L4[state.room]:null;
@@ -1140,7 +1219,7 @@ function mwin(){
   <div class="mslidewrap"><div class="mslide" id="mslide">${shots.map((s,i)=>`<img src="${MORNING_IMG}${s}" class="${i===0?'on':''}" alt="">`).join('')}</div></div>
   <div class="mwinbtns">
     <button class="btn" id="magain">🔁 Play Again</button>
-    <button class="btn" id="mhomebtn">🏠 Home</button>
+    <button class="btn" id="mhomebtn">🗺️ Back to Map</button>
   </div></div>`;
   // Settle badge fully opaque after pop-in, then cycle montage
   setTimeout(()=>{const b=$('#mbadge'); if(b) b.classList.add('settled')},650);
@@ -1156,7 +1235,7 @@ function mwin(){
   for(let i=0;i<3;i++) setTimeout(()=>burst(innerWidth*(.2+.25*i), innerHeight*.22, ['⭐','✨','☀️','🌟']), i*220);
   say(['Good morning!','You are a Morning Champion!','What a wonderful morning!'],1);
   $('#magain').onclick=()=>{clearInterval(mSlideTimer);sfx.tap();go('morning')};
-  $('#mhomebtn').onclick=()=>{clearInterval(mSlideTimer);sfx.tap();go('home')};
+  $('#mhomebtn').onclick=()=>{clearInterval(mSlideTimer);sfx.tap();go('land',{id:'faith'})};
 }
 
 
@@ -1279,9 +1358,10 @@ if(navigator.serviceWorker)navigator.serviceWorker.addEventListener('controllerc
 // Warm offline cache for the saved non-default voice
 if(vSet.id!=='mia')addEventListener('load',()=>setTimeout(()=>cacheVoicePack(vSet.id),800));
 
-setScore();go('home');
+setScore();
 
 </script>
+<script src="world.js"></script>
 <script>/* offline: service worker (see README) */
 if('serviceWorker' in navigator)addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').then(reg=>{
  // A new version downloaded in the background last time: switch to it now, as the game opens.

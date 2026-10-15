@@ -27,8 +27,11 @@ async def main():
         await pg.fill('#pIn','4821'); await pg.click('#pOk'); await pg.wait_for_selector('#pYt')
         assert await pg.evaluate('emmaBack()') is True and await pg.query_selector('#ppanel') is None
         assert await pg.evaluate('emmaBack()') is False  # home screen -> app exits
-        await pg.click('.room.bible'); assert await pg.evaluate('emmaBack()') is True
-        await pg.wait_for_timeout(300); assert await pg.evaluate('screen')=='home'
+        # world map -> Faith Land -> Bible Land; back goes Bible -> Faith Land -> world map -> exit
+        await pg.click('.wsignb[data-l="faith"]'); await pg.click('.wplace[data-p="bible"]'); assert await pg.evaluate('screen')=='bible'
+        assert await pg.evaluate('emmaBack()') is True; await pg.wait_for_timeout(300); assert await pg.evaluate('screen')=='land'
+        assert await pg.evaluate('emmaBack()') is True; await pg.wait_for_timeout(300); assert await pg.evaluate('screen')=='home'
+        assert await pg.evaluate('emmaBack()') is False
         await b.close()
     assert not errs, errs; print('PARENTS TESTS PASSED')
 asyncio.run(main())

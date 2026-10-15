@@ -1,6 +1,6 @@
-# Emmavengers House Adventure
+# Emmavengers World
 
-Kids' learning game (GitHub Pages): https://emmavengerskidsworld-design.github.io/emmavengers-house-game/
+Kids' learning game (home = Emmavengers World map; the Emmavengers House Adventure lives in Faith Land) (GitHub Pages): https://emmavengerskidsworld-design.github.io/emmavengers-house-game/
 
 ## Offline (PWA)
 - `manifest.json` + `icons/` make it installable ("Add to Home Screen", standalone).
@@ -25,3 +25,18 @@ python3 tools/test_offline.py     # optional: offline Playwright test
 ```
 `sw.js` is generated: never edit it by hand, and always rebuild it before committing, or phones keep the old version.
 Voice clips: Kokoro `af_heart`, speed 0.53 (~125 wpm, a good pace for young kids), pitched up 1.18, +150 ms trailing silence: `tools/gen_voice.py jobs.json` (list of [text, voice/<hash>.mp3]; needs kokoro-v1.0.int8.onnx + voices-v1.0.bin). File name = FNV-1a hash of the exact text.
+
+## Emmavengers World (home screen)
+- `world.js` + `lands.json`: the app opens on a world map shaped like Africa with five lands. Each land opens its own
+  inner map (`img/world/<land>-land.jpg`) with tappable places and its own soft WebAudio music theme (`music` in lands.json).
+  Back: activity -> land -> world map -> exit (header back, "Back to Map", Android `emmaBack()` and browser history back).
+- **Faith Land**: Emmavengers House (all rooms + levels), Bible Land (Bible Library), Mia's Day (Morning Routine), Prayer Corner.
+- **Letter Land**: ABC Sounds (A–Z cards, letter + sound + 3D picture) and Letter Hunt (first-letter quiz).
+- **Number Land**: 1 to 10 cards and Count It! (tap each object to count, pick the number).
+- **Nature Land**: Animal Safari (10 animals + fun facts) and Animal Quiz.  **World Land**: Country Cards (flag, greeting, food) and Flag Quiz.
+- Add content without code: new items in `lands.json` `decks` (letters/numbers/animals/countries/prayers), new places
+  (types `link`, `cards`, `quiz` with mode `letter|pic|flag`, `count`) or a whole new land (map image + x/y hotspot %).
+  Then: `python3 tools/check_voice.py > missing.json` -> make Kokoro clips for all 6 voices with `tools/gen_voice.py`
+  (a 3rd column with IPA from `lands.json` "phonemes" is used for letter sounds) -> `python3 tools/build_sw.py` -> `python3 tools/test_world.py`.
+- Art: maps rendered by `tools/world_art/make_maps.py`, cards by `tools/world_art/make_cards.py` (3D objects from Microsoft Fluent Emoji 3D,
+  MIT; flags drawn to the official designs). See `img/world/CREDITS.md`.

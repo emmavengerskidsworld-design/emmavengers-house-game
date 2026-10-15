@@ -38,9 +38,10 @@ async def main(url,want_books):
         await ctx.set_offline(True);phase['off']=True;await pg.reload(wait_until='load');await pg.wait_for_timeout(900)
         await pg.evaluate("""()=>{const o=say;window.__said=[];say=function(t,h,q){__said.push(t);return o(t,h,q)};
           const op=HTMLMediaElement.prototype.play;window.__pl={ok:0,err:0};HTMLMediaElement.prototype.play=function(){return op.call(this).then(()=>__pl.ok++).catch(e=>{if(e.name!=='AbortError')__pl.err++;throw e})}}""")
-        rooms=await pg.evaluate("()=>document.querySelectorAll('.room').length");print('offline home: rooms shown',rooms)
-        if not rooms: bad.append(('HOME','no rooms'))
-        await pg.click('.room[data-k="bible"]');await pg.wait_for_timeout(800)
+        lands=await pg.evaluate("()=>document.querySelectorAll('.wland').length");print('offline home (world map): lands shown',lands)
+        if not lands: bad.append(('HOME','no lands'))
+        await pg.click('.wsignb[data-l="faith"]');await pg.wait_for_timeout(600)
+        await pg.click('.wplace[data-p="bible"]');await pg.wait_for_timeout(800)
         shelf=await pg.evaluate("()=>[...document.querySelectorAll('.book[data-b]')].map(e=>[e.dataset.b,e.querySelector('img').naturalWidth>0])")
         print('offline library shelf:',shelf); bad+=[('COVER',k) for k,ok in shelf if not ok]
         books=want_books or [k for k,_ in shelf]

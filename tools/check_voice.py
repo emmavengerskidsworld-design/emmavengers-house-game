@@ -16,6 +16,7 @@ if(typeof BIBLE!=='undefined')for(const b of Object.values(BIBLE)){b.pages.forEa
  document.querySelectorAll('.book[data-n]').forEach(e=>A(e.dataset.n+' is coming soon!'))}
 if(typeof L4!=='undefined')JSON.stringify(L4,(k,v)=>{if(typeof v==='string'&&/[a-z] /i.test(v))A(v);return v});
 if(window.__extraVoice)A(window.__extraVoice);
+if(window.__worldVoice)A(window.__worldVoice());
 return [...S].map(t=>[t,vh(t)])}"""
 async def main(target):
     srv=None
@@ -29,6 +30,7 @@ async def main(target):
         b=await p.chromium.launch();pg=await b.new_page()
         pg.on('pageerror',lambda e:print('PAGEERR',e))
         await pg.goto(url,wait_until='networkidle')
+        await pg.wait_for_function('typeof LANDS!=="undefined"&&LANDS!==null',timeout=15000)
         rows=await pg.evaluate(ENUM)
         st=await pg.evaluate("async r=>Promise.all(r.map(([t,h])=>fetch('voice/'+h+'.mp3',{method:'HEAD',cache:'no-store'}).then(x=>x.status)))",rows)
         await b.close()

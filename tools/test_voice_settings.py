@@ -54,7 +54,7 @@ async def run(url, tag='local'):
         await pg.wait_for_selector('.vpanel', state='detached')
 
         # Play a home line in Lily voice
-        await pg.click('.prompt .say')
+        await pg.click('.wsay')
         await pg.wait_for_timeout(800)
         src = await pg.evaluate("()=>document.querySelector('audio')?.src || (window.vEl && vEl.src) || ''")
         # vEl is not on window — check via evaluate of voiceUrl path
@@ -77,7 +77,8 @@ async def run(url, tag='local'):
           await new Promise(r=>setTimeout(r,2500));
         }''')
         await pg.click('#vClose')
-        await pg.click('.room[data-k="morning"]')
+        await pg.click('.wsignb[data-l="faith"]')
+        await pg.click('.wplace[data-p="mia"]')
         await pg.wait_for_selector('.mstage')
         await pg.wait_for_timeout(1500)
         # Confirm voice pack path would be used

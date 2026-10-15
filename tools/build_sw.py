@@ -30,6 +30,21 @@ def make_thumbs():
             im = Image.open(c).convert('RGB'); im.thumbnail((480, 270)); im.save(t, quality=78, optimize=True)
 make_thumbs()
 
+def make_world_thumbs():
+    """192px tile thumbnails for Emmavengers World grids (fast first voice on slow networks)."""
+    src = os.path.join(ROOT, 'img', 'world')
+    if not Image or not os.path.isdir(src): return
+    for sub in ('letters', 'animals', 'numbers', 'countries', 'prayers'):
+        d = os.path.join(src, sub)
+        if not os.path.isdir(d): continue
+        od = os.path.join(src, 'thumbs', sub); os.makedirs(od, exist_ok=True)
+        for f in os.listdir(d):
+            if not f.endswith('.webp'): continue
+            a, b = os.path.join(d, f), os.path.join(od, f)
+            if not os.path.exists(b) or os.path.getmtime(b) < os.path.getmtime(a):
+                im = Image.open(a); im.thumbnail((192, 192)); im.save(b, 'WEBP', quality=80, method=6)
+make_world_thumbs()
+
 def vh(t):
     h = 0x811c9dc5; b = t.encode('utf-16-le')
     for i in range(0, len(b), 2):

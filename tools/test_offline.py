@@ -37,14 +37,23 @@ async def main(url):
         for room in ['kitchen','bedroom','bathroom','living room']:
             for lv in [1,2,3,4]:
                 await pg.evaluate("([r,l])=>{for(let i=1;i<l;i++)levelSet(r,i,3)}",[room,lv])
-                await pg.evaluate("()=>go('home')");await pg.wait_for_timeout(200)
+                await pg.evaluate("()=>go('house')");await pg.wait_for_timeout(200)
                 await pg.click(f'.room[data-k="{room}"]');await pg.wait_for_timeout(500)
                 await pg.click(f'.lnode[data-l="{lv}"]');await pg.wait_for_timeout(900)
                 if await pg.query_selector('.mode'):await pg.click('.mode');await pg.wait_for_timeout(700)
                 broken=await pg.evaluate("()=>[...document.images].filter(i=>i.complete&&!i.naturalWidth).map(i=>i.src)")
                 imgs=await pg.evaluate("()=>[...document.images].filter(i=>i.naturalWidth).length")
                 played.append((room,lv,imgs,len(broken)));bad+= [('BROKENIMG',x) for x in broken]
-        await pg.evaluate("()=>go('home')");await pg.click('.room[data-k="bible"]');await pg.wait_for_timeout(700)
+        # Emmavengers World: map, every land map, every place/activity (art + voice) offline
+        world=await pg.evaluate("""async()=>{go('home');await new Promise(z=>setTimeout(z,400));const out={lands:document.querySelectorAll('.wland').length,bad:[]};
+          const chk=async u=>{const r=await fetch(u);if(!r.ok)out.bad.push(u)};await chk(LANDS.world.img);
+          for(const L of LANDS.lands){go('land',{id:L.id});await new Promise(z=>setTimeout(z,300));await chk(L.img);
+            for(const p of L.places){if(p.type==='link')continue;go(p.type==='cards'?'wcards':p.type==='quiz'?'wquiz':'wcount',{l:L.id,p:p.id});await new Promise(z=>setTimeout(z,500));
+              [...document.images].filter(i=>i.complete&&!i.naturalWidth).forEach(i=>out.bad.push(i.src))}}
+          for(const t of __worldVoice())await chk(voiceUrl(t));return out}""")
+        print('offline world:',world['lands'],'lands, problems:',world['bad'][:5]);bad+=[('WORLD',x) for x in world['bad']]
+        if world['lands']!=len(await pg.evaluate('LANDS.lands')):bad.append(('WORLD','lands missing'))
+        await pg.evaluate("()=>go('house')");await pg.click('.room[data-k="bible"]');await pg.wait_for_timeout(700)
         await pg.click('.book[data-b]');await pg.wait_for_timeout(1200)
         pages=0
         while True:

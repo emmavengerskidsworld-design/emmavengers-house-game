@@ -6,6 +6,9 @@ Usage:
   Env overrides: VOICE (kokoro id), SPEED, SH (pitch shift), VOICE_ID (friendly id)
 
 jobs.json is a list of [text, outfile] OR [text, hash] (hash => <outdir>/<hash>.mp3).
+An optional 3rd column gives Kokoro phonemes (IPA) to speak instead of the text, e.g. letter sounds
+["a, a, apple!", "<hash>", "ˈæ, ˈæ, ˈæpəl!"]; the file name is still the hash of the text. lands.json keeps
+these in its "phonemes" map.
 """
 import sys, json, soundfile as sf, subprocess, os, argparse
 from pathlib import Path
@@ -37,16 +40,17 @@ def atempo_chain(factor: float) -> str:
 def resolve_jobs(raw, outdir: Path):
     jobs = []
     for row in raw:
-        if len(row) != 2:
+        if len(row) not in (2, 3):
             raise SystemExit(f"bad job row: {row!r}")
-        text, second = row
+        text, second = row[0], row[1]
+        ph = row[2] if len(row) == 3 else None
         if str(second).endswith(".mp3") or "/" in str(second):
             out = Path(second)
             if not out.is_absolute():
                 out = ROOT / out
         else:
             out = outdir / f"{second}.mp3"
-        jobs.append((text, out))
+        jobs.append((text, out, ph))
     return jobs
 
 def main():
@@ -103,12 +107,15 @@ def main():
         "apad=pad_dur=0.15"
     )
     print(f"[gen_voice] voice={vid} kokoro={kv} speed={sp} sh={sh} out={outdir} jobs={len(jobs)}", flush=True)
-    for text, out in jobs:
+    for text, out, ph in jobs:
         out.parent.mkdir(parents=True, exist_ok=True)
         if out.exists() and not args.force and out.stat().st_size > 200:
             skip += 1
             continue
-        a, sr = k.create(text, voice=kv, speed=sp, lang="en-us")
+        if ph:
+            a, sr = k.create(ph, voice=kv, speed=sp, lang="en-us", is_phonemes=True)
+        else:
+            a, sr = k.create(text, voice=kv, speed=sp, lang="en-us")
         sf.write(tmp, a, sr)
         subprocess.run(
             ["ffmpeg", "-loglevel", "error", "-y", "-i", tmp, "-af", af_tail.format(sr=sr),

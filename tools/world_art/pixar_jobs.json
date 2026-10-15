@@ -1,0 +1,454 @@
+{
+  "count": 64,
+  "style_note": "Match Emmavengers bold 3D Pixar flashcard subject renders (see /workspace/shared/ref-spoon.jpg subject quality). Output square 1:1 on pure white for rembg cutout.",
+  "jobs": [
+    {
+      "id": "img_world_letters_a",
+      "out": "img/world/letters/a.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a shiny red apple.",
+      "subject_short": "a shiny red apple"
+    },
+    {
+      "id": "img_world_letters_b",
+      "out": "img/world/letters/b.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a colorful soccer ball with bright panels.",
+      "subject_short": "a colorful soccer ball with bright panels"
+    },
+    {
+      "id": "img_world_letters_c",
+      "out": "img/world/letters/c.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute fluffy orange tabby cat sitting happily.",
+      "subject_short": "a cute fluffy orange tabby cat sitting happily"
+    },
+    {
+      "id": "img_world_letters_d",
+      "out": "img/world/letters/d.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly puppy dog sitting happily.",
+      "subject_short": "a cute friendly puppy dog sitting happily"
+    },
+    {
+      "id": "img_world_letters_e",
+      "out": "img/world/letters/e.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a glossy brown chicken egg standing upright.",
+      "subject_short": "a glossy brown chicken egg standing upright"
+    },
+    {
+      "id": "img_world_letters_f",
+      "out": "img/world/letters/f.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute colorful tropical fish swimming pose.",
+      "subject_short": "a cute colorful tropical fish swimming pose"
+    },
+    {
+      "id": "img_world_letters_g",
+      "out": "img/world/letters/g.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly white goat standing.",
+      "subject_short": "a cute friendly white goat standing"
+    },
+    {
+      "id": "img_world_letters_h",
+      "out": "img/world/letters/h.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a fancy glossy top hat.",
+      "subject_short": "a fancy glossy top hat"
+    },
+    {
+      "id": "img_world_letters_i",
+      "out": "img/world/letters/i.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute red ladybug insect with black spots.",
+      "subject_short": "a cute red ladybug insect with black spots"
+    },
+    {
+      "id": "img_world_letters_j",
+      "out": "img/world/letters/j.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a pair of blue denim jeans folded neatly.",
+      "subject_short": "a pair of blue denim jeans folded neatly"
+    },
+    {
+      "id": "img_world_letters_k",
+      "out": "img/world/letters/k.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a colorful diamond kite with a short ribbon tail.",
+      "subject_short": "a colorful diamond kite with a short ribbon tail"
+    },
+    {
+      "id": "img_world_letters_l",
+      "out": "img/world/letters/l.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly cartoon lion sitting proudly.",
+      "subject_short": "a cute friendly cartoon lion sitting proudly"
+    },
+    {
+      "id": "img_world_letters_m",
+      "out": "img/world/letters/m.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute playful monkey sitting.",
+      "subject_short": "a cute playful monkey sitting"
+    },
+    {
+      "id": "img_world_letters_n",
+      "out": "img/world/letters/n.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a bird nest with a few speckled eggs.",
+      "subject_short": "a bird nest with a few speckled eggs"
+    },
+    {
+      "id": "img_world_letters_o",
+      "out": "img/world/letters/o.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly purple octopus with smiling eyes.",
+      "subject_short": "a cute friendly purple octopus with smiling eyes"
+    },
+    {
+      "id": "img_world_letters_p",
+      "out": "img/world/letters/p.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute pink pig sitting happily.",
+      "subject_short": "a cute pink pig sitting happily"
+    },
+    {
+      "id": "img_world_letters_q",
+      "out": "img/world/letters/q.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a sparkling golden crown for a queen (no person).",
+      "subject_short": "a sparkling golden crown for a queen (no person)"
+    },
+    {
+      "id": "img_world_letters_r",
+      "out": "img/world/letters/r.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute soft white rabbit sitting.",
+      "subject_short": "a cute soft white rabbit sitting"
+    },
+    {
+      "id": "img_world_letters_s",
+      "out": "img/world/letters/s.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a bright cheerful yellow sun with soft rays.",
+      "subject_short": "a bright cheerful yellow sun with soft rays"
+    },
+    {
+      "id": "img_world_letters_t",
+      "out": "img/world/letters/t.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly tiger sitting.",
+      "subject_short": "a cute friendly tiger sitting"
+    },
+    {
+      "id": "img_world_letters_u",
+      "out": "img/world/letters/u.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: an open colorful kids umbrella.",
+      "subject_short": "an open colorful kids umbrella"
+    },
+    {
+      "id": "img_world_letters_v",
+      "out": "img/world/letters/v.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute stylized volcano with a tiny puff of smoke.",
+      "subject_short": "a cute stylized volcano with a tiny puff of smoke"
+    },
+    {
+      "id": "img_world_letters_w",
+      "out": "img/world/letters/w.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a juicy sliced watermelon wedge.",
+      "subject_short": "a juicy sliced watermelon wedge"
+    },
+    {
+      "id": "img_world_letters_x",
+      "out": "img/world/letters/x.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly fox sitting.",
+      "subject_short": "a cute friendly fox sitting"
+    },
+    {
+      "id": "img_world_letters_y",
+      "out": "img/world/letters/y.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a classic colorful yo-yo toy.",
+      "subject_short": "a classic colorful yo-yo toy"
+    },
+    {
+      "id": "img_world_letters_z",
+      "out": "img/world/letters/z.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly zebra standing.",
+      "subject_short": "a cute friendly zebra standing"
+    },
+    {
+      "id": "img_world_animals_lion",
+      "out": "img/world/animals/lion.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly African lion, soft mane, smiling.",
+      "subject_short": "a cute friendly African lion"
+    },
+    {
+      "id": "img_world_animals_elephant",
+      "out": "img/world/animals/elephant.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly African elephant, big ears.",
+      "subject_short": "a cute friendly African elephant"
+    },
+    {
+      "id": "img_world_animals_giraffe",
+      "out": "img/world/animals/giraffe.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly giraffe, long neck.",
+      "subject_short": "a cute friendly giraffe"
+    },
+    {
+      "id": "img_world_animals_zebra",
+      "out": "img/world/animals/zebra.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly zebra with bold stripes.",
+      "subject_short": "a cute friendly zebra with bold stripes"
+    },
+    {
+      "id": "img_world_animals_gorilla",
+      "out": "img/world/animals/gorilla.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly gorilla sitting calmly.",
+      "subject_short": "a cute friendly gorilla sitting calmly"
+    },
+    {
+      "id": "img_world_animals_hippopotamus",
+      "out": "img/world/animals/hippopotamus.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly hippopotamus.",
+      "subject_short": "a cute friendly hippopotamus"
+    },
+    {
+      "id": "img_world_animals_leopard",
+      "out": "img/world/animals/leopard.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly leopard with spots.",
+      "subject_short": "a cute friendly leopard with spots"
+    },
+    {
+      "id": "img_world_animals_crocodile",
+      "out": "img/world/animals/crocodile.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly crocodile, not scary.",
+      "subject_short": "a cute friendly crocodile"
+    },
+    {
+      "id": "img_world_animals_rhinoceros",
+      "out": "img/world/animals/rhinoceros.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute friendly rhinoceros.",
+      "subject_short": "a cute friendly rhinoceros"
+    },
+    {
+      "id": "img_world_animals_flamingo",
+      "out": "img/world/animals/flamingo.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute pink flamingo standing on one leg.",
+      "subject_short": "a cute pink flamingo standing on one leg"
+    },
+    {
+      "id": "img_world_numbers_apple",
+      "out": "img/world/numbers/apple.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a shiny red apple.",
+      "subject_short": "a shiny red apple"
+    },
+    {
+      "id": "img_world_numbers_duck",
+      "out": "img/world/numbers/duck.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute yellow rubber duck.",
+      "subject_short": "a cute yellow rubber duck"
+    },
+    {
+      "id": "img_world_numbers_star",
+      "out": "img/world/numbers/star.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a glossy golden five-pointed star.",
+      "subject_short": "a glossy golden five-pointed star"
+    },
+    {
+      "id": "img_world_numbers_banana",
+      "out": "img/world/numbers/banana.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a bright yellow banana.",
+      "subject_short": "a bright yellow banana"
+    },
+    {
+      "id": "img_world_numbers_butterfly",
+      "out": "img/world/numbers/butterfly.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a colorful butterfly with open wings.",
+      "subject_short": "a colorful butterfly with open wings"
+    },
+    {
+      "id": "img_world_numbers_balloon",
+      "out": "img/world/numbers/balloon.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a shiny red party balloon with a short string.",
+      "subject_short": "a shiny red party balloon with a short string"
+    },
+    {
+      "id": "img_world_numbers_fish",
+      "out": "img/world/numbers/fish.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute colorful fish.",
+      "subject_short": "a cute colorful fish"
+    },
+    {
+      "id": "img_world_numbers_ball",
+      "out": "img/world/numbers/ball.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a colorful soccer ball.",
+      "subject_short": "a colorful soccer ball"
+    },
+    {
+      "id": "img_world_numbers_egg",
+      "out": "img/world/numbers/egg.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a glossy white chicken egg.",
+      "subject_short": "a glossy white chicken egg"
+    },
+    {
+      "id": "img_world_countries_cameroon-food",
+      "out": "img/world/countries/cameroon-food.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: roasted corn on the cob, golden kernels, appetizing.",
+      "subject_short": "roasted corn on the cob"
+    },
+    {
+      "id": "img_world_countries_nigeria-food",
+      "out": "img/world/countries/nigeria-food.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a bowl of Nigerian jollof rice, orange-red seasoned rice with a few green peas.",
+      "subject_short": "a bowl of Nigerian jollof rice"
+    },
+    {
+      "id": "img_world_countries_ghana-food",
+      "out": "img/world/countries/ghana-food.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: cocoa pods and a small bar of chocolate beside them.",
+      "subject_short": "cocoa pods and a small bar of chocolate beside them"
+    },
+    {
+      "id": "img_world_countries_kenya-food",
+      "out": "img/world/countries/kenya-food.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a mound of soft white ugali (maize porridge) on a plate.",
+      "subject_short": "a mound of soft white ugali (maize porridge) on a plate"
+    },
+    {
+      "id": "img_world_countries_south-africa-food",
+      "out": "img/world/countries/south-africa-food.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a South African braai plate with grilled meat pieces and a sausage.",
+      "subject_short": "a South African braai plate with grilled meat pieces and a sausage"
+    },
+    {
+      "id": "img_world_places_house",
+      "out": "img/world/places/house.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute cozy toy house with a garden, warm sunny look. Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute cozy toy house with a garden"
+    },
+    {
+      "id": "img_world_places_abc",
+      "out": "img/world/places/abc.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute wooden toy alphabet train with blank block faces (no readable letters or numbers on the blocks). Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute wooden toy alphabet train with blank block faces (no readable letters or "
+    },
+    {
+      "id": "img_world_places_hunt",
+      "out": "img/world/places/hunt.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute magnifying glass and a colorful crayon together. Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute magnifying glass and a colorful crayon together"
+    },
+    {
+      "id": "img_world_places_numbers",
+      "out": "img/world/places/numbers.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute colorful abacus toy with beads (no readable digits). Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute colorful abacus toy with beads (no readable digits)"
+    },
+    {
+      "id": "img_world_places_count",
+      "out": "img/world/places/count.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a neat pile of cute counting stars and small toys (no readable numbers). Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a neat pile of cute counting stars and small toys (no readable numbers)"
+    },
+    {
+      "id": "img_world_places_safari",
+      "out": "img/world/places/safari.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute safari jeep with binoculars, African savanna toy style. Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute safari jeep with binoculars"
+    },
+    {
+      "id": "img_world_places_animalquiz",
+      "out": "img/world/places/animalquiz.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute stack of animal picture cards with blank faces (no text). Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute stack of animal picture cards with blank faces (no text)"
+    },
+    {
+      "id": "img_world_places_countries",
+      "out": "img/world/places/countries.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute stylized globe showing the continent of Africa, glossy toy style. Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute stylized globe showing the continent of Africa"
+    },
+    {
+      "id": "img_world_places_flagquiz",
+      "out": "img/world/places/flagquiz.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute triangular flag on a small pole, colorful but not any real national flag. Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute triangular flag on a small pole"
+    },
+    {
+      "id": "img_world_places_prayer",
+      "out": "img/world/places/prayer.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a cute soft glowing heart and folded praying hands icon-like 3D objects, warm golden light. Icon-like single centered prop/scene for a kids app activity button.",
+      "subject_short": "a cute soft glowing heart and folded praying hands icon-like 3D objects"
+    },
+    {
+      "id": "img_world_prayers_morning",
+      "out": "img/world/prayers/morning.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a warm scene of a cute African child (about age 6-8) kneeling by a sunny window saying a morning prayer, soft golden light, simple pajamas. Kid-friendly wholesome scene; subject group centered for easy cutout.",
+      "subject_short": "a warm scene of a cute African child (about age 6-8) kneeling by a sunny window "
+    },
+    {
+      "id": "img_world_prayers_meal",
+      "out": "img/world/prayers/meal.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a warm scene of a cute African child sitting at a small table with a simple meal, hands folded in prayer before eating. Kid-friendly wholesome scene; subject group centered for easy cutout.",
+      "subject_short": "a warm scene of a cute African child sitting at a small table with a simple meal"
+    },
+    {
+      "id": "img_world_prayers_bedtime",
+      "out": "img/world/prayers/bedtime.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a warm scene of a cute African child in pajamas kneeling beside a cozy bed saying a bedtime prayer, soft night-lamp light. Kid-friendly wholesome scene; subject group centered for easy cutout.",
+      "subject_short": "a warm scene of a cute African child in pajamas kneeling beside a cozy bed sayin"
+    },
+    {
+      "id": "img_world_prayers_thanks",
+      "out": "img/world/prayers/thanks.webp",
+      "aspect_ratio": "1:1",
+      "prompt": "Cute glossy kid-friendly 3D Pixar-style render, bold saturated colors, soft studio lighting, single subject centered, small margin around subject, highly detailed plastic/clay look with smooth highlights, friendly and playful. Plain solid pure white background (#FFFFFF) filling the entire frame. NO text, NO letters, NO numbers, NO logos, NO watermarks, NO frames, NO borders, NO UI. Subject: a warm scene of a cute African child with hands over heart, grateful expression, soft glowing light. Kid-friendly wholesome scene; subject group centered for easy cutout.",
+      "subject_short": "a warm scene of a cute African child with hands over heart"
+    }
+  ]
+}

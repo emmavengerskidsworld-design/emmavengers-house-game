@@ -8,7 +8,7 @@ class Q(http.server.SimpleHTTPRequestHandler):
     def handle(self):
         try:super().handle()
         except Exception:pass
-SCREENS=[('home',"go('home')"),('levelmap',"state.room='kitchen';go('levelmap')"),('learn1',"state.room='kitchen';startLevel(1)"),('find2',"state.room='kitchen';startLevel(2)"),('used3',"state.room='bedroom';startLevel(3)"),('settable',"state.room='kitchen';startLevel(4)"),('bedhunt',"state.room='bedroom';startLevel(4)"),('bubbles',"state.room='bathroom';startLevel(4)"),('tidy',"state.room='living room';startLevel(4)"),('bible',"go('bible')"),('reader',"go('reader',{b:'noah',i:1})"),('reader5',"go('reader',{b:'noah',i:5})"),('morning',"go('morning')"),('mstep',"go('mstep',{i:0})"),('mstep3',"go('mstep',{i:3})")]
+SCREENS=[('home',"go('home')"),('house',"go('house')"),('land-faith',"go('land',{id:'faith'})"),('land-letter',"go('land',{id:'letter'})"),('land-number',"go('land',{id:'number'})"),('land-nature',"go('land',{id:'nature'})"),('land-world',"go('land',{id:'world'})"),('abc',"go('wcards',{l:'letter',p:'abc'})"),('hunt',"go('wquiz',{l:'letter',p:'hunt'})"),('count',"go('wcount',{l:'number',p:'count'})"),('safari',"go('wcards',{l:'nature',p:'safari'})"),('flagquiz',"go('wquiz',{l:'world',p:'flagquiz'})"),('countries',"go('wcards',{l:'world',p:'countries'})"),('levelmap',"state.room='kitchen';go('levelmap')"),('learn1',"state.room='kitchen';startLevel(1)"),('find2',"state.room='kitchen';startLevel(2)"),('used3',"state.room='bedroom';startLevel(3)"),('settable',"state.room='kitchen';startLevel(4)"),('bedhunt',"state.room='bedroom';startLevel(4)"),('bubbles',"state.room='bathroom';startLevel(4)"),('tidy',"state.room='living room';startLevel(4)"),('bible',"go('bible')"),('reader',"go('reader',{b:'noah',i:1})"),('reader5',"go('reader',{b:'noah',i:5})"),('morning',"go('morning')"),('mstep',"go('mstep',{i:0})"),('mstep3',"go('mstep',{i:3})")]
 CHECK="""()=>{const W=innerWidth,H=innerHeight,bad=[];document.querySelectorAll('button,.btn,img,video,h1,h2,.prompt,.nm').forEach(e=>{const r=e.getBoundingClientRect();if(!r.width||getComputedStyle(e).visibility=='hidden')return;if(r.left<-2||r.right>W+2)bad.push((e.id||e.className||e.tagName)+' x:'+Math.round(r.left)+'-'+Math.round(r.right))});return {sw:document.documentElement.scrollWidth,W,bad:bad.slice(0,6)}}"""
 async def main():
     srv=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Q,directory=str(ROOT)));port=srv.server_address[1];threading.Thread(target=srv.serve_forever,daemon=True).start()
@@ -18,7 +18,7 @@ async def main():
         for vw,vh in [(390,844),(412,915)]:
             ctx=await b.new_context(viewport={'width':vw,'height':vh},device_scale_factor=2,is_mobile=True,has_touch=True);pg=await ctx.new_page()
             pg.on('pageerror',lambda e:errs.append(str(e)))
-            await pg.goto(f'http://127.0.0.1:{port}/',wait_until='networkidle')
+            await pg.goto(f'http://127.0.0.1:{port}/',wait_until='networkidle');await pg.wait_for_function('LANDS!==null')
             for name,arg in SCREENS:
                 s=name
                 try:

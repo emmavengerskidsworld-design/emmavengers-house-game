@@ -7,7 +7,7 @@ URL=sys.argv[1];LABEL=sys.argv[2];THR=len(sys.argv)<4 or sys.argv[3]!='nothrottl
 INIT="""window.__ev=[];window.__t0=0;addEventListener('pointerdown',()=>{window.__t0=performance.now()},true);
 const op=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){const el=this;el.addEventListener('playing',()=>{if(!el.muted)__ev.push({t:performance.now(),src:el.currentSrc})},{once:true});return op.apply(this,arguments)};
 if(window.speechSynthesis){const sp=speechSynthesis.speak.bind(speechSynthesis);speechSynthesis.speak=u=>{__ev.push({t:performance.now(),src:'TTS'});sp(u)}}"""
-TAPS=[('Kitchen room','.room[data-k="kitchen"]'),('Level 1 node','.lnode[data-l="1"]'),('Find It (learn)','.mode[data-m]'),('BACK',None),('BACK',None),('BACK',None),('Bible Library','.room.bible'),('Noah book','.book[data-b="noah"]'),('BACK',None),('BACK',None),('Mia Morning','.room.mhome'),('BACK',None),('Bedroom room','.room[data-k="bedroom"]')]
+TAPS=[('Faith Land','.wsignb[data-l="faith"]'),('Emmavengers House','.wplace[data-p="house"]'),('Kitchen room','.room[data-k="kitchen"]'),('Level 1 node','.lnode[data-l="1"]'),('Find It (learn)','.mode[data-m]'),('BACK',None),('BACK',None),('BACK',None),('Bible Land','.wplace[data-p="bible"]'),('Noah book','.book[data-b="noah"]'),('BACK',None),('BACK',None),("Mia's Day",'.wplace[data-p="mia"]'),('BACK',None),('BACK',None),('Letter Land','.wsignb[data-l="letter"]'),('ABC Sounds','.wplace[data-p="abc"]'),('Letter A card','.wtile[data-i="0"]'),('BACK',None),('BACK',None),('BACK',None),('Number Land','.wsignb[data-l="number"]'),('Count It','.wplace[data-p="count"]')]
 async def measure(pg,sel):
     await pg.evaluate('__ev=[]');await pg.click(sel)
     for _ in range(200):
