@@ -653,7 +653,7 @@ addEventListener('pointerdown',busy,{capture:true,passive:true});
 /* Web Audio voice engine: clips decode into AudioBuffers (LRU) and play through the shared AudioContext,
    so a tap starts in milliseconds instead of waiting for the media element to spin up. HTMLAudio is the fallback. */
 const warmed=new Set(),wq=[];let wRun=0,wPri=false;
-function warmPump(){while(wRun<(wPri?3:2)&&wq.length){if((vPlaying()&&!wPri)||vNetLoad()){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
+function warmPump(){while(wRun<(wPri?3:2)&&wq.length){if((vPlaying()&&!wPri)||vNetLoad()||(vWait&&Date.now()-vWait<2500)){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
  decodeClip(u).catch(()=>warmed.delete(u)).finally(()=>{wRun--;warmPump()})}}
 function warmVoice(list,prio){wPri=!!prio;const add=[];(list||[]).flat().filter(Boolean).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u)||vBuf.has(u))return;warmed.add(u);add.push(u)});
  if(prio)wq.unshift(...add);else wq.push(...add);warmPump()}
@@ -667,7 +667,9 @@ function decodeClip(u){if(vBuf.has(u)){vTouch(u);return Promise.resolve(vBuf.get
  const a=actx();if(!a)return Promise.reject(0);
  const job=fetchClip(u).then(ab=>a.decodeAudioData(ab.slice(0))).then(buf=>{vBuf.set(u,buf);vTouch(u);vDec.delete(u);return buf}).catch(e=>{vDec.delete(u);throw e});
  vDec.set(u,job);return job}
-let vRate=1,vDetune=0,vNodes=[],vDuckT=null,vEndAt=0;
+let vRate=1,vDetune=0,vNodes=[],vDuckT=null,vEndAt=0,vWait=0,vAfter=[];
+/* the line the child asked for goes first: warming and next-part prefetch wait until it has started */
+function vStarted(){if(!vWait&&!vAfter.length)return;vWait=0;const f=vAfter;vAfter=[];f.forEach(u=>decodeClip(u).catch(()=>{}));warmPump()}
 function applyVoiceRates(){const s=+vSet.speed||1,p=+vSet.pitch||1;
  if(Math.abs(p-1)<0.02){vRate=s;vDetune=0}else{vRate=s;vDetune=Math.round(1200*Math.log2(Math.min(1.25,Math.max(.85,p))))}
  vNodes.forEach(n=>{try{n.playbackRate.value=vRate;n.detune.value=vDetune}catch(e){}})}
@@ -685,13 +687,13 @@ function audioUnlock(){const a=actx();if(a&&a.state!=='running')a.resume();
 addEventListener('pointerdown',()=>warmVoice([...PRAISE,...TRY,'Great job! Level complete!']),{once:true,passive:true});
 ['pointerdown','touchend','click','keydown'].forEach(e=>addEventListener(e,audioUnlock,{capture:true,passive:true}));
 document.addEventListener('visibilitychange',()=>{if(document.hidden){vStopNodes();try{ac&&ac.suspend()}catch(e){}}else{try{ac&&ac.resume()}catch(e){}}});
-function stopVoice(){vTok++;vEndAt=0;vEl.onended=vEl.onerror=null;try{vEl.pause()}catch(e){}vAud=null;vStopNodes();try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
-function ttsFallback(t,done){try{if(!('speechSynthesis' in window))return done();const u=new SpeechSynthesisUtterance(t);u.rate=.9*vSet.speed;u.pitch=1.15*vSet.pitch;u.lang='en-US';u.onend=u.onerror=done;speechSynthesis.speak(u)}catch(e){done()}}
+function stopVoice(){vTok++;vEndAt=0;vEl.onended=vEl.onerror=vEl.onplaying=null;try{vEl.pause()}catch(e){}vAud=null;vStopNodes();try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
+function ttsFallback(t,done){vStarted();try{if(!('speechSynthesis' in window))return done();const u=new SpeechSynthesisUtterance(t);u.rate=.9*vSet.speed;u.pitch=1.15*vSet.pitch;u.lang='en-US';u.onend=u.onerror=done;speechSynthesis.speak(u)}catch(e){done()}}
 function sayHtml(txt,tok,next){const a=vEl;vAud=a;let fell=false;a.muted=false;
  const fb=()=>{if(fell||tok!==vTok)return;fell=true;ttsFallback(txt,next)};
- a.onended=()=>{if(tok===vTok)next()};a.onerror=fb;a.src=voiceUrl(txt);a.preservesPitch=Math.abs(vDetune)<1;a.playbackRate=vDetune?Math.min(2,Math.max(.5,vRate*Math.pow(2,vDetune/1200))):vRate;
+ a.onended=()=>{if(tok===vTok)next()};a.onplaying=()=>{if(tok===vTok)vStarted()};a.onerror=fb;a.src=voiceUrl(txt);a.preservesPitch=Math.abs(vDetune)<1;a.playbackRate=vDetune?Math.min(2,Math.max(.5,vRate*Math.pow(2,vDetune/1200))):vRate;
  const pr=a.play();if(pr&&pr.catch)pr.catch(e=>{if(tok!==vTok)return;if(e&&e.name==='NotAllowedError'){vPend={t:[txt],h:null};return}if(e&&e.name==='AbortError')return;fb()})}
-function say(t,h,quiet){busy();const parts=(Array.isArray(t)?t:[t]).filter(Boolean);if(!quiet)mascot(parts.join(' '),h);stopVoice();vPend=null;const tok=vTok;let i=0;vEndAt=0;parts.slice(1).forEach(x=>{if(!(!vDetune&&Math.abs(vRate-1)>.02))decodeClip(voiceUrl(x)).catch(()=>{})});
+function say(t,h,quiet){busy();const parts=(Array.isArray(t)?t:[t]).filter(Boolean);if(!quiet)mascot(parts.join(' '),h);stopVoice();vPend=null;const tok=vTok;let i=0;vEndAt=0;vWait=parts.length?Date.now():0;vAfter=(!vDetune&&Math.abs(vRate-1)>.02)?[]:parts.slice(1).map(voiceUrl);
  const next=()=>{if(tok!==vTok||i>=parts.length)return;const txt=parts[i++];
   const playBuf=(buf)=>{if(tok!==vTok)return;const a=actx();if(!a)return sayHtml(txt,tok,next);vEl.onended=vEl.onerror=null;
    const ua=navigator.userActivation;if(a.state!=='running'){try{a.resume()}catch(e){}if(ua&&!ua.hasBeenActive){vPend={t:parts.slice(i-1),h};return}}
@@ -699,7 +701,7 @@ function say(t,h,quiet){busy();const parts=(Array.isArray(t)?t:[t]).filter(Boole
    g.gain.value=.95;src.connect(g).connect(a.destination);vNodes.push(src);vDuck(true);
    src.onended=()=>{const k=vNodes.indexOf(src);if(k>=0)vNodes.splice(k,1);if(!vNodes.length){vDuck(false);vElEvent('ended')}if(tok===vTok)next()};
    const t0=Math.max(a.currentTime+.005,vEndAt);vEndAt=t0+buf.duration/(vRate*Math.pow(2,vDetune/1200));try{src.start(t0)}catch(e){return sayHtml(txt,tok,next)}
-   vElEvent('playing')};
+   vElEvent('playing');vStarted()};
   if(!vDetune&&Math.abs(vRate-1)>.02)return sayHtml(txt,tok,next); // speed-only change keeps HTMLAudio's pitch-preserving stretch
   if(vBuf.has(voiceUrl(txt)))return playBuf(vBuf.get(voiceUrl(txt)));
   /* Not decoded yet. Cached on the phone: decode now (a few ms). Only on the network: stream it with HTMLAudio right away
@@ -742,9 +744,9 @@ $('#backBtn').onclick=()=>{sfx.tap();
 };
 /* The Emmavengers House (all rooms + levels). The app home is the Emmavengers World map (world.js). */
 function house(){$('#title').textContent='Emmavengers House';
- warmVoice([...['kitchen','bedroom','bathroom','living room'].flatMap(r=>{const T=L4[r];return ['Welcome to the '+r+'! Pick a level!',...(T?[T.n,T.sub]:[])]}),'Welcome to the Bible Library! Pick a story to read!',"Let's start Mia's Morning Routine!",'What do I do after waking up?'],1);
  main.innerHTML=`<div class="prompt">Pick a room to play! <button class="say" aria-label="Read aloud">🔊</button></div><div class="grid rooms">${ROOMS.map(r=>{const open=OPEN_ROOMS.has(r.k);const tr=open&&roomTrophy(r.k);return `<button class="room ${open?'':'locked'}" data-k="${r.k}">${open?'':'<span class="lock">🔒</span>'}${tr?'<span class="trophy">🏆</span>':''}<div class="em">${r.em}</div><div class="nm">${r.n}</div><div class="sub">${open?(tr?'Trophy earned!':'4 levels to play!'):'Coming soon'}</div></button>`}).join('')}<button class="room mhome" data-k="morning"><span class="new">NEW!</span><div class="cv"><img src="img/morning/card.jpg" alt="Morning Routine"></div><div class="txt"><div class="nm">☀️ Mia's Morning Routine</div><div class="sub">Help Mia start her day!</div></div></button><button class="room bible" data-k="bible"><span class="new">NEW!</span><div class="em">📖</div><div class="txt"><div class="nm">Bible Library</div><div class="sub">Tap to read Bible stories!</div></div></button></div>`;
  main.querySelector('.say').onclick=()=>say('Pick a room to play!');say('Pick a room to play!');
+ warmVoice([...['kitchen','bedroom','bathroom','living room'].flatMap(r=>{const T=L4[r];return ['Welcome to the '+r+'! Pick a level!',...(T?[T.n,T.sub]:[])]}),'Welcome to the Bible Library! Pick a story to read!',"Let's start Mia's Morning Routine!",'What do I do after waking up?'],1);
  main.querySelectorAll('.room').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k==='bible'){sfx.tap();go('bible');return}if(k==='morning'){sfx.tap();go('morning');return}if(OPEN_ROOMS.has(k)){sfx.tap();go(k)}else{sfx.wrong();say(b.querySelector('.nm').textContent+' is coming soon!')}})}
 const MODES=[["find","🔍","Find It","Find the right picture"],["use","🤔","What Is It Used For?","Pick the right use"],["room","🏠","Which Room?","Put it in the right room"],["spell","🔤","Spell It","Tap the letters in order"]];
 function kitchen(){state.room='kitchen';go('levelmap')}
