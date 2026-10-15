@@ -9,6 +9,8 @@ const BATCH=4,RETRIES=3,QUIET=6000;
 let lastBusy=0;const inflight=new Set();const sleep=ms=>new Promise(z=>setTimeout(z,ms));
 function markBusy(){lastBusy=Date.now();for(const a of inflight)try{a.abort()}catch(e){};inflight.clear()}
 try{new BroadcastChannel('emma-prio').onmessage=markBusy}catch(e){}
+/* A newer version is downloading or waiting: stop background work so it can take over right away. */
+const updating=()=>!!(self.registration&&self.registration.active&&(self.registration.waiting||self.registration.installing));
 async function gate(){while(Date.now()-lastBusy<QUIET)await sleep(400)}
 async function getOne(c,u,urgent){for(let t=0;t<RETRIES;){if(!urgent)await gate();const ac=new AbortController();if(!urgent)inflight.add(ac);
  try{const r=await fetch(u,{cache:'reload',signal:ac.signal});if(r.ok){const b=await r.blob();await c.put(u,new Response(b,{status:200,headers:r.headers}));return true}}
@@ -23,7 +25,7 @@ async function precache(){const c=await caches.open(CACHE);const todo=[];for(con
 async function cacheVoicePack(id){
   const list=VOICE_PACKS[id]; if(!list||!list.length)return {ok:false,id,n:0};
   const c=await caches.open(CACHE); let n=0;
-  for(let i=0;i<list.length;i+=BATCH){
+  for(let i=0;i<list.length;i+=BATCH){if(updating())break;
     const part=list.slice(i,i+BATCH);
     const ok=await Promise.all(part.map(u=>caches.match(u,{ignoreSearch:true}).then(r=>r?true:getOne(c,u,true))));
     ok.forEach(x=>{if(x)n++});
@@ -41,10 +43,10 @@ async function cacheBook(slug,id){const b=BOOKS[slug];if(!b)return {slug,ok:fals
   if(await c.match(mk))return {slug,ok:true,cached:true};
   const ids=[...new Set(['mia',id||'mia'])];
   const urls=[...b.files,...ids.flatMap(i=>b.voice.map(h=>vUrl(i,h)))];
-  let fail=0;for(let i=0;i<urls.length;i+=BATCH){const part=urls.slice(i,i+BATCH);const ok=await Promise.all(part.map(u=>getOne(c,u)));ok.forEach(x=>{if(!x)fail++})}
+  let fail=0;for(let i=0;i<urls.length;i+=BATCH){if(updating()){fail++;break}const part=urls.slice(i,i+BATCH);const ok=await Promise.all(part.map(u=>getOne(c,u)));ok.forEach(x=>{if(!x)fail++})}
   if(!fail)await c.put(mk,new Response(BUILD));
   return {slug,ok:!fail,n:urls.length,fail}}finally{delete busy[key]}})()}
-async function cacheAllBooks(id){await refreshManifest();const res=[];for(const s of Object.keys(BOOKS))res.push(await cacheBook(s,id));return res}
+async function cacheAllBooks(id){await refreshManifest();const res=[];for(const s of Object.keys(BOOKS)){if(updating())break;res.push(await cacheBook(s,id))}return res}
 async function tell(msg,src){const cl=await self.clients.matchAll({type:'window'});cl.forEach(c=>c.postMessage(msg));}
 self.addEventListener('install',e=>e.waitUntil(precache()));
 self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith('emma-house-')&&k!==CACHE)await caches.delete(k);await self.clients.claim()})()));
@@ -57,7 +59,7 @@ self.addEventListener('message',e=>{
     e.waitUntil((async()=>{const r=await cacheVoicePack(d.id);tell({type:'voiceCached',...r})})());
   }
   if(d&&d.type==='cacheBook'){e.waitUntil((async()=>{const r=await cacheBook(d.slug,d.voice);tell({type:'bookCached',...r})})())}
-  if(d&&d.type==='cacheBooks'){e.waitUntil((async()=>{const r=await cacheAllBooks(d.voice);tell({type:'booksCached',books:r})})())}
+  if(d&&d.type==='cacheBooks'){/* no waitUntil: a long background download must never block a new version */(async()=>{const r=await cacheAllBooks(d.voice);tell({type:'booksCached',books:r})})()}
 });
 async function rangeResp(r,range){const b=await r.blob();const m=/bytes=(\d*)-(\d*)/.exec(range);let s=m&&m[1]?+m[1]:0,end=m&&m[2]?+m[2]:b.size-1;if(end>=b.size)end=b.size-1;
  return new Response(b.slice(s,end+1),{status:206,headers:{'Content-Type':r.headers.get('Content-Type')||'audio/mpeg','Content-Range':`bytes ${s}-${end}/${b.size}`,'Content-Length':String(end-s+1),'Accept-Ranges':'bytes'}})}
