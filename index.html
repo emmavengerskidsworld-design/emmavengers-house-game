@@ -332,6 +332,12 @@ body.morning main.enter>*{animation:none!important}
 
 
 /* ===== Voice Settings ===== */
+/* reading-voice toggle: crossed out when off; screen "read aloud" buttons hide so kids read by themselves */
+.vtog{position:relative}.vtog.off{background:#e9e9e9;opacity:.9}.vtog.off::after{content:"";position:absolute;left:18%;right:18%;top:50%;height:5px;margin-top:-2.5px;background:#e8261c;border-radius:3px;transform:rotate(-45deg);box-shadow:0 0 0 2px #fff}
+body.voiceoff main .say,body.voiceoff .pop .say,body.voiceoff .rctl .say{display:none!important}
+.vrow{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.75);border:4px solid #ffc400;border-radius:20px;padding:10px 14px;margin-bottom:12px;font-size:clamp(16px,2.8vw,22px)}
+.vrow .btn{min-width:120px}
+@media (max-width:400px){header{gap:6px}}
 .vsetbtn{width:52px;height:52px;min-width:52px;border-radius:50%;padding:0;font-size:26px;display:flex;align-items:center;justify-content:center;flex:none}
 @media (orientation:portrait) and (max-width:600px){.vsetbtn{width:44px;height:44px;min-width:44px;font-size:21px}}
 .vpanel{position:fixed;inset:0;z-index:90;background:rgba(10,40,100,.55);display:flex;align-items:center;justify-content:center;padding:12px;animation:fadein .2s}
@@ -460,6 +466,7 @@ body.wmapmode main.enter>*{animation:none}
  <div class="title" id="title">Emmavengers World</div>
  <button class="btn vsetbtn" id="parentBtn" aria-label="Parents corner">🔒</button>
  <button class="btn vsetbtn" id="voiceBtn" aria-label="Voice settings">🔊</button>
+ <button class="btn vsetbtn vtog" id="vtogBtn" aria-label="Turn reading voice off" aria-pressed="true">🗣️</button>
  <button class="btn mute" id="muteBtn" aria-label="Music on/off">🎵</button>
  <div class="pill" id="score">⭐ 0</div>
 </header>
@@ -645,6 +652,8 @@ function voiceBase(){return vSet.id==='mia'?'voice/':('voice/'+vSet.id+'/')}
 const vh=t=>{let h=0x811c9dc5;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h.toString(16).padStart(8,'0')};
 function voiceUrl(t){return voiceBase()+vh(t)+'.mp3'}
 let vAud=null,vTok=0,vPend=null;
+/* Silent reading: the reading voice can be switched off (music + sound effects keep playing). */
+let voiceOff=localStorage.getItem('emmaVoiceOff')==='1';
 /* Tell the service worker to pause background downloads while the child is playing (voice first!). */
 let lastTap=0,busyAt=0;const prioBC=(()=>{try{return new BroadcastChannel('emma-prio')}catch(e){return null}})();
 function busy(){lastTap=Date.now();if(Date.now()-busyAt<1500)return;busyAt=Date.now();if(prioBC)prioBC.postMessage(1)}
@@ -655,7 +664,7 @@ addEventListener('pointerdown',busy,{capture:true,passive:true});
 const warmed=new Set(),wq=[];let wRun=0,wPri=false;
 function warmPump(){while(wRun<(wPri?3:2)&&wq.length){if((vPlaying()&&!wPri)||vNetLoad()||(vWait&&Date.now()-vWait<2500)){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
  wLive.add(u);decodeClip(u,1).catch(()=>{if(wLive.has(u))warmed.delete(u)}).finally(()=>{wLive.delete(u);wRun--;warmPump()})}}
-function warmVoice(list,prio){wPri=!!prio;const add=[];(list||[]).flat().filter(Boolean).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u)||vBuf.has(u))return;warmed.add(u);add.push(u)});
+function warmVoice(list,prio){if(voiceOff)return;wPri=!!prio;const add=[];(list||[]).flat().filter(Boolean).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u)||vBuf.has(u))return;warmed.add(u);add.push(u)});
  if(prio)wq.unshift(...add);else wq.push(...add);setTimeout(warmPump,0)} // after the current tap's say() has claimed the network
 const vEl=new Audio();vEl.preload='auto';let vUnlocked=false;
 const vBuf=new Map(),vBufQ=[];const VBUF_MAX=96;
@@ -683,7 +692,7 @@ function vNetLoad(){return !vEl.paused&&!vEl.muted&&vEl.readyState<3}
 function vPlaying(){return vNodes.length>0||(!vEl.paused&&!vEl.muted&&!vEl.ended)||(window.speechSynthesis&&speechSynthesis.speaking)}
 function vStopNodes(){vNodes.forEach(n=>{try{n.onended=null;n.stop();n.disconnect()}catch(e){}});vNodes=[];if(vDuckT){clearTimeout(vDuckT);vDuckT=null}vDuck(false)}
 function vElEvent(type){try{vEl.dispatchEvent(new Event(type))}catch(e){}}
-function cacheVoicePack(id){if(!('serviceWorker' in navigator)||!navigator.serviceWorker.controller)return;navigator.serviceWorker.controller.postMessage({type:'cacheVoice',id:id||vSet.id})}
+function cacheVoicePack(id){if(voiceOff)return;if(!('serviceWorker' in navigator)||!navigator.serviceWorker.controller)return;navigator.serviceWorker.controller.postMessage({type:'cacheVoice',id:id||vSet.id})}
 function audioUnlock(){const a=actx();if(a&&a.state!=='running')a.resume();
  if(!vUnlocked){vUnlocked=true;if(!vEl.src){vEl.muted=true;vEl.src=voiceUrl("Let's learn!");applyVoiceRates();const pr=vEl.play();if(pr&&pr.then)pr.then(()=>{if(vEl.muted){vEl.pause();vEl.muted=false}}).catch(()=>{vUnlocked=false;vEl.muted=false})}}
  if(vPend){const p=vPend;vPend=null;say(p.t,p.h,1)}}
@@ -696,7 +705,7 @@ function sayHtml(txt,tok,next){const a=vEl;vAud=a;let fell=false;a.muted=false;
  const fb=()=>{if(fell||tok!==vTok)return;fell=true;ttsFallback(txt,next)};
  a.onended=()=>{if(tok===vTok)next()};a.onplaying=()=>{if(tok===vTok)vStarted()};a.onerror=fb;a.src=voiceUrl(txt);a.preservesPitch=Math.abs(vDetune)<1;a.playbackRate=vDetune?Math.min(2,Math.max(.5,vRate*Math.pow(2,vDetune/1200))):vRate;
  const pr=a.play();if(pr&&pr.catch)pr.catch(e=>{if(tok!==vTok)return;if(e&&e.name==='NotAllowedError'){vPend={t:[txt],h:null};return}if(e&&e.name==='AbortError')return;fb()})}
-function say(t,h,quiet){busy();const parts=(Array.isArray(t)?t:[t]).filter(Boolean);if(!quiet)mascot(parts.join(' '),h);stopVoice();vPend=null;const tok=vTok;let i=0;vEndAt=0;vWait=parts.length?Date.now():0;vAfter=(!vDetune&&Math.abs(vRate-1)>.02)?[]:parts.slice(1).map(voiceUrl);
+function say(t,h,quiet){busy();const parts=(Array.isArray(t)?t:[t]).filter(Boolean);if(!quiet)mascot(parts.join(' '),h);stopVoice();vPend=null;if(voiceOff)return;const tok=vTok;let i=0;vEndAt=0;vWait=parts.length?Date.now():0;vAfter=(!vDetune&&Math.abs(vRate-1)>.02)?[]:parts.slice(1).map(voiceUrl);
  const next=()=>{if(tok!==vTok||i>=parts.length)return;const txt=parts[i++];
   const playBuf=(buf)=>{if(tok!==vTok)return;const a=actx();if(!a)return sayHtml(txt,tok,next);vEl.onended=vEl.onerror=null;
    const ua=navigator.userActivation;if(a.state!=='running'){try{a.resume()}catch(e){}if(ua&&!ua.hasBeenActive){vPend={t:parts.slice(i-1),h};return}}
@@ -1117,7 +1126,7 @@ window.__extraVoice=[
  'I brush my teeth until they sparkle!','Splash! Time for a nice warm bath!',
  'I get dressed and look so smart!','Yummy breakfast! Time to eat!',
  'I help wash the plates. What a helper!','Off to the day! Good morning!','Good morning!',
- 'You are a Morning Champion!','Morning Champion!','What a wonderful morning!',
+ 'You are a Morning Champion!','Morning Champion!','What a wonderful morning!','Voice on!',
  "Let's start Mia's Morning Routine!",'What do I do next?',
  'What do I do after I pray?','What do I do after I make my bed?',
  'What do I do after I greet Mummy and Daddy?','What do I do after I brush my teeth?',
@@ -1328,10 +1337,12 @@ function openVoiceSettings(){
    <label><span>Speed</span><input id="vSpeed" type="range" min="0.8" max="1.4" step="0.05" value="${vSet.speed}"><b class="val" id="vSpeedV">${vSet.speed.toFixed(2)}×</b></label>
    <label><span>Pitch</span><input id="vPitch" type="range" min="0.85" max="1.25" step="0.05" value="${vSet.pitch}"><b class="val" id="vPitchV">${vSet.pitch.toFixed(2)}×</b></label>
   </div>
+  <div class="vrow"><span>Reading voice</span><button type="button" class="btn" id="vOffBtn"></button></div>
   <div class="vdl" id="vDl"></div>
   <div class="row"><button type="button" class="btn" id="vClose">Done ✓</button></div>
  </div>`;
  document.body.appendChild(d);
+ syncVoiceUI();$('#vOffBtn').onclick=()=>{sfx.tap();setVoiceOff(!voiceOff)};
  const dl=$('#vDl');
  const setDl=t=>{dl.textContent=t||''};
  d.querySelectorAll('.vcard').forEach(b=>b.onclick=()=>{
@@ -1355,6 +1366,12 @@ function openVoiceSettings(){
  });
 }
 $('#voiceBtn').onclick=()=>openVoiceSettings();
+function setVoiceOff(off){voiceOff=!!off;localStorage.setItem('emmaVoiceOff',voiceOff?'1':'0');syncVoiceUI();
+ if(voiceOff){stopVoice();wq.length=0;try{wAC.abort()}catch(e){}wAC=new AbortController();wLive.clear();warmed.clear();mascot('Voice off. You can read by yourself!')}
+ else{say('Voice on!',1);if(vSet.id!=='mia')cacheVoicePack(vSet.id)}}
+function syncVoiceUI(){const b=$('#vtogBtn');if(b){b.classList.toggle('off',voiceOff);b.setAttribute('aria-pressed',voiceOff?'false':'true');b.setAttribute('aria-label',voiceOff?'Turn reading voice on':'Turn reading voice off');b.title=voiceOff?'Voice off':'Voice on'}
+ document.body.classList.toggle('voiceoff',voiceOff);const v=$('#vOffBtn');if(v){v.textContent=voiceOff?'🔇 Off':'🗣️ On';v.classList.toggle('off',voiceOff)}}
+$('#vtogBtn').onclick=()=>{sfx.tap();setVoiceOff(!voiceOff)};syncVoiceUI();
 /* Parents' corner: math gate (default) or a 4-digit PIN once the parent sets one. */
 const YOUTUBE_URL='https://www.youtube.com/@emmavengerskidsworld-14';
 function openParents(){
