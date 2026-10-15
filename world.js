@@ -59,7 +59,8 @@ function land(a){const L=landById((a&&a.id)||curLand);if(!L){go('home');return}c
  main.querySelector('.wsay').onclick=()=>say(L.intro);
  main.querySelectorAll('.wplace').forEach(b=>b.onclick=()=>{sfx.tap();openPlace(L,placeById(L,b.dataset.p))});
  say(L.intro);
- warmVoice([...L.places.map(p=>p.intro),...L.places.flatMap(p=>p.deck?wDeck(p.deck).items.slice(0,4).flatMap(it=>it.say.slice(0,2)):[])].filter(Boolean),1)}
+ const LINK_SAY={house:'Pick a room to play!',bible:'Welcome to the Bible Library! Pick a story to read!',morning:"Let's start Mia's Morning Routine!"};
+ warmVoice([...L.places.map(p=>p.type==='link'?LINK_SAY[p.go]:p.intro),...L.places.flatMap(p=>p.deck?wDeck(p.deck).items.slice(0,4).flatMap(it=>it.say.slice(0,2)):[])].filter(Boolean),1)}
 function openPlace(L,p){if(!p)return;const a={l:L.id,p:p.id};
  if(p.type==='link'){go(p.go);return}
  if(p.type==='cards')go('wcards',a);else if(p.type==='quiz')go('wquiz',a);else if(p.type==='count')go('wcount',a)}
