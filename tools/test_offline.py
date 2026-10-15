@@ -33,7 +33,8 @@ async def main(url):
         await pg.evaluate('localStorage.clear()')
         played=[]
         await pg.evaluate("""()=>{const o=say;window.__said=[];say=function(t,h,q){__said.push(t);return o(t,h,q)};
-          const op=HTMLMediaElement.prototype.play;window.__pl={ok:0,err:0};HTMLMediaElement.prototype.play=function(){return op.call(this).then(()=>__pl.ok++).catch(e=>{if(e.name!=='AbortError')__pl.err++;throw e})}}""")
+          window.__pl={ok:0,err:0};const op=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){return op.call(this).then(()=>__pl.ok++).catch(e=>{if(e.name!=='AbortError')__pl.err++;throw e})};
+          if(window.AudioBufferSourceNode){const os=AudioBufferSourceNode.prototype.start;AudioBufferSourceNode.prototype.start=function(){if(this.__src)__pl.ok++;return os.apply(this,arguments)}}}""")
         for room in ['kitchen','bedroom','bathroom','living room']:
             for lv in [1,2,3,4]:
                 await pg.evaluate("([r,l])=>{for(let i=1;i<l;i++)levelSet(r,i,3)}",[room,lv])

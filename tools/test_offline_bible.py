@@ -37,7 +37,8 @@ async def main(url,want_books):
         if info.get('timeout'): bad.append(('TIMEOUT',info))
         await ctx.set_offline(True);phase['off']=True;await pg.reload(wait_until='load');await pg.wait_for_timeout(900)
         await pg.evaluate("""()=>{const o=say;window.__said=[];say=function(t,h,q){__said.push(t);return o(t,h,q)};
-          const op=HTMLMediaElement.prototype.play;window.__pl={ok:0,err:0};HTMLMediaElement.prototype.play=function(){return op.call(this).then(()=>__pl.ok++).catch(e=>{if(e.name!=='AbortError')__pl.err++;throw e})}}""")
+          window.__pl={ok:0,err:0};const op=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){return op.call(this).then(()=>__pl.ok++).catch(e=>{if(e.name!=='AbortError')__pl.err++;throw e})};
+          if(window.AudioBufferSourceNode){const os=AudioBufferSourceNode.prototype.start;AudioBufferSourceNode.prototype.start=function(){if(this.__src)__pl.ok++;return os.apply(this,arguments)}}}""")
         lands=await pg.evaluate("()=>document.querySelectorAll('.wland').length");print('offline home (world map): lands shown',lands)
         if not lands: bad.append(('HOME','no lands'))
         await pg.click('.wsignb[data-l="faith"]');await pg.wait_for_timeout(600)

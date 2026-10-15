@@ -653,7 +653,7 @@ addEventListener('pointerdown',busy,{capture:true,passive:true});
 /* Web Audio voice engine: clips decode into AudioBuffers (LRU) and play through the shared AudioContext,
    so a tap starts in milliseconds instead of waiting for the media element to spin up. HTMLAudio is the fallback. */
 const warmed=new Set(),wq=[];let wRun=0,wPri=false;
-function warmPump(){while(wRun<(wPri?4:2)&&wq.length){if(vPlaying()&&!wPri){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
+function warmPump(){while(wRun<(wPri?3:2)&&wq.length){if(vPlaying()&&!wPri){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
  decodeClip(u).catch(()=>warmed.delete(u)).finally(()=>{wRun--;warmPump()})}}
 function warmVoice(list,prio){wPri=!!prio;const add=[];(list||[]).flat().filter(Boolean).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u)||vBuf.has(u))return;warmed.add(u);add.push(u)});
  if(prio)wq.unshift(...add);else wq.push(...add);warmPump()}
@@ -673,7 +673,7 @@ function applyVoiceRates(){const s=+vSet.speed||1,p=+vSet.pitch||1;
  vNodes.forEach(n=>{try{n.playbackRate.value=vRate;n.detune.value=vDetune}catch(e){}})}
 function vDuck(on){if(typeof bgm==='undefined'||!bgm||!bgm.bus||!ac)return;try{const g=bgm.bus.gain,n=ac.currentTime;g.cancelScheduledValues(n);g.setValueAtTime(g.value,n);
  g.linearRampToValueAtTime(on?BGM_VOL*.28:BGM_VOL,n+(on?.08:.35))}catch(e){}}
-function vPlaying(){return vNodes.length>0||(window.speechSynthesis&&speechSynthesis.speaking)}
+function vPlaying(){return vNodes.length>0||(!vEl.paused&&!vEl.muted&&!vEl.ended)||(window.speechSynthesis&&speechSynthesis.speaking)}
 function vStopNodes(){vNodes.forEach(n=>{try{n.onended=null;n.stop();n.disconnect()}catch(e){}});vNodes=[];if(vDuckT){clearTimeout(vDuckT);vDuckT=null}vDuck(false)}
 function vElEvent(type){try{vEl.dispatchEvent(new Event(type))}catch(e){}}
 function cacheVoicePack(id){if(!('serviceWorker' in navigator)||!navigator.serviceWorker.controller)return;navigator.serviceWorker.controller.postMessage({type:'cacheVoice',id:id||vSet.id})}
@@ -700,9 +700,12 @@ function say(t,h,quiet){busy();const parts=(Array.isArray(t)?t:[t]).filter(Boole
    vElEvent('playing')};
   if(!vDetune&&Math.abs(vRate-1)>.02)return sayHtml(txt,tok,next); // speed-only change keeps HTMLAudio's pitch-preserving stretch
   if(vBuf.has(voiceUrl(txt)))return playBuf(vBuf.get(voiceUrl(txt)));
-  let fell=false;const fb=()=>{if(fell||tok!==vTok)return;fell=true;if(!actx())sayHtml(txt,tok,next);else ttsFallback(txt,next)};
-  decodeClip(voiceUrl(txt)).then(buf=>{if(tok===vTok)playBuf(buf)}).catch(()=>{
-   const mia='voice/'+vh(txt)+'.mp3';if(voiceUrl(txt)!==mia)decodeClip(mia).then(buf=>{if(tok===vTok)playBuf(buf)}).catch(()=>sayHtml(txt,tok,next));else sayHtml(txt,tok,next)})};
+  /* Not decoded yet. Cached on the phone: decode now (a few ms). Only on the network: stream it with HTMLAudio right away
+     (it starts before the whole file arrives) and decode in the background for next time. */
+  const u=voiceUrl(txt);let done=false;const go=buf=>{if(done||tok!==vTok)return;done=true;playBuf(buf)};const html=()=>{if(done||tok!==vTok)return;done=true;sayHtml(txt,tok,next)};
+  const viaBuf=wait=>{decodeClip(u).then(go).catch(()=>{const mia='voice/'+vh(txt)+'.mp3';if(u!==mia)decodeClip(mia).then(go).catch(html);else html()});setTimeout(html,wait)};
+  if(!window.caches){viaBuf(250);return}
+  caches.match(u,{ignoreSearch:true}).then(r=>{if(done||tok!==vTok)return;if(r)viaBuf(400);else{html();decodeClip(u).catch(()=>{})}}).catch(()=>viaBuf(250))};
  {const w=sayHold-Date.now();if(w>0)setTimeout(()=>{if(tok===vTok)next()},w);else next()}}
 function burst(x,y,set){set=set||theme()||['⭐','✨','🌟'];for(let i=0;i<8;i++){const s=document.createElement('div');s.className='burst';s.textContent=set[i%set.length];s.style.left=x+'px';s.style.top=y+'px';const a=i/8*6.28;s.style.setProperty('--dx',Math.cos(a)*140+'px');s.style.setProperty('--dy',Math.sin(a)*140+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
 const PRAISE=["Great job!","Well done!","Super!","You got it!","Awesome!","Brilliant!"];
