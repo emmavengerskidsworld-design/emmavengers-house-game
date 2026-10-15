@@ -13,7 +13,7 @@ class Q(http.server.SimpleHTTPRequestHandler):
         except Exception:pass
 CHECK="""()=>{const W=innerWidth,bad=[];document.querySelectorAll('button,.btn,img,h1,h2,.prompt,.wmap,.wsign,.wcard').forEach(e=>{const r=e.getBoundingClientRect();if(!r.width||getComputedStyle(e).visibility=='hidden')return;if(r.left<-2||r.right>W+2)bad.push((e.id||e.className||e.tagName)+' x:'+Math.round(r.left)+'-'+Math.round(r.right))});
  const m=document.querySelector('#wmap');const mb=m?m.getBoundingClientRect():null;
- return {sw:document.documentElement.scrollWidth,W,bad:bad.slice(0,6),mapBottom:mb?Math.round(mb.bottom):0,H:innerHeight,broken:[...document.images].filter(i=>i.complete&&!i.naturalWidth).map(i=>i.src)}}"""
+ return {sw:document.documentElement.scrollWidth,W,bad:bad.slice(0,6),mapBottom:mb?Math.round(mb.bottom):0,H:innerHeight,broken:[...document.images].filter(i=>i.getAttribute("src")&&i.complete&&!i.naturalWidth).map(i=>i.src)}}"""
 fails=[];log=print
 def ok(c,msg):
     if not c: fails.append(msg); log('  FAIL',msg)
@@ -127,7 +127,7 @@ async def offline(b,url):
     await pg.wait_for_function('LANDS!==null&&screen==="home"',timeout=10000)
     res=await pg.evaluate("""async()=>{const bad=[];const chk=async u=>{try{const r=await fetch(u);if(!r.ok)bad.push(u)}catch(e){bad.push(u)}};await chk(LANDS.world.img);
       for(const L of LANDS.lands){go('land',{id:L.id});await new Promise(z=>setTimeout(z,250));await chk(L.img);for(const p of L.places){await chk(p.icon);if(p.type==='link')continue;
-        go(p.type==='cards'?'wcards':p.type==='quiz'?'wquiz':'wcount',{l:L.id,p:p.id});await new Promise(z=>setTimeout(z,450));[...document.images].filter(i=>i.complete&&!i.naturalWidth).forEach(i=>bad.push(i.src))}}
+        go(p.type==='cards'?'wcards':p.type==='quiz'?'wquiz':'wcount',{l:L.id,p:p.id});await new Promise(z=>setTimeout(z,450));[...document.images].filter(i=>i.getAttribute("src")&&i.complete&&!i.naturalWidth).forEach(i=>bad.push(i.src))}}
       for(const d of Object.values(LANDS.decks))for(const it of d.items)for(const k of ['img','flag','foodImg'])if(it[k])await chk(it[k]);
       for(const t of __worldVoice())await chk(voiceUrl(t));go('home');return {bad,voice:__worldVoice().length}}""")
     await pg.wait_for_timeout(500);await pg.screenshot(path=str(OUT/'world-map-offline-412.png'))
