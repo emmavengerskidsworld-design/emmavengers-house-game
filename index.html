@@ -656,7 +656,7 @@ const warmed=new Set(),wq=[];let wRun=0,wPri=false;
 function warmPump(){while(wRun<(wPri?3:2)&&wq.length){if((vPlaying()&&!wPri)||vNetLoad()||(vWait&&Date.now()-vWait<2500)){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
  wLive.add(u);decodeClip(u,1).catch(()=>{if(wLive.has(u))warmed.delete(u)}).finally(()=>{wLive.delete(u);wRun--;warmPump()})}}
 function warmVoice(list,prio){wPri=!!prio;const add=[];(list||[]).flat().filter(Boolean).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u)||vBuf.has(u))return;warmed.add(u);add.push(u)});
- if(prio)wq.unshift(...add);else wq.push(...add);warmPump()}
+ if(prio)wq.unshift(...add);else wq.push(...add);setTimeout(warmPump,0)} // after the current tap's say() has claimed the network
 const vEl=new Audio();vEl.preload='auto';let vUnlocked=false;
 const vBuf=new Map(),vBufQ=[];const VBUF_MAX=96;
 function vTouch(u){const i=vBufQ.indexOf(u);if(i>=0)vBufQ.splice(i,1);vBufQ.push(u);while(vBufQ.length>VBUF_MAX){const o=vBufQ.shift();vBuf.delete(o);warmed.delete(o)}}
