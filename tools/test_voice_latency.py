@@ -5,7 +5,10 @@ import asyncio,sys,json,time
 from playwright.async_api import async_playwright
 URL=sys.argv[1];LABEL=sys.argv[2];THR=len(sys.argv)<4 or sys.argv[3]!='nothrottle'
 INIT="""window.__ev=[];window.__t0=0;addEventListener('pointerdown',()=>{window.__t0=performance.now()},true);
-const op=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){const el=this;el.addEventListener('playing',()=>{if(!el.muted)__ev.push({t:performance.now(),src:el.currentSrc})},{once:true});return op.apply(this,arguments)};
+const op=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){const el=this;el.addEventListener('playing',()=>{if(!el.muted){const e={t:performance.now(),src:el.currentSrc,k:'el'};__ev.push(e);el.addEventListener('ended',()=>{e.end=performance.now()},{once:true})}},{once:true});return op.apply(this,arguments)};
+/* Web Audio voice engine: a buffer source start() is the moment sound is scheduled; record when it actually begins. */
+if(window.AudioBufferSourceNode){const os=AudioBufferSourceNode.prototype.start;AudioBufferSourceNode.prototype.start=function(when){const n=this,c=n.context,now=performance.now(),d=Math.max(0,((when||0)-c.currentTime)*1000);
+ if(n.buffer&&n.buffer.duration>0.25&&c.state!=='closed'){const r=n.playbackRate.value*Math.pow(2,(n.detune?n.detune.value:0)/1200);const e={t:now+d,src:n.__src||'buffer',k:'buf',end:now+d+n.buffer.duration/r*1000};__ev.push(e)}return os.apply(this,arguments)}}
 if(window.speechSynthesis){const sp=speechSynthesis.speak.bind(speechSynthesis);speechSynthesis.speak=u=>{__ev.push({t:performance.now(),src:'TTS'});sp(u)}}"""
 TAPS=[('Faith Land','.wsignb[data-l="faith"]'),('Emmavengers House','.wplace[data-p="house"]'),('Kitchen room','.room[data-k="kitchen"]'),('Level 1 node','.lnode[data-l="1"]'),('Find It (learn)','.mode[data-m]'),('BACK',None),('BACK',None),('BACK',None),('Bible Land','.wplace[data-p="bible"]'),('Noah book','.book[data-b="noah"]'),('BACK',None),('BACK',None),("Mia's Day",'.wplace[data-p="mia"]'),('BACK',None),('BACK',None),('Letter Land','.wsignb[data-l="letter"]'),('ABC Sounds','.wplace[data-p="abc"]'),('Letter A card','.wtile[data-i="0"]'),('BACK',None),('BACK',None),('BACK',None),('Number Land','.wsignb[data-l="number"]'),('Count It','.wplace[data-p="count"]')]
 async def measure(pg,sel):

@@ -47,7 +47,7 @@ function home(){curLand=null;state={};if(!LANDS){go('house');return}const W=LAND
  main.querySelector('.wsay').onclick=()=>say(W.intro);
  main.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{sfx.tap();go('land',{id:b.dataset.l})});
  if(!worldGreeted){worldGreeted=true;say(W.intro)}
- setTimeout(()=>{if(screen==='home')warmVoice(LANDS.lands.map(L=>L.intro))},500)}
+ warmVoice(LANDS.lands.map(L=>L.intro),1)}
 
 /* --- A land's inner map: places are tappable; "Back to Map" returns to the world map --- */
 function land(a){const L=landById((a&&a.id)||curLand);if(!L){go('home');return}curLand=L.id;state={land:L.id};$('#title').textContent=L.name;
@@ -59,7 +59,7 @@ function land(a){const L=landById((a&&a.id)||curLand);if(!L){go('home');return}c
  main.querySelector('.wsay').onclick=()=>say(L.intro);
  main.querySelectorAll('.wplace').forEach(b=>b.onclick=()=>{sfx.tap();openPlace(L,placeById(L,b.dataset.p))});
  say(L.intro);
- setTimeout(()=>{if(screen==='land')warmVoice(L.places.flatMap(p=>[p.intro,...(p.deck?wDeck(p.deck).items.slice(0,4).flatMap(it=>it.say.slice(0,2)):[])]).filter(Boolean))},600)}
+ warmVoice(L.places.flatMap(p=>[p.intro,...(p.deck?wDeck(p.deck).items.slice(0,4).flatMap(it=>it.say.slice(0,2)):[])]).filter(Boolean),1)}
 function openPlace(L,p){if(!p)return;const a={l:L.id,p:p.id};
  if(p.type==='link'){go(p.go);return}
  if(p.type==='cards')go('wcards',a);else if(p.type==='quiz')go('wquiz',a);else if(p.type==='count')go('wcount',a)}
@@ -84,8 +84,8 @@ function wcards(a){const L=landById(a.l),p=placeById(L,a.p),D=wDeck(p.deck);curL
  main.innerHTML=`<div class="prompt"><span>${esc(p.intro)}</span><button class="say" aria-label="Read aloud">🔊</button></div><div class="wprog">⭐ <b id="wseen">${seen.size}</b> / ${D.items.length}</div><div class="wgrid k-${D.kind}">${D.items.map((it,i)=>tileHTML(D.kind,it,i,seen)).join('')}</div>`;
  bindSay(p.intro);showShelfImgs();
  main.querySelectorAll('.wtile').forEach(b=>b.onclick=()=>{sfx.tap();showWCard(D,p,+b.dataset.i)});
- setTimeout(()=>{if(screen==='wcards')warmVoice([...D.items.slice(0,3).flatMap(it=>it.say),...D.items.slice(3).map(it=>it.say[0])])},800)}
-function showWCard(D,p,i){document.querySelectorAll('.pop').forEach(x=>x.remove());const it=D.items[i],key=String(it.id||it.n);setTimeout(()=>warmVoice(D.items.slice(i+1,i+3).flatMap(x=>x.say)),1500);
+ warmVoice([...D.items.slice(0,3).flatMap(it=>it.say),...D.items.slice(3).map(it=>it.say[0])],1)}
+function showWCard(D,p,i){document.querySelectorAll('.pop').forEach(x=>x.remove());const it=D.items[i],key=String(it.id||it.n);warmVoice(D.items.slice(i+1,i+3).flatMap(x=>x.say),1);
  const sv=wSave();sv.seen=sv.seen||{};const seen=new Set(sv.seen[p.deck]||[]);const fresh=!seen.has(key);
  const d=document.createElement('div');d.className='pop wpop';
  d.innerHTML=`<div class="wcard k-${D.kind}">${cardHTML(D.kind,it)}<div class="row"><button class="say" aria-label="Read aloud">🔊</button><button class="btn" id="wnext">Next ➜</button><button class="btn" id="wdone">Done ✓</button></div></div>`;
@@ -102,7 +102,7 @@ function showWCard(D,p,i){document.querySelectorAll('.pop').forEach(x=>x.remove(
  d.addEventListener('click',e=>{if(e.target===d){sfx.tap();stopVoice();d.remove()}})}
 
 /* --- quizzes & counting: same stars/praise/celebration as the house levels --- */
-function whenQuiet(fn,min=1200,max=4500){const t0=Date.now();let q=0;const iv=setInterval(()=>{const busyV=!vEl.paused||(window.speechSynthesis&&speechSynthesis.speaking)||sayHold>Date.now();q=busyV?0:q+150;
+function whenQuiet(fn,min=1200,max=4500){const t0=Date.now();let q=0;const iv=setInterval(()=>{const busyV=vPlaying()||sayHold>Date.now();q=busyV?0:q+150;
  if((Date.now()-t0>=min&&q>=450)||Date.now()-t0>=max){clearInterval(iv);fn()}},150)}
 function wGood(el,line,next){sfx.right();stars++;setScore();state.score++;const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2);el.classList.add('ok');lockAll();
  const tok=++state.tok;say([PRAISE[Math.random()*PRAISE.length|0],line].filter(Boolean),1);confetti(60);whenQuiet(()=>{if(state.tok===tok)next()})}
@@ -121,7 +121,7 @@ function wquiz(a){const L=landById(a.l),p=placeById(L,a.p),D=wDeck(p.deck);curLa
  say(state.round===0&&!a.r?[p.intro,ask]:[ask]);
  const line=p.mode==='letter'?t.say[1]:t.say[0];
  main.querySelectorAll('[data-ok]').forEach(b=>b.onclick=()=>{if(b.disabled)return;if(b.dataset.ok==='1')wGood(b,line,()=>wNext(a,'wquiz'));else wrong(b)});
- setTimeout(()=>{if(screen==='wquiz')warmVoice(pool.map(it=>wFill(p.ask,it)).concat(pool.map(it=>p.mode==='letter'?it.say[1]:it.say[0])))},700)}
+ warmVoice(pool.map(it=>wFill(p.ask,it)).concat(pool.map(it=>p.mode==='letter'?it.say[1]:it.say[0])),1)}
 function wcount(a){const L=landById(a.l),p=placeById(L,a.p),NUM=wDeck(p.deck).items,OB=wDeck(p.objects).items;curLand=L.id;
  if(!a.r)wStart(a,p,p.rounds||8);
  $('#title').textContent=p.name;
@@ -133,7 +133,7 @@ function wcount(a){const L=landById(a.l),p=placeById(L,a.p),NUM=wDeck(p.deck).it
  say(state.round===0&&!a.r?[p.intro,O.ask]:[O.ask]);
  let c=0;main.querySelectorAll('.wobj').forEach(b=>b.onclick=()=>{if(b.classList.contains('counted')||b.disabled)return;c++;b.classList.add('counted');b.dataset.c=c;sfx.pop();say(NUM[c-1].say[0],0,1)});
  main.querySelectorAll('.wn').forEach(b=>b.onclick=()=>{if(b.disabled)return;if(+b.dataset.n===N)wGood(b,NUM[N-1].say[0],()=>wNext(a,'wcount'));else wrong(b)});
- setTimeout(()=>{if(screen==='wcount')warmVoice(OB.map(o=>o.ask).concat(NUM.map(n=>n.say[0])))},700)}
+ warmVoice(OB.map(o=>o.ask).concat(NUM.map(n=>n.say[0])),1)}
 function wreward(a){const L=landById(a.l),p=placeById(L,a.p);curLand=L.id;const s=starsForMiss(state.miss||0),n=state.score,tot=state.total;
  const sv=wSave();sv.best=sv.best||{};sv.best[p.id]=Math.max(s,sv.best[p.id]||0);wPut(sv);
  $('#title').textContent='Great Job!';sfx.win();
