@@ -653,7 +653,7 @@ addEventListener('pointerdown',busy,{capture:true,passive:true});
 /* Web Audio voice engine: clips decode into AudioBuffers (LRU) and play through the shared AudioContext,
    so a tap starts in milliseconds instead of waiting for the media element to spin up. HTMLAudio is the fallback. */
 const warmed=new Set(),wq=[];let wRun=0,wPri=false;
-function warmPump(){while(wRun<(wPri?3:2)&&wq.length){if(vPlaying()&&!wPri){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
+function warmPump(){while(wRun<(wPri?3:2)&&wq.length){if((vPlaying()&&!wPri)||vNetLoad()){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
  decodeClip(u).catch(()=>warmed.delete(u)).finally(()=>{wRun--;warmPump()})}}
 function warmVoice(list,prio){wPri=!!prio;const add=[];(list||[]).flat().filter(Boolean).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u)||vBuf.has(u))return;warmed.add(u);add.push(u)});
  if(prio)wq.unshift(...add);else wq.push(...add);warmPump()}
@@ -673,6 +673,8 @@ function applyVoiceRates(){const s=+vSet.speed||1,p=+vSet.pitch||1;
  vNodes.forEach(n=>{try{n.playbackRate.value=vRate;n.detune.value=vDetune}catch(e){}})}
 function vDuck(on){if(typeof bgm==='undefined'||!bgm||!bgm.bus||!ac)return;try{const g=bgm.bus.gain,n=ac.currentTime;g.cancelScheduledValues(n);g.setValueAtTime(g.value,n);
  g.linearRampToValueAtTime(on?BGM_VOL*.28:BGM_VOL,n+(on?.08:.35))}catch(e){}}
+/* a line is streaming from the network right now: keep the connection free for it */
+function vNetLoad(){return !vEl.paused&&!vEl.muted&&vEl.readyState<3}
 function vPlaying(){return vNodes.length>0||(!vEl.paused&&!vEl.muted&&!vEl.ended)||(window.speechSynthesis&&speechSynthesis.speaking)}
 function vStopNodes(){vNodes.forEach(n=>{try{n.onended=null;n.stop();n.disconnect()}catch(e){}});vNodes=[];if(vDuckT){clearTimeout(vDuckT);vDuckT=null}vDuck(false)}
 function vElEvent(type){try{vEl.dispatchEvent(new Event(type))}catch(e){}}
@@ -1272,7 +1274,7 @@ const BIBLE_SOON=[["David and Goliath", "🪨"], ["Jonah and the Big Fish", "�
 const bibleSave=()=>{try{return JSON.parse(localStorage.getItem('emmaBible')||'{}')}catch(e){return{}}};
 const bImg=(b,k)=>b.dir+k+'.jpg';
 /* Shelf covers load right after the voice starts (or 700 ms), so they never delay it on a slow network. */
-function showShelfImgs(){const go2=()=>{main.querySelectorAll('img[data-src]').forEach(im=>{im.onerror=()=>{im.onerror=null;im.src=im.dataset.fb};im.src=im.dataset.src;im.removeAttribute('data-src')})};let done=0;const f=()=>{if(!done){done=1;go2()}};vEl.addEventListener('playing',f,{once:true});setTimeout(f,350)}
+function showShelfImgs(){const go2=()=>{main.querySelectorAll('img[data-src]').forEach(im=>{im.onerror=()=>{im.onerror=null;im.src=im.dataset.fb};im.src=im.dataset.src;im.removeAttribute('data-src')})};let done=0;const f=()=>{if(!done){done=1;go2()}};vEl.addEventListener('playing',f,{once:true});setTimeout(f,700)}
 function bible(){document.body.classList.remove('reading');state={room:'bible'};$('#title').textContent='📖 Bible Library';const sv=bibleSave();
  main.innerHTML=`<div class="prompt">Pick a story to read! <button class="say" aria-label="Read aloud">🔊</button></div><div class="shelf">${Object.entries(BIBLE).map(([k,b])=>{const best=(sv[k]||{}).stars||0;return `<button class="book${Object.keys(BIBLE).length<3?' feat':''}" data-b="${k}"><div class="cv"><img data-src="${bImg(b,'thumb')}" data-fb="${bImg(b,'cover')}" alt="${b.title}"></div><div class="bt">${b.title}</div><div class="bs">${best?'⭐'.repeat(best):'Tap to read!'}</div></button>`}).join('')}${BIBLE_SOON.map(([n,e])=>`<button class="book locked" data-n="${n}"><span class="lock">🔒</span><div class="cv">${e}</div><div class="bt">${n}</div><div class="bs">Coming soon</div></button>`).join('')}</div>`;
  main.querySelector('.say').onclick=()=>say('Pick a story to read!');say('Welcome to the Bible Library! Pick a story to read!');showShelfImgs();
