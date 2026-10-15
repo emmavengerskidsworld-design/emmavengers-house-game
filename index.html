@@ -654,18 +654,21 @@ addEventListener('pointerdown',busy,{capture:true,passive:true});
    so a tap starts in milliseconds instead of waiting for the media element to spin up. HTMLAudio is the fallback. */
 const warmed=new Set(),wq=[];let wRun=0,wPri=false;
 function warmPump(){while(wRun<(wPri?3:2)&&wq.length){if((vPlaying()&&!wPri)||vNetLoad()||(vWait&&Date.now()-vWait<2500)){setTimeout(warmPump,120);return}const u=wq.shift();wRun++;
- decodeClip(u).catch(()=>warmed.delete(u)).finally(()=>{wRun--;warmPump()})}}
+ wLive.add(u);decodeClip(u,1).catch(()=>{if(wLive.has(u))warmed.delete(u)}).finally(()=>{wLive.delete(u);wRun--;warmPump()})}}
 function warmVoice(list,prio){wPri=!!prio;const add=[];(list||[]).flat().filter(Boolean).forEach(t=>{const u=voiceUrl(t);if(warmed.has(u)||vBuf.has(u))return;warmed.add(u);add.push(u)});
  if(prio)wq.unshift(...add);else wq.push(...add);warmPump()}
 const vEl=new Audio();vEl.preload='auto';let vUnlocked=false;
 const vBuf=new Map(),vBufQ=[];const VBUF_MAX=96;
 function vTouch(u){const i=vBufQ.indexOf(u);if(i>=0)vBufQ.splice(i,1);vBufQ.push(u);while(vBufQ.length>VBUF_MAX){const o=vBufQ.shift();vBuf.delete(o);warmed.delete(o)}}
-async function fetchClip(u){let r=null;try{if(window.caches)r=await caches.match(u,{ignoreSearch:true})}catch(e){}
- if(!r){r=await fetch(u);if(!r.ok)throw 0}return await r.arrayBuffer()}
+async function fetchClip(u,sig){let r=null;try{if(window.caches)r=await caches.match(u,{ignoreSearch:true})}catch(e){}
+ if(!r){r=await fetch(u,sig?{signal:sig,priority:'low'}:undefined);if(!r.ok)throw 0}return await r.arrayBuffer()}
+/* warm downloads can be cancelled the moment the child asks for a line that is not on the phone yet */
+let wAC=new AbortController();const wLive=new Set();
+function warmYield(){if(!wLive.size)return;const back=[...wLive];wLive.clear();try{wAC.abort()}catch(e){}wAC=new AbortController();back.forEach(u=>warmed.add(u));wq.unshift(...back)}
 const vDec=new Map();
-function decodeClip(u){if(vBuf.has(u)){vTouch(u);return Promise.resolve(vBuf.get(u))}if(vDec.has(u))return vDec.get(u);
+function decodeClip(u,warm){if(vBuf.has(u)){vTouch(u);return Promise.resolve(vBuf.get(u))}if(vDec.has(u))return vDec.get(u);
  const a=actx();if(!a)return Promise.reject(0);
- const job=fetchClip(u).then(ab=>a.decodeAudioData(ab.slice(0))).then(buf=>{vBuf.set(u,buf);vTouch(u);vDec.delete(u);return buf}).catch(e=>{vDec.delete(u);throw e});
+ const job=fetchClip(u,warm?wAC.signal:null).then(ab=>a.decodeAudioData(ab.slice(0))).then(buf=>{vBuf.set(u,buf);vTouch(u);vDec.delete(u);return buf}).catch(e=>{vDec.delete(u);throw e});
  vDec.set(u,job);return job}
 let vRate=1,vDetune=0,vNodes=[],vDuckT=null,vEndAt=0,vWait=0,vAfter=[];
 /* the line the child asked for goes first: warming and next-part prefetch wait until it has started */
@@ -709,7 +712,7 @@ function say(t,h,quiet){busy();const parts=(Array.isArray(t)?t:[t]).filter(Boole
   const u=voiceUrl(txt);let done=false;const go=buf=>{if(done||tok!==vTok)return;done=true;playBuf(buf)};const html=()=>{if(done||tok!==vTok)return;done=true;sayHtml(txt,tok,next)};
   const viaBuf=wait=>{decodeClip(u).then(go).catch(()=>{const mia='voice/'+vh(txt)+'.mp3';if(u!==mia)decodeClip(mia).then(go).catch(html);else html()});setTimeout(html,wait)};
   if(!window.caches){viaBuf(250);return}
-  caches.match(u,{ignoreSearch:true}).then(r=>{if(done||tok!==vTok)return;if(r)viaBuf(400);else{html();decodeClip(u).catch(()=>{})}}).catch(()=>viaBuf(250))};
+  caches.match(u,{ignoreSearch:true}).then(r=>{if(done||tok!==vTok)return;if(r)viaBuf(400);else{warmYield();vAfter.push(u);html()}}).catch(()=>viaBuf(250))};
  {const w=sayHold-Date.now();if(w>0)setTimeout(()=>{if(tok===vTok)next()},w);else next()}}
 function burst(x,y,set){set=set||theme()||['⭐','✨','🌟'];for(let i=0;i<8;i++){const s=document.createElement('div');s.className='burst';s.textContent=set[i%set.length];s.style.left=x+'px';s.style.top=y+'px';const a=i/8*6.28;s.style.setProperty('--dx',Math.cos(a)*140+'px');s.style.setProperty('--dy',Math.sin(a)*140+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
 const PRAISE=["Great job!","Well done!","Super!","You got it!","Awesome!","Brilliant!"];
@@ -1282,18 +1285,21 @@ function bible(){document.body.classList.remove('reading');state={room:'bible'};
  main.querySelector('.say').onclick=()=>say('Pick a story to read!');say('Welcome to the Bible Library! Pick a story to read!');showShelfImgs();
  main.querySelectorAll('.book').forEach(el=>el.onclick=()=>{if(el.dataset.b){sfx.tap();go('reader',{b:el.dataset.b,i:0})}else{sfx.wrong();say(el.dataset.n+' is coming soon!')}})}
 function reader(a){document.body.classList.add('reading');const b=BIBLE[a.b];if(!a.i)cacheBook(a.b);state={room:'bible',book:a.b,i:a.i||0};$('#title').textContent='📖 '+b.title;const P=b.pages,L=P.length;
- main.innerHTML=`<div class="reader"><div class="bpage" id="bpage"><img id="bimg" src="${bImg(b,P[state.i].img)}" alt="Page"></div><div class="rctl"><button class="btn nav" id="bprev" aria-label="Back page">◀ Back</button><span class="pill" id="bcount"></span><button class="say" id="bsay" aria-label="Read again">🔊</button><button class="btn nav" id="bnext" aria-label="Next page">Next ▶</button></div><div class="btext" id="btext"></div></div>`;
+ say(P[state.i].say); // voice first: its request goes out before the page pictures
+ main.innerHTML=`<div class="reader"><div class="bpage" id="bpage"><img id="bimg" alt="Page"></div><div class="rctl"><button class="btn nav" id="bprev" aria-label="Back page">◀ Back</button><span class="pill" id="bcount"></span><button class="say" id="bsay" aria-label="Read again">🔊</button><button class="btn nav" id="bnext" aria-label="Next page">Next ▶</button></div><div class="btext" id="btext"></div></div>`;
  const img=$('#bimg'),pg=$('#bpage');let busy=false;
- const pre=i=>{if(P[i]){const im=new Image();im.src=bImg(b,P[i].img)}};
- const show=()=>{const i=state.i;$('#bcount').textContent=(i+1)+' / '+L;$('#bprev').disabled=i===0;$('#bnext').textContent=i===L-1?'Quiz ▶':'Next ▶';$('#btext').textContent=P[i].text||'';pre(i+1);pre(i+2);say(P[i].say);warmVoice([P[i+1]&&P[i+1].say,P[i-1]&&P[i-1].say],1)};
- const turn=d=>{if(busy)return;const j=state.i+d;if(j<0)return;sfx.tap();if(j>=L){go('bquiz',{b:a.b});return}busy=true;stopVoice();
+ const pre=i=>{if(P[i]){const im=new Image();try{im.fetchPriority='low'}catch(e){}im.src=bImg(b,P[i].img)}};
+ const afterVoice=(f,cap=1200)=>{let d=0;const g=()=>{if(!d){d=1;f()}};if(!vWait)return g();vEl.addEventListener('playing',g,{once:true});setTimeout(g,cap)};
+ afterVoice(()=>{img.src=bImg(b,P[state.i].img)},250); // on a slow network the voice clip gets the line first
+ const show=quiet=>{const i=state.i;$('#bcount').textContent=(i+1)+' / '+L;$('#bprev').disabled=i===0;$('#bnext').textContent=i===L-1?'Quiz ▶':'Next ▶';$('#btext').textContent=P[i].text||'';if(!quiet)say(P[i].say);afterVoice(()=>{pre(i+1);pre(i+2)});warmVoice([P[i+1]&&P[i+1].say,P[i-1]&&P[i-1].say],1)};
+ const turn=d=>{if(busy)return;const j=state.i+d;if(j<0)return;sfx.tap();if(j>=L){go('bquiz',{b:a.b});return}busy=true;if(P[j])say(P[j].say);else stopVoice();
   pg.classList.remove('inL','inR');pg.classList.add(d>0?'outL':'outR');
-  setTimeout(()=>{state.i=j;img.src=bImg(b,P[j].img);pg.classList.remove('outL','outR');void pg.offsetWidth;pg.classList.add(d>0?'inR':'inL');busy=false;show()},200)};
+  setTimeout(()=>{state.i=j;img.src=bImg(b,P[j].img);pg.classList.remove('outL','outR');void pg.offsetWidth;pg.classList.add(d>0?'inR':'inL');busy=false;show(1)},200)};
  $('#bprev').onclick=()=>turn(-1);$('#bnext').onclick=()=>turn(1);$('#bsay').onclick=()=>say(P[state.i].say);
  let sx=null,sy=0;pg.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY});
  pg.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))turn(dx<0?1:-1)});
  pg.addEventListener('pointercancel',()=>{sx=null});
- show()}
+ show(1)}
 document.addEventListener('keydown',e=>{if(screen!=='reader')return;if(e.key==='ArrowRight')$('#bnext').click();if(e.key==='ArrowLeft')$('#bprev').click()});
 function bquiz(a){document.body.classList.remove('reading');const b=BIBLE[a.b];if(!a.r){state={room:'bible',book:a.b,round:0,total:b.quiz.length,score:0,miss:0}}
  const q=b.quiz[state.round];$('#title').textContent='🧩 Quiz Time!';const opts=shuffle(q.opts);
