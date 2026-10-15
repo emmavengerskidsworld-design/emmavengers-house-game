@@ -337,7 +337,7 @@ body.morning main.enter>*{animation:none!important}
 body.voiceoff main .say,body.voiceoff .pop .say,body.voiceoff .rctl .say{display:none!important}
 .vrow{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.75);border:4px solid #ffc400;border-radius:20px;padding:10px 14px;margin-bottom:12px;font-size:clamp(16px,2.8vw,22px)}
 .vrow .btn{min-width:120px}
-@media (max-width:400px){header{gap:6px}}
+@media (orientation:portrait) and (max-width:400px){header{gap:6px}header .vsetbtn,header .mute{width:41px;height:41px;min-width:41px;min-height:41px;font-size:19px}header .pill{padding:6px 8px}}
 .vsetbtn{width:52px;height:52px;min-width:52px;border-radius:50%;padding:0;font-size:26px;display:flex;align-items:center;justify-content:center;flex:none}
 @media (orientation:portrait) and (max-width:600px){.vsetbtn{width:44px;height:44px;min-width:44px;font-size:21px}}
 .vpanel{position:fixed;inset:0;z-index:90;background:rgba(10,40,100,.55);display:flex;align-items:center;justify-content:center;padding:12px;animation:fadein .2s}
