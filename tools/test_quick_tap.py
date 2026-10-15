@@ -17,13 +17,16 @@ async def tap_measure(pg,sel,idx=0):
     return None,'no audio 1.5s'
 async def gaps(pg,ms):
     await pg.wait_for_timeout(ms)
-    return await pg.evaluate('(()=>{const b=__ev.filter(x=>x.t>=__t0&&x.k==="buf").sort((a,c)=>a.t-c.t);const g=[];for(let i=1;i<b.length;i++)g.push(Math.round(b[i].t-b[i-1].end));return g})()')
+    return await pg.evaluate('(()=>{const b=__ev.filter(x=>x.t>=__t0&&(x.k==="buf"||x.k==="el")&&x.end).sort((a,c)=>a.t-c.t);const g=[];for(let i=1;i<b.length;i++)if(b[i].sid===b[i-1].sid)g.push(Math.round(b[i].t-b[i-1].end));return g})()')
 async def main():
     fails=[];res=[]
     async with async_playwright() as p:
         b=await p.chromium.launch(args=['--autoplay-policy=user-gesture-required'])
         ctx=await b.new_context(**p.devices['Pixel 7']);await ctx.add_init_script(INIT);pg=await ctx.new_page()
-        await pg.goto(URL,wait_until='load');await pg.wait_for_timeout(3000);await pg.tap('#title');await pg.wait_for_timeout(500)
+        await pg.goto(URL,wait_until='load')
+        if '--cold' not in sys.argv:  # installed-app state: let the service worker finish its first precache, then reopen
+            await pg.wait_for_function('navigator.serviceWorker&&navigator.serviceWorker.controller',timeout=120000);await pg.wait_for_timeout(15000);await pg.reload(wait_until='load')
+        await pg.wait_for_timeout(3000);await pg.evaluate("(()=>{const o=window.say;window.__sid=0;window.say=function(){window.__sid++;return o.apply(this,arguments)}})()");await pg.tap('#title');await pg.wait_for_timeout(500)
         async def step(name,sel,idx=0,wait=1000,check=True):
             ms,err=await tap_measure(pg,sel,idx);res.append((name,ms,err));print(name,ms,err,flush=True)
             if check and (ms is None or ms>150):fails.append(f'{name}: {ms} {err}')

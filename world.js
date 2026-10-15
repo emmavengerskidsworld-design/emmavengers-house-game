@@ -84,7 +84,7 @@ function wcards(a){const L=landById(a.l),p=placeById(L,a.p),D=wDeck(p.deck);curL
  main.innerHTML=`<div class="prompt"><span>${esc(p.intro)}</span><button class="say" aria-label="Read aloud">🔊</button></div><div class="wprog">⭐ <b id="wseen">${seen.size}</b> / ${D.items.length}</div><div class="wgrid k-${D.kind}">${D.items.map((it,i)=>tileHTML(D.kind,it,i,seen)).join('')}</div>`;
  bindSay(p.intro);showShelfImgs();
  main.querySelectorAll('.wtile').forEach(b=>b.onclick=()=>{sfx.tap();showWCard(D,p,+b.dataset.i)});
- warmVoice([...D.items.slice(0,3).flatMap(it=>it.say),...D.items.slice(3).map(it=>it.say[0])],1)}
+ warmVoice(D.items.flatMap(it=>it.say),1)}
 function showWCard(D,p,i){document.querySelectorAll('.pop').forEach(x=>x.remove());const it=D.items[i],key=String(it.id||it.n);warmVoice(D.items.slice(i+1,i+3).flatMap(x=>x.say),1);
  const sv=wSave();sv.seen=sv.seen||{};const seen=new Set(sv.seen[p.deck]||[]);const fresh=!seen.has(key);
  const d=document.createElement('div');d.className='pop wpop';
