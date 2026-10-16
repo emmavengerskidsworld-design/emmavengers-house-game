@@ -45,6 +45,13 @@ def make_world_thumbs():
                 im = Image.open(a); im.thumbnail((192, 192)); im.save(b, 'WEBP', quality=80, method=6)
 make_world_thumbs()
 
+def write_map2_ready():
+    """img/world/map2/ready.json lists the new world-map art that exists, so the game uses it (else placeholders)."""
+    d = os.path.join(ROOT, 'img', 'world', 'map2'); os.makedirs(d, exist_ok=True)
+    have = sorted(f for f in os.listdir(d) if f.lower().endswith(('.jpg', '.jpeg', '.png', '.webp')))
+    json.dump(have, open(os.path.join(d, 'ready.json'), 'w'))
+write_map2_ready()
+
 def vh(t):
     h = 0x811c9dc5; b = t.encode('utf-16-le')
     for i in range(0, len(b), 2):

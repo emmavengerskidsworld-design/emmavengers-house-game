@@ -6,7 +6,7 @@
    After editing lands.json: generate voice clips for new lines (tools/check_voice.py + tools/gen_voice.py) and run
    python3 tools/build_sw.py so phones get the update offline. */
 let LANDS=null,curLand=null,worldGreeted=false;
-const WORLD_SCREENS=['land','wcards','wquiz','wcount','wreward'];
+const WORLD_SCREENS=['land','wcards','wquiz','wcount','wreward','study','ssec'];
 const landById=id=>LANDS&&LANDS.lands.find(l=>l.id===id);
 const placeById=(L,id)=>L&&L.places.find(p=>p.id===id);
 const wDeck=id=>LANDS.decks[id];
@@ -20,6 +20,7 @@ function worldVoice(){const S=[],A=x=>(Array.isArray(x)?x:[x]).forEach(t=>t&&S.p
  LANDS.lands.forEach(L=>{A(L.intro);L.places.forEach(p=>{A(p.intro);
   if(p.type==='quiz')wDeck(p.deck).items.filter(it=>it.hunt!==false).forEach(it=>A(wFill(p.ask,it)));
   if(p.type==='count')wDeck(p.objects).items.forEach(o=>A(o.ask))})});
+ if(LANDS.study){A(LANDS.study.prompt);LANDS.study.sections.forEach(s=>{A(s.intro);(s.items||[]).forEach(it=>A(it.say))})}
  Object.values(LANDS.decks).forEach(d=>{A(d.done);(d.items||[]).forEach(it=>A(it.say))});
  A(['Great job! Level complete!','Amen!']);return [...new Set(S)]}
 window.__worldVoice=worldVoice;
@@ -40,6 +41,7 @@ addEventListener('resize',fitMap);
 
 /* --- World map (home) --- */
 function home(){curLand=null;state={};if(!LANDS){go('house');return}const W=LANDS.world;$('#title').textContent=W.title;
+ if(W.layout==='six')return home6(W);
  main.innerHTML=`<div class="wmap world" id="wmap" style="background-image:url('${W.img}')">${LANDS.lands.map(L=>
   `<button class="wland" data-l="${L.id}" aria-label="${esc(L.name)}" style="left:${L.x}%;top:${L.y}%;width:${L.w}%;height:${L.h}%"></button>`).join('')}${LANDS.lands.map(L=>
   `<button class="wsignb" data-l="${L.id}" style="left:${L.sx}%;top:${L.sy}%"><span class="wsign" style="--c:${L.color}">${esc(L.name)}</span></button>`).join('')}<button class="say wsay" aria-label="Read aloud">🔊</button></div>`;
@@ -50,7 +52,7 @@ function home(){curLand=null;state={};if(!LANDS){go('house');return}const W=LAND
  warmVoice(LANDS.lands.map(L=>L.intro),1)}
 
 /* --- A land's inner map: places are tappable; "Back to Map" returns to the world map --- */
-function land(a){const L=landById((a&&a.id)||curLand);if(!L){go('home');return}curLand=L.id;state={land:L.id};$('#title').textContent=L.name;
+function land(a){const L=landById((a&&a.id)||curLand);if(!L){go('home');return}if(L.type==='library'){go('study');return}curLand=L.id;state={land:L.id};$('#title').textContent=L.name;
  const best=wSave().best||{};
  main.innerHTML=`<button class="btn wback" id="wback">Back to Map</button><div class="wmap" id="wmap" style="background-image:url('${L.img}')">${L.places.map(p=>{const st=best[p.id];
   return `<button class="wplace" data-p="${p.id}" style="left:${p.x}%;top:${p.y}%" aria-label="${esc(p.name)}"><span class="ic">${p.photo?`<i style="background-image:url('${p.icon}');background-position:${p.pos||'center'}"></i>`:`<img src="${p.icon}" alt="">`}</span><span class="wsign" style="--c:${L.color}">${esc(p.name)}</span>${st?`<span class="wst">${'⭐'.repeat(st)+'☆'.repeat(3-st)}</span>`:''}</button>`}).join('')}<button class="say wsay" aria-label="Read aloud">🔊</button></div>`;
@@ -143,6 +145,68 @@ function wreward(a){const L=landById(a.l),p=placeById(L,a.p);curLand=L.id;const 
  $('#again').onclick=()=>{sfx.tap();go(p.type==='count'?'wcount':'wquiz',{l:L.id,p:p.id})};
  $('#tomap').onclick=()=>{sfx.tap();go('land',{id:L.id})}}
 
+/* ===== 6-land world home (approved draft): Number · Letter · Faith on top, Study Land (big library) in the middle,
+   Nature + World at the bottom. New art drops into img/world/map2/ (world-bg.jpg, study-land.jpg, study-<section>.jpg);
+   tools/build_sw.py lists what exists in img/world/map2/ready.json and the game swaps it in, else uses placeholders. */
+let MAP2=new Set();
+const m2=(f,fb)=>f&&MAP2.has(f)?'img/world/map2/'+f:fb;
+function home6(W){const bg=m2(W.bg2,'');const S=LANDS.lands.find(l=>l.type==='library');
+ const isle=L=>{const m=L.m6,art=m2(m.art2,m.art);const hs=m.s*9/16;
+  const inner=art?`<img src="${art}" alt="">`:`<span class="w6lib"><b>🏛️</b><i>📚</i><em>🦉</em><u>🌍</u></span>`;
+  return `<button class="wland w6land${L.type==='library'?' w6study':''}" data-l="${L.id}" aria-label="${esc(L.name)}" style="left:${m.x}%;top:${m.y}%;width:${m.s}%;height:${hs}%"><span class="w6isle" style="--c:${L.color}">${inner}</span></button>`+
+   `<button class="wsignb" data-l="${L.id}" style="left:${m.x}%;top:${(m.y+hs/2+(L.type==='library'?1.2:2.2)).toFixed(1)}%"><span class="wsign" style="--c:${L.color}">${esc(L.name)}</span></button>`};
+ const paths=S?LANDS.lands.filter(l=>l!==S).map(l=>`<line x1="${S.m6.x}" y1="${S.m6.y}" x2="${l.m6.x}" y2="${l.m6.y}"/>`).join(''):'';
+ main.innerHTML=`<div class="wmap world w6${bg?'':' noart'}" id="wmap"${bg?` style="background-image:url('${bg}')"`:''}>
+  ${bg?'':'<span class="w6deco" aria-hidden="true"><i class="sun">☀️</i><i class="c1">☁️</i><i class="c2">☁️</i><i class="c3">☁️</i><i class="boat">⛵</i><i class="whale">🐳</i></span>'}
+  <svg class="w6paths" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${paths}</svg>
+  <div class="w6title">${esc(W.title)}</div>
+  ${LANDS.lands.map(isle).join('')}<button class="say wsay" aria-label="Read aloud">🔊</button></div>`;
+ fitMap();
+ main.querySelector('.wsay').onclick=()=>say(W.intro);
+ main.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{sfx.tap();const L=landById(b.dataset.l);if(L&&L.type==='library')go('study');else go('land',{id:b.dataset.l})});
+ if(!worldGreeted){worldGreeted=true;say(W.intro)}
+ warmVoice(LANDS.lands.map(L=>L.intro),1)}
+
+/* ===== Study Land: a library to look and listen (no games). Shelves come from lands.json "study.sections";
+   source = deck:<id> | house | bible, or inline items [{name,img,text,say}]. Adding a subject = one data entry. */
+let studyFrom=null;
+const HOUSE_ALL=()=>[...ITEMS,...BEDROOM_ITEMS,...BATHROOM_ITEMS,...LIVING_ITEMS];
+const ROOM_NAME={kitchen:'Kitchen',bedroom:'Bedroom',bathroom:'Bathroom','living room':'Living Room'};
+function studyItems(s){const src=s.source||'';
+ if(s.items)return s.items.map(it=>({label:it.name,img:it.img,thumb:it.img,text:it.text||'',say:it.say||[it.name]}));
+ if(src==='house')return HOUSE_ALL().map(it=>({label:it.name[0].toUpperCase()+it.name.slice(1),img:full(it),thumb:crop(it),text:it.use,say:[it.use],group:ROOM_NAME[it.room]||it.room}));
+ if(src==='bible')return Object.entries(BIBLE).map(([k,b])=>({label:b.title,img:bImg(b,'cover'),thumb:bImg(b,'thumb'),book:k}));
+ if(src.startsWith('deck:')){const D=wDeck(src.slice(5));if(!D)return[];return D.items.map(it=>{
+  const img=D.kind==='country'?it.flag:it.img;
+  const label=D.kind==='letter'?`${it.id} · ${it.word}`:D.kind==='number'?`${it.n} · ${it.word}`:it.name;
+  const text=D.kind==='country'?`${it.greeting} "${it.meaning}" in ${it.language}`:it.fact||it.text||'';
+  return {label,img,thumb:wThumb(img),text,say:it.say,big:D.kind==='letter'?it.id:D.kind==='number'?String(it.n):''}})}
+ return []}
+function study(){const S=LANDS.lands.find(l=>l.type==='library'),T=LANDS.study;curLand=S.id;state={land:S.id};studyFrom=null;$('#title').textContent='📚 '+S.name;
+ main.innerHTML=`<div class="prompt"><span>${esc(T.prompt)}</span><button class="say" aria-label="Read aloud">🔊</button></div><div class="sshelves">${T.sections.map(s=>
+  `<button class="ssec" data-s="${s.id}" style="--c:${s.color||'#2f86e8'}"><span class="si"><img src="${m2(s.icon2,s.icon)}"${m2(s.icon2,"")?' class="art"':''} alt=""></span><span class="sn">${esc(s.name)}</span><span class="sc">${studyItems(s).length} to learn</span></button>`).join('')}</div>`;
+ main.querySelector('.say').onclick=()=>say(S.intro);say(S.intro);
+ main.querySelectorAll('.ssec').forEach(b=>b.onclick=()=>{sfx.tap();go('ssec',{s:b.dataset.s})});
+ warmVoice(T.sections.map(s=>s.intro),1)}
+function ssec(a){const S=LANDS.lands.find(l=>l.type==='library'),s=LANDS.study.sections.find(x=>x.id===a.s);if(!s){go('study');return}curLand=S.id;state={land:S.id,sec:s.id};
+ const items=studyItems(s);$('#title').textContent=s.name;let grp=null;
+ main.innerHTML=`<div class="prompt"><span>${esc(s.intro||s.name)}</span><button class="say" aria-label="Read aloud">🔊</button></div><div class="sgrid">${items.map((it,i)=>{
+  const h=it.group&&it.group!==grp?`<h3 class="sgrp">${esc(grp=it.group)}</h3>`:'';
+  return h+`<button class="stile" data-i="${i}" style="--c:${s.color||'#2f86e8'}"><img data-src="${it.thumb||it.img}" data-fb="${it.img}" alt=""><span>${esc(it.label)}</span></button>`}).join('')}</div>`;
+ bindSay(s.intro||s.name);showShelfImgs();
+ main.querySelectorAll('.stile').forEach(b=>b.onclick=()=>{sfx.tap();const it=items[+b.dataset.i];if(it.book){studyFrom={s:s.id};go('reader',{b:it.book,i:0});return}showSCard(s,items,+b.dataset.i)});
+ warmVoice(items.slice(0,12).map(it=>it.say),1)}
+function showSCard(s,items,i){document.querySelectorAll('.pop').forEach(x=>x.remove());const it=items[i];
+ const d=document.createElement('div');d.className='pop wpop spop';
+ d.innerHTML=`<div class="wcard scard" style="--c:${s.color||'#2f86e8'}">${it.big?`<div class="big">${esc(it.big)}</div>`:''}<img class="hero" src="${it.img}" alt="${esc(it.label)}"><div class="wword"><b>${esc(it.label)}</b></div>${it.text?`<div class="fact">${esc(it.text)}</div>`:''}<div class="row"><button class="say" aria-label="Read aloud">🔊</button><button class="btn" id="snext">Next ➜</button><button class="btn" id="sdone">Done ✓</button></div></div>`;
+ document.body.appendChild(d);
+ if(it.say)say(it.say);
+ warmVoice(items.slice(i+1,i+3).map(x=>x.say),1);
+ d.querySelector('.say').onclick=()=>it.say&&say(it.say);
+ d.querySelector('#snext').onclick=()=>{sfx.tap();let j=(i+1)%items.length;showSCard(s,items,j)};
+ d.querySelector('#sdone').onclick=()=>{sfx.tap();stopVoice();d.remove()};
+ d.addEventListener('click',e=>{if(e.target===d){sfx.tap();stopVoice();d.remove()}})}
+
 /* --- soft looping music, one theme per land (WebAudio, no files). Stops when you leave the land. --- */
 const FM=[65,0,69,0,72,0,0,0,70,0,69,0,67,0,0,0,65,0,67,0,69,0,72,0,74,0,72,0,0,0,0,0];
 const LTM=[72,74,76,0,79,0,76,0,74,72,74,0,76,0,0,0,77,79,81,0,79,0,77,0,76,74,72,0,0,0,0,0];
@@ -164,4 +228,5 @@ Object.assign(BGM,{
 function worldBgm(s){if(!WORLD_SCREENS.includes(s))return false;const L=landById(curLand);const k=L&&('land:'+L.music);if(k&&BGM[k])bgmPlay(k);else bgmStop();return true}
 
 /* --- boot: load lands.json (precached offline), then open the world map --- */
-fetch('lands.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{LANDS=j;go('home')}).catch(()=>{go('house')});
+const map2Ready=fetch('img/world/map2/ready.json').then(r=>r.ok?r.json():[]).then(a=>{MAP2=new Set(a||[])}).catch(()=>{});
+fetch('lands.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>map2Ready.then(()=>{LANDS=j;go('home')})).catch(()=>{go('house')});

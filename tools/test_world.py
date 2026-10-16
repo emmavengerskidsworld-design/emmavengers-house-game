@@ -42,7 +42,7 @@ async def run(b,url,vw,vh):
     await pg.wait_for_function('LANDS!==null&&screen==="home"',timeout=10000)
     ok(await pg.title()=='Emmavengers World','document title'); ok((await pg.text_content('#title')).strip()=='Emmavengers World','header title')
     ok(await pg.is_visible('#parentBtn'),"Parents' Corner button on world home")
-    n=await pg.evaluate("document.querySelectorAll('.wland').length");ok(n==5,f'5 lands on map (got {n})')
+    n=await pg.evaluate("document.querySelectorAll('.wland').length");ok(n==6,f'6 lands on map (got {n})')
     await check(pg,'world map',f'world-map-{vw}.png')
     # every land opens its inner map with Back to Map
     for L in ['faith','letter','number','nature','world']:
@@ -107,6 +107,8 @@ async def run(b,url,vw,vh):
     await pg.click('.wplace[data-p="countries"]');await wait_scr(pg,'wcards')
     ok(await pg.evaluate('emmaBack()') is True and await wait_scr(pg,'land')=='land','emmaBack activity -> land')
     ok(await pg.evaluate('emmaBack()') is True and await wait_scr(pg,'home')=='home','emmaBack land -> map')
+    await pg.click('.wsignb[data-l="study"]');s=await wait_scr(pg,'study');ok(s=='study','study: Study Land library opens')
+    await pg.evaluate('emmaBack()');s=await wait_scr(pg,'home');ok(s=='home','study: back returns to world map')
     ok(await pg.evaluate('emmaBack()') is False,'emmaBack on map lets the app exit')
     real=[e for e in errs]
     ok(not real,f'JS/console errors: {real[:5]}')

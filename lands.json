@@ -3,7 +3,9 @@
  "world": {
   "title": "Emmavengers World",
   "img": "img/world/world-map.jpg",
-  "intro": "Welcome to Emmavengers World! Tap a land to explore!"
+  "intro": "Welcome to Emmavengers World! Tap a land to explore!",
+  "layout": "six",
+  "bg2": "world-bg.jpg"
  },
  "lands": [
   {
@@ -65,7 +67,13 @@
      "deck": "prayers",
      "intro": "Prayer Corner! Tap a prayer and let's pray together!"
     }
-   ]
+   ],
+   "m6": {
+    "x": 81,
+    "y": 29,
+    "s": 28,
+    "art": "img/world/places/house.webp"
+   }
   },
   {
    "id": "letter",
@@ -106,7 +114,13 @@
      "rounds": 8,
      "intro": "Letter hunt! Find the first letter of each word!"
     }
-   ]
+   ],
+   "m6": {
+    "x": 50,
+    "y": 21.5,
+    "s": 28,
+    "art": "img/world/places/abc.webp"
+   }
   },
   {
    "id": "number",
@@ -146,7 +160,36 @@
      "rounds": 8,
      "intro": "Count it! Tap each one to count, then pick the number!"
     }
-   ]
+   ],
+   "m6": {
+    "x": 19,
+    "y": 29,
+    "s": 28,
+    "art": "img/world/places/numbers.webp"
+   }
+  },
+  {
+   "id": "study",
+   "name": "Study Land",
+   "type": "library",
+   "color": "#c0392b",
+   "img": "img/world/places/abc.webp",
+   "music": "faith",
+   "intro": "Welcome to Study Land, the big library! Pick a shelf and learn something new!",
+   "m6": {
+    "x": 50,
+    "y": 51.5,
+    "s": 44,
+    "art": "",
+    "art2": "study-land.jpg"
+   },
+   "x": 50,
+   "y": 50,
+   "sx": 50,
+   "sy": 50,
+   "w": 10,
+   "h": 10,
+   "places": []
   },
   {
    "id": "nature",
@@ -187,7 +230,13 @@
      "rounds": 8,
      "intro": "Animal quiz! Can you find the right animal?"
     }
-   ]
+   ],
+   "m6": {
+    "x": 24,
+    "y": 77,
+    "s": 32,
+    "art": "img/world/places/safari.webp"
+   }
   },
   {
    "id": "world",
@@ -228,7 +277,13 @@
      "rounds": 5,
      "intro": "Flag quiz! Can you find the right flag?"
     }
-   ]
+   ],
+   "m6": {
+    "x": 76,
+    "y": 77,
+    "s": 32,
+    "art": "img/world/places/countries.webp"
+   }
   }
  ],
  "decks": {
@@ -937,5 +992,65 @@
   "x, x, fox!": "ks, ks, fˈɑːks!",
   "y, y, yo-yo!": "jə, jə, jˈoʊjˈoʊ!",
   "z, z, zebra!": "zː, zː, zˈiːbɹə!"
+ },
+ "study": {
+  "prompt": "Pick a shelf!",
+  "sections": [
+   {
+    "id": "animals",
+    "name": "Animals",
+    "color": "#1f8a2b",
+    "icon": "img/world/places/safari.webp",
+    "icon2": "study-animals.jpg",
+    "source": "deck:animals",
+    "intro": "Animals! Tap a picture to learn about it!"
+   },
+   {
+    "id": "house",
+    "name": "House Things",
+    "color": "#e8261c",
+    "icon": "img/world/places/house.webp",
+    "icon2": "study-house.jpg",
+    "source": "house",
+    "intro": "House things! Tap a picture to learn what it is for!"
+   },
+   {
+    "id": "flags",
+    "name": "Country Flags",
+    "color": "#2f86e8",
+    "icon": "img/world/places/flagquiz.webp",
+    "icon2": "study-flags.jpg",
+    "source": "deck:countries",
+    "intro": "Country flags! Tap a flag to visit a country!"
+   },
+   {
+    "id": "letters",
+    "name": "Letters",
+    "color": "#a855f7",
+    "icon": "img/world/places/abc.webp",
+    "icon2": "study-letters.jpg",
+    "source": "deck:letters",
+    "intro": "Letters! Tap a letter to hear its sound!"
+   },
+   {
+    "id": "numbers",
+    "name": "Numbers",
+    "color": "#ff8c00",
+    "icon": "img/world/places/numbers.webp",
+    "icon2": "study-numbers.jpg",
+    "source": "deck:numbers",
+    "intro": "Numbers! Tap a number to count with me!"
+   },
+   {
+    "id": "bible",
+    "name": "Bible Stories",
+    "color": "#ffb800",
+    "icon": "img/world/places/prayer.webp",
+    "icon2": "study-bible.jpg",
+    "source": "bible",
+    "intro": "Bible stories! Tap a book to read it!"
+   }
+  ],
+  "_help": "Add a subject: a new entry in sections. source = deck:<deck id> | house | bible, or give your own items: [{name, img, text, say:[lines]}]. icon2 = optional new art in img/world/map2/ (used automatically once listed in img/world/map2/ready.json, which tools/build_sw.py writes)."
  }
 }

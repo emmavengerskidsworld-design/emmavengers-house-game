@@ -459,6 +459,47 @@ body.wmapmode main.enter>*{animation:none}
 .wobj.counted img{filter:drop-shadow(0 0 7px #2ecc40)}
 .wobj.counted::after{content:attr(data-c);position:absolute;top:-4px;right:-4px;background:#2ecc40;color:#fff;border-radius:50%;width:28px;height:28px;font-size:16px;display:flex;align-items:center;justify-content:center;border:3px solid #fff}
 @media (orientation:portrait) and (max-width:600px){.wcount{gap:4px;padding:8px}.opt.wl,.opt.wn{min-height:76px}}
+
+/* ===== 6-land world home + Study Land ===== */
+.w6{background:radial-gradient(ellipse at 50% 55%,#5ec8ff 0,#2a9df4 45%,#1670d0 100%)}
+.w6:not(.noart){background-size:cover;background-position:center}
+.w6.noart::before{content:'';position:absolute;inset:0;background:repeating-radial-gradient(circle at 30% 70%,rgba(255,255,255,.07) 0 6px,transparent 6px 22px);pointer-events:none}
+.w6paths{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.w6paths line{stroke:#fff07a;stroke-width:6;stroke-dasharray:.1 11;stroke-linecap:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px #fff6a8)}
+.w6title{position:absolute;left:50%;top:1.6%;transform:translateX(-50%);z-index:3;white-space:nowrap;font-family:LG,"Arial Rounded MT Bold",sans-serif;font-size:7.4cqw;color:#ffd21f;-webkit-text-stroke:1.5px #7a3d00;text-shadow:0 3px 0 #7a3d00;background:linear-gradient(#b8763a,#8a5222);border:3px solid #5c3410;border-radius:14px;padding:1.2cqw 3.6cqw;box-shadow:0 5px 10px rgba(0,0,0,.35)}
+.w6land{border-radius:50%}
+.w6isle{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 45% 35%,#b9f07a 0,#7ccc3f 55%,#4f9b25 78%,#e8d08a 79%,#d9b866 100%);border:3px solid #fff;box-shadow:0 0 0 3px var(--c,#ffc400),0 8px 14px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;overflow:hidden;animation:bob 3s ease-in-out infinite}
+.w6isle img{width:82%;height:82%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.3))}
+.w6study .w6isle img{width:100%;height:100%;object-fit:cover}
+.w6land:nth-of-type(2n) .w6isle{animation-delay:.8s}
+.w6land:active .w6isle{transform:scale(.94)}
+.w6lib{position:relative;width:100%;height:100%;display:block}
+.w6lib b{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-size:24cqw;font-weight:400;filter:drop-shadow(0 6px 6px rgba(0,0,0,.35))}
+.w6lib i,.w6lib em,.w6lib u{position:absolute;font-style:normal;text-decoration:none;font-size:10cqw}
+.w6lib i{left:10%;bottom:16%}.w6lib em{left:16%;top:14%}.w6lib u{right:10%;bottom:18%}
+.w6study::after{border-radius:50%}
+.w6 .wsignb .wsign{font-size:4.6cqw}
+.w6deco i{position:absolute;font-style:normal;z-index:1;pointer-events:none}
+.w6deco .sun{right:3%;top:10%;font-size:11cqw;animation:bob 4s ease-in-out infinite}
+.w6deco .c1{left:4%;top:11%;font-size:9cqw}.w6deco .c2{right:8%;top:40%;font-size:7cqw}.w6deco .c3{left:6%;top:56%;font-size:8cqw}
+.w6deco .boat{right:6%;top:62%;font-size:9cqw;animation:bob 3.4s ease-in-out infinite}
+.w6deco .whale{left:42%;bottom:3%;font-size:10cqw;animation:bob 2.8s ease-in-out infinite}
+.sshelves{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;width:100%;max-width:900px;margin:0 auto}
+.ssec{display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border:5px solid var(--c);border-radius:22px;padding:10px 8px 12px;box-shadow:0 6px 0 rgba(0,0,0,.18);cursor:pointer;font:inherit;color:#123a7a}
+.ssec .si{width:72%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff 0,#fff8d6 60%,#ffe49a 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;border:4px solid var(--c)}
+.ssec .si img{width:84%;height:84%;object-fit:contain}
+.ssec .si img.art{width:100%;height:100%;object-fit:cover}
+.ssec .sn{font-family:LG,"Arial Rounded MT Bold",sans-serif;font-size:clamp(17px,4.6vw,24px);color:var(--c);line-height:1.1;text-align:center}
+.ssec .sc{font-size:14px;color:#555}
+.ssec:active{transform:scale(.96)}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px;width:100%;max-width:900px;margin:0 auto}
+.sgrp{grid-column:1/-1;margin:8px 0 0;color:#fff;font-family:LG,"Arial Rounded MT Bold",sans-serif;font-size:22px;text-shadow:0 2px 0 rgba(0,0,0,.3)}
+.stile{display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border:4px solid var(--c);border-radius:18px;padding:6px;cursor:pointer;font:inherit;color:#123a7a;box-shadow:0 4px 0 rgba(0,0,0,.15)}
+.stile img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:12px;background:#f3f8ff}
+.stile span{font-size:15px;font-weight:700;line-height:1.1;text-align:center;word-break:break-word}
+.stile:active{transform:scale(.95)}
+.scard .big{font-size:64px;line-height:1;color:var(--c);font-family:LG,"Arial Rounded MT Bold",sans-serif}
+.scard .hero{max-height:42vh;object-fit:contain}
 </style></head><body>
 <div id="app">
 <header>
@@ -740,10 +781,12 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);if(p.e){cx.font=(p.w*2.6|0)+'px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(p.e,0,0)}else{cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2)}cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
 function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();if(typeof mPauseVids==='function')mPauseVids();document.querySelectorAll('.pop').forEach(p=>p.remove());
- document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('wmapmode',s==='home'||s==='land');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,house,land,wcards,wquiz,wcount,wreward,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone,morning,mstep,mwin,morningAsk})[s](arg);bgmFor(screen);document.body.classList.toggle('morning',['morning','mstep','mwin','morningAsk'].includes(s));if(s!=='mstep'&&typeof mTok!=='undefined')mTok++;if(typeof histSync==='function')histSync(s);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('wmapmode',s==='home'||s==='land');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,house,land,study,ssec,wcards,wquiz,wcount,wreward,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone,morning,mstep,mwin,morningAsk})[s](arg);bgmFor(screen);document.body.classList.toggle('morning',['morning','mstep','mwin','morningAsk'].includes(s));if(s!=='mstep'&&typeof mTok!=='undefined')mTok++;if(typeof histSync==='function')histSync(s);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
-  if(screen==='land'){go('home');return}
+  if(screen==='land'||screen==='study'){go('home');return}
+  if(screen==='ssec'){go('study');return}
+  if(['reader','bquiz','bdone'].includes(screen)&&typeof studyFrom!=='undefined'&&studyFrom){const f=studyFrom;go('ssec',f);return}
   if(['wcards','wquiz','wcount','wreward'].includes(screen)){go('land',{id:curLand});return}
   if(['house','bible','morning','mstep','mwin','morningAsk'].includes(screen)){go('land',{id:'faith'});return}
   if(screen==='levelmap'){go('house');return}
@@ -1289,7 +1332,7 @@ const bibleSave=()=>{try{return JSON.parse(localStorage.getItem('emmaBible')||'{
 const bImg=(b,k)=>b.dir+k+'.jpg';
 /* Shelf covers load right after the voice starts (or 700 ms), so they never delay it on a slow network. */
 function showShelfImgs(){const go2=()=>{main.querySelectorAll('img[data-src]').forEach(im=>{im.onerror=()=>{im.onerror=null;im.src=im.dataset.fb};im.src=im.dataset.src;im.removeAttribute('data-src')})};let done=0;const f=()=>{if(!done){done=1;go2()}};if(!vWait)return f();vEl.addEventListener('playing',f,{once:true});setTimeout(f,700)}
-function bible(){document.body.classList.remove('reading');state={room:'bible'};$('#title').textContent='📖 Bible Library';const sv=bibleSave();
+function bible(){document.body.classList.remove('reading');if(typeof studyFrom!=='undefined')studyFrom=null;state={room:'bible'};$('#title').textContent='📖 Bible Library';const sv=bibleSave();
  main.innerHTML=`<div class="prompt">Pick a story to read! <button class="say" aria-label="Read aloud">🔊</button></div><div class="shelf">${Object.entries(BIBLE).map(([k,b])=>{const best=(sv[k]||{}).stars||0;return `<button class="book${Object.keys(BIBLE).length<3?' feat':''}" data-b="${k}"><div class="cv"><img data-src="${bImg(b,'thumb')}" data-fb="${bImg(b,'cover')}" alt="${b.title}"></div><div class="bt">${b.title}</div><div class="bs">${best?'⭐'.repeat(best):'Tap to read!'}</div></button>`}).join('')}${BIBLE_SOON.map(([n,e])=>`<button class="book locked" data-n="${n}"><span class="lock">🔒</span><div class="cv">${e}</div><div class="bt">${n}</div><div class="bs">Coming soon</div></button>`).join('')}</div>`;
  main.querySelector('.say').onclick=()=>say('Pick a story to read!');say('Welcome to the Bible Library! Pick a story to read!');showShelfImgs();
  main.querySelectorAll('.book').forEach(el=>el.onclick=()=>{if(el.dataset.b){sfx.tap();go('reader',{b:el.dataset.b,i:0})}else{sfx.wrong();say(el.dataset.n+' is coming soon!')}})}
@@ -1299,7 +1342,7 @@ function reader(a){document.body.classList.add('reading');const b=BIBLE[a.b];if(
  const img=$('#bimg'),pg=$('#bpage');let busy=false;
  const pre=i=>{if(P[i]){const im=new Image();try{im.fetchPriority='low'}catch(e){}im.src=bImg(b,P[i].img)}};
  const afterVoice=(f,cap=1200)=>{let d=0;const g=()=>{if(!d){d=1;f()}};if(!vWait)return g();vEl.addEventListener('playing',g,{once:true});setTimeout(g,cap)};
- afterVoice(()=>{img.src=bImg(b,P[state.i].img)},250); // on a slow network the voice clip gets the line first
+ {const i0=state.i;afterVoice(()=>{if(img.isConnected&&!img.getAttribute('src'))img.src=bImg(b,P[i0].img)},250)} // on a slow network the voice clip gets the line first
  const show=quiet=>{const i=state.i;$('#bcount').textContent=(i+1)+' / '+L;$('#bprev').disabled=i===0;$('#bnext').textContent=i===L-1?'Quiz ▶':'Next ▶';$('#btext').textContent=P[i].text||'';if(!quiet)say(P[i].say);afterVoice(()=>{pre(i+1);pre(i+2)});warmVoice([P[i+1]&&P[i+1].say,P[i-1]&&P[i-1].say],1)};
  const turn=d=>{if(busy)return;const j=state.i+d;if(j<0)return;sfx.tap();if(j>=L){go('bquiz',{b:a.b});return}busy=true;if(P[j])say(P[j].say);else stopVoice();
   pg.classList.remove('inL','inR');pg.classList.add(d>0?'outL':'outR');
