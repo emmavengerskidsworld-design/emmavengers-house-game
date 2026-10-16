@@ -184,7 +184,7 @@ function studyItems(s){const src=s.source||'';
  return []}
 function study(){const S=LANDS.lands.find(l=>l.type==='library'),T=LANDS.study;curLand=S.id;state={land:S.id};studyFrom=null;$('#title').textContent='📚 '+S.name;
  main.innerHTML=`<div class="prompt"><span>${esc(T.prompt)}</span><button class="say" aria-label="Read aloud">🔊</button></div><div class="sshelves">${T.sections.map(s=>
-  `<button class="ssec" data-s="${s.id}" style="--c:${s.color||'#2f86e8'}"><span class="si"><img src="${m2(s.icon2,s.icon)}" alt=""></span><span class="sn">${esc(s.name)}</span><span class="sc">${studyItems(s).length} to learn</span></button>`).join('')}</div>`;
+  `<button class="ssec" data-s="${s.id}" style="--c:${s.color||'#2f86e8'}"><span class="si"><img src="${m2(s.icon2,s.icon)}"${m2(s.icon2,"")?' class="art"':''} alt=""></span><span class="sn">${esc(s.name)}</span><span class="sc">${studyItems(s).length} to learn</span></button>`).join('')}</div>`;
  main.querySelector('.say').onclick=()=>say(S.intro);say(S.intro);
  main.querySelectorAll('.ssec').forEach(b=>b.onclick=()=>{sfx.tap();go('ssec',{s:b.dataset.s})});
  warmVoice(T.sections.map(s=>s.intro),1)}
