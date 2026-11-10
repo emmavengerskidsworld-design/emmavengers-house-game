@@ -65,6 +65,11 @@ async function rangeResp(r,range){const b=await r.blob();const m=/bytes=(\d*)-(\
  return new Response(b.slice(s,end+1),{status:206,headers:{'Content-Type':r.headers.get('Content-Type')||'audio/mpeg','Content-Range':`bytes ${s}-${end}/${b.size}`,'Content-Length':String(end-s+1),'Accept-Ranges':'bytes'}})}
 self.addEventListener('fetch',e=>{const req=e.request;if(req.method!=='GET')return;const url=new URL(req.url);if(url.origin!==location.origin)return;
  if(url.pathname.endsWith('/bible-manifest.json'))return; /* always live when online */
+ /* content library catalog: the only content file that changes in place -> network first, cached copy offline.
+    Every other content/library file has its content hash in its name, so cache-first below is always correct. */
+ if(url.pathname.endsWith('/content/library/catalog.json')){e.respondWith((async()=>{const key='./content/library/catalog.json';
+  try{const n=await fetch(req.url,{cache:'no-store'});if(n.ok){const cp=n.clone();(await caches.open(CACHE)).put(key,cp);return n}throw new Error(n.status)}
+  catch(err){return (await caches.match(key,{ignoreSearch:true}))||new Response('',{status:504})}})());return}
  e.respondWith((async()=>{const c=await caches.open(CACHE);
   let r=req.mode==='navigate'?(await c.match('./index.html')||await c.match('./')):(await c.match(req.url,{ignoreSearch:true,ignoreVary:true})||await caches.match(req.url,{ignoreSearch:true,ignoreVary:true}));
   if(!r&&req.mode!=='navigate'){try{const n=await fetch(req);if(n.ok&&n.status===200&&!req.headers.get('range')){const dst=url.pathname.includes('/img/bible/')?await caches.open(BOOKS_CACHE):c;dst.put(req.url,n.clone())}return n}catch(err){/* offline + this voice pack not fully downloaded yet: use Mia's cached clip instead of silence */const vm=/\/voice\/[a-z]+\/([0-9a-f]{8}\.mp3)$/.exec(url.pathname);if(vm){const m=await caches.match('./voice/'+vm[1],{ignoreSearch:true});if(m){const range=req.headers.get('range');return range?rangeResp(m,range):m}}return new Response('',{status:504})}}

@@ -1,9 +1,9 @@
 /* ===== Country player (Emmavengers World · World Land) =====
-   One generic player for every country pack in content/countries/. A country is pure data:
-   content/countries/index.json lists the packs; each pack (e.g. cameroon.json) holds Learn cards per age band,
+   One generic player for every country in the content library (content/src/countries/<slug>/ -> library.js).
+   A country is pure data: a country record points at its lessons (Learn cards per age band),
    Play activities (known templates: grid-route.v1, ordered-slots.v1, match.v1, map-select.v1,
    evidence-comparison.v1, inquiry.v1), a quiz bank file, stories, pre-written guide lines (Ari + Ezra) and media
-   descriptions, all in English + French. Adding a country = add its JSON + a "country" place in lands.json.
+   descriptions, in every language it has. Adding a country: docs/authoring-guide.md.
    No free text, no search, no microphone, no generated speech: only the lines written in the pack are shown/spoken.
    Local data kept (localStorage, no personal data): language, age band, guide on/off, quiz items seen today,
    a "visited" stamp and minimal practice events (item id, first-try correct, hint used, repeat). */
@@ -38,9 +38,12 @@ window.__ctryVoice=()=>[...new Set(Object.values(CT.packs).flatMap(pk=>ctStrings
 /* Pilot clips exist once (default voice folder) in English and French, so every voice setting uses them. */
 window.voiceOnlyMia=t=>CT_ALL.has(t);
 window.ttsLangFor=t=>CT_FR.has(t)?'fr-FR':'en-US';
-function ctLoad(){const j=u=>fetch(u).then(r=>{if(!r.ok)throw new Error(u);return r.json()});
- return Promise.all([j('content/countries/index.json'),j('content/countries/ui.json')]).then(([ix,ui])=>{CT.index=ix;CT.ui=ui;
-  return Promise.all(ix.countries.map(c=>j(c.file).then(pk=>j(pk.payload.quiz.bank).then(b=>{CT.packs[c.slug]=pk;CT.banks[c.slug]=b;ctIndexStrings(pk)}))))}).then(()=>{CT.ready=true;window.CTRY_READY=true})}
+/* Country packs come from the content library (library.js). Countries already on the device (starter packs) are
+   opened at start; any other country listed in the catalog is downloaded the first time it is opened. */
+function ctLoadOne(slug){return EWLib.legacy.country(slug).then(({pack,bank})=>{CT.banks[slug]=bank;CT.packs[slug]=pack;ctIndexStrings(pack);return pack})}
+function ctLoad(){return EWLib.ready.then(L=>{CT.index=L.legacy.countryIndex();CT.ui=L.legacy.uiStrings();
+  const have=new Set(L.packs().filter(p=>p.installed&&p.summary).map(p=>p.summary.id));
+  return Promise.all(CT.index.countries.filter(c=>have.has(c.id)).map(c=>ctLoadOne(c.slug)))}).then(()=>{CT.ready=true;window.CTRY_READY=true})}
 const ctReady=ctLoad().catch(e=>{console.warn('country packs not loaded',e)});
 
 /* ---- speech + guide bubble (Ari / Ezra). One voice at a time; captions = exact spoken text. ---- */
@@ -98,7 +101,9 @@ const ctTable=rows=>`<table class="ctable"><tr><th></th><th>${esc(UT('visitors')
 /* ---- shared chrome ---- */
 function ctTop(title){$('#title').textContent=title||LT(CT.cur.payload.name);main.setAttribute('lang',ctLang())}
 function ctRequire(a,fn){if(!CT.ready){main.innerHTML='<div class="prompt">…</div>';ctReady.then(()=>{if(CT.ready&&CT_SCREENS.includes(screen))fn(a)});return true}
- const pk=CT.packs[(a&&a.c)||(CT.cur&&CT.cur.payload.slug)];if(!pk){go('land',{id:'world'});return true}CT.cur=pk;curLand=pk.tags.land;return false}
+ const slug=(a&&a.c)||(CT.cur&&CT.cur.payload.slug),pk=CT.packs[slug];
+ if(!pk&&CT.index&&CT.index.countries.some(c=>c.slug===slug)){main.innerHTML='<div class="prompt">…</div>';ctLoadOne(slug).then(()=>{if(CT_SCREENS.includes(screen))fn(a)}).catch(e=>{console.warn('country not available',slug,e);go('land',{id:'world'})});return true}
+ if(!pk){go('land',{id:'world'});return true}CT.cur=pk;curLand=pk.tags.land;return false}
 const ctA=extra=>Object.assign({c:CT.cur.payload.slug},extra||{});
 function ctBind(){main.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(!b.closest('#cguide'))ctHideGuide()}))}
 function ctStamp(){const P=ctProg(),k=CT.cur.payload.slug;P[k]=P[k]||{};const first=!P[k].stamp;P[k].stamp=true;ctPutProg(P);return first}
