@@ -1,0 +1,170 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Source register for Cameroon facts. Each fact record cites these by id.",
+ "records": [
+  {
+   "id": "ew.source.pilot-cameroon-con",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "CON",
+    "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/43107/CMR43107%20Eng.pdf",
+    "checkedOn": "2026-11-09"
+   }
+  },
+  {
+   "id": "ew.source.pilot-cameroon-un",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "UN",
+    "url": "https://data.un.org/legacy/en/iso/cm.html",
+    "checkedOn": "2026-11-09"
+   }
+  },
+  {
+   "id": "ew.source.pilot-cameroon-prc",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "PRC",
+    "url": "https://www.prc.cm/en/cameroon/presentation",
+    "checkedOn": "2026-11-09"
+   }
+  },
+  {
+   "id": "ew.source.pilot-cameroon-brk",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "BRK",
+    "url": "https://kids.britannica.com/students/article/Cameroon/273470",
+    "checkedOn": "2026-11-09"
+   }
+  },
+  {
+   "id": "ew.source.pilot-cameroon-brm",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "BRM",
+    "url": "https://kids.britannica.com/scholars/article/Mount-Cameroon/19818",
+    "checkedOn": "2026-11-09"
+   }
+  },
+  {
+   "id": "ew.source.pilot-cameroon-whc",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "WHC",
+    "url": "https://whc.unesco.org/en/statesparties/cm/",
+    "checkedOn": "2026-11-09"
+   }
+  },
+  {
+   "id": "ew.source.pilot-cameroon-eth",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ETH",
+    "url": "https://www.ethnologue.com/country/CM/",
+    "checkedOn": "2026-11-09"
+   }
+  },
+  {
+   "id": "ew.source.pilot-cameroon-ed",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ED",
+    "url": null,
+    "checkedOn": null,
+    "note": "editorial-construction (invented practice material)"
+   }
+  },
+  {
+   "id": "ew.source.pilot-cameroon-10a",
+   "type": "source",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "10a",
+    "url": null,
+    "checkedOn": null,
+    "note": "world-blueprint/10a-pilot-screens-cards-games.md (internal pilot design spec: practice map and activities)"
+   }
+  }
+ ]
+}

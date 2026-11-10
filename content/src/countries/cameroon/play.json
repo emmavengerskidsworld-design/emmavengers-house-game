@@ -1,0 +1,556 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Play: each game is a known template (see content/src/capabilities.json) filled with data.",
+ "records": [
+  {
+   "id": "ew.activity.pilot-cameroon-route",
+   "type": "activity",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "play"
+    ]
+   },
+   "payload": {
+    "key": "P1",
+    "template": "grid-route.v1",
+    "icon": "📖",
+    "title": {
+     "en": "Route to the library",
+     "fr": "Le chemin de la bibliothèque"
+    },
+    "mission": {
+     "en": "Find the library from Start.",
+     "fr": "Depuis Départ, trouve la bibliothèque."
+    },
+    "start": [
+     1,
+     1
+    ],
+    "goal": "library",
+    "routeHelpAfter": 2,
+    "feedback": {
+     "success": {
+      "en": "You used the key and direction cue to reach the library.",
+      "fr": "Tu as utilisé la légende et les directions pour atteindre la bibliothèque."
+     },
+     "hint": {
+      "en": "Find the book in the key. Look for that symbol on the map.",
+      "fr": "Trouve le livre dans la légende. Cherche ce symbole sur le plan."
+     },
+     "routeHelp": {
+      "en": "You can undo a move. Try one step towards the library.",
+      "fr": "Tu peux annuler un déplacement. Essaie un déplacement vers la bibliothèque."
+     },
+     "edge": {
+      "en": "That's the edge of our map. Choose another direction.",
+      "fr": "C'est le bord de notre plan. Choisis une autre direction."
+     }
+    }
+   }
+  },
+  {
+   "id": "ew.activity.pilot-cameroon-flag-build",
+   "type": "activity",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "play"
+    ]
+   },
+   "payload": {
+    "key": "P2",
+    "template": "ordered-slots.v1",
+    "icon": "🏳️",
+    "title": {
+     "en": "Build the flag",
+     "fr": "Construis le drapeau"
+    },
+    "prompt": {
+     "en": "Put the stripes in order: green, red, yellow. Then put the star in the red stripe.",
+     "fr": "Place les bandes dans l'ordre : vert, rouge, jaune. Puis mets l'étoile dans la bande rouge."
+    },
+    "pieces": [
+     {
+      "id": "green",
+      "name": {
+       "en": "green",
+       "fr": "vert"
+      },
+      "slot": 0
+     },
+     {
+      "id": "red",
+      "name": {
+       "en": "red",
+       "fr": "rouge"
+      },
+      "slot": 1
+     },
+     {
+      "id": "yellow",
+      "name": {
+       "en": "yellow",
+       "fr": "jaune"
+      },
+      "slot": 2
+     },
+     {
+      "id": "star",
+      "name": {
+       "en": "star",
+       "fr": "étoile"
+      },
+      "slot": "star-in-1"
+     }
+    ],
+    "hint": {
+     "en": "Green goes first, on the left.",
+     "fr": "Le vert est en premier, à gauche."
+    },
+    "success": {
+     "en": "You built Cameroon's flag. It is a symbol of the country.",
+     "fr": "Tu as construit le drapeau du Cameroun. C'est un symbole du pays."
+    }
+   },
+   "evidence": {
+    "note": "Colour-word overlay is a toggleable learning aid only; the finished flag is always shown in its true form, pole on the left."
+   }
+  },
+  {
+   "id": "ew.activity.pilot-cameroon-landscape-match",
+   "type": "activity",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "play"
+    ]
+   },
+   "payload": {
+    "key": "P3",
+    "template": "match.v1",
+    "icon": "🏞️",
+    "title": {
+     "en": "Many places",
+     "fr": "Beaucoup de paysages"
+    },
+    "prompt": {
+     "en": "Ezra saw these places in Cameroon. Match each picture to its name.",
+     "fr": "Ezra a vu ces paysages au Cameroun. Relie chaque image à son nom."
+    },
+    "pairs": [
+     {
+      "id": "coast",
+      "scene": "coast",
+      "name": {
+       "en": "coast",
+       "fr": "côte"
+      }
+     },
+     {
+      "id": "forest",
+      "scene": "forest",
+      "name": {
+       "en": "forest",
+       "fr": "forêt"
+      }
+     },
+     {
+      "id": "grassland",
+      "scene": "grassland",
+      "name": {
+       "en": "grassland and hills",
+       "fr": "savane et collines"
+      }
+     },
+     {
+      "id": "mountain",
+      "scene": "mountain",
+      "name": {
+       "en": "mountain",
+       "fr": "montagne"
+      }
+     }
+    ],
+    "success": {
+     "en": "One country, many places!",
+     "fr": "Un pays, beaucoup de paysages !"
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ezra.landscapes"
+    ]
+   },
+   "evidence": {
+    "note": "Name words for the four slots are app drafts (spec gives the four places, not slot captions). No claim that one image represents a whole region."
+   }
+  },
+  {
+   "id": "ew.activity.pilot-cameroon-grid-list",
+   "type": "activity",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "play"
+    ]
+   },
+   "payload": {
+    "key": "P4",
+    "template": "grid-route.v1",
+    "icon": "🧭",
+    "title": {
+     "en": "School to library",
+     "fr": "De l'école à la bibliothèque"
+    },
+    "mission": {
+     "en": "Start at the school. Plan a route to the library using north, south, east or west. More than one route can work. Count your moves.",
+     "fr": "Pars de l'école. Prépare un itinéraire jusqu'à la bibliothèque en utilisant le nord, le sud, l'est ou l'ouest. Plusieurs itinéraires peuvent convenir. Compte tes déplacements."
+    },
+    "start": [
+     2,
+     2
+    ],
+    "goal": "library",
+    "shortest": 3,
+    "routeHelpAfter": 6,
+    "feedback": {
+     "success": {
+      "en": "You used the key and direction cue to reach the library.",
+      "fr": "Tu as utilisé la légende et les directions pour atteindre la bibliothèque."
+     },
+     "hint": {
+      "en": "Find the book in the key. Look for that symbol on the map.",
+      "fr": "Trouve le livre dans la légende. Cherche ce symbole sur le plan."
+     },
+     "routeHelp": {
+      "en": "You can undo a move. Try one step towards the library.",
+      "fr": "Tu peux annuler un déplacement. Essaie un déplacement vers la bibliothèque."
+     },
+     "edge": {
+      "en": "That's the edge of our map. Choose another direction.",
+      "fr": "C'est le bord de notre plan. Choisis une autre direction."
+     }
+    },
+    "countMoves": true
+   }
+  },
+  {
+   "id": "ew.activity.pilot-cameroon-neighbour-compass",
+   "type": "activity",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "play"
+    ]
+   },
+   "payload": {
+    "key": "P5",
+    "template": "map-select.v1",
+    "icon": "🧭",
+    "title": {
+     "en": "Neighbour compass",
+     "fr": "La rose des voisins"
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ezra.compass"
+    ],
+    "prompts": [
+     {
+      "dir": "nw",
+      "ask": {
+       "en": "Which neighbour is to the northwest of Cameroon?",
+       "fr": "Quel voisin se trouve au nord-ouest du Cameroun ?"
+      },
+      "accept": [
+       "nigeria"
+      ]
+     },
+     {
+      "dir": "ne",
+      "ask": {
+       "en": "Which neighbour is to the northeast of Cameroon?",
+       "fr": "Quel voisin se trouve au nord-est du Cameroun ?"
+      },
+      "accept": [
+       "chad"
+      ]
+     },
+     {
+      "dir": "e",
+      "ask": {
+       "en": "Which neighbour is to the east of Cameroon?",
+       "fr": "Quel voisin se trouve à l'est du Cameroun ?"
+      },
+      "accept": [
+       "car"
+      ]
+     },
+     {
+      "dir": "se",
+      "ask": {
+       "en": "Which neighbour is to the southeast of Cameroon?",
+       "fr": "Quel voisin se trouve au sud-est du Cameroun ?"
+      },
+      "accept": [
+       "congo"
+      ]
+     },
+     {
+      "dir": "s",
+      "ask": {
+       "en": "Which neighbour is to the south of Cameroon?",
+       "fr": "Quel voisin se trouve au sud du Cameroun ?"
+      },
+      "accept": [
+       "gabon",
+       "eqguinea"
+      ]
+     }
+    ],
+    "neighbours": [
+     {
+      "id": "nigeria",
+      "pos": "nw",
+      "name": {
+       "en": "Nigeria",
+       "fr": "Nigeria"
+      }
+     },
+     {
+      "id": "chad",
+      "pos": "ne",
+      "name": {
+       "en": "Chad",
+       "fr": "Tchad"
+      }
+     },
+     {
+      "id": "car",
+      "pos": "e",
+      "name": {
+       "en": "Central African Republic",
+       "fr": "République centrafricaine"
+      }
+     },
+     {
+      "id": "congo",
+      "pos": "se",
+      "name": {
+       "en": "Republic of the Congo",
+       "fr": "République du Congo"
+      }
+     },
+     {
+      "id": "gabon",
+      "pos": "s",
+      "name": {
+       "en": "Gabon",
+       "fr": "Gabon"
+      }
+     },
+     {
+      "id": "eqguinea",
+      "pos": "s",
+      "name": {
+       "en": "Equatorial Guinea",
+       "fr": "Guinée équatoriale"
+      }
+     }
+    ],
+    "hint": {
+     "en": "Find the compass. Northwest is between north and west.",
+     "fr": "Trouve la rose des vents. Le nord-ouest est entre le nord et l'ouest."
+    }
+   },
+   "evidence": {
+    "note": "Schematic direction picture, not cartography. Five direction prompts cover all six neighbours (south accepts Gabon or Equatorial Guinea)."
+   }
+  },
+  {
+   "id": "ew.activity.pilot-cameroon-source-detective",
+   "type": "activity",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "play"
+    ]
+   },
+   "payload": {
+    "key": "P6",
+    "template": "evidence-comparison.v1",
+    "icon": "🔎",
+    "title": {
+     "en": "Source detective",
+     "fr": "Détective des sources"
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ari.cm.source"
+    ],
+    "table": [
+     {
+      "source": {
+       "en": "Britannica Kids",
+       "fr": "Britannica Kids"
+      },
+      "value": {
+       "en": "4,095 m (13,435 ft)",
+       "fr": "4 095 m (13 435 pieds)"
+      }
+     },
+     {
+      "source": {
+       "en": "Presidency of Cameroon page",
+       "fr": "Page de la Présidence du Cameroun"
+      },
+      "value": {
+       "en": "4,070 m",
+       "fr": "4 070 m"
+      }
+     }
+    ],
+    "caption": {
+     "en": "Two sources, two heights. Neither page explains how its height was measured.",
+     "fr": "Deux sources, deux hauteurs. Aucune des deux pages n'explique comment la hauteur a été mesurée."
+    },
+    "questions": [
+     {
+      "ask": {
+       "en": "What is the most accurate thing we can say?",
+       "fr": "Que peut-on dire de plus exact ?"
+      },
+      "key": "a",
+      "options": {
+       "a": {
+        "en": "Sources disagree, so the exact height is uncertain for us right now",
+        "fr": "Les sources ne sont pas d'accord : pour nous, la hauteur exacte reste incertaine"
+       },
+       "b": {
+        "en": "It is exactly 4,095 m",
+        "fr": "Elle mesure exactement 4 095 m"
+       },
+       "c": {
+        "en": "The mountain has no height",
+        "fr": "La montagne n'a pas de hauteur"
+       }
+      }
+     },
+     {
+      "ask": {
+       "en": "What would help explain the difference?",
+       "fr": "Qu'est-ce qui aiderait à expliquer la différence ?"
+      },
+      "key": "a",
+      "options": {
+       "a": {
+        "en": "Compare when, how and with what definition of height each was measured",
+        "fr": "Comparer quand, comment et selon quelle définition chaque hauteur a été mesurée"
+       },
+       "b": {
+        "en": "Choose the newer page",
+        "fr": "Choisir la page la plus récente"
+       },
+       "c": {
+        "en": "Choose the rounder number",
+        "fr": "Choisir le nombre le plus rond"
+       }
+      }
+     }
+    ],
+    "feedback": {
+     "en": "Sources can differ because of the date, method or how 'height' is defined. Newer is not automatically better; we check the method.",
+     "fr": "Les sources peuvent différer selon la date, la méthode ou la définition de la « hauteur ». Plus récent ne veut pas dire meilleur ; on vérifie la méthode."
+    }
+   },
+   "evidence": {
+    "note": "FR question stems are app drafts (spec gives EN stems and FR options only)."
+   }
+  },
+  {
+   "id": "ew.activity.pilot-cameroon-inquiry",
+   "type": "activity",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "play"
+    ]
+   },
+   "payload": {
+    "key": "P7",
+    "template": "inquiry.v1",
+    "icon": "📊",
+    "title": {
+     "en": "What can this count tell us?",
+     "fr": "Que nous dit ce comptage ?"
+    },
+    "caption": {
+     "en": "Invented example: one hour, two paths to the same library. These are not national statistics.",
+     "fr": "Exemple inventé : une heure, deux chemins vers la même bibliothèque. Ce ne sont pas des statistiques nationales."
+    },
+    "table": [
+     {
+      "label": {
+       "en": "Path A",
+       "fr": "Chemin A"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Path B",
+       "fr": "Chemin B"
+      },
+      "value": 3
+     }
+    ],
+    "task": {
+     "en": "Choose a claim supported by this count. Then choose what we still need to know.",
+     "fr": "Choisis une affirmation appuyée par ce comptage. Puis choisis ce qu'il faut encore savoir."
+    },
+    "claimFromQuiz": "ew.quiz.pilot-cameroon-q05",
+    "next": {
+     "key": "a",
+     "options": {
+      "a": {
+       "en": "Counts on other days",
+       "fr": "Des comptages d'autres jours"
+      },
+      "b": {
+       "en": "Everyone's favourite food",
+       "fr": "Le plat préféré de tout le monde"
+      },
+      "c": {
+       "en": "A bigger flag",
+       "fr": "Un drapeau plus grand"
+      }
+     }
+    },
+    "feedback": {
+     "en": "Counts on other days help check whether this pattern repeats. A small observation does not describe a whole country or prove a cause.",
+     "fr": "Des comptages d'autres jours aident à vérifier si ce résultat se répète. Une petite observation ne décrit pas tout un pays et ne prouve pas une cause."
+    }
+   }
+  }
+ ]
+}

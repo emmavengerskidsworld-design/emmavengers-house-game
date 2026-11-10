@@ -1,0 +1,41 @@
+{
+ "$schema": "../../../schema/v1/pack-source.schema.json",
+ "id": "country.cameroon",
+ "collection": "countries.africa",
+ "preload": true,
+ "summary": "ew.country.cameroon",
+ "title": {
+  "en": "Cameroon pilot (World Land)",
+  "fr": "Pilote Cameroun (Terre du monde)"
+ },
+ "locales": {
+  "required": [
+   "en",
+   "fr"
+  ]
+ },
+ "defaults": {
+  "status": "draft",
+  "sourceLanguage": "en",
+  "tags": {
+   "land": "world",
+   "topics": [
+    "ew.country.cameroon"
+   ],
+   "regions": [
+    "africa"
+   ],
+   "subjects": [
+    "geography"
+   ]
+  },
+  "l10n": {
+   "fr": {
+    "status": "draft-pending-fluent-french-review"
+   }
+  },
+  "review": {
+   "note": "Pilot draft: needs educator, cultural and Emmanuel review; French needs a fluent reviewer."
+  }
+ }
+}

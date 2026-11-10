@@ -1,0 +1,340 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Pictures described for the player. kind=placeholder means final art is still to be made.",
+ "records": [
+  {
+   "id": "ew.media.pilot-cameroon-locator",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "locator",
+    "kind": "placeholder",
+    "icon": "🌍",
+    "label": {
+     "en": "Map of Africa with Cameroon highlighted",
+     "fr": "Carte de l'Afrique avec le Cameroun en évidence"
+    },
+    "assetId": "ew.media.pilot-cameroon-locator"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-flag",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "flag",
+    "kind": "flag",
+    "assetId": "ew.media.pilot-cameroon-flag",
+    "alt": {
+     "en": "Flag of Cameroon: green, red and yellow vertical stripes with a yellow star in the middle",
+     "fr": "Drapeau du Cameroun : bandes verticales verte, rouge et jaune, avec une étoile jaune au milieu"
+    }
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-landscapes",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "landscapes",
+    "kind": "scenes",
+    "scenes": [
+     "coast",
+     "forest",
+     "grassland",
+     "mountain"
+    ],
+    "assetId": "ew.media.pilot-cameroon-landscapes"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-mount",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "mount",
+    "kind": "scene",
+    "scene": "mountain",
+    "assetId": "ew.media.pilot-cameroon-mount"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-languages",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "languages",
+    "kind": "placeholder",
+    "icon": "💬",
+    "label": {
+     "en": "Many speech bubbles: many languages",
+     "fr": "Beaucoup de bulles : beaucoup de langues"
+    },
+    "assetId": "ew.media.pilot-cameroon-languages"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-grid",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "grid",
+    "kind": "grid",
+    "assetId": "ew.media.pilot-cameroon-grid"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-grid-model",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "grid-model",
+    "kind": "grid",
+    "arrow": "e",
+    "highlight": "bench",
+    "assetId": "ew.media.pilot-cameroon-grid"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-grid-try",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "grid-try",
+    "kind": "grid",
+    "interactive": true,
+    "goal": "library",
+    "assetId": "ew.media.pilot-cameroon-grid"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-neighbours",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "neighbours",
+    "kind": "compass",
+    "assetId": "ew.media.pilot-cameroon-neighbours"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-cities",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "cities",
+    "kind": "cities",
+    "cities": [
+     {
+      "name": "Yaoundé",
+      "icon": "🏛️"
+     },
+     {
+      "name": "Douala",
+      "icon": "⚓"
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-regions",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "regions",
+    "kind": "count-boxes",
+    "n": 10,
+    "assetId": "ew.media.pilot-cameroon-regions"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-people",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "people",
+    "kind": "placeholder",
+    "icon": "🤝",
+    "label": {
+     "en": "Many communities, many ways of life",
+     "fr": "Beaucoup de communautés, beaucoup de modes de vie"
+    }
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-heritage",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "heritage",
+    "kind": "placeholder",
+    "icon": "🌳",
+    "label": {
+     "en": "Protected forest and mountain landscapes",
+     "fr": "Forêts et paysages de montagne protégés"
+    }
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-count",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "count",
+    "kind": "count-table",
+    "rows": [
+     {
+      "label": {
+       "en": "Path A",
+       "fr": "Chemin A"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Path B",
+       "fr": "Chemin B"
+      },
+      "value": 3
+     }
+    ],
+    "assetId": "ew.media.pilot-cameroon-count"
+   }
+  },
+  {
+   "id": "ew.media.pilot-cameroon-source-table",
+   "type": "media",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "source-table",
+    "kind": "placeholder",
+    "icon": "📚",
+    "label": {
+     "en": "Two sources, two different heights",
+     "fr": "Deux sources, deux hauteurs différentes"
+    },
+    "assetId": "ew.media.pilot-cameroon-source-table"
+   }
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Pronunciation help for voice production (not shown to children).",
+ "records": [
+  {
+   "id": "ew.lexicon.letter-sounds",
+   "type": "lexicon",
+   "status": "published",
+   "tags": {
+    "land": "letter",
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [],
+    "subjects": [
+     "literacy"
+    ]
+   },
+   "payload": {
+    "language": "en",
+    "purpose": "voice-production",
+    "entries": [
+     {
+      "text": "a, a, apple!",
+      "ipa": "ˈæ, ˈæ, ˈæpəl!"
+     },
+     {
+      "text": "b, b, ball!",
+      "ipa": "bə, bə, bˈɔːl!"
+     },
+     {
+      "text": "c, c, cat!",
+      "ipa": "kə, kə, kˈæt!"
+     },
+     {
+      "text": "d, d, dog!",
+      "ipa": "də, də, dˈɑːɡ!"
+     },
+     {
+      "text": "e, e, egg!",
+      "ipa": "ˈɛ, ˈɛ, ˈɛɡ!"
+     },
+     {
+      "text": "f, f, fish!",
+      "ipa": "fː, fː, fˈɪʃ!"
+     },
+     {
+      "text": "g, g, goat!",
+      "ipa": "ɡə, ɡə, ɡˈoʊt!"
+     },
+     {
+      "text": "h, h, hat!",
+      "ipa": "hə, hə, hˈæt!"
+     },
+     {
+      "text": "i, i, insect!",
+      "ipa": "ˈɪ, ˈɪ, ˈɪnsɛkt!"
+     },
+     {
+      "text": "j, j, jeans!",
+      "ipa": "dʒə, dʒə, dʒˈiːnz!"
+     },
+     {
+      "text": "k, k, kite!",
+      "ipa": "kə, kə, kˈaɪt!"
+     },
+     {
+      "text": "l, l, lion!",
+      "ipa": "lː, lː, lˈaɪən!"
+     },
+     {
+      "text": "m, m, monkey!",
+      "ipa": "mː, mː, mˈʌŋki!"
+     },
+     {
+      "text": "n, n, nest!",
+      "ipa": "nː, nː, nˈɛst!"
+     },
+     {
+      "text": "o, o, octopus!",
+      "ipa": "ˈɑ, ˈɑ, ˈɑːktəpəs!"
+     },
+     {
+      "text": "p, p, pig!",
+      "ipa": "pə, pə, pˈɪɡ!"
+     },
+     {
+      "text": "q, q, queen!",
+      "ipa": "kwə, kwə, kwˈiːn!"
+     },
+     {
+      "text": "r, r, rabbit!",
+      "ipa": "ɹə, ɹə, ɹˈæbɪt!"
+     },
+     {
+      "text": "s, s, sun!",
+      "ipa": "sː, sː, sˈʌn!"
+     },
+     {
+      "text": "t, t, tiger!",
+      "ipa": "tə, tə, tˈaɪɡɚ!"
+     },
+     {
+      "text": "u, u, umbrella!",
+      "ipa": "ˈʌ, ˈʌ, ʌmbɹˈɛlə!"
+     },
+     {
+      "text": "v, v, volcano!",
+      "ipa": "vː, vː, vɑːlkˈeɪnoʊ!"
+     },
+     {
+      "text": "w, w, watermelon!",
+      "ipa": "wə, wə, wˈɔːɾɚmˌɛlən!"
+     },
+     {
+      "text": "x, x, fox!",
+      "ipa": "ks, ks, fˈɑːks!"
+     },
+     {
+      "text": "y, y, yo-yo!",
+      "ipa": "jə, jə, jˈoʊjˈoʊ!"
+     },
+     {
+      "text": "z, z, zebra!",
+      "ipa": "zː, zː, zˈiːbɹə!"
+     }
+    ]
+   },
+   "evidence": {
+    "note": "IPA used by tools/gen_voice.py to speak letter sounds. Keys are the exact spoken lines."
+   }
+  }
+ ]
+}

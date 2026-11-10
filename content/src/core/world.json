@@ -1,0 +1,41 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "The world home map. lands = order of the six lands.",
+ "records": [
+  {
+   "id": "ew.world.home",
+   "type": "world",
+   "status": "published",
+   "tags": {
+    "land": null,
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [],
+    "subjects": []
+   },
+   "payload": {
+    "formatVersion": 1,
+    "title": {
+     "en": "Emmavengers World"
+    },
+    "img": "img/world/world-map.jpg",
+    "intro": {
+     "en": "Welcome to Emmavengers World! Tap a land to explore!"
+    },
+    "layout": "six",
+    "bg2": "world-bg.jpg",
+    "lands": [
+     "ew.land.faith",
+     "ew.land.letter",
+     "ew.land.number",
+     "ew.land.study",
+     "ew.land.nature",
+     "ew.land.world"
+    ]
+   }
+  }
+ ]
+}

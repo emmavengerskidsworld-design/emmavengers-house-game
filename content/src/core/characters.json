@@ -1,0 +1,79 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Guide characters. Lines live with each topic (e.g. countries/cameroon/lines.json).",
+ "records": [
+  {
+   "id": "ew.character.ari",
+   "type": "character",
+   "status": "draft",
+   "tags": {
+    "land": null,
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari",
+    "name": {
+     "en": "Ari",
+     "fr": "Ari"
+    },
+    "species": "lion cub",
+    "images": {
+     "hello": "img/world/guides/ari-hello.webp",
+     "map": "img/world/guides/ari-map.webp",
+     "cheer": "img/world/guides/ari-cheer.webp",
+     "think": "img/world/guides/ari-think.webp",
+     "thumbs": "img/world/guides/ari-thumbs.webp"
+    }
+   },
+   "evidence": {
+    "note": "Ari the Emmavenger (Hebrew: lion). Speaks only pre-written, checked lines. Name clearance pending (lawyer)."
+   },
+   "l10n": {
+    "required": [
+     "en",
+     "fr"
+    ]
+   }
+  },
+  {
+   "id": "ew.character.ezra",
+   "type": "character",
+   "status": "draft",
+   "tags": {
+    "land": null,
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ezra",
+    "name": {
+     "en": "Ezra",
+     "fr": "Ezra"
+    },
+    "species": "eagle",
+    "images": {
+     "face": "img/world/guides/ezra-face.webp",
+     "carry": "img/world/guides/ezra-carry.webp"
+    }
+   },
+   "evidence": {
+    "note": "Ezra (Hebrew: help), eagle companion: travel, sky view, celebrations. Isaiah 40:31."
+   },
+   "l10n": {
+    "required": [
+     "en",
+     "fr"
+    ]
+   }
+  }
+ ]
+}

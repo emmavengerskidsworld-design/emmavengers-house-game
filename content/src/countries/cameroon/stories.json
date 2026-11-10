@@ -1,0 +1,210 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Stories: made-up stories (classification original-fiction).",
+ "records": [
+  {
+   "id": "ew.story.pilot-cameroon",
+   "type": "story",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "stories"
+    ],
+    "subjects": [
+     "geography",
+     "reading"
+    ]
+   },
+   "payload": {
+    "classification": "original-fiction",
+    "title": {
+     "en": "The book on the plan",
+     "fr": "Le livre sur le plan"
+    },
+    "banner": {
+     "en": "A made-up story",
+     "fr": "Une histoire inventée"
+    },
+    "pages": {
+     "all": [
+      {
+       "text": {
+        "en": "Mina and her aunt were planning a neighbourhood library visit. Mina saw a little book on their paper plan. 'Is that a tiny building?' she asked. Her aunt pointed to the key. 'The book stands for the library.'",
+        "fr": "Mina et sa tante préparaient une visite à la bibliothèque du quartier. Mina vit un petit livre sur leur plan en papier. \"C'est un bâtiment minuscule ?\" demanda-t-elle. Sa tante montra la légende. \"Le livre représente la bibliothèque.\""
+       },
+       "scene": "plan-key"
+      },
+      {
+       "text": {
+        "en": "Mina put a counter on Start. The north arrow pointed to the top of the page. She moved one square north. There was the book. 'The symbol helped me find the place,' Mina said. They practised with the plan, not by walking alone.",
+        "fr": "Mina posa un pion sur Départ. La flèche du nord pointait vers le haut de la page. Elle se déplaça d'une case au nord. Le livre était là. \"Le symbole m'a aidée à trouver le lieu\", dit Mina. Elles s'entraînaient avec le plan, sans sortir seules."
+       },
+       "scene": "plan-north"
+      },
+      {
+       "text": {
+        "en": "Her aunt showed two paths on another plan. Mina wanted to compare them. 'Let's check what we know before deciding,' she said. The plan helped them ask a good question; it could not tell every part of the day.",
+        "fr": "Sa tante montra deux chemins sur un autre plan. Mina voulait les comparer. \"Vérifions ce que nous savons avant de décider\", dit-elle. Le plan les aidait à poser une bonne question ; il ne pouvait pas raconter toute la journée."
+       },
+       "scene": "plan-paths"
+      }
+     ]
+    },
+    "reflection": {
+     "all": {
+      "en": "What helped the characters check their idea? Think, talk with a grown-up, or skip.",
+      "fr": "Qu'est-ce qui a aidé les personnages à vérifier leur idée ? Réfléchis, parles-en avec un adulte ou passe."
+     }
+    }
+   },
+   "evidence": {
+    "note": "Copied verbatim from 10b."
+   }
+  },
+  {
+   "id": "ew.story.pilot-cameroon-2",
+   "type": "story",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "stories"
+    ],
+    "subjects": [
+     "geography",
+     "reading"
+    ]
+   },
+   "payload": {
+    "classification": "original-fiction",
+    "title": {
+     "en": "Ari, Ezra and the Map of Many Places",
+     "fr": "Ari, Ezra et la carte aux mille paysages"
+    },
+    "banner": {
+     "en": "A made-up story",
+     "fr": "Une histoire inventée"
+    },
+    "pages": {
+     "little": [
+      {
+       "text": {
+        "en": "Ari and Ezra flew to a classroom in Cameroon. The children were making a big map.",
+        "fr": "Ari et Ezra s'envolèrent vers une classe au Cameroun. Les enfants fabriquaient une grande carte."
+       },
+       "scene": "s2-1"
+      },
+      {
+       "text": {
+        "en": "Awa drew waves for the coast. Ibrahim drew tall trees for the forest.",
+        "fr": "Awa dessina des vagues pour la côte. Ibrahim dessina de grands arbres pour la forêt."
+       },
+       "scene": "s2-2"
+      },
+      {
+       "text": {
+        "en": "Esther drew green hills. Tchami drew wide grassland in the north.",
+        "fr": "Esther dessina des collines vertes. Tchami dessina une grande savane au nord."
+       },
+       "scene": "s2-3"
+      },
+      {
+       "text": {
+        "en": "'Where does each picture go?' asked Ari. Ezra flew high and pointed with his wing.",
+        "fr": "\"Où va chaque dessin ?\" demanda Ari. Ezra vola très haut et montra avec son aile."
+       },
+       "scene": "s2-4"
+      },
+      {
+       "text": {
+        "en": "They added a key so everyone could read the map. 'One country, many places!' said Ari.",
+        "fr": "Ils ajoutèrent une légende pour que tout le monde puisse lire la carte. \"Un pays, beaucoup de paysages !\" dit Ari."
+       },
+       "scene": "s2-5"
+      }
+     ],
+     "big": [
+      {
+       "text": {
+        "en": "Ari and Ezra flew to a classroom in Cameroon. The children were making a big map.",
+        "fr": "Ari et Ezra s'envolèrent vers une classe au Cameroun. Les enfants fabriquaient une grande carte."
+       },
+       "scene": "s2-1"
+      },
+      {
+       "text": {
+        "en": "Awa drew waves for the coast. Ibrahim drew tall trees for the forest.",
+        "fr": "Awa dessina des vagues pour la côte. Ibrahim dessina de grands arbres pour la forêt."
+       },
+       "scene": "s2-2"
+      },
+      {
+       "text": {
+        "en": "Esther drew green hills. Tchami drew wide grassland in the north.",
+        "fr": "Esther dessina des collines vertes. Tchami dessina une grande savane au nord."
+       },
+       "scene": "s2-3"
+      },
+      {
+       "text": {
+        "en": "'Where does each picture go?' asked Ari. Ezra flew high and pointed with his wing.",
+        "fr": "\"Où va chaque dessin ?\" demanda Ari. Ezra vola très haut et montra avec son aile."
+       },
+       "scene": "s2-4"
+      },
+      {
+       "text": {
+        "en": "They added a key so everyone could read the map. 'One country, many places!' said Ari.",
+        "fr": "Ils ajoutèrent une légende pour que tout le monde puisse lire la carte. \"Un pays, beaucoup de paysages !\" dit Ari."
+       },
+       "scene": "s2-5"
+      },
+      {
+       "text": {
+        "en": "Tchami found one height for Mount Cameroon in an encyclopedia. Esther found a different height on another website.",
+        "fr": "Tchami trouva une hauteur pour le mont Cameroun dans une encyclopédie. Esther en trouva une autre sur un autre site."
+       },
+       "scene": "s2-6"
+      },
+      {
+       "text": {
+        "en": "'Which is right?' Ibrahim asked. Their teacher smiled. 'Write both, with where you found them. Then we can find out when and how each was measured, before we decide.'",
+        "fr": "\"Lequel est juste ?\" demanda Ibrahim. Leur enseignante sourit. \"Notez les deux, avec l'endroit où vous les avez trouvés. Ensuite, nous chercherons quand et comment chacun a été mesuré, avant de décider.\""
+       },
+       "scene": "s2-7"
+      },
+      {
+       "text": {
+        "en": "Awa added a note to the map: 'Our map shows some places, not all of Cameroon.' Ari nodded. 'Good explorers show what they know and what they don't.'",
+        "fr": "Awa ajouta une note sur la carte : \"Notre carte montre quelques lieux, pas tout le Cameroun.\" Ari hocha la tête. \"Les bons explorateurs montrent ce qu'ils savent et ce qu'ils ne savent pas.\""
+       },
+       "scene": "s2-8"
+      }
+     ]
+    },
+    "reflection": {
+     "little": {
+      "en": "Which place would you like to learn about? Think, tell a grown-up, or skip.",
+      "fr": "Quel lieu aimerais-tu découvrir ? Réfléchis, dis-le à un adulte, ou passe."
+     },
+     "big": {
+      "en": "Why is it helpful to say where a fact came from?",
+      "fr": "Pourquoi est-il utile de dire d'où vient une information ?"
+     }
+    }
+   },
+   "evidence": {
+    "note": "Names Awa, Ibrahim, Esther, Tchami are placeholders for Cameroon-familiar cultural reviewers (gap G6)."
+   }
+  }
+ ]
+}

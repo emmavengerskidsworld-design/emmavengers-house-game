@@ -1,0 +1,327 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "The Cameroon country record: what the player needs to open Cameroon, pointing at its lessons, games, quiz bank, stories, lines and pictures.",
+ "records": [
+  {
+   "id": "ew.country.cameroon",
+   "type": "country",
+   "status": "draft",
+   "tags": {
+    "land": "world",
+    "topics": [
+     "ew.country.cameroon"
+    ],
+    "regions": [
+     "africa"
+    ],
+    "subjects": [
+     "geography"
+    ],
+    "relatedLands": [],
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn",
+     "play",
+     "quiz",
+     "stories"
+    ],
+    "access": {
+     "current": "free",
+     "catalogueTier": "free-core",
+     "policyRevision": 1
+    },
+    "sensitivity": []
+   },
+   "payload": {
+    "slug": "cameroon",
+    "name": {
+     "en": "Cameroon",
+     "fr": "Cameroun"
+    },
+    "externalIdentifiers": [
+     {
+      "issuer": "ISO-3166-1-alpha-2",
+      "code": "CM"
+     }
+    ],
+    "flag": {
+     "stripes": [
+      "#007a5e",
+      "#ce1126",
+      "#fcd116"
+     ],
+     "star": {
+      "stripe": 1,
+      "color": "#fcd116"
+     },
+     "pole": "left",
+     "colourNote": "Commonly used colour values; official values not yet found in a primary source (gap G1)."
+    },
+    "hub": {
+     "intro": "ew.line.pilot-cameroon.ari.cm.arrive",
+     "introAgain": "ew.line.pilot-cameroon.ari.cm.arrive-again",
+     "travel": "ew.line.pilot-cameroon.ezra.fly"
+    },
+    "learn": {
+     "little": "ew.lesson.pilot-cameroon",
+     "big": "ew.lesson.pilot-cameroon-big"
+    },
+    "practiceMap": {
+     "rows": [
+      [
+       {
+        "id": "tree",
+        "name": {
+         "en": "tree",
+         "fr": "arbre"
+        },
+        "icon": "🌳"
+       },
+       {
+        "id": "library",
+        "name": {
+         "en": "library",
+         "fr": "bibliothèque"
+        },
+        "icon": "📖",
+        "keyNote": {
+         "en": "book",
+         "fr": "livre"
+        }
+       },
+       {
+        "id": "fountain",
+        "name": {
+         "en": "fountain",
+         "fr": "fontaine"
+        },
+        "icon": "⛲"
+       }
+      ],
+      [
+       {
+        "id": "market",
+        "name": {
+         "en": "market",
+         "fr": "marché"
+        },
+        "icon": "🧺"
+       },
+       {
+        "id": "start",
+        "name": {
+         "en": "Start",
+         "fr": "Départ"
+        },
+        "icon": "⭐"
+       },
+       {
+        "id": "bench",
+        "name": {
+         "en": "bench",
+         "fr": "banc"
+        },
+        "icon": "🪑"
+       }
+      ],
+      [
+       {
+        "id": "garden",
+        "name": {
+         "en": "garden",
+         "fr": "jardin"
+        },
+        "icon": "🌷"
+       },
+       {
+        "id": "shelter",
+        "name": {
+         "en": "shelter",
+         "fr": "abri"
+        },
+        "icon": "🛖"
+       },
+       {
+        "id": "school",
+        "name": {
+         "en": "school",
+         "fr": "école"
+        },
+        "icon": "🏫"
+       }
+      ]
+     ],
+     "cellLabel": {
+      "en": "Row {r}, column {c}: {place}",
+      "fr": "Ligne {r}, colonne {c} : {place}"
+     },
+     "directions": {
+      "n": {
+       "en": "north",
+       "fr": "nord"
+      },
+      "s": {
+       "en": "south",
+       "fr": "sud"
+      },
+      "e": {
+       "en": "east",
+       "fr": "est"
+      },
+      "w": {
+       "en": "west",
+       "fr": "ouest"
+      }
+     },
+     "note": "Invented 3x3 practice map copied from 10a §5. North up; adjacent cardinal moves only."
+    },
+    "play": [
+     "ew.activity.pilot-cameroon-route",
+     "ew.activity.pilot-cameroon-flag-build",
+     "ew.activity.pilot-cameroon-landscape-match",
+     "ew.activity.pilot-cameroon-grid-list",
+     "ew.activity.pilot-cameroon-neighbour-compass",
+     "ew.activity.pilot-cameroon-source-detective",
+     "ew.activity.pilot-cameroon-inquiry"
+    ],
+    "quiz": {
+     "bank": "ew.quizbank.pilot-cameroon",
+     "legacyLocaleKeys": [
+      [
+       "en",
+       "en"
+      ],
+      [
+       "fr",
+       "fr_draft_pending_fluent_review"
+      ]
+     ],
+     "pools": {
+      "little": [
+       "5-7"
+      ],
+      "big": [
+       "8-10"
+      ],
+      "deep": [
+       "11-13"
+      ]
+     },
+     "roundSize": {
+      "little": 4,
+      "big": 5,
+      "deep": 5
+     },
+     "exhausted": {
+      "en": "You've answered every Cameroon question for today!",
+      "fr": "Tu as répondu à toutes les questions sur le Cameroun pour aujourd'hui !"
+     },
+     "finish": {
+      "en": "Finish",
+      "fr": "Terminer"
+     },
+     "practise": {
+      "en": "Practise again (repeat questions)",
+      "fr": "Revoir (questions déjà vues)"
+     },
+     "practiceLabel": {
+      "en": "Practice repeat",
+      "fr": "Révision"
+     }
+    },
+    "stories": [
+     "ew.story.pilot-cameroon",
+     "ew.story.pilot-cameroon-2"
+    ],
+    "lines": [
+     "ew.line.pilot-cameroon.ari.cm.arrive",
+     "ew.line.pilot-cameroon.ari.cm.arrive-again",
+     "ew.line.pilot-cameroon.ari.cm.learn",
+     "ew.line.pilot-cameroon.ari.cm.model",
+     "ew.line.pilot-cameroon.ari.cm.try",
+     "ew.line.pilot-cameroon.ari.cm.hint",
+     "ew.line.pilot-cameroon.ari.cm.correct",
+     "ew.line.pilot-cameroon.ari.cm.many",
+     "ew.line.pilot-cameroon.ari.cm.source",
+     "ew.line.pilot-cameroon.ari.cm.story",
+     "ew.line.pilot-cameroon.ari.cm.break",
+     "ew.line.pilot-cameroon.ari.cm.done",
+     "ew.line.pilot-cameroon.ezra.fly",
+     "ew.line.pilot-cameroon.ezra.sky",
+     "ew.line.pilot-cameroon.ezra.landscapes",
+     "ew.line.pilot-cameroon.ezra.compass",
+     "ew.line.pilot-cameroon.ezra.celebrate",
+     "ew.line.pilot-cameroon.ezra.home"
+    ],
+    "media": [
+     "ew.media.pilot-cameroon-locator",
+     "ew.media.pilot-cameroon-flag",
+     "ew.media.pilot-cameroon-landscapes",
+     "ew.media.pilot-cameroon-mount",
+     "ew.media.pilot-cameroon-languages",
+     "ew.media.pilot-cameroon-grid",
+     "ew.media.pilot-cameroon-grid-model",
+     "ew.media.pilot-cameroon-grid-try",
+     "ew.media.pilot-cameroon-neighbours",
+     "ew.media.pilot-cameroon-cities",
+     "ew.media.pilot-cameroon-regions",
+     "ew.media.pilot-cameroon-people",
+     "ew.media.pilot-cameroon-heritage",
+     "ew.media.pilot-cameroon-count",
+     "ew.media.pilot-cameroon-source-table"
+    ],
+    "breakAfterMinutes": 10,
+    "ui": {
+     "hub": {
+      "en": "Back to Cameroon",
+      "fr": "Retour au Cameroun"
+     },
+     "visited": {
+      "en": "Cameroon visited",
+      "fr": "Cameroun visité"
+     }
+    }
+   },
+   "evidence": {
+    "spec": "world-blueprint/13-cameroon-complete-pilot.md (revision 1, 9 Nov 2026)",
+    "sources": [
+     "ew.source.pilot-cameroon-con",
+     "ew.source.pilot-cameroon-un",
+     "ew.source.pilot-cameroon-prc",
+     "ew.source.pilot-cameroon-brk",
+     "ew.source.pilot-cameroon-brm",
+     "ew.source.pilot-cameroon-whc",
+     "ew.source.pilot-cameroon-eth",
+     "ew.source.pilot-cameroon-ed",
+     "ew.source.pilot-cameroon-10a"
+    ],
+    "gaps": [
+     "G1 flag proportions/colour values not from a primary source",
+     "G2 Mount Cameroon height: two sources disagree (shown only in P6)",
+     "G3 language count varies",
+     "G4 FR region spellings to confirm",
+     "G5 Sangha Trinational partners to confirm",
+     "G6 story names are placeholders"
+    ]
+   },
+   "review": {
+    "ownerRole": "product-owner",
+    "records": [],
+    "approvalRef": null,
+    "note": "Pilot draft: needs educator, cultural and Emmanuel review; French needs a fluent reviewer."
+   },
+   "l10n": {
+    "en": {
+     "status": "draft-awaiting-educator-cultural-and-owner-review"
+    },
+    "fr": {
+     "status": "draft-pending-fluent-french-review"
+    }
+   }
+  }
+ ]
+}
