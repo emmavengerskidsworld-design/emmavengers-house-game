@@ -65,7 +65,7 @@ function land(a){const L=landById((a&&a.id)||curLand);if(!L){go('home');return}i
  warmVoice([...L.places.map(p=>p.type==='link'?LINK_SAY[p.go]:p.intro),...L.places.flatMap(p=>p.deck?wDeck(p.deck).items.slice(0,4).flatMap(it=>it.say.slice(0,2)):[])].filter(Boolean),1)}
 function openPlace(L,p){if(!p)return;const a={l:L.id,p:p.id};
  if(p.type==='link'){go(p.go);return}
- if(p.type==='cards')go('wcards',a);else if(p.type==='quiz')go('wquiz',a);else if(p.type==='count')go('wcount',a)}
+ if(p.type==='cards')go('wcards',a);else if(p.type==='quiz')go('wquiz',a);else if(p.type==='count')go('wcount',a);else if(p.type==='country')go('ctry',{c:p.country,from:'land'})}
 
 /* --- cards: tap a tile to open its big card (voice + 3D picture). First look at each card = 1 star. --- */
 const LCOL=['#e8261c','#2f86e8','#1f8a2b','#ff8c00','#a855f7','#e83e8c'];

@@ -500,7 +500,9 @@ body.wmapmode main.enter>*{animation:none}
 .stile:active{transform:scale(.95)}
 .scard .big{font-size:64px;line-height:1;color:var(--c);font-family:LG,"Arial Rounded MT Bold",sans-serif}
 .scard .hero{max-height:42vh;object-fit:contain}
-</style></head><body>
+</style>
+<link rel="stylesheet" href="country.css">
+</head><body>
 <div id="app">
 <header>
  <button class="btn back hidden" id="backBtn" aria-label="Back">⬅</button>
@@ -691,7 +693,7 @@ let vSet=loadVoiceSet();
 function saveVoiceSet(){localStorage.setItem('emmaVoice',JSON.stringify(vSet))}
 function voiceBase(){return vSet.id==='mia'?'voice/':('voice/'+vSet.id+'/')}
 const vh=t=>{let h=0x811c9dc5;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h.toString(16).padStart(8,'0')};
-function voiceUrl(t){return voiceBase()+vh(t)+'.mp3'}
+function voiceUrl(t){return ((window.voiceOnlyMia&&voiceOnlyMia(t))?'voice/':voiceBase())+vh(t)+'.mp3'} // pilot country clips live once in voice/ (EN+FR)
 let vAud=null,vTok=0,vPend=null;
 /* Silent reading: the reading voice can be switched off (music + sound effects keep playing). */
 let voiceOff=localStorage.getItem('emmaVoiceOff')==='1';
@@ -741,7 +743,7 @@ addEventListener('pointerdown',()=>warmVoice([...PRAISE,...TRY,'Great job! Level
 ['pointerdown','touchend','click','keydown'].forEach(e=>addEventListener(e,audioUnlock,{capture:true,passive:true}));
 document.addEventListener('visibilitychange',()=>{if(document.hidden){vStopNodes();try{ac&&ac.suspend()}catch(e){}}else{try{ac&&ac.resume()}catch(e){}}});
 function stopVoice(){vTok++;vEndAt=0;vEl.onended=vEl.onerror=vEl.onplaying=null;try{vEl.pause()}catch(e){}vAud=null;vStopNodes();try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
-function ttsFallback(t,done){vStarted();try{if(!('speechSynthesis' in window))return done();const u=new SpeechSynthesisUtterance(t);u.rate=.9*vSet.speed;u.pitch=1.15*vSet.pitch;u.lang='en-US';u.onend=u.onerror=done;speechSynthesis.speak(u)}catch(e){done()}}
+function ttsFallback(t,done){vStarted();try{if(!('speechSynthesis' in window))return done();const u=new SpeechSynthesisUtterance(t);u.rate=.9*vSet.speed;u.pitch=1.15*vSet.pitch;u.lang=(window.ttsLangFor&&ttsLangFor(t))||'en-US';u.onend=u.onerror=done;speechSynthesis.speak(u)}catch(e){done()}}
 function sayHtml(txt,tok,next){const a=vEl;vAud=a;let fell=false;a.muted=false;
  const fb=()=>{if(fell||tok!==vTok)return;fell=true;ttsFallback(txt,next)};
  a.onended=()=>{if(tok===vTok)next()};a.onplaying=()=>{if(tok===vTok)vStarted()};a.onerror=fb;a.src=voiceUrl(txt);a.preservesPitch=Math.abs(vDetune)<1;a.playbackRate=vDetune?Math.min(2,Math.max(.5,vRate*Math.pow(2,vDetune/1200))):vRate;
@@ -780,10 +782,13 @@ function confetti(n=80){cv.width=innerWidth;cv.height=innerHeight;const cols=['#
  for(let i=0;i<n;i++)parts.push({x:innerWidth*Math.random(),y:-20-Math.random()*innerHeight*.4,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:8+Math.random()*8,c:cols[i%6],e:th&&i%2?th[i%th.length]:null});
  if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.y<cv.height+30);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);if(p.e){cx.font=(p.w*2.6|0)+'px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(p.e,0,0)}else{cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2)}cx.restore()});raf=parts.length?requestAnimationFrame(loop):0}
+/* extra screens registered by country.js (XSCREENS) and their back targets (XBACK) */
+const XSCREENS={},XBACK={};
 function go(s,arg){if(s==='living room')s='living';screen=s;stopVoice();if(typeof mPauseVids==='function')mPauseVids();document.querySelectorAll('.pop').forEach(p=>p.remove());
- document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('wmapmode',s==='home'||s==='land');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');({home,house,land,study,ssec,wcards,wquiz,wcount,wreward,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone,morning,mstep,mwin,morningAsk})[s](arg);bgmFor(screen);document.body.classList.toggle('morning',['morning','mstep','mwin','morningAsk'].includes(s));if(s!=='mstep'&&typeof mTok!=='undefined')mTok++;if(typeof histSync==='function')histSync(s);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
+ document.body.classList.toggle('onmap',s==='levelmap');document.body.classList.toggle('wmapmode',s==='home'||s==='land');document.body.classList.toggle('l4',L4_SCREENS.includes(s));$('#backBtn').classList.toggle('hidden',s==='home');if(s!=='reader')document.body.classList.remove('reading');document.body.classList.toggle('ctry',!!XSCREENS[s]);if(!XSCREENS[s])main.removeAttribute('lang');(({home,house,land,study,ssec,wcards,wquiz,wcount,wreward,kitchen,bedroom,bathroom,living,levelmap,learnmenu,learn,find,use,room,spell,find2,used3,mix4,settable,bedhunt,bubbles,tidy,reward,fail,bible,reader,bquiz,bdone,morning,mstep,mwin,morningAsk})[s]||XSCREENS[s])(arg);bgmFor(screen);document.body.classList.toggle('morning',['morning','mstep','mwin','morningAsk'].includes(s));if(s!=='mstep'&&typeof mTok!=='undefined')mTok++;if(typeof histSync==='function')histSync(s);main.scrollTop=0;main.classList.remove('enter');void main.offsetWidth;main.classList.add('enter')}
 $('#backBtn').onclick=()=>{sfx.tap();
   if(screen==='home')return;
+  if(XBACK[screen]){XBACK[screen]();return}
   if(screen==='land'||screen==='study'){go('home');return}
   if(screen==='ssec'){go('study');return}
   if(['reader','bquiz','bdone'].includes(screen)&&typeof studyFrom!=='undefined'&&studyFrom){const f=studyFrom;go('ssec',f);return}
@@ -1459,6 +1464,7 @@ setScore();
 
 </script>
 <script src="world.js"></script>
+<script src="country.js"></script>
 <script>/* offline: service worker (see README) */
 if('serviceWorker' in navigator)addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').then(reg=>{
  // A new version downloaded in the background last time: switch to it now, as the game opens.

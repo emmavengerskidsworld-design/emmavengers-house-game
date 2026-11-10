@@ -128,7 +128,7 @@ async def offline(b,url):
     await ctx.set_offline(True);on['x']=True;await pg.reload(wait_until='load')
     await pg.wait_for_function('LANDS!==null&&screen==="home"',timeout=10000)
     res=await pg.evaluate("""async()=>{const bad=[];const chk=async u=>{try{const r=await fetch(u);if(!r.ok)bad.push(u)}catch(e){bad.push(u)}};await chk(LANDS.world.img);
-      for(const L of LANDS.lands){go('land',{id:L.id});await new Promise(z=>setTimeout(z,250));await chk(L.img);for(const p of L.places){await chk(p.icon);if(p.type==='link')continue;
+      for(const L of LANDS.lands){go('land',{id:L.id});await new Promise(z=>setTimeout(z,250));await chk(L.img);for(const p of L.places){await chk(p.icon);if(p.type==='link'||p.type==='country')continue; /* country packs: tools/test_cameroon.py */
         go(p.type==='cards'?'wcards':p.type==='quiz'?'wquiz':'wcount',{l:L.id,p:p.id});await new Promise(z=>setTimeout(z,450));[...document.images].filter(i=>i.getAttribute("src")&&i.complete&&!i.naturalWidth).forEach(i=>bad.push(i.src))}}
       for(const d of Object.values(LANDS.decks))for(const it of d.items)for(const k of ['img','flag','foodImg'])if(it[k])await chk(it[k]);
       for(const t of __worldVoice())await chk(voiceUrl(t));go('home');return {bad,voice:__worldVoice().length}}""")

@@ -40,3 +40,13 @@ Voice clips: Kokoro `af_heart`, speed 0.53 (~125 wpm, a good pace for young kids
   (a 3rd column with IPA from `lands.json` "phonemes" is used for letter sounds) -> `python3 tools/build_sw.py` -> `python3 tools/test_world.py`.
 - Art: maps rendered by `tools/world_art/make_maps.py`, cards by `tools/world_art/make_cards.py` (3D objects from Microsoft Fluent Emoji 3D,
   MIT; flags drawn to the official designs). See `img/world/CREDITS.md`.
+
+## Country packs (World Land → Cameroon pilot)
+Countries are data, not code. `country.js` reads:
+- `content/countries/index.json` — registry of packs (`id`, `slug`, `revision`, `file`).
+- `content/countries/<slug>.json` — one versioned envelope (blueprint 05: `schemaVersion`, `id`, `type: country-pack`, `revision`, `status`, `tags`, `evidence`) whose `payload` holds the flag, Ari/Ezra lines (EN/FR), Learn cards per age band (Little 5–7, Big 8–13), Play activities (templates `grid-route.v1`, `ordered-slots.v1`, `match.v1`, `map-select.v1`, `evidence-comparison.v1`, `inquiry.v1`), quiz pool settings and Stories.
+- `content/countries/<slug>-quiz.json` — the question bank (answers bound to stable option ids).
+- `content/countries/ui.json` — shared button labels (EN/FR).
+
+To add a country: add its pack + bank, add a registry entry, add a World Land place with `"type":"country","country":"<slug>"` in `lands.json`, generate voice clips (`tools/gen_voice.py`, `--kokoro ff_siwis --lang fr-fr` for French), run `python3 tools/build_sw.py`, then `python3 tools/test_cameroon.py` (pattern for a new country test).
+Progress is stored only on the device (`localStorage` keys `emmaCtry`, `emmaCtryPrefs`): visit stamp, quiz item ids seen today, no personal data.

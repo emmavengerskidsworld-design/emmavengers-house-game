@@ -253,6 +253,16 @@
    "intro": "Welcome to World Land! Let's visit countries in Africa!",
    "places": [
     {
+     "id": "cameroon",
+     "name": "Cameroon",
+     "sub": "Learn · Play · Quiz · Stories",
+     "icon": "img/world/countries/cameroon-flag.webp",
+     "type": "country",
+     "country": "cameroon",
+     "x": 70,
+     "y": 24
+    },
+    {
      "id": "countries",
      "name": "Country Cards",
      "sub": "Hello & food",
