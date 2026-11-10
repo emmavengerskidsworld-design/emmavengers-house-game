@@ -27,26 +27,37 @@ python3 tools/test_offline.py     # optional: offline Playwright test
 Voice clips: Kokoro `af_heart`, speed 0.53 (~125 wpm, a good pace for young kids), pitched up 1.18, +150 ms trailing silence: `tools/gen_voice.py jobs.json` (list of [text, voice/<hash>.mp3]; needs kokoro-v1.0.int8.onnx + voices-v1.0.bin). File name = FNV-1a hash of the exact text.
 
 ## Emmavengers World (home screen)
-- `world.js` + `lands.json`: the app opens on a world map shaped like Africa with five lands. Each land opens its own
-  inner map (`img/world/<land>-land.jpg`) with tappable places and its own soft WebAudio music theme (`music` in lands.json).
+- `world.js` + the content library (`content/src/core`, see below): the app opens on a world map shaped like Africa with five lands. Each land opens its own
+  inner map (`img/world/<land>-land.jpg`) with tappable places and its own soft WebAudio music theme (`music` in the land record).
   Back: activity -> land -> world map -> exit (header back, "Back to Map", Android `emmaBack()` and browser history back).
 - **Faith Land**: Emmavengers House (all rooms + levels), Bible Land (Bible Library), Mia's Day (Morning Routine), Prayer Corner.
 - **Letter Land**: ABC Sounds (A–Z cards, letter + sound + 3D picture) and Letter Hunt (first-letter quiz).
 - **Number Land**: 1 to 10 cards and Count It! (tap each object to count, pick the number).
 - **Nature Land**: Animal Safari (10 animals + fun facts) and Animal Quiz.  **World Land**: Country Cards (flag, greeting, food) and Flag Quiz.
-- Add content without code: new items in `lands.json` `decks` (letters/numbers/animals/countries/prayers), new places
-  (types `link`, `cards`, `quiz` with mode `letter|pic|flag`, `count`) or a whole new land (map image + x/y hotspot %).
-  Then: `python3 tools/check_voice.py > missing.json` -> make Kokoro clips for all 6 voices with `tools/gen_voice.py`
-  (a 3rd column with IPA from `lands.json` "phonemes" is used for letter sounds) -> `python3 tools/build_sw.py` -> `python3 tools/test_world.py`.
+- Add content without code: new deck items in `content/src/core/decks.json` (letters/numbers/animals/countries/prayers), new places
+  in `content/src/core/lands.json` (types `link`, `cards`, `quiz` with mode `letter|pic|flag`, `count`) or a whole new land.
+  Then `python3 tools/content_build.py` (validates + builds), voice clips (`python3 tools/check_voice.py > missing.json` ->
+  Kokoro for all 6 voices with `tools/gen_voice.py`; IPA for letter sounds lives in `content/src/core/lexicon.json`),
+  `python3 tools/build_sw.py`, `python3 tools/run_tests.py`. Step-by-step: `docs/authoring-guide.md`.
 - Art: maps rendered by `tools/world_art/make_maps.py`, cards by `tools/world_art/make_cards.py` (3D objects from Microsoft Fluent Emoji 3D,
   MIT; flags drawn to the official designs). See `img/world/CREDITS.md`.
 
-## Country packs (World Land → Cameroon pilot)
-Countries are data, not code. `country.js` reads:
-- `content/countries/index.json` — registry of packs (`id`, `slug`, `revision`, `file`).
-- `content/countries/<slug>.json` — one versioned envelope (blueprint 05: `schemaVersion`, `id`, `type: country-pack`, `revision`, `status`, `tags`, `evidence`) whose `payload` holds the flag, Ari/Ezra lines (EN/FR), Learn cards per age band (Little 5–7, Big 8–13), Play activities (templates `grid-route.v1`, `ordered-slots.v1`, `match.v1`, `map-select.v1`, `evidence-comparison.v1`, `inquiry.v1`), quiz pool settings and Stories.
-- `content/countries/<slug>-quiz.json` — the question bank (answers bound to stable option ids).
-- `content/countries/ui.json` — shared button labels (EN/FR).
+## Content library (Stage 1) — all lands, decks, countries
+All content is data in one versioned library; the screens never hard-code content. Design: `docs/content-library.md`;
+how to add a country, language, land or game: `docs/authoring-guide.md`.
+- `content/src/` — what people edit: one folder per pack (`core/`, `countries/<slug>/`), each with a `pack.json`. Every
+  record has a stable id (`ew.<type>.<name>`), status (draft → … → published), tags (age bands, subjects, land, regions,
+  difficulty), sources, review notes and its texts per language (`{"en": "...", "fr": "..."}`).
+- `content/schema/v1/` — JSON Schemas (Draft 2020-12) for every file and record type.
+- `python3 tools/content_build.py` — validates everything (schemas, ids, languages, sources, references, voice clips,
+  safety) and builds `content/library/` (small catalog + per-region indexes + per-pack files named by content hash),
+  `content/registry.lock.json` (revisions, retired ids, releases) and `content/build-report.md` (plain-language report).
+  `--check` is the required test: it fails if content is invalid or the built library is out of date.
+- `library.js` — the app's loader: downloads only what changed, verifies every file's SHA-256, keeps a copy on the
+  device (IndexedDB) for offline use, keeps the previous release for rollback, and has a query API. It rebuilds the
+  old shapes (`LANDS`, the country pack) so `world.js` and `country.js` work unchanged.
+- Old files `lands.json` and `content/countries/*.json` were migrated losslessly (`tools/content/migrate_v0.py`); the
+  originals are frozen in `tools/fixtures/legacy-v0/` and the tests prove the app still receives exactly that data.
+- Tests: `python3 tools/run_tests.py` (validator first, then content, loader and all game suites; `--quick`, `--scale`).
 
-To add a country: add its pack + bank, add a registry entry, add a World Land place with `"type":"country","country":"<slug>"` in `lands.json`, generate voice clips (`tools/gen_voice.py`, `--kokoro ff_siwis --lang fr-fr` for French), run `python3 tools/build_sw.py`, then `python3 tools/test_cameroon.py` (pattern for a new country test).
 Progress is stored only on the device (`localStorage` keys `emmaCtry`, `emmaCtryPrefs`): visit stamp, quiz item ids seen today, no personal data.
