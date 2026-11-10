@@ -110,9 +110,6 @@ body.ctry main{padding-bottom:24px}
 .cstoryart{min-height:150px;padding-bottom:26px}.cstoryart .cscene{width:44%}.cstoryart .cgrid{width:min(100%,250px)}
 .cstoryimg{max-width:100%;max-height:200px;border-radius:14px}.cstoryimg.sm{max-height:150px}
 .cbigari{height:170px;width:auto;align-self:center}
-.cswoop{position:absolute;top:-6px;width:150px;left:-160px;z-index:5;pointer-events:none;border-radius:16px;animation:cswoop 1.8s ease-in-out forwards}
-@keyframes cswoop{0%{transform:translateX(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateX(calc(100vw + 170px));opacity:0}}
-@media (prefers-reduced-motion:reduce){.cswoop{animation:cfade 1.2s ease forwards;left:auto;right:0}@keyframes cfade{0%{opacity:0}30%{opacity:1}100%{opacity:0}}}
 @media (min-width:700px){.cmodes:not(.one){grid-template-columns:repeat(4,1fr)}.cmodes.one{grid-template-columns:repeat(3,1fr)}.cexh .cmodes.one{grid-template-columns:1fr 1fr}}
 @media (max-width:359px){.cari{display:none}.cbub img{display:none}}
 .csettings{gap:8px}.csettings .cseg button,.csettings .cbtn2{font-size:15px;padding:6px 10px}

@@ -34,6 +34,10 @@ async def layout(pg,tag):
     ok(r['sw']<=r['W']+1 and not r['bad'],f'{tag}: no horizontal overflow {r["bad"]}')
     ok(not r['small'],f'{tag}: child buttons >= 48px {r["small"]}')
     ok(not r['broken'],f'{tag}: images load {r["broken"][:3]}')
+    stray=await pg.evaluate("""()=>{const W=innerWidth,h=document.querySelector('header').getBoundingClientRect(),out=[];
+      for(const i of document.querySelectorAll('#main img')){const b=i.getBoundingClientRect();if(!b.width||getComputedStyle(i).opacity==='0')continue;
+        if(b.left<-1||b.right>W+1||(scrollY===0&&b.top<h.bottom-1&&b.bottom>h.top))out.push(i.getAttribute('src')+' '+Math.round(b.left)+','+Math.round(b.top))}return out}""")
+    ok(not stray,f'{tag}: no image overlaps the header or sticks out of the screen {stray[:3]}')
 def L(o,lang='en'):return o[lang] if isinstance(o,dict) else o
 async def hub(pg):
     await pg.evaluate("go('ctry',{c:'cameroon'})");await scr(pg,'ctry')

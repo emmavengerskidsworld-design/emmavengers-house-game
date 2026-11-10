@@ -110,7 +110,7 @@ function ctry(a){if(ctRequire(a,ctry))return;const pk=CT.cur,P=ctPrefs(),pr=ctPr
  if(!P.age){main.innerHTML=`<div class="chub"><h2 class="cq">${esc(UT('whoIsPlaying'))}</h2><div class="cages"><button class="cmode cage" data-age="little"><img src="img/world/guides/ari-hello.webp" alt=""><b>${esc(UT('little'))}</b></button><button class="cmode cage" data-age="big"><img src="img/world/guides/ari-map.webp" alt=""><b>${esc(UT('bigx'))}</b></button></div>${ctLangRow()}</div>`;
   main.querySelectorAll('.cage').forEach(b=>b.onclick=()=>{sfx.tap();ctSetPrefs({age:b.dataset.age});go('ctry',ctA({from:fromLand?'land':''}))});ctLangBind(()=>go('ctry',ctA({from:fromLand?'land':''})));return}
  const modes=[['learn','📖','clearn'],['play','🧩','cplay'],['quiz','❓','cquiz'],['stories','📚','cstory']];
- main.innerHTML=`<div class="chub">${fromLand?'<img class="cswoop" src="img/world/guides/ezra-carry.webp" alt="">':''}
+ main.innerHTML=`<div class="chub">
   <div class="cdraft">${esc(UT('draft'))}</div>
   <div class="ccard"><div class="cflagbox">${ctFlag(pk.payload.flag)}</div><div class="cname"><b>${esc(LT(pk.payload.name))}</b>${me.stamp?`<span class="cstamp">🏅 ${esc(UT('visited'))}</span>`:''}</div><img class="cari" src="img/world/guides/ari-map.webp" alt="Ari"></div>
   ${GUIDE_HTML}<div class="cmodes">${modes.map(([k,ic,s])=>`<button class="cmode" data-go="${s}" data-mode="${k}"><i>${ic}</i><b>${esc(UT(k))}</b></button>`).join('')}</div>
