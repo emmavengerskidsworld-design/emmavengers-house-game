@@ -1,0 +1,16 @@
+{
+ "$schema": "../schema/v1/capabilities.schema.json",
+ "note": "What the current app (player) can actually show. Content may only use these. A new kind of game needs an app change first (blueprint 05: no executable behaviour arrives as data). library.js refuses packs that need a capability the running app does not list.",
+ "player": "1.0.0",
+ "activityTemplates": ["grid-route.v1", "ordered-slots.v1", "match.v1", "map-select.v1", "evidence-comparison.v1", "inquiry.v1"],
+ "placeTypes": ["link", "cards", "quiz", "count", "country"],
+ "placeQuizModes": ["letter", "pic", "flag"],
+ "modules": ["house", "bible", "morning"],
+ "quizResponseTypes": ["single-choice"],
+ "plannedQuizResponseTypes": ["multi-choice", "ordered-choice", "select-pair", "numeric", "adult-rubric"],
+ "storyClassifications": ["original-fiction", "factual-narrative", "bible-retelling", "licensed-text"],
+ "mediaKinds": ["placeholder", "flag", "scenes", "scene", "grid", "compass", "cities", "count-boxes", "count-table"],
+ "deckKinds": ["letter", "number", "object", "animal", "country", "prayer"],
+ "markupFields": {"show": ["b"]},
+ "markupNote": "Only the listed fields may hold the listed tags (legacy: the letter X card shows 'fo<b>x</b>'). Every other string must be plain text."
+}

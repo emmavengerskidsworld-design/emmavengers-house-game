@@ -1,0 +1,11 @@
+{
+ "$schema": "../schema/v1/rights.schema.json",
+ "note": "Who owns / licenses each kind of file. Every asset referenced by content must match one rule (longest prefix wins). Full credits: img/world/CREDITS.md.",
+ "rules": [
+  {"prefix": "img/world/", "owner": "Emmavengers / Emmanuel CLETUS", "licence": "owned", "credit": "Original artwork made for Emmavengers World (see img/world/CREDITS.md); map decorations Microsoft Fluent Emoji (MIT); flags drawn from official public-domain designs."},
+  {"prefix": "img/world/guides/", "owner": "Emmavengers / Emmanuel CLETUS", "licence": "owned", "credit": "Ari and Ezra concept-art crops (placeholder until final character art)."},
+  {"prefix": "img/bible/", "owner": "Emmavengers / Emmanuel CLETUS", "licence": "owned", "credit": "Bible Library illustrations made for Emmavengers."},
+  {"prefix": "img/morning/", "owner": "Emmavengers / Emmanuel CLETUS", "licence": "owned", "credit": "Mia's Day illustrations made for Emmavengers."},
+  {"prefix": "voice/", "owner": "Emmavengers / Emmanuel CLETUS", "licence": "generated", "credit": "Computer voice clips made with Kokoro TTS (Apache-2.0 model). Not human recordings."}
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/pack.schema.json",
+ "title": "pack structure file - language-neutral records, localized texts replaced by {\"$t\": n}",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "format",
+  "schemaVersion",
+  "pack",
+  "revision",
+  "records",
+  "strings"
+ ],
+ "properties": {
+  "format": {
+   "const": 1
+  },
+  "schemaVersion": {
+   "type": "string"
+  },
+  "pack": {
+   "type": "string"
+  },
+  "revision": {
+   "type": "integer"
+  },
+  "strings": {
+   "type": "integer",
+   "minimum": 0
+  },
+  "records": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "type",
+     "revision",
+     "status",
+     "h",
+     "payload"
+    ]
+   }
+  }
+ }
+}

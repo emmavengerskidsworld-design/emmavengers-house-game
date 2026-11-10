@@ -1,0 +1,68 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/build.schema.json",
+ "title": "content/src/build.json",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "channel",
+  "channels",
+  "player",
+  "budgets"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string"
+  },
+  "note": {
+   "type": "string"
+  },
+  "channel": {
+   "type": "string"
+  },
+  "channels": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "required": [
+     "statuses"
+    ],
+    "properties": {
+     "statuses": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "uniqueItems": true
+     }
+    }
+   }
+  },
+  "player": {
+   "type": "object",
+   "required": [
+    "min"
+   ],
+   "properties": {
+    "min": {
+     "type": "string"
+    },
+    "maxExclusive": {
+     "type": "string"
+    }
+   }
+  },
+  "retainReleases": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 10
+  },
+  "budgets": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "integer",
+    "minimum": 1
+   }
+  }
+ }
+}

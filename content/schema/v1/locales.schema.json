@@ -1,0 +1,62 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/locales.schema.json",
+ "title": "content/src/locales.json - the language registry",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "sourceLocale",
+  "locales"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string"
+  },
+  "note": {
+   "type": "string"
+  },
+  "sourceLocale": {
+   "$ref": "common.schema.json#/$defs/locale"
+  },
+  "locales": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "tag",
+     "name",
+     "dir",
+     "status"
+    ],
+    "properties": {
+     "tag": {
+      "$ref": "common.schema.json#/$defs/locale"
+     },
+     "name": {
+      "type": "string",
+      "minLength": 1
+     },
+     "dir": {
+      "enum": [
+       "ltr",
+       "rtl"
+      ]
+     },
+     "status": {
+      "enum": [
+       "active",
+       "in-review",
+       "planned",
+       "test-only"
+      ]
+     },
+     "note": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ }
+}

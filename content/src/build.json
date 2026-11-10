@@ -1,0 +1,12 @@
+{
+ "$schema": "../schema/v1/build.schema.json",
+ "note": "Build settings. channel decides which record statuses are compiled into content/library. 'preview' (test site) includes drafts so they can be tried; 'live' ships only published records. Records left out are pruned with their references (e.g. a World Land place pointing at a draft country disappears) and the report lists them.",
+ "channel": "preview",
+ "channels": {
+  "preview": {"statuses": ["draft", "checking", "changes-requested", "reviewed", "approved", "published"]},
+  "live": {"statuses": ["published"]}
+ },
+ "player": {"min": "1.0.0", "maxExclusive": "2.0.0"},
+ "retainReleases": 2,
+ "budgets": {"recordBytes": 262144, "packBytes": 2097152, "indexBytes": 524288, "catalogBytes": 65536, "stringChars": 10000}
+}

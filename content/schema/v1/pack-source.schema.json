@@ -1,0 +1,17 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/pack-source.schema.json",
+ "title": "pack.json: one per content/src folder; every other .json file in the folder is a source file of this pack",
+ "type": "object", "additionalProperties": false, "required": ["id", "collection", "locales"],
+ "properties": {"$schema": {"type": "string"},
+  "id": {"type": "string", "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$", "maxLength": 96},
+  "collection": {"type": "string"},
+  "preload": {"type": "boolean", "description": "true = downloaded on first visit and kept offline (starter content)"},
+  "summary": {"$ref": "common.schema.json#/$defs/ref", "description": "record whose name/tags describe the pack in its collection index"},
+  "title": {"$ref": "common.schema.json#/$defs/localizedText"},
+  "locales": {"type": "object", "additionalProperties": false, "required": ["required"],
+   "properties": {"required": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/locale"}, "uniqueItems": true}}},
+  "defaults": {"type": "object", "additionalProperties": false, "description": "merged into every record of the pack (record values win; tags merged key by key)",
+   "properties": {"status": {"$ref": "common.schema.json#/$defs/status"}, "sourceLanguage": {"$ref": "common.schema.json#/$defs/locale"},
+    "tags": {"type": "object"}, "review": {"$ref": "common.schema.json#/$defs/review"}, "l10n": {"$ref": "common.schema.json#/$defs/l10n"}}}}
+}
