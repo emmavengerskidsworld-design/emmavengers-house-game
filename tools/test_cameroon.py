@@ -10,7 +10,9 @@ import asyncio,threading,functools,http.server,sys,json,os,re
 from pathlib import Path
 from playwright.async_api import async_playwright
 ROOT=Path(__file__).resolve().parents[1];OUT=Path(sys.argv[1] if len(sys.argv)>1 else '/workspace/cameroon-pilot-shots');OUT.mkdir(parents=True,exist_ok=True)
-PK=json.load(open(ROOT/'content/countries/cameroon.json'));BANK=json.load(open(ROOT/'content/countries/cameroon-quiz.json'))
+sys.path.insert(0,str(ROOT/'tools'))
+from content import hydrate,legacy  # the expected text comes from the content library (hash-verified), in the legacy pack shape
+_cat,_recs=hydrate.load(str(ROOT/'content/library'));PK,BANK=legacy.country(_recs,'ew.country.cameroon')
 class Q(http.server.SimpleHTTPRequestHandler):
     def log_message(self,*a):pass
     def handle(self):
@@ -68,7 +70,7 @@ async def online(b,url,vw,vh):
     errs=[];pg.on('pageerror',lambda e:errs.append('PAGEERR '+str(e)));pg.on('console',lambda m:m.type=='error' and errs.append('CONSOLE '+m.text))
     await pg.goto(url,wait_until='load');await pg.evaluate('localStorage.clear()');await pg.reload(wait_until='load')
     await pg.wait_for_function('LANDS!==null&&screen==="home"&&window.CTRY_READY',timeout=20000)
-    # World Land shows the Cameroon place (data-driven from lands.json) and the old activities still exist
+    # World Land shows the Cameroon place (data-driven from the content library) and the old activities still exist
     await pg.click('.wsignb[data-l="world"]');await scr(pg,'land')
     ok(await pg.is_visible('.wplace[data-p="cameroon"]'),f'{vw}: World Land has a Cameroon place')
     ok(await pg.is_visible('.wplace[data-p="countries"]') and await pg.is_visible('.wplace[data-p="flagquiz"]'),f'{vw}: Country Cards + Flag Quiz still there')

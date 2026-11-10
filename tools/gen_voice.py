@@ -7,8 +7,8 @@ Usage:
 
 jobs.json is a list of [text, outfile] OR [text, hash] (hash => <outdir>/<hash>.mp3).
 An optional 3rd column gives Kokoro phonemes (IPA) to speak instead of the text, e.g. letter sounds
-["a, a, apple!", "<hash>", "ˈæ, ˈæ, ˈæpəl!"]; the file name is still the hash of the text. lands.json keeps
-these in its "phonemes" map.
+["a, a, apple!", "<hash>", "ˈæ, ˈæ, ˈæpəl!"]; the file name is still the hash of the text. the content library keeps
+these in its lexicon (content/src/core/lexicon.json; legacy shape: LANDS.phonemes).
 """
 import sys, json, soundfile as sf, subprocess, os, argparse
 from pathlib import Path
