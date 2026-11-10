@@ -139,7 +139,7 @@ function clearn(a){if(ctRequire(a,clearn))return;const L=CT.cur.payload.learn[ct
  $('#csay').onclick=()=>{ctHideGuide();ctSay([text])};
  if(c.kind==='try')ctTryGrid(c);
  ctBind();
- const key='learn:'+c.id;const ids=CT.shownLines.has(key)?[]:(c.lines||[]);CT.shownLines.add(key);ctGuide(ids,[text]);
+ const key='learn:'+c.id+':'+ctLang();const ids=CT.shownLines.has(key)?[]:(c.lines||[]);CT.shownLines.add(key);ctGuide(ids,[text]);
  warmVoice(cards.slice(i+1,i+3).map(x=>LT(x.text)),0)}
 function ctTryGrid(c){const M=CT.cur.payload.media[c.image];let pos=[1,1];const host=main.querySelector('.cmedia');
  const draw=()=>{host.innerHTML=ctGrid({interactive:true,pos})+`<div class="cdirs one"><button class="cdir-btn" data-d="n">⬆ ${esc(UT('north'))}</button></div>`;
@@ -288,7 +288,7 @@ function ctExhausted(a){const Q=CT.cur.payload.quiz;ctTop(UT('quiz'));
 function cstory(a){if(ctRequire(a,cstory))return;ctTop(UT('stories'));const S=CT.cur.payload.stories;
  main.innerHTML=`<div class="cscr"><div class="cmodes one">${S.map((s,i)=>`<button class="cmode cstorybtn" data-s="${i}"><i>${i?'🦅':'📖'}</i><b>${esc(LT(s.title))}</b><small>${esc(LT(s.banner))}</small></button>`).join('')}</div>${GUIDE_HTML}</div>`;
  main.querySelectorAll('.cstorybtn').forEach(b=>b.onclick=()=>{sfx.tap();go('cread',ctA({s:+b.dataset.s,i:0}))});ctBind();
- const key='stories';ctGuide(CT.shownLines.has(key)?[]:['ari.cm.story']);CT.shownLines.add(key)}
+ const key='stories:'+ctLang();ctGuide(CT.shownLines.has(key)?[]:['ari.cm.story']);CT.shownLines.add(key)}
 function ctPages(s){const b=ctBand();return s.pages.all||s.pages[b]||s.pages.little}
 function ctRefl(s){return s.reflection.all||s.reflection[ctBand()]||s.reflection.little}
 function ctStoryArt(scene){const m={'plan-key':()=>ctGrid({highlight:'library'}),'plan-north':()=>ctGrid({arrow:'n',pos:[1,1]}),'plan-paths':()=>ctTable(CT.cur.payload.media.count.rows),

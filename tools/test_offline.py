@@ -49,7 +49,7 @@ async def main(url):
         world=await pg.evaluate("""async()=>{go('home');await new Promise(z=>setTimeout(z,400));const out={lands:document.querySelectorAll('.wland').length,bad:[]};
           const chk=async u=>{const r=await fetch(u);if(!r.ok)out.bad.push(u)};await chk(LANDS.world.img);
           for(const L of LANDS.lands){go('land',{id:L.id});await new Promise(z=>setTimeout(z,300));await chk(L.img);
-            for(const p of L.places){if(p.type==='link')continue;go(p.type==='cards'?'wcards':p.type==='quiz'?'wquiz':'wcount',{l:L.id,p:p.id});await new Promise(z=>setTimeout(z,500));
+            for(const p of L.places){if(p.type==='link'||p.type==='country')continue;go(p.type==='cards'?'wcards':p.type==='quiz'?'wquiz':'wcount',{l:L.id,p:p.id});await new Promise(z=>setTimeout(z,500));
               [...document.images].filter(i=>i.complete&&!i.naturalWidth).forEach(i=>out.bad.push(i.src))}}
           for(const t of __worldVoice())await chk(voiceUrl(t));return out}""")
         print('offline world:',world['lands'],'lands, problems:',world['bad'][:5]);bad+=[('WORLD',x) for x in world['bad']]
