@@ -104,6 +104,7 @@ for slug, b in BIBLE.items():
 book_dirs = {slug: b['dir'].rstrip('/') + '/' for slug, b in BIBLE.items()}
 
 files, total, core_total = [], 0, 0
+revs = []  # SHA-256 prefix of each precached file (same order as ASSETS after './'): lets the SW reuse ONLY unchanged files
 h = hashlib.sha256()
 voice_packs = {}
 books = {slug: {'files': [], 'h': hashlib.sha256(), 'bytes': 0} for slug in BIBLE}
@@ -134,7 +135,7 @@ for d, ds, fs in os.walk(ROOT):
                 if f[:-4] in hs:
                     books[s2]['h'].update(rel.encode() + dig); books[s2]['bytes'] += len(data)
             continue
-        files.append(url); core_total += len(data)
+        files.append(url); revs.append(dig.hex()[:16]); core_total += len(data)
 
 voice_packs['mia'] = [u for u in files if u.startswith('./voice/') and u.endswith('.mp3') and u.count('/') == 2] + \
                      sorted({f'./voice/{x}.mp3' for x in book_only})
@@ -144,6 +145,7 @@ build = h.hexdigest()[:12]
 tpl = open(os.path.join(ROOT, 'tools', 'sw.template.js')).read()
 out = (tpl.replace('__BUILD__', build)
           .replace('__ASSETS__', json.dumps(['./'] + files, separators=(',', ':')))
+          .replace('__REVS__', json.dumps([''] + revs, separators=(',', ':')))
           .replace('__VOICE_PACKS__', json.dumps(voice_packs, separators=(',', ':')))
           .replace('__BOOKS__', json.dumps(manifest, separators=(',', ':'))))
 open(os.path.join(ROOT, 'sw.js'), 'w').write(out)
