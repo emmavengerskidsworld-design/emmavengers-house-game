@@ -1,0 +1,15 @@
+{
+ "$schema": "../schema/v1/taxonomy.schema.json",
+ "note": "Closed lists for record tags. The validator rejects any tag value not listed here, so search, filters and age modes never meet a surprise value. Add a value here (with a note) before using it.",
+ "lands": ["faith", "letter", "number", "study", "nature", "world"],
+ "ageBands": ["5-7", "8-10", "11-13"],
+ "ageModes": {"little": ["5-7"], "big": ["8-10", "11-13"]},
+ "modes": ["learn", "play", "quiz", "stories"],
+ "subjects": ["literacy", "numeracy", "faith", "science", "geography", "culture", "history", "reading", "arts", "music", "life-skills"],
+ "regions": ["africa", "americas", "asia", "europe", "oceania", "antarctica"],
+ "regionNote": "Continental regions after UN M49, plus Antarctica as a region (not a country). Sub-regions can be added later as tags.subregions.",
+ "difficulty": ["starter", "core", "stretch"],
+ "sensitivity": ["christian-teaching", "bible-retelling", "safety-topic", "adult-accompaniment", "sensitive-history"],
+ "statuses": ["draft", "checking", "changes-requested", "reviewed", "approved", "published", "withdrawn", "archived"],
+ "statusNote": "draft -> checking -> (changes-requested -> draft) -> reviewed -> approved (Emmanuel) -> published. withdrawn = removed for a safety/rights/correction reason; archived = retired. A record's status alone never publishes it: the build channel decides which statuses ship (content/src/build.json)."
+}

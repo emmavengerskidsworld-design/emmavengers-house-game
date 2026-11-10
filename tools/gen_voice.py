@@ -7,8 +7,8 @@ Usage:
 
 jobs.json is a list of [text, outfile] OR [text, hash] (hash => <outdir>/<hash>.mp3).
 An optional 3rd column gives Kokoro phonemes (IPA) to speak instead of the text, e.g. letter sounds
-["a, a, apple!", "<hash>", "ˈæ, ˈæ, ˈæpəl!"]; the file name is still the hash of the text. lands.json keeps
-these in its "phonemes" map.
+["a, a, apple!", "<hash>", "ˈæ, ˈæ, ˈæpəl!"]; the file name is still the hash of the text. the content library keeps
+these in its lexicon (content/src/core/lexicon.json; legacy shape: LANDS.phonemes).
 """
 import sys, json, soundfile as sf, subprocess, os, argparse
 from pathlib import Path
@@ -64,6 +64,7 @@ def main():
     ap.add_argument("--sh", type=float, default=None, help="pitch shift (asetrate factor)")
     ap.add_argument("--force", action="store_true", help="regenerate even if file exists")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--lang", default="en-us", help="Kokoro/espeak language, e.g. fr-fr with --kokoro ff_siwis (French pilot lines)")
     args = ap.parse_args()
 
     vid = args.voice
@@ -113,9 +114,9 @@ def main():
             skip += 1
             continue
         if ph:
-            a, sr = k.create(ph, voice=kv, speed=sp, lang="en-us", is_phonemes=True)
+            a, sr = k.create(ph, voice=kv, speed=sp, lang=args.lang, is_phonemes=True)
         else:
-            a, sr = k.create(text, voice=kv, speed=sp, lang="en-us")
+            a, sr = k.create(text, voice=kv, speed=sp, lang=args.lang)
         sf.write(tmp, a, sr)
         subprocess.run(
             ["ffmpeg", "-loglevel", "error", "-y", "-i", tmp, "-af", af_tail.format(sr=sr),

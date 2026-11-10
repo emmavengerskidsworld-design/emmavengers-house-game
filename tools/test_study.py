@@ -1,4 +1,4 @@
-"""Study Land test (portrait 390x844 + 360x780): opens from the 6-land world map, every shelf from lands.json lists its
+"""Study Land test (portrait 390x844 + 360x780): opens from the 6-land world map, every shelf from the content library lists its
 items with pictures, cards open with voice, Bible books open the reader and Back returns to the shelf; new map2 art is
 swapped in only when listed in img/world/map2/ready.json. Then OFFLINE (after one online visit): every shelf, picture
 and voice clip loads from the service worker.   usage: python3 tools/test_study.py [shots_dir]"""

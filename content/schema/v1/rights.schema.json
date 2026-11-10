@@ -1,0 +1,54 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/rights.schema.json",
+ "title": "content/src/rights.json - asset ownership register",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "rules"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string"
+  },
+  "note": {
+   "type": "string"
+  },
+  "rules": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "prefix",
+     "owner",
+     "licence",
+     "credit"
+    ],
+    "properties": {
+     "prefix": {
+      "type": "string"
+     },
+     "owner": {
+      "type": "string"
+     },
+     "licence": {
+      "enum": [
+       "owned",
+       "generated",
+       "cc0",
+       "cc-by",
+       "mit",
+       "apache-2.0",
+       "public-domain",
+       "licensed"
+      ]
+     },
+     "credit": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ }
+}

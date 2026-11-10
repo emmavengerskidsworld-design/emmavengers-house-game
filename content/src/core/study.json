@@ -1,0 +1,123 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Study Land shelves.",
+ "records": [
+  {
+   "id": "ew.library.study",
+   "type": "library",
+   "status": "published",
+   "tags": {
+    "land": "study",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ],
+    "subjects": []
+   },
+   "payload": {
+    "prompt": {
+     "en": "Pick a shelf!"
+    },
+    "sections": [
+     {
+      "key": "animals",
+      "name": {
+       "en": "Animals"
+      },
+      "color": "#1f8a2b",
+      "icon": "img/world/places/safari.webp",
+      "icon2": "study-animals.jpg",
+      "source": {
+       "deck": "ew.deck.animals"
+      },
+      "intro": {
+       "en": "Animals! Tap a picture to learn about it!"
+      }
+     },
+     {
+      "key": "house",
+      "name": {
+       "en": "House Things"
+      },
+      "color": "#e8261c",
+      "icon": "img/world/places/house.webp",
+      "icon2": "study-house.jpg",
+      "source": {
+       "module": "house"
+      },
+      "intro": {
+       "en": "House things! Tap a picture to learn what it is for!"
+      }
+     },
+     {
+      "key": "flags",
+      "name": {
+       "en": "Country Flags"
+      },
+      "color": "#2f86e8",
+      "icon": "img/world/places/flagquiz.webp",
+      "icon2": "study-flags.jpg",
+      "source": {
+       "deck": "ew.deck.countries"
+      },
+      "intro": {
+       "en": "Country flags! Tap a flag to visit a country!"
+      }
+     },
+     {
+      "key": "letters",
+      "name": {
+       "en": "Letters"
+      },
+      "color": "#a855f7",
+      "icon": "img/world/places/abc.webp",
+      "icon2": "study-letters.jpg",
+      "source": {
+       "deck": "ew.deck.letters"
+      },
+      "intro": {
+       "en": "Letters! Tap a letter to hear its sound!"
+      }
+     },
+     {
+      "key": "numbers",
+      "name": {
+       "en": "Numbers"
+      },
+      "color": "#ff8c00",
+      "icon": "img/world/places/numbers.webp",
+      "icon2": "study-numbers.jpg",
+      "source": {
+       "deck": "ew.deck.numbers"
+      },
+      "intro": {
+       "en": "Numbers! Tap a number to count with me!"
+      }
+     },
+     {
+      "key": "bible",
+      "name": {
+       "en": "Bible Stories"
+      },
+      "color": "#ffb800",
+      "icon": "img/world/places/prayer.webp",
+      "icon2": "study-bible.jpg",
+      "source": {
+       "module": "bible"
+      },
+      "intro": {
+       "en": "Bible stories! Tap a book to read it!"
+      }
+     }
+    ]
+   },
+   "evidence": {
+    "note": "Add a subject: a new entry in sections. source = deck:<deck id> | house | bible, or give your own items: [{name, img, text, say:[lines]}]. icon2 = optional new art in img/world/map2/ (used automatically once listed in img/world/map2/ready.json, which tools/build_sw.py writes)."
+   }
+  }
+ ]
+}

@@ -1,0 +1,102 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/capabilities.schema.json",
+ "title": "content/src/capabilities.json - what the player can show",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "player",
+  "activityTemplates",
+  "placeTypes",
+  "modules",
+  "quizResponseTypes"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string"
+  },
+  "note": {
+   "type": "string"
+  },
+  "markupNote": {
+   "type": "string"
+  },
+  "player": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+$"
+  },
+  "activityTemplates": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "placeTypes": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "placeQuizModes": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "modules": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "quizResponseTypes": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "plannedQuizResponseTypes": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "storyClassifications": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "mediaKinds": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "deckKinds": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
+  },
+  "markupFields": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    },
+    "uniqueItems": true
+   }
+  }
+ }
+}

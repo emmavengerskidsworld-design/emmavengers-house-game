@@ -1,9 +1,10 @@
 /* ===== Emmavengers World =====
    The app home is a world map shaped like Africa. Each land opens its own inner map; each place on it is an activity.
-   Everything (lands, places, cards, voice lines, map art, music theme) comes from lands.json, so new lands, places,
+   Everything (lands, places, cards, voice lines, map art, music theme) comes from the content library
+   (content/src/core -> tools/content_build.py -> content/library, read by library.js), so new lands, places,
    letters, animals or countries can be added there without touching code. Activity types: link (existing game screens:
    house / bible / morning), cards (tap-to-learn deck), quiz (letter | pic | flag), count (count objects 1-10).
-   After editing lands.json: generate voice clips for new lines (tools/check_voice.py + tools/gen_voice.py) and run
+   After editing content/src: python3 tools/content_build.py, generate voice clips for new lines (tools/check_voice.py + tools/gen_voice.py) and run
    python3 tools/build_sw.py so phones get the update offline. */
 let LANDS=null,curLand=null,worldGreeted=false;
 const WORLD_SCREENS=['land','wcards','wquiz','wcount','wreward','study','ssec'];
@@ -65,7 +66,7 @@ function land(a){const L=landById((a&&a.id)||curLand);if(!L){go('home');return}i
  warmVoice([...L.places.map(p=>p.type==='link'?LINK_SAY[p.go]:p.intro),...L.places.flatMap(p=>p.deck?wDeck(p.deck).items.slice(0,4).flatMap(it=>it.say.slice(0,2)):[])].filter(Boolean),1)}
 function openPlace(L,p){if(!p)return;const a={l:L.id,p:p.id};
  if(p.type==='link'){go(p.go);return}
- if(p.type==='cards')go('wcards',a);else if(p.type==='quiz')go('wquiz',a);else if(p.type==='count')go('wcount',a)}
+ if(p.type==='cards')go('wcards',a);else if(p.type==='quiz')go('wquiz',a);else if(p.type==='count')go('wcount',a);else if(p.type==='country')go('ctry',{c:p.country,from:'land'})}
 
 /* --- cards: tap a tile to open its big card (voice + 3D picture). First look at each card = 1 star. --- */
 const LCOL=['#e8261c','#2f86e8','#1f8a2b','#ff8c00','#a855f7','#e83e8c'];
@@ -167,7 +168,7 @@ function home6(W){const bg=m2(W.bg2,'');const S=LANDS.lands.find(l=>l.type==='li
  if(!worldGreeted){worldGreeted=true;say(W.intro)}
  warmVoice(LANDS.lands.map(L=>L.intro),1)}
 
-/* ===== Study Land: a library to look and listen (no games). Shelves come from lands.json "study.sections";
+/* ===== Study Land: a library to look and listen (no games). Shelves come from the content library (LANDS.study.sections);
    source = deck:<id> | house | bible, or inline items [{name,img,text,say}]. Adding a subject = one data entry. */
 let studyFrom=null;
 const HOUSE_ALL=()=>[...ITEMS,...BEDROOM_ITEMS,...BATHROOM_ITEMS,...LIVING_ITEMS];
@@ -227,6 +228,7 @@ Object.assign(BGM,{
   if(s%4===2)bnote(bus,1800+Math.random()*300,t,.03,'square',.05,.001)}}});
 function worldBgm(s){if(!WORLD_SCREENS.includes(s))return false;const L=landById(curLand);const k=L&&('land:'+L.music);if(k&&BGM[k])bgmPlay(k);else bgmStop();return true}
 
-/* --- boot: load lands.json (precached offline), then open the world map --- */
+/* --- boot: the content library (library.js) opens the verified copy on this device (or downloads the starter
+   packs on the very first visit), then the world map opens. LANDS keeps the same shape as the old lands.json. --- */
 const map2Ready=fetch('img/world/map2/ready.json').then(r=>r.ok?r.json():[]).then(a=>{MAP2=new Set(a||[])}).catch(()=>{});
-fetch('lands.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>map2Ready.then(()=>{LANDS=j;go('home')})).catch(()=>{go('house')});
+(window.EWLib?EWLib.ready.then(L=>L.legacy.lands()):Promise.reject(new Error('library.js missing'))).then(j=>map2Ready.then(()=>{LANDS=j;go('home')})).catch(e=>{console.warn('content library not available',e);go('house')});

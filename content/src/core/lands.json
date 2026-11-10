@@ -1,0 +1,513 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "The six lands. Land keys are permanent (blueprint 05); renaming a land changes its name text only.",
+ "records": [
+  {
+   "id": "ew.land.faith",
+   "type": "land",
+   "status": "published",
+   "tags": {
+    "land": "faith",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [],
+    "subjects": [
+     "faith"
+    ],
+    "sensitivity": [
+     "christian-teaching"
+    ]
+   },
+   "payload": {
+    "key": "faith",
+    "name": {
+     "en": "Faith Land"
+    },
+    "color": "#ffb800",
+    "img": "img/world/faith-land.jpg",
+    "music": "faith",
+    "intro": {
+     "en": "Welcome to Faith Land! Visit the Emmavengers House, Bible Land, Mia's Day and the Prayer Corner!"
+    },
+    "layout": {
+     "x": 47.6,
+     "y": 25.6,
+     "sx": 47.6,
+     "sy": 12.6,
+     "w": 44,
+     "h": 20,
+     "m6": {
+      "x": 81,
+      "y": 29,
+      "s": 28,
+      "art": "img/world/places/house.webp"
+     }
+    },
+    "places": [
+     {
+      "key": "house",
+      "name": {
+       "en": "Emmavengers House"
+      },
+      "sub": {
+       "en": "Rooms & games"
+      },
+      "icon": "img/world/places/house.webp",
+      "type": "link",
+      "x": 27.8,
+      "y": 33.3,
+      "go": "house"
+     },
+     {
+      "key": "bible",
+      "name": {
+       "en": "Bible Land"
+      },
+      "sub": {
+       "en": "Bible stories"
+      },
+      "icon": "img/bible/noah/thumb.jpg",
+      "type": "link",
+      "x": 72.2,
+      "y": 46.9,
+      "go": "bible",
+      "photo": true,
+      "pos": "72% 40%"
+     },
+     {
+      "key": "mia",
+      "name": {
+       "en": "Mia's Day"
+      },
+      "sub": {
+       "en": "Morning routine"
+      },
+      "icon": "img/morning/card.jpg",
+      "type": "link",
+      "x": 27.8,
+      "y": 62.5,
+      "go": "morning",
+      "photo": true,
+      "pos": "48% 30%"
+     },
+     {
+      "key": "prayer",
+      "name": {
+       "en": "Prayer Corner"
+      },
+      "sub": {
+       "en": "Pray with me"
+      },
+      "icon": "img/world/places/prayer.webp",
+      "type": "cards",
+      "x": 72.2,
+      "y": 78.1,
+      "deck": "ew.deck.prayers",
+      "intro": {
+       "en": "Prayer Corner! Tap a prayer and let's pray together!"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.land.letter",
+   "type": "land",
+   "status": "published",
+   "tags": {
+    "land": "letter",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [],
+    "subjects": [
+     "literacy"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "letter",
+    "name": {
+     "en": "Letter Land"
+    },
+    "color": "#a855f7",
+    "img": "img/world/letter-land.jpg",
+    "music": "letter",
+    "intro": {
+     "en": "Welcome to Letter Land! Let's learn our letters and their sounds!"
+    },
+    "layout": {
+     "x": 21.6,
+     "y": 37.8,
+     "sx": 21.6,
+     "sy": 45.8,
+     "w": 36,
+     "h": 16,
+     "m6": {
+      "x": 50,
+      "y": 21.5,
+      "s": 28,
+      "art": "img/world/places/abc.webp"
+     }
+    },
+    "places": [
+     {
+      "key": "abc",
+      "name": {
+       "en": "ABC Sounds"
+      },
+      "sub": {
+       "en": "Tap a letter"
+      },
+      "icon": "img/world/places/abc.webp",
+      "type": "cards",
+      "x": 30.6,
+      "y": 39.6,
+      "deck": "ew.deck.letters",
+      "intro": {
+       "en": "Tap a letter to hear its sound!"
+      }
+     },
+     {
+      "key": "hunt",
+      "name": {
+       "en": "Letter Hunt"
+      },
+      "sub": {
+       "en": "First letter game"
+      },
+      "icon": "img/world/places/hunt.webp",
+      "type": "quiz",
+      "x": 69.4,
+      "y": 64.6,
+      "deck": "ew.deck.letters",
+      "mode": "letter",
+      "ask": {
+       "en": "What letter does {word} start with?"
+      },
+      "rounds": 8,
+      "intro": {
+       "en": "Letter hunt! Find the first letter of each word!"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.land.number",
+   "type": "land",
+   "status": "published",
+   "tags": {
+    "land": "number",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [],
+    "subjects": [
+     "numeracy"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "number",
+    "name": {
+     "en": "Number Land"
+    },
+    "color": "#2f86e8",
+    "img": "img/world/number-land.jpg",
+    "music": "number",
+    "intro": {
+     "en": "Welcome to Number Land! Let's count from one to ten!"
+    },
+    "layout": {
+     "x": 51.5,
+     "y": 56.1,
+     "sx": 51.5,
+     "sy": 63.8,
+     "w": 34,
+     "h": 14,
+     "m6": {
+      "x": 19,
+      "y": 29,
+      "s": 28,
+      "art": "img/world/places/numbers.webp"
+     }
+    },
+    "places": [
+     {
+      "key": "numbers",
+      "name": {
+       "en": "1 to 10"
+      },
+      "sub": {
+       "en": "Tap a number"
+      },
+      "icon": "img/world/places/numbers.webp",
+      "type": "cards",
+      "x": 30.6,
+      "y": 39.6,
+      "deck": "ew.deck.numbers",
+      "intro": {
+       "en": "Tap a number and count with me!"
+      }
+     },
+     {
+      "key": "count",
+      "name": {
+       "en": "Count It!"
+      },
+      "sub": {
+       "en": "How many?"
+      },
+      "icon": "img/world/places/count.webp",
+      "type": "count",
+      "x": 69.4,
+      "y": 64.6,
+      "deck": "ew.deck.numbers",
+      "objects": "ew.deck.objects",
+      "rounds": 8,
+      "intro": {
+       "en": "Count it! Tap each one to count, then pick the number!"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.land.study",
+   "type": "land",
+   "status": "published",
+   "tags": {
+    "land": "study",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [],
+    "subjects": [],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "study",
+    "name": {
+     "en": "Study Land"
+    },
+    "landType": "library",
+    "color": "#c0392b",
+    "img": "img/world/places/abc.webp",
+    "music": "faith",
+    "intro": {
+     "en": "Welcome to Study Land, the big library! Pick a shelf and learn something new!"
+    },
+    "layout": {
+     "x": 50,
+     "y": 50,
+     "sx": 50,
+     "sy": 50,
+     "w": 10,
+     "h": 10,
+     "m6": {
+      "x": 50,
+      "y": 51.5,
+      "s": 44,
+      "art": "",
+      "art2": "study-land.jpg"
+     }
+    },
+    "places": []
+   }
+  },
+  {
+   "id": "ew.land.nature",
+   "type": "land",
+   "status": "published",
+   "tags": {
+    "land": "nature",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [],
+    "subjects": [
+     "science"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "nature",
+    "name": {
+     "en": "Nature Land"
+    },
+    "color": "#1f8a2b",
+    "img": "img/world/nature-land.jpg",
+    "music": "nature",
+    "intro": {
+     "en": "Welcome to Nature Land! Let's meet amazing animals!"
+    },
+    "layout": {
+     "x": 73.5,
+     "y": 44.9,
+     "sx": 76.0,
+     "sy": 39.0,
+     "w": 40,
+     "h": 17,
+     "m6": {
+      "x": 24,
+      "y": 77,
+      "s": 32,
+      "art": "img/world/places/safari.webp"
+     }
+    },
+    "places": [
+     {
+      "key": "safari",
+      "name": {
+       "en": "Animal Safari"
+      },
+      "sub": {
+       "en": "Fun facts"
+      },
+      "icon": "img/world/places/safari.webp",
+      "type": "cards",
+      "x": 30.6,
+      "y": 39.6,
+      "deck": "ew.deck.animals",
+      "intro": {
+       "en": "Tap an animal to hear a fun fact!"
+      }
+     },
+     {
+      "key": "animalquiz",
+      "name": {
+       "en": "Animal Quiz"
+      },
+      "sub": {
+       "en": "Find the animal"
+      },
+      "icon": "img/world/places/animalquiz.webp",
+      "type": "quiz",
+      "x": 69.4,
+      "y": 64.6,
+      "deck": "ew.deck.animals",
+      "mode": "pic",
+      "ask": {
+       "en": "Find the {lname}!"
+      },
+      "rounds": 8,
+      "intro": {
+       "en": "Animal quiz! Can you find the right animal?"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.land.world",
+   "type": "land",
+   "status": "published",
+   "tags": {
+    "land": "world",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [],
+    "subjects": [
+     "geography"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "world",
+    "name": {
+     "en": "World Land"
+    },
+    "color": "#e8590c",
+    "img": "img/world/world-land.jpg",
+    "music": "world",
+    "intro": {
+     "en": "Welcome to World Land! Let's visit countries in Africa!"
+    },
+    "layout": {
+     "x": 61.2,
+     "y": 76.4,
+     "sx": 61.9,
+     "sy": 84.2,
+     "w": 36,
+     "h": 14,
+     "m6": {
+      "x": 76,
+      "y": 77,
+      "s": 32,
+      "art": "img/world/places/countries.webp"
+     }
+    },
+    "places": [
+     {
+      "key": "cameroon",
+      "name": {
+       "en": "Cameroon"
+      },
+      "sub": {
+       "en": "Learn · Play · Quiz · Stories"
+      },
+      "icon": "img/world/countries/cameroon-flag.webp",
+      "type": "country",
+      "country": "ew.country.cameroon",
+      "x": 70,
+      "y": 24
+     },
+     {
+      "key": "countries",
+      "name": {
+       "en": "Country Cards"
+      },
+      "sub": {
+       "en": "Hello & food"
+      },
+      "icon": "img/world/places/countries.webp",
+      "type": "cards",
+      "x": 30.6,
+      "y": 39.6,
+      "deck": "ew.deck.countries",
+      "intro": {
+       "en": "Tap a country to say hello!"
+      }
+     },
+     {
+      "key": "flagquiz",
+      "name": {
+       "en": "Flag Quiz"
+      },
+      "sub": {
+       "en": "Find the flag"
+      },
+      "icon": "img/world/places/flagquiz.webp",
+      "type": "quiz",
+      "x": 69.4,
+      "y": 64.6,
+      "deck": "ew.deck.countries",
+      "mode": "flag",
+      "ask": {
+       "en": "Which flag is {name}?"
+      },
+      "rounds": 5,
+      "intro": {
+       "en": "Flag quiz! Can you find the right flag?"
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

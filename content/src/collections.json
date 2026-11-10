@@ -1,0 +1,12 @@
+{
+ "$schema": "../schema/v1/collections.schema.json",
+ "note": "Collections group packs in the catalog. Each collection has its own small index file, so 200 countries in many languages never become one huge download. Countries are grouped by region.",
+ "collections": [
+  {"id": "core", "kind": "core", "title": {"en": "Home map, lands and shared parts"}},
+  {"id": "countries.africa", "kind": "topics", "land": "world", "region": "africa", "title": {"en": "Countries of Africa", "fr": "Pays d'Afrique"}},
+  {"id": "countries.americas", "kind": "topics", "land": "world", "region": "americas", "title": {"en": "Countries of the Americas", "fr": "Pays des Amériques"}},
+  {"id": "countries.asia", "kind": "topics", "land": "world", "region": "asia", "title": {"en": "Countries of Asia", "fr": "Pays d'Asie"}},
+  {"id": "countries.europe", "kind": "topics", "land": "world", "region": "europe", "title": {"en": "Countries of Europe", "fr": "Pays d'Europe"}},
+  {"id": "countries.oceania", "kind": "topics", "land": "world", "region": "oceania", "title": {"en": "Countries of Oceania", "fr": "Pays d'Océanie"}}
+ ]
+}

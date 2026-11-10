@@ -1,0 +1,38 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/locale-pack.schema.json",
+ "title": "pack language file - the texts of one pack in one language, aligned with the structure file",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "format",
+  "pack",
+  "locale",
+  "struct",
+  "strings"
+ ],
+ "properties": {
+  "format": {
+   "const": 1
+  },
+  "pack": {
+   "type": "string"
+  },
+  "locale": {
+   "type": "string"
+  },
+  "struct": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "strings": {
+   "type": "array",
+   "items": {
+    "type": [
+     "string",
+     "null"
+    ]
+   }
+  }
+ }
+}

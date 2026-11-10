@@ -1,0 +1,136 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/index.schema.json",
+ "title": "collection index - lists the packs of one collection",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "format",
+  "collection",
+  "packs"
+ ],
+ "properties": {
+  "format": {
+   "const": 1
+  },
+  "collection": {
+   "type": "string"
+  },
+  "packs": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "revision",
+     "preload",
+     "records",
+     "file",
+     "locales",
+     "assets",
+     "requires"
+    ],
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "revision": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "preload": {
+      "type": "boolean"
+     },
+     "records": {
+      "type": "integer"
+     },
+     "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "path",
+       "sha256",
+       "bytes"
+      ],
+      "properties": {
+       "path": {
+        "type": "string",
+        "pattern": "^[a-z0-9@._/-]+\\.json$"
+       },
+       "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       },
+       "bytes": {
+        "type": "integer",
+        "minimum": 1
+       }
+      }
+     },
+     "locales": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "path",
+        "sha256",
+        "bytes",
+        "coverage"
+       ],
+       "properties": {
+        "path": {
+         "type": "string",
+         "pattern": "^[a-z0-9@._/-]+\\.json$"
+        },
+        "sha256": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "bytes": {
+         "type": "integer",
+         "minimum": 1
+        },
+        "coverage": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1
+        }
+       }
+      }
+     },
+     "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "path",
+       "sha256",
+       "bytes"
+      ],
+      "properties": {
+       "path": {
+        "type": "string",
+        "pattern": "^[a-z0-9@._/-]+\\.json$"
+       },
+       "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       },
+       "bytes": {
+        "type": "integer",
+        "minimum": 1
+       }
+      }
+     },
+     "requires": {
+      "type": "object"
+     },
+     "summary": {
+      "type": "object"
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,845 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Learn: one lesson per age mode; each card is its own record.",
+ "records": [
+  {
+   "id": "ew.lesson.pilot-cameroon",
+   "type": "lesson",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "little",
+    "cards": [
+     "ew.card.pilot-cameroon-l1",
+     "ew.card.pilot-cameroon-l2",
+     "ew.card.pilot-cameroon-l3",
+     "ew.card.pilot-cameroon-l4",
+     "ew.card.pilot-cameroon-l5",
+     "ew.card.pilot-cameroon-mi1",
+     "ew.card.pilot-cameroon-mi2",
+     "ew.card.pilot-cameroon-l6a",
+     "ew.card.pilot-cameroon-l6b"
+    ]
+   }
+  },
+  {
+   "id": "ew.lesson.pilot-cameroon-big",
+   "type": "lesson",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "big",
+    "cards": [
+     "ew.card.pilot-cameroon-b1a",
+     "ew.card.pilot-cameroon-b1b",
+     "ew.card.pilot-cameroon-b1c",
+     "ew.card.pilot-cameroon-b2a",
+     "ew.card.pilot-cameroon-b2b",
+     "ew.card.pilot-cameroon-b3",
+     "ew.card.pilot-cameroon-b4",
+     "ew.card.pilot-cameroon-b5a",
+     "ew.card.pilot-cameroon-b5b",
+     "ew.card.pilot-cameroon-b5c",
+     "ew.card.pilot-cameroon-b6a",
+     "ew.card.pilot-cameroon-b6b",
+     "ew.card.pilot-cameroon-b7a",
+     "ew.card.pilot-cameroon-b7b",
+     "ew.card.pilot-cameroon-b8a",
+     "ew.card.pilot-cameroon-b8b",
+     "ew.card.pilot-cameroon-b9"
+    ]
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-l1",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "L1",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-locator",
+    "text": {
+     "en": "Cameroon is a country in Africa. It is next to the ocean.",
+     "fr": "Le Cameroun est un pays d'Afrique. Il est au bord de l'océan."
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ari.cm.learn",
+     "ew.line.pilot-cameroon.ezra.sky"
+    ]
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-l2",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "L2",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-flag",
+    "text": {
+     "en": "This is Cameroon's flag: green, red and yellow stripes, with a yellow star in the middle. A flag is a symbol.",
+     "fr": "Voici le drapeau du Cameroun : des bandes verte, rouge et jaune, avec une étoile jaune au milieu. Un drapeau est un symbole."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-l3",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "L3",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-landscapes",
+    "text": {
+     "en": "Cameroon has forests, grasslands, mountains and beaches. One country, many places!",
+     "fr": "Le Cameroun a des forêts, des savanes, des montagnes et des plages. Un pays, beaucoup de paysages !"
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ezra.landscapes"
+    ]
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-prc",
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-l4",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "L4",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-mount",
+    "text": {
+     "en": "Mount Cameroon is the tallest mountain in Cameroon. It is a volcano.",
+     "fr": "Le mont Cameroun est la plus haute montagne du Cameroun. C'est un volcan."
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ari.cm.many"
+    ]
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brm",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-l5",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "L5",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-languages",
+    "text": {
+     "en": "People in Cameroon speak many languages. Two official languages are English and French.",
+     "fr": "Au Cameroun, on parle beaucoup de langues. Deux langues officielles sont l'anglais et le français."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-mi1",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "MI1",
+    "kind": "map-intro",
+    "image": "ew.media.pilot-cameroon-grid",
+    "text": {
+     "en": "North is at the top of this invented neighbourhood map. A key explains symbols.",
+     "fr": "Le nord est en haut de ce plan de quartier inventé. Une légende explique les symboles."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-mi2",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "MI2",
+    "kind": "map-intro",
+    "image": "ew.media.pilot-cameroon-grid",
+    "text": {
+     "en": "Book means library. This is a tabletop practice map, not a real route to follow outside.",
+     "fr": "Le livre représente la bibliothèque. C'est un plan d'entraînement sur table, pas un véritable itinéraire à suivre dehors."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-l6a",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "L6a",
+    "kind": "model",
+    "image": "ew.media.pilot-cameroon-grid-model",
+    "text": {
+     "en": "From Start, the bench is one step east. Watch the east arrow.",
+     "fr": "Depuis Départ, le banc est à un déplacement vers l'est. Regarde la flèche de l'est."
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ari.cm.model"
+    ]
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-l6b",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "L6b",
+    "kind": "try",
+    "image": "ew.media.pilot-cameroon-grid-try",
+    "text": {
+     "en": "Find the book symbol. From Start, move one step north to the library. You can select the north button instead of dragging.",
+     "fr": "Trouve le symbole du livre. Depuis Départ, va d'un déplacement vers le nord jusqu'à la bibliothèque. Tu peux choisir le bouton nord au lieu de faire glisser un élément."
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ari.cm.try"
+    ]
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b1a",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B1a",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-locator",
+    "text": {
+     "en": "Cameroon lies where West and Central Africa meet. The Gulf of Guinea, part of the Atlantic Ocean, is to the southwest.",
+     "fr": "Le Cameroun se trouve à la rencontre de l'Afrique de l'Ouest et de l'Afrique centrale. Le golfe de Guinée, dans l'océan Atlantique, est au sud-ouest."
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ari.cm.learn",
+     "ew.line.pilot-cameroon.ezra.sky"
+    ]
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b1b",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B1b",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-neighbours",
+    "text": {
+     "en": "Nigeria is to the northwest and Chad is to the northeast. The Central African Republic is to the east.",
+     "fr": "Le Nigeria est au nord-ouest et le Tchad au nord-est. La République centrafricaine est à l'est."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b1c",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B1c",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-neighbours",
+    "text": {
+     "en": "The Republic of the Congo is to the southeast. Gabon and Equatorial Guinea are to the south.",
+     "fr": "La République du Congo est au sud-est. Le Gabon et la Guinée équatoriale sont au sud."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b2a",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B2a",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-cities",
+    "text": {
+     "en": "The Constitution names Yaoundé as the capital. Douala is a major port and economic city.",
+     "fr": "La Constitution désigne Yaoundé comme capitale. Douala est un grand port et une ville économique importante."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b2b",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B2b",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-cities",
+    "text": {
+     "en": "A capital is a city where important national government institutions are based. The busiest city is not automatically the capital.",
+     "fr": "Une capitale est une ville où se trouvent d'importantes institutions du gouvernement national. La ville la plus active n'est pas forcément la capitale."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-10a"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b3",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B3",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-flag",
+    "text": {
+     "en": "The Constitution describes the flag: three equal vertical stripes of green, red and yellow. One gold star is in the centre of the red stripe.",
+     "fr": "La Constitution décrit le drapeau : trois bandes verticales égales, verte, rouge et jaune. Une étoile d'or se trouve au centre de la bande rouge."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b4",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B4",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-regions",
+    "text": {
+     "en": "Cameroon is divided into 10 regions. Some are Adamawa, Centre, Littoral, North West and South West.",
+     "fr": "Le Cameroun est divisé en 10 régions. En voici quelques-unes : l'Adamaoua, le Centre, le Littoral, le Nord-Ouest et le Sud-Ouest."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b5a",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B5a",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-landscapes",
+    "text": {
+     "en": "In the south are coastal plains and dense forest. Highlands rise in the west.",
+     "fr": "Au sud, on trouve des plaines côtières et une forêt dense. À l'ouest s'élèvent des hautes terres."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b5b",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B5b",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-landscapes",
+    "text": {
+     "en": "In the north, savanna slopes down towards the Lake Chad basin. The land changes a lot from south to north.",
+     "fr": "Au nord, la savane descend vers le bassin du lac Tchad. Le paysage change beaucoup du sud au nord."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b5c",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B5c",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-mount",
+    "text": {
+     "en": "Mount Cameroon is an active volcano near the coast. It is the country's highest mountain.",
+     "fr": "Le mont Cameroun est un volcan actif près de la côte. C'est la plus haute montagne du pays."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brm",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b6a",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B6a",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-languages",
+    "text": {
+     "en": "English and French are official languages with equal status. Many national languages are spoken too.",
+     "fr": "L'anglais et le français sont des langues officielles d'égale valeur. On parle aussi de nombreuses langues nationales."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b6b",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B6b",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-people",
+    "text": {
+     "en": "Cameroon has more than 200 ethnic groups. No single picture shows 'the' Cameroonian way of life.",
+     "fr": "Le Cameroun compte plus de 200 groupes ethniques. Aucune image unique ne montre « la » façon de vivre camerounaise."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-prc",
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b7a",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B7a",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-heritage",
+    "text": {
+     "en": "UNESCO lists three World Heritage sites in Cameroon. One is the Dja Faunal Reserve, a protected forest area.",
+     "fr": "L'UNESCO inscrit trois sites du patrimoine mondial au Cameroun. L'un d'eux est la réserve de faune du Dja, une forêt protégée."
+    },
+    "lines": [
+     "ew.line.pilot-cameroon.ari.cm.many"
+    ]
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-whc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b7b",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B7b",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-heritage",
+    "text": {
+     "en": "The others are Sangha Trinational, shared with neighbouring countries, and the Diy-Gid-Biy Cultural Landscape of the Mandara Mountains, added in 2025.",
+     "fr": "Les autres sont le Trinational de la Sangha, partagé avec des pays voisins, et le paysage culturel Diy-Gid-Biy des monts Mandara, inscrit en 2025."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-whc"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b8a",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B8a",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-count",
+    "text": {
+     "en": "In an invented one-hour count, 8 visitors used Path A and 3 used Path B. We can compare these counts.",
+     "fr": "Dans un comptage inventé d'une heure, 8 visiteurs ont pris le chemin A et 3 le chemin B. Nous pouvons comparer ces nombres."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b8b",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B8b",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-count",
+    "text": {
+     "en": "They do not tell us what everyone in Cameroon prefers or why people chose a path.",
+     "fr": "Ils ne disent pas ce que tout le monde au Cameroun préfère ni pourquoi les visiteurs ont choisi un chemin."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": true
+   }
+  },
+  {
+   "id": "ew.card.pilot-cameroon-b9",
+   "type": "learn-card",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ]
+   },
+   "payload": {
+    "key": "B9",
+    "kind": "info",
+    "image": "ew.media.pilot-cameroon-source-table",
+    "text": {
+     "en": "Two sources give different heights for Mount Cameroon. Let's find out why before choosing one.",
+     "fr": "Deux sources donnent des hauteurs différentes pour le mont Cameroun. Cherchons pourquoi avant d'en choisir une."
+    }
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brm",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true
+   }
+  }
+ ]
+}

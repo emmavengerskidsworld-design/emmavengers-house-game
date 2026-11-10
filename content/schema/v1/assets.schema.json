@@ -1,0 +1,57 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/assets.schema.json",
+ "title": "pack asset manifest - every file a pack needs, with size and SHA-256",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "format",
+  "pack",
+  "files"
+ ],
+ "properties": {
+  "format": {
+   "const": 1
+  },
+  "pack": {
+   "type": "string"
+  },
+  "files": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "path",
+     "sha256",
+     "bytes",
+     "kind"
+    ],
+    "properties": {
+     "path": {
+      "type": "string"
+     },
+     "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "bytes": {
+      "type": "integer"
+     },
+     "kind": {
+      "enum": [
+       "image",
+       "audio"
+      ]
+     },
+     "locale": {
+      "type": "string"
+     },
+     "rights": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ }
+}

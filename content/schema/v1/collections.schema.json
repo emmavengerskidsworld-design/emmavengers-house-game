@@ -1,0 +1,53 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/collections.schema.json",
+ "title": "content/src/collections.json",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "collections"
+ ],
+ "properties": {
+  "$schema": {
+   "type": "string"
+  },
+  "note": {
+   "type": "string"
+  },
+  "collections": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "kind",
+     "title"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+     },
+     "kind": {
+      "enum": [
+       "core",
+       "topics",
+       "land",
+       "media"
+      ]
+     },
+     "land": {
+      "type": "string"
+     },
+     "region": {
+      "type": "string"
+     },
+     "title": {
+      "$ref": "common.schema.json#/$defs/localizedText"
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,9 @@
+{
+ "$schema": "../schema/v1/locales.schema.json",
+ "note": "Every language the library knows. Add a language here first (BCP 47 tag, own name, direction), then add its text to records. 'status' describes the language as a whole; each record also has its own per-language review status (l10n). Nothing is hard-coded to English or French in library.js.",
+ "sourceLocale": "en",
+ "locales": [
+  {"tag": "en", "name": "English", "dir": "ltr", "status": "active"},
+  {"tag": "fr", "name": "Français", "dir": "ltr", "status": "in-review", "note": "Pilot French drafts await a fluent French reviewer."}
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/record.schema.json",
+ "title": "Emmavengers World content record (schema 1.0.0)",
+ "description": "One content record: a common envelope plus a payload whose shape depends on type. Revision is managed by the build (content/registry.lock.json), so authors never edit it by hand.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": ["id", "type", "status", "sourceLanguage", "tags", "payload"],
+ "properties": {
+  "id": {"$ref": "common.schema.json#/$defs/id"},
+  "type": {"enum": ["world", "land", "deck", "library", "lexicon", "character", "strings", "country", "topic", "source",
+                    "lesson", "learn-card", "activity", "quiz-bank", "quiz-item", "story", "line", "media"]},
+  "revision": {"type": "integer", "minimum": 1},
+  "status": {"$ref": "common.schema.json#/$defs/status"},
+  "sourceLanguage": {"$ref": "common.schema.json#/$defs/locale"},
+  "tags": {"$ref": "common.schema.json#/$defs/tags"},
+  "evidence": {"$ref": "common.schema.json#/$defs/evidence"},
+  "review": {"$ref": "common.schema.json#/$defs/review"},
+  "l10n": {"$ref": "common.schema.json#/$defs/l10n"},
+  "payload": {"type": "object"}
+ },
+ "allOf": [
+  {"if": {"properties": {"type": {"const": "world"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/world"}}}},
+  {"if": {"properties": {"type": {"const": "land"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/land"}}}},
+  {"if": {"properties": {"type": {"const": "deck"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/deck"}}}},
+  {"if": {"properties": {"type": {"const": "library"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/library"}}}},
+  {"if": {"properties": {"type": {"const": "lexicon"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/lexicon"}}}},
+  {"if": {"properties": {"type": {"const": "character"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/character"}}}},
+  {"if": {"properties": {"type": {"const": "strings"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/strings"}}}},
+  {"if": {"properties": {"type": {"const": "country"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/country"}}}},
+  {"if": {"properties": {"type": {"const": "topic"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/topic"}}}},
+  {"if": {"properties": {"type": {"const": "source"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/source"}}}},
+  {"if": {"properties": {"type": {"const": "lesson"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/lesson"}}}},
+  {"if": {"properties": {"type": {"const": "learn-card"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/learnCard"}}}},
+  {"if": {"properties": {"type": {"const": "activity"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/activity"}}}},
+  {"if": {"properties": {"type": {"const": "quiz-bank"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/quizBank"}}}},
+  {"if": {"properties": {"type": {"const": "quiz-item"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/quizItem"}}}},
+  {"if": {"properties": {"type": {"const": "story"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/story"}}}},
+  {"if": {"properties": {"type": {"const": "line"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/line"}}}},
+  {"if": {"properties": {"type": {"const": "media"}}}, "then": {"properties": {"payload": {"$ref": "payloads.schema.json#/$defs/media"}}}}
+ ]
+}

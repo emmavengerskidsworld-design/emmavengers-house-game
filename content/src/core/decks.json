@@ -1,0 +1,1338 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Card decks used by land places (cards / quiz / count) and Study Land shelves.",
+ "records": [
+  {
+   "id": "ew.deck.letters",
+   "type": "deck",
+   "status": "published",
+   "tags": {
+    "land": "letter",
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ],
+    "subjects": [
+     "literacy"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "letters",
+    "kind": "letter",
+    "done": {
+     "en": "You heard every letter! Amazing!"
+    },
+    "items": [
+     {
+      "id": "A",
+      "word": {
+       "en": "Apple"
+      },
+      "img": "img/world/letters/a.webp",
+      "say": [
+       {
+        "en": "A!"
+       },
+       {
+        "en": "A is for apple!"
+       },
+       {
+        "en": "a, a, apple!"
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "word": {
+       "en": "Ball"
+      },
+      "img": "img/world/letters/b.webp",
+      "say": [
+       {
+        "en": "B!"
+       },
+       {
+        "en": "B is for ball!"
+       },
+       {
+        "en": "b, b, ball!"
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "word": {
+       "en": "Cat"
+      },
+      "img": "img/world/letters/c.webp",
+      "say": [
+       {
+        "en": "C!"
+       },
+       {
+        "en": "C is for cat!"
+       },
+       {
+        "en": "c, c, cat!"
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "word": {
+       "en": "Dog"
+      },
+      "img": "img/world/letters/d.webp",
+      "say": [
+       {
+        "en": "D!"
+       },
+       {
+        "en": "D is for dog!"
+       },
+       {
+        "en": "d, d, dog!"
+       }
+      ]
+     },
+     {
+      "id": "E",
+      "word": {
+       "en": "Egg"
+      },
+      "img": "img/world/letters/e.webp",
+      "say": [
+       {
+        "en": "E!"
+       },
+       {
+        "en": "E is for egg!"
+       },
+       {
+        "en": "e, e, egg!"
+       }
+      ]
+     },
+     {
+      "id": "F",
+      "word": {
+       "en": "Fish"
+      },
+      "img": "img/world/letters/f.webp",
+      "say": [
+       {
+        "en": "F!"
+       },
+       {
+        "en": "F is for fish!"
+       },
+       {
+        "en": "f, f, fish!"
+       }
+      ]
+     },
+     {
+      "id": "G",
+      "word": {
+       "en": "Goat"
+      },
+      "img": "img/world/letters/g.webp",
+      "say": [
+       {
+        "en": "G!"
+       },
+       {
+        "en": "G is for goat!"
+       },
+       {
+        "en": "g, g, goat!"
+       }
+      ]
+     },
+     {
+      "id": "H",
+      "word": {
+       "en": "Hat"
+      },
+      "img": "img/world/letters/h.webp",
+      "say": [
+       {
+        "en": "H!"
+       },
+       {
+        "en": "H is for hat!"
+       },
+       {
+        "en": "h, h, hat!"
+       }
+      ]
+     },
+     {
+      "id": "I",
+      "word": {
+       "en": "Insect"
+      },
+      "img": "img/world/letters/i.webp",
+      "say": [
+       {
+        "en": "I!"
+       },
+       {
+        "en": "I is for insect!"
+       },
+       {
+        "en": "i, i, insect!"
+       },
+       {
+        "en": "A ladybug is an insect!"
+       }
+      ]
+     },
+     {
+      "id": "J",
+      "word": {
+       "en": "Jeans"
+      },
+      "img": "img/world/letters/j.webp",
+      "say": [
+       {
+        "en": "J!"
+       },
+       {
+        "en": "J is for jeans!"
+       },
+       {
+        "en": "j, j, jeans!"
+       }
+      ]
+     },
+     {
+      "id": "K",
+      "word": {
+       "en": "Kite"
+      },
+      "img": "img/world/letters/k.webp",
+      "say": [
+       {
+        "en": "K!"
+       },
+       {
+        "en": "K is for kite!"
+       },
+       {
+        "en": "k, k, kite!"
+       }
+      ]
+     },
+     {
+      "id": "L",
+      "word": {
+       "en": "Lion"
+      },
+      "img": "img/world/letters/l.webp",
+      "say": [
+       {
+        "en": "L!"
+       },
+       {
+        "en": "L is for lion!"
+       },
+       {
+        "en": "l, l, lion!"
+       }
+      ]
+     },
+     {
+      "id": "M",
+      "word": {
+       "en": "Monkey"
+      },
+      "img": "img/world/letters/m.webp",
+      "say": [
+       {
+        "en": "M!"
+       },
+       {
+        "en": "M is for monkey!"
+       },
+       {
+        "en": "m, m, monkey!"
+       }
+      ]
+     },
+     {
+      "id": "N",
+      "word": {
+       "en": "Nest"
+      },
+      "img": "img/world/letters/n.webp",
+      "say": [
+       {
+        "en": "N!"
+       },
+       {
+        "en": "N is for nest!"
+       },
+       {
+        "en": "n, n, nest!"
+       }
+      ]
+     },
+     {
+      "id": "O",
+      "word": {
+       "en": "Octopus"
+      },
+      "img": "img/world/letters/o.webp",
+      "say": [
+       {
+        "en": "O!"
+       },
+       {
+        "en": "O is for octopus!"
+       },
+       {
+        "en": "o, o, octopus!"
+       }
+      ]
+     },
+     {
+      "id": "P",
+      "word": {
+       "en": "Pig"
+      },
+      "img": "img/world/letters/p.webp",
+      "say": [
+       {
+        "en": "P!"
+       },
+       {
+        "en": "P is for pig!"
+       },
+       {
+        "en": "p, p, pig!"
+       }
+      ]
+     },
+     {
+      "id": "Q",
+      "word": {
+       "en": "Queen"
+      },
+      "img": "img/world/letters/q.webp",
+      "say": [
+       {
+        "en": "Q!"
+       },
+       {
+        "en": "Q is for queen!"
+       },
+       {
+        "en": "q, q, queen!"
+       },
+       {
+        "en": "A queen wears a crown!"
+       }
+      ]
+     },
+     {
+      "id": "R",
+      "word": {
+       "en": "Rabbit"
+      },
+      "img": "img/world/letters/r.webp",
+      "say": [
+       {
+        "en": "R!"
+       },
+       {
+        "en": "R is for rabbit!"
+       },
+       {
+        "en": "r, r, rabbit!"
+       }
+      ]
+     },
+     {
+      "id": "S",
+      "word": {
+       "en": "Sun"
+      },
+      "img": "img/world/letters/s.webp",
+      "say": [
+       {
+        "en": "S!"
+       },
+       {
+        "en": "S is for sun!"
+       },
+       {
+        "en": "s, s, sun!"
+       }
+      ]
+     },
+     {
+      "id": "T",
+      "word": {
+       "en": "Tiger"
+      },
+      "img": "img/world/letters/t.webp",
+      "say": [
+       {
+        "en": "T!"
+       },
+       {
+        "en": "T is for tiger!"
+       },
+       {
+        "en": "t, t, tiger!"
+       }
+      ]
+     },
+     {
+      "id": "U",
+      "word": {
+       "en": "Umbrella"
+      },
+      "img": "img/world/letters/u.webp",
+      "say": [
+       {
+        "en": "U!"
+       },
+       {
+        "en": "U is for umbrella!"
+       },
+       {
+        "en": "u, u, umbrella!"
+       }
+      ]
+     },
+     {
+      "id": "V",
+      "word": {
+       "en": "Volcano"
+      },
+      "img": "img/world/letters/v.webp",
+      "say": [
+       {
+        "en": "V!"
+       },
+       {
+        "en": "V is for volcano!"
+       },
+       {
+        "en": "v, v, volcano!"
+       }
+      ]
+     },
+     {
+      "id": "W",
+      "word": {
+       "en": "Watermelon"
+      },
+      "img": "img/world/letters/w.webp",
+      "say": [
+       {
+        "en": "W!"
+       },
+       {
+        "en": "W is for watermelon!"
+       },
+       {
+        "en": "w, w, watermelon!"
+       }
+      ]
+     },
+     {
+      "id": "X",
+      "word": {
+       "en": "Fox"
+      },
+      "img": "img/world/letters/x.webp",
+      "say": [
+       {
+        "en": "X!"
+       },
+       {
+        "en": "X is at the end of fox!"
+       },
+       {
+        "en": "x, x, fox!"
+       }
+      ],
+      "hunt": false,
+      "show": "fo<b>x</b>"
+     },
+     {
+      "id": "Y",
+      "word": {
+       "en": "Yo-yo"
+      },
+      "img": "img/world/letters/y.webp",
+      "say": [
+       {
+        "en": "Y!"
+       },
+       {
+        "en": "Y is for yo-yo!"
+       },
+       {
+        "en": "y, y, yo-yo!"
+       }
+      ]
+     },
+     {
+      "id": "Z",
+      "word": {
+       "en": "Zebra"
+      },
+      "img": "img/world/letters/z.webp",
+      "say": [
+       {
+        "en": "Z!"
+       },
+       {
+        "en": "Z is for zebra!"
+       },
+       {
+        "en": "z, z, zebra!"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.deck.numbers",
+   "type": "deck",
+   "status": "published",
+   "tags": {
+    "land": "number",
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ],
+    "subjects": [
+     "numeracy"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "numbers",
+    "kind": "number",
+    "done": {
+     "en": "You counted every number! Amazing!"
+    },
+    "items": [
+     {
+      "n": 1,
+      "word": {
+       "en": "One"
+      },
+      "obj": "apple",
+      "img": "img/world/numbers/apple.webp",
+      "say": [
+       {
+        "en": "One!"
+       },
+       {
+        "en": "One apple!"
+       }
+      ]
+     },
+     {
+      "n": 2,
+      "word": {
+       "en": "Two"
+      },
+      "obj": "duck",
+      "img": "img/world/numbers/duck.webp",
+      "say": [
+       {
+        "en": "Two!"
+       },
+       {
+        "en": "One, two!"
+       },
+       {
+        "en": "Two ducks!"
+       }
+      ]
+     },
+     {
+      "n": 3,
+      "word": {
+       "en": "Three"
+      },
+      "obj": "star",
+      "img": "img/world/numbers/star.webp",
+      "say": [
+       {
+        "en": "Three!"
+       },
+       {
+        "en": "One, two, three!"
+       },
+       {
+        "en": "Three stars!"
+       }
+      ]
+     },
+     {
+      "n": 4,
+      "word": {
+       "en": "Four"
+      },
+      "obj": "banana",
+      "img": "img/world/numbers/banana.webp",
+      "say": [
+       {
+        "en": "Four!"
+       },
+       {
+        "en": "One, two, three, four!"
+       },
+       {
+        "en": "Four bananas!"
+       }
+      ]
+     },
+     {
+      "n": 5,
+      "word": {
+       "en": "Five"
+      },
+      "obj": "butterfly",
+      "img": "img/world/numbers/butterfly.webp",
+      "say": [
+       {
+        "en": "Five!"
+       },
+       {
+        "en": "One, two, three, four, five!"
+       },
+       {
+        "en": "Five butterflies!"
+       }
+      ]
+     },
+     {
+      "n": 6,
+      "word": {
+       "en": "Six"
+      },
+      "obj": "balloon",
+      "img": "img/world/numbers/balloon.webp",
+      "say": [
+       {
+        "en": "Six!"
+       },
+       {
+        "en": "One, two, three, four, five, six!"
+       },
+       {
+        "en": "Six balloons!"
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "word": {
+       "en": "Seven"
+      },
+      "obj": "fish",
+      "img": "img/world/numbers/fish.webp",
+      "say": [
+       {
+        "en": "Seven!"
+       },
+       {
+        "en": "One, two, three, four, five, six, seven!"
+       },
+       {
+        "en": "Seven fish!"
+       }
+      ]
+     },
+     {
+      "n": 8,
+      "word": {
+       "en": "Eight"
+      },
+      "obj": "ball",
+      "img": "img/world/numbers/ball.webp",
+      "say": [
+       {
+        "en": "Eight!"
+       },
+       {
+        "en": "One, two, three, four, five, six, seven, eight!"
+       },
+       {
+        "en": "Eight balls!"
+       }
+      ]
+     },
+     {
+      "n": 9,
+      "word": {
+       "en": "Nine"
+      },
+      "obj": "egg",
+      "img": "img/world/numbers/egg.webp",
+      "say": [
+       {
+        "en": "Nine!"
+       },
+       {
+        "en": "One, two, three, four, five, six, seven, eight, nine!"
+       },
+       {
+        "en": "Nine eggs!"
+       }
+      ]
+     },
+     {
+      "n": 10,
+      "word": {
+       "en": "Ten"
+      },
+      "obj": "star",
+      "img": "img/world/numbers/star.webp",
+      "say": [
+       {
+        "en": "Ten!"
+       },
+       {
+        "en": "One, two, three, four, five, six, seven, eight, nine, ten!"
+       },
+       {
+        "en": "Ten stars!"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.deck.objects",
+   "type": "deck",
+   "status": "published",
+   "tags": {
+    "land": "number",
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "learn"
+    ],
+    "subjects": [
+     "numeracy"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "objects",
+    "kind": "object",
+    "items": [
+     {
+      "id": "apple",
+      "img": "img/world/numbers/apple.webp",
+      "plural": {
+       "en": "apples"
+      },
+      "ask": {
+       "en": "How many apples can you count?"
+      }
+     },
+     {
+      "id": "duck",
+      "img": "img/world/numbers/duck.webp",
+      "plural": {
+       "en": "ducks"
+      },
+      "ask": {
+       "en": "How many ducks can you count?"
+      }
+     },
+     {
+      "id": "star",
+      "img": "img/world/numbers/star.webp",
+      "plural": {
+       "en": "stars"
+      },
+      "ask": {
+       "en": "How many stars can you count?"
+      }
+     },
+     {
+      "id": "banana",
+      "img": "img/world/numbers/banana.webp",
+      "plural": {
+       "en": "bananas"
+      },
+      "ask": {
+       "en": "How many bananas can you count?"
+      }
+     },
+     {
+      "id": "butterfly",
+      "img": "img/world/numbers/butterfly.webp",
+      "plural": {
+       "en": "butterflies"
+      },
+      "ask": {
+       "en": "How many butterflies can you count?"
+      }
+     },
+     {
+      "id": "balloon",
+      "img": "img/world/numbers/balloon.webp",
+      "plural": {
+       "en": "balloons"
+      },
+      "ask": {
+       "en": "How many balloons can you count?"
+      }
+     },
+     {
+      "id": "fish",
+      "img": "img/world/numbers/fish.webp",
+      "plural": {
+       "en": "fish"
+      },
+      "ask": {
+       "en": "How many fish can you count?"
+      }
+     },
+     {
+      "id": "ball",
+      "img": "img/world/numbers/ball.webp",
+      "plural": {
+       "en": "balls"
+      },
+      "ask": {
+       "en": "How many balls can you count?"
+      }
+     },
+     {
+      "id": "egg",
+      "img": "img/world/numbers/egg.webp",
+      "plural": {
+       "en": "eggs"
+      },
+      "ask": {
+       "en": "How many eggs can you count?"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.deck.animals",
+   "type": "deck",
+   "status": "published",
+   "tags": {
+    "land": "nature",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ],
+    "subjects": [
+     "science"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "animals",
+    "kind": "animal",
+    "done": {
+     "en": "You met every animal! Amazing!"
+    },
+    "items": [
+     {
+      "id": "lion",
+      "name": {
+       "en": "Lion"
+      },
+      "img": "img/world/animals/lion.webp",
+      "fact": {
+       "en": "Lions live together in big families called prides!"
+      },
+      "say": [
+       {
+        "en": "Lion!"
+       },
+       {
+        "en": "Lions live together in big families called prides!"
+       }
+      ]
+     },
+     {
+      "id": "elephant",
+      "name": {
+       "en": "Elephant"
+      },
+      "img": "img/world/animals/elephant.webp",
+      "fact": {
+       "en": "Elephants are the biggest animals that live on land!"
+      },
+      "say": [
+       {
+        "en": "Elephant!"
+       },
+       {
+        "en": "Elephants are the biggest animals that live on land!"
+       }
+      ]
+     },
+     {
+      "id": "giraffe",
+      "name": {
+       "en": "Giraffe"
+      },
+      "img": "img/world/animals/giraffe.webp",
+      "fact": {
+       "en": "Giraffes are the tallest animals in the whole world!"
+      },
+      "say": [
+       {
+        "en": "Giraffe!"
+       },
+       {
+        "en": "Giraffes are the tallest animals in the whole world!"
+       }
+      ]
+     },
+     {
+      "id": "zebra",
+      "name": {
+       "en": "Zebra"
+      },
+      "img": "img/world/animals/zebra.webp",
+      "fact": {
+       "en": "Every zebra has its very own pattern of stripes!"
+      },
+      "say": [
+       {
+        "en": "Zebra!"
+       },
+       {
+        "en": "Every zebra has its very own pattern of stripes!"
+       }
+      ]
+     },
+     {
+      "id": "gorilla",
+      "name": {
+       "en": "Gorilla"
+      },
+      "img": "img/world/animals/gorilla.webp",
+      "fact": {
+       "en": "Gorillas make a cozy new bed of leaves every night!"
+      },
+      "say": [
+       {
+        "en": "Gorilla!"
+       },
+       {
+        "en": "Gorillas make a cozy new bed of leaves every night!"
+       }
+      ]
+     },
+     {
+      "id": "hippopotamus",
+      "name": {
+       "en": "Hippo"
+      },
+      "img": "img/world/animals/hippopotamus.webp",
+      "fact": {
+       "en": "Hippos stay cool by spending most of the day in the water!"
+      },
+      "say": [
+       {
+        "en": "Hippo!"
+       },
+       {
+        "en": "Hippos stay cool by spending most of the day in the water!"
+       }
+      ]
+     },
+     {
+      "id": "leopard",
+      "name": {
+       "en": "Leopard"
+      },
+      "img": "img/world/animals/leopard.webp",
+      "fact": {
+       "en": "Leopards are super climbers and love to rest up in trees!"
+      },
+      "say": [
+       {
+        "en": "Leopard!"
+       },
+       {
+        "en": "Leopards are super climbers and love to rest up in trees!"
+       }
+      ]
+     },
+     {
+      "id": "crocodile",
+      "name": {
+       "en": "Crocodile"
+      },
+      "img": "img/world/animals/crocodile.webp",
+      "fact": {
+       "en": "Crocodiles can hold their breath under the water for a long time!"
+      },
+      "say": [
+       {
+        "en": "Crocodile!"
+       },
+       {
+        "en": "Crocodiles can hold their breath under the water for a long time!"
+       }
+      ]
+     },
+     {
+      "id": "rhinoceros",
+      "name": {
+       "en": "Rhino"
+      },
+      "img": "img/world/animals/rhinoceros.webp",
+      "fact": {
+       "en": "A rhino's horn is made of the same stuff as your fingernails!"
+      },
+      "say": [
+       {
+        "en": "Rhino!"
+       },
+       {
+        "en": "A rhino's horn is made of the same stuff as your fingernails!"
+       }
+      ]
+     },
+     {
+      "id": "flamingo",
+      "name": {
+       "en": "Flamingo"
+      },
+      "img": "img/world/animals/flamingo.webp",
+      "fact": {
+       "en": "Flamingos are pink because of the tiny shrimp and plants they eat!"
+      },
+      "say": [
+       {
+        "en": "Flamingo!"
+       },
+       {
+        "en": "Flamingos are pink because of the tiny shrimp and plants they eat!"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.deck.countries",
+   "type": "deck",
+   "status": "published",
+   "tags": {
+    "land": "world",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ],
+    "subjects": [
+     "geography"
+    ],
+    "sensitivity": []
+   },
+   "payload": {
+    "key": "countries",
+    "kind": "country",
+    "done": {
+     "en": "You visited every country! Amazing!"
+    },
+    "items": [
+     {
+      "id": "cameroon",
+      "name": {
+       "en": "Cameroon"
+      },
+      "flag": "img/world/countries/cameroon-flag.webp",
+      "foodImg": "img/world/countries/cameroon-food.webp",
+      "greeting": {
+       "text": "Bonjour!",
+       "lang": "fr"
+      },
+      "meaning": {
+       "en": "hello"
+      },
+      "language": {
+       "en": "French"
+      },
+      "food": {
+       "en": "Roasted corn"
+      },
+      "say": [
+       {
+        "en": "This is Cameroon!"
+       },
+       {
+        "en": "In Cameroon, people say Bonjour! It means hello in French."
+       },
+       {
+        "en": "Roasted corn is a yummy snack in Cameroon!"
+       }
+      ]
+     },
+     {
+      "id": "nigeria",
+      "name": {
+       "en": "Nigeria"
+      },
+      "flag": "img/world/countries/nigeria-flag.webp",
+      "foodImg": "img/world/countries/nigeria-food.webp",
+      "greeting": {
+       "text": "Sannu!",
+       "lang": "ha"
+      },
+      "meaning": {
+       "en": "hello"
+      },
+      "language": {
+       "en": "Hausa"
+      },
+      "food": {
+       "en": "Jollof rice"
+      },
+      "say": [
+       {
+        "en": "This is Nigeria!"
+       },
+       {
+        "en": "In Nigeria, people say Sannu! It means hello in Hausa."
+       },
+       {
+        "en": "Jollof rice is a favourite food in Nigeria!"
+       }
+      ]
+     },
+     {
+      "id": "ghana",
+      "name": {
+       "en": "Ghana"
+      },
+      "flag": "img/world/countries/ghana-flag.webp",
+      "foodImg": "img/world/countries/ghana-food.webp",
+      "greeting": {
+       "text": "Akwaaba!",
+       "lang": "tw"
+      },
+      "meaning": {
+       "en": "welcome"
+      },
+      "language": {
+       "en": "Twi"
+      },
+      "food": {
+       "en": "Cocoa and chocolate"
+      },
+      "say": [
+       {
+        "en": "This is Ghana!"
+       },
+       {
+        "en": "In Ghana, people say Akwaaba! It means welcome in Twi."
+       },
+       {
+        "en": "Ghana grows lots of cocoa beans, used to make chocolate!"
+       }
+      ]
+     },
+     {
+      "id": "kenya",
+      "name": {
+       "en": "Kenya"
+      },
+      "flag": "img/world/countries/kenya-flag.webp",
+      "foodImg": "img/world/countries/kenya-food.webp",
+      "greeting": {
+       "text": "Jambo!",
+       "lang": "sw"
+      },
+      "meaning": {
+       "en": "hello"
+      },
+      "language": {
+       "en": "Swahili"
+      },
+      "food": {
+       "en": "Ugali"
+      },
+      "say": [
+       {
+        "en": "This is Kenya!"
+       },
+       {
+        "en": "In Kenya, people say Jambo! It means hello in Swahili."
+       },
+       {
+        "en": "Ugali is a soft maize dish that people in Kenya love to eat!"
+       }
+      ]
+     },
+     {
+      "id": "south-africa",
+      "name": {
+       "en": "South Africa"
+      },
+      "flag": "img/world/countries/south-africa-flag.webp",
+      "foodImg": "img/world/countries/south-africa-food.webp",
+      "greeting": {
+       "text": "Sawubona!",
+       "lang": "zu"
+      },
+      "meaning": {
+       "en": "hello"
+      },
+      "language": {
+       "en": "Zulu"
+      },
+      "food": {
+       "en": "Braai"
+      },
+      "say": [
+       {
+        "en": "This is South Africa!"
+       },
+       {
+        "en": "In South Africa, people say Sawubona! It means hello in Zulu."
+       },
+       {
+        "en": "A braai is a barbecue where families grill meat outside!"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ew.deck.prayers",
+   "type": "deck",
+   "status": "published",
+   "tags": {
+    "land": "faith",
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "learn"
+    ],
+    "subjects": [
+     "faith"
+    ],
+    "sensitivity": [
+     "christian-teaching"
+    ]
+   },
+   "payload": {
+    "key": "prayers",
+    "kind": "prayer",
+    "done": {
+     "en": "You prayed every prayer! Amen!"
+    },
+    "items": [
+     {
+      "id": "morning",
+      "name": {
+       "en": "Morning Prayer"
+      },
+      "img": "img/world/prayers/morning.webp",
+      "text": {
+       "en": "Good morning, God! Thank You for this new day. Help me to be kind and good. Amen!"
+      },
+      "say": [
+       {
+        "en": "Morning Prayer!"
+       },
+       {
+        "en": "Good morning, God! Thank You for this new day. Help me to be kind and good. Amen!"
+       }
+      ]
+     },
+     {
+      "id": "meal",
+      "name": {
+       "en": "Mealtime Prayer"
+      },
+      "img": "img/world/prayers/meal.webp",
+      "text": {
+       "en": "Thank You, God, for this yummy food. Bless the hands that made it. Amen!"
+      },
+      "say": [
+       {
+        "en": "Mealtime Prayer!"
+       },
+       {
+        "en": "Thank You, God, for this yummy food. Bless the hands that made it. Amen!"
+       }
+      ]
+     },
+     {
+      "id": "bedtime",
+      "name": {
+       "en": "Bedtime Prayer"
+      },
+      "img": "img/world/prayers/bedtime.webp",
+      "text": {
+       "en": "Dear God, thank You for today. Please keep me safe as I sleep. Amen!"
+      },
+      "say": [
+       {
+        "en": "Bedtime Prayer!"
+       },
+       {
+        "en": "Dear God, thank You for today. Please keep me safe as I sleep. Amen!"
+       }
+      ]
+     },
+     {
+      "id": "thanks",
+      "name": {
+       "en": "Thank You Prayer"
+      },
+      "img": "img/world/prayers/thanks.webp",
+      "text": {
+       "en": "Dear God, thank You for my family and my friends. I love You, God! Amen!"
+      },
+      "say": [
+       {
+        "en": "Thank You Prayer!"
+       },
+       {
+        "en": "Dear God, thank You for my family and my friends. I love You, God! Amen!"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,119 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/catalog.schema.json",
+ "title": "content/library/catalog.json - the root of a release (small; the only mutable file)",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "format",
+  "schemaVersion",
+  "channel",
+  "sequence",
+  "issued",
+  "player",
+  "locales",
+  "collections",
+  "withdrawals"
+ ],
+ "properties": {
+  "format": {
+   "const": 1
+  },
+  "schemaVersion": {
+   "type": "string"
+  },
+  "channel": {
+   "type": "string"
+  },
+  "sequence": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "issued": {
+   "type": "string"
+  },
+  "player": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "min"
+   ],
+   "properties": {
+    "min": {
+     "type": "string"
+    },
+    "maxExclusive": {
+     "type": "string"
+    }
+   }
+  },
+  "locales": {
+   "type": "array",
+   "items": {
+    "type": "object"
+   }
+  },
+  "withdrawals": {
+   "type": "array",
+   "items": {
+    "type": "object"
+   }
+  },
+  "collections": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "kind",
+     "index",
+     "packs"
+    ],
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "kind": {
+      "type": "string"
+     },
+     "land": {
+      "type": "string"
+     },
+     "region": {
+      "type": "string"
+     },
+     "title": {
+      "type": "object"
+     },
+     "index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "path",
+       "sha256",
+       "bytes"
+      ],
+      "properties": {
+       "path": {
+        "type": "string",
+        "pattern": "^[a-z0-9@._/-]+\\.json$"
+       },
+       "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       },
+       "bytes": {
+        "type": "integer",
+        "minimum": 1
+       }
+      }
+     },
+     "packs": {
+      "type": "integer"
+     }
+    }
+   }
+  }
+ }
+}

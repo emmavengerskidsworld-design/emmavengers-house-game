@@ -1,0 +1,2206 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Quiz: finite bank of single-choice items. answerKey points at a stable option id; options are shuffled only on screen.",
+ "records": [
+  {
+   "id": "ew.quizbank.pilot-cameroon",
+   "type": "quiz-bank",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "items": [
+     "ew.quiz.pilot-cameroon-q01",
+     "ew.quiz.pilot-cameroon-q02",
+     "ew.quiz.pilot-cameroon-q03",
+     "ew.quiz.pilot-cameroon-q04",
+     "ew.quiz.pilot-cameroon-q05",
+     "ew.quiz.pilot-cameroon-q06",
+     "ew.quiz.pilot-cameroon-q07",
+     "ew.quiz.pilot-cameroon-q08",
+     "ew.quiz.pilot-cameroon-q09",
+     "ew.quiz.pilot-cameroon-q10",
+     "ew.quiz.pilot-cameroon-q11",
+     "ew.quiz.pilot-cameroon-q12",
+     "ew.quiz.pilot-cameroon-q13",
+     "ew.quiz.pilot-cameroon-q14",
+     "ew.quiz.pilot-cameroon-q15",
+     "ew.quiz.pilot-cameroon-q16",
+     "ew.quiz.pilot-cameroon-q17",
+     "ew.quiz.pilot-cameroon-q18",
+     "ew.quiz.pilot-cameroon-q19",
+     "ew.quiz.pilot-cameroon-q20",
+     "ew.quiz.pilot-cameroon-q21",
+     "ew.quiz.pilot-cameroon-q22",
+     "ew.quiz.pilot-cameroon-q23",
+     "ew.quiz.pilot-cameroon-q24"
+    ],
+    "sources": [
+     "ew.source.pilot-cameroon-con",
+     "ew.source.pilot-cameroon-un",
+     "ew.source.pilot-cameroon-prc",
+     "ew.source.pilot-cameroon-brk",
+     "ew.source.pilot-cameroon-brm",
+     "ew.source.pilot-cameroon-whc",
+     "ew.source.pilot-cameroon-eth",
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "roundRules": {
+     "littleRound": 4,
+     "bigRound": 5,
+     "noRepeatWithinSession": true,
+     "onPoolExhaustion": "show Finish or clearly labelled 'Practice repeat'; never silent; repeats recorded as repeats"
+    }
+   },
+   "evidence": {
+    "note": "Finite bank of 24 items. Not infinite. All French pending fluent-speaker approval. Keys stored before shuffle; distractor position randomised at display only."
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q01",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "country-symbol",
+    "prompt": {
+     "en": "Which describes Cameroon itself?",
+     "fr": "Qu'est-ce qui décrit le Cameroun lui-même ?"
+    },
+    "options": {
+     "a": {
+      "en": "A country in Africa",
+      "fr": "Un pays d'Afrique"
+     },
+     "b": {
+      "en": "A little book on our map",
+      "fr": "Un petit livre sur notre plan"
+     },
+     "c": {
+      "en": "Only a flag",
+      "fr": "Seulement un drapeau"
+     }
+    },
+    "hint": {
+     "en": "A flag stands for a country.",
+     "fr": "Un drapeau représente un pays."
+    },
+    "feedback": {
+     "en": "Cameroon is a country in Africa. Its flag is one symbol.",
+     "fr": "Le Cameroun est un pays d'Afrique. Son drapeau est un symbole."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-un"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": true
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q02",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "map-direction",
+    "prompt": {
+     "en": "Which way is the library from Start on our practice map?",
+     "fr": "Dans quelle direction est la bibliothèque depuis Départ sur notre plan ?"
+    },
+    "options": {
+     "a": {
+      "en": "North",
+      "fr": "Nord"
+     },
+     "b": {
+      "en": "South",
+      "fr": "Sud"
+     },
+     "c": {
+      "en": "East",
+      "fr": "Est"
+     }
+    },
+    "hint": {
+     "en": "Look above Start and check north.",
+     "fr": "Regarde au-dessus de Départ et vérifie le nord."
+    },
+    "feedback": {
+     "en": "The library is one square north of Start.",
+     "fr": "La bibliothèque est à une case au nord de Départ."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false,
+    "provenance": {
+     "existingFrom10b": true
+    }
+   },
+   "review": {
+    "factCheck": "invented-example",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q03",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "capital-distinction",
+    "prompt": {
+     "en": "Which is Cameroon's capital city?",
+     "fr": "Quelle est la capitale du Cameroun ?"
+    },
+    "options": {
+     "a": {
+      "en": "Cameroon",
+      "fr": "Cameroun"
+     },
+     "b": {
+      "en": "Yaoundé",
+      "fr": "Yaoundé"
+     },
+     "c": {
+      "en": "Paris",
+      "fr": "Paris"
+     }
+    },
+    "hint": {
+     "en": "Cameroon names the country. Check its capital card.",
+     "fr": "Cameroun est le nom du pays. Vérifie la fiche de sa capitale."
+    },
+    "feedback": {
+     "en": "Yaoundé is the capital; Cameroon is the country.",
+     "fr": "Yaoundé est la capitale ; le Cameroun est le pays."
+    },
+    "answerKey": "b",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": true
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q04",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "map-key-transfer",
+    "prompt": {
+     "en": "A NEW key says roof means shelter and book means library. Which finds the shelter?",
+     "fr": "Une NOUVELLE légende indique toit pour abri et livre pour bibliothèque. Lequel indique l'abri ?"
+    },
+    "options": {
+     "a": {
+      "en": "Book",
+      "fr": "Livre"
+     },
+     "b": {
+      "en": "Tree",
+      "fr": "Arbre"
+     },
+     "c": {
+      "en": "Roof",
+      "fr": "Toit"
+     }
+    },
+    "hint": {
+     "en": "Use the new key.",
+     "fr": "Utilise la nouvelle légende."
+    },
+    "feedback": {
+     "en": "The roof symbol means shelter in this key.",
+     "fr": "Le symbole du toit représente un abri dans cette légende."
+    },
+    "answerKey": "c",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false,
+    "provenance": {
+     "existingFrom10b": true
+    }
+   },
+   "review": {
+    "factCheck": "invented-example",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q05",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "evidence-claim",
+    "prompt": {
+     "en": "Which claim fits?",
+     "fr": "Quelle affirmation convient ?"
+    },
+    "options": {
+     "a": {
+      "en": "A had more visitors during this hour",
+      "fr": "A a eu plus de visiteurs pendant cette heure"
+     },
+     "b": {
+      "en": "Everyone in Cameroon prefers A",
+      "fr": "Tout le monde au Cameroun préfère A"
+     },
+     "c": {
+      "en": "A is always safer",
+      "fr": "A est toujours plus sûr"
+     }
+    },
+    "hint": {
+     "en": "Compare 8 and 3; keep the time limit.",
+     "fr": "Compare 8 et 3 ; garde la limite de temps."
+    },
+    "feedback": {
+     "en": "8 is greater than 3 in this observation. Preference and safety were not measured.",
+     "fr": "8 est supérieur à 3 dans cette observation. Les préférences et la sécurité n'ont pas été mesurées."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false,
+    "provenance": {
+     "existingFrom10b": true
+    }
+   },
+   "review": {
+    "factCheck": "invented-example",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q06",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "evidence-limit",
+    "prompt": {
+     "en": "What would help check whether that pattern repeats?",
+     "fr": "Qu'est-ce qui aiderait à vérifier si ce résultat se répète ?"
+    },
+    "options": {
+     "a": {
+      "en": "A bigger flag",
+      "fr": "Un drapeau plus grand"
+     },
+     "b": {
+      "en": "Comparable counts at other times",
+      "fr": "Des comptages comparables à d'autres moments"
+     },
+     "c": {
+      "en": "Saying the claim louder",
+      "fr": "Répéter l'affirmation plus fort"
+     }
+    },
+    "hint": {
+     "en": "We need relevant observations.",
+     "fr": "Il faut des observations pertinentes."
+    },
+    "feedback": {
+     "en": "Comparable counts at other times can test the pattern. One hour is limited evidence.",
+     "fr": "Des comptages comparables à d'autres moments peuvent tester le résultat. Une heure fournit des informations limitées."
+    },
+    "answerKey": "b",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false,
+    "provenance": {
+     "existingFrom10b": true
+    }
+   },
+   "review": {
+    "factCheck": "invented-example",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q07",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "flag-description",
+    "prompt": {
+     "en": "Where is the star on Cameroon's flag?",
+     "fr": "Où est l'étoile sur le drapeau du Cameroun ?"
+    },
+    "options": {
+     "a": {
+      "en": "In the middle red stripe",
+      "fr": "Dans la bande rouge du milieu"
+     },
+     "b": {
+      "en": "In the green stripe",
+      "fr": "Dans la bande verte"
+     },
+     "c": {
+      "en": "There is no star",
+      "fr": "Il n'y a pas d'étoile"
+     }
+    },
+    "hint": {
+     "en": "Look at the middle stripe.",
+     "fr": "Regarde la bande du milieu."
+    },
+    "feedback": {
+     "en": "The yellow star is in the centre of the red stripe.",
+     "fr": "L'étoile jaune est au centre de la bande rouge."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q08",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "official-languages",
+    "prompt": {
+     "en": "Cameroon has two official languages. Which two?",
+     "fr": "Le Cameroun a deux langues officielles. Lesquelles ?"
+    },
+    "options": {
+     "a": {
+      "en": "English and French",
+      "fr": "L'anglais et le français"
+     },
+     "b": {
+      "en": "Only French",
+      "fr": "Seulement le français"
+     },
+     "c": {
+      "en": "Only English",
+      "fr": "Seulement l'anglais"
+     }
+    },
+    "hint": {
+     "en": "Two languages, the same as in our app.",
+     "fr": "Deux langues, comme dans notre application."
+    },
+    "feedback": {
+     "en": "English and French are Cameroon's two official languages. People there also speak many other languages.",
+     "fr": "L'anglais et le français sont les deux langues officielles du Cameroun. On y parle aussi beaucoup d'autres langues."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q09",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "many-places",
+    "prompt": {
+     "en": "Which is true about Cameroon?",
+     "fr": "Qu'est-ce qui est vrai pour le Cameroun ?"
+    },
+    "options": {
+     "a": {
+      "en": "It has forests, grasslands and mountains",
+      "fr": "Il a des forêts, des savanes et des montagnes"
+     },
+     "b": {
+      "en": "It is all desert",
+      "fr": "C'est seulement un désert"
+     },
+     "c": {
+      "en": "It is all beach",
+      "fr": "C'est seulement une plage"
+     }
+    },
+    "hint": {
+     "en": "Remember Ezra's view from the sky.",
+     "fr": "Souviens-toi de la vue d'Ezra dans le ciel."
+    },
+    "feedback": {
+     "en": "Cameroon has many kinds of places: forests, grasslands, mountains and a coast.",
+     "fr": "Le Cameroun a beaucoup de paysages : des forêts, des savanes, des montagnes et une côte."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q10",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "mount-cameroon",
+    "prompt": {
+     "en": "Mount Cameroon is…",
+     "fr": "Le mont Cameroun est…"
+    },
+    "options": {
+     "a": {
+      "en": "A tall mountain and a volcano",
+      "fr": "Une haute montagne et un volcan"
+     },
+     "b": {
+      "en": "A river",
+      "fr": "Un fleuve"
+     },
+     "c": {
+      "en": "A city",
+      "fr": "Une ville"
+     }
+    },
+    "hint": {
+     "en": "Think of the big picture of the tall peak.",
+     "fr": "Pense à la grande image du sommet."
+    },
+    "feedback": {
+     "en": "Mount Cameroon is a tall mountain. It is also a volcano.",
+     "fr": "Le mont Cameroun est une haute montagne. C'est aussi un volcan."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brm"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q11",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "many-languages",
+    "prompt": {
+     "en": "Do people in Cameroon speak just one language?",
+     "fr": "Au Cameroun, parle-t-on une seule langue ?"
+    },
+    "options": {
+     "a": {
+      "en": "No, they speak many languages",
+      "fr": "Non, on y parle beaucoup de langues"
+     },
+     "b": {
+      "en": "Yes, just one",
+      "fr": "Oui, une seule"
+     },
+     "c": {
+      "en": "Nobody talks",
+      "fr": "Personne ne parle"
+     }
+    },
+    "hint": {
+     "en": "Remember the card with many speech bubbles.",
+     "fr": "Souviens-toi de la fiche avec beaucoup de bulles."
+    },
+    "feedback": {
+     "en": "People in Cameroon speak many different languages.",
+     "fr": "Au Cameroun, on parle beaucoup de langues différentes."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q12",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "neighbours",
+    "prompt": {
+     "en": "Which country is Cameroon's neighbour to the northwest?",
+     "fr": "Quel pays est voisin du Cameroun au nord-ouest ?"
+    },
+    "options": {
+     "a": {
+      "en": "Nigeria",
+      "fr": "Le Nigeria"
+     },
+     "b": {
+      "en": "Japan",
+      "fr": "Le Japon"
+     },
+     "c": {
+      "en": "Brazil",
+      "fr": "Le Brésil"
+     }
+    },
+    "hint": {
+     "en": "Japan and Brazil are on other continents.",
+     "fr": "Le Japon et le Brésil sont sur d'autres continents."
+    },
+    "feedback": {
+     "en": "Nigeria borders Cameroon to the northwest.",
+     "fr": "Le Nigeria borde le Cameroun au nord-ouest."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q13",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "coast",
+    "prompt": {
+     "en": "Which water is on Cameroon's southwest side?",
+     "fr": "Quelle étendue d'eau borde le Cameroun au sud-ouest ?"
+    },
+    "options": {
+     "a": {
+      "en": "The Gulf of Guinea, part of the Atlantic Ocean",
+      "fr": "Le golfe de Guinée, dans l'océan Atlantique"
+     },
+     "b": {
+      "en": "The Pacific Ocean",
+      "fr": "L'océan Pacifique"
+     },
+     "c": {
+      "en": "No water at all",
+      "fr": "Aucune étendue d'eau"
+     }
+    },
+    "hint": {
+     "en": "It is the ocean on Africa's west side.",
+     "fr": "C'est l'océan à l'ouest de l'Afrique."
+    },
+    "feedback": {
+     "en": "Cameroon's coast is on the Gulf of Guinea, part of the Atlantic Ocean.",
+     "fr": "La côte du Cameroun donne sur le golfe de Guinée, dans l'océan Atlantique."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q14",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "regions",
+    "prompt": {
+     "en": "How many regions is Cameroon divided into?",
+     "fr": "En combien de régions le Cameroun est-il divisé ?"
+    },
+    "options": {
+     "a": {
+      "en": "10",
+      "fr": "10"
+     },
+     "b": {
+      "en": "2",
+      "fr": "2"
+     },
+     "c": {
+      "en": "50",
+      "fr": "50"
+     }
+    },
+    "hint": {
+     "en": "Check the regions card.",
+     "fr": "Vérifie la fiche des régions."
+    },
+    "feedback": {
+     "en": "Cameroon is divided into 10 regions.",
+     "fr": "Le Cameroun est divisé en 10 régions."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q15",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "capital-vs-major-city",
+    "prompt": {
+     "en": "Douala is a major port and business city. Is it the capital?",
+     "fr": "Douala est un grand port et une ville d'affaires. Est-ce la capitale ?"
+    },
+    "options": {
+     "a": {
+      "en": "No, Yaoundé is the capital",
+      "fr": "Non, la capitale est Yaoundé"
+     },
+     "b": {
+      "en": "Yes, Douala is the capital",
+      "fr": "Oui, Douala est la capitale"
+     },
+     "c": {
+      "en": "Cameroon has no capital",
+      "fr": "Le Cameroun n'a pas de capitale"
+     }
+    },
+    "hint": {
+     "en": "A big, busy city is not automatically the capital.",
+     "fr": "Une grande ville animée n'est pas forcément la capitale."
+    },
+    "feedback": {
+     "en": "Douala is a major economic city, but Yaoundé is the capital.",
+     "fr": "Douala est une grande ville économique, mais la capitale est Yaoundé."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q16",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "landscape-north-south",
+    "prompt": {
+     "en": "Travelling from the south of Cameroon to the far north, what change might you see?",
+     "fr": "En allant du sud au nord du Cameroun, quel changement peut-on voir ?"
+    },
+    "options": {
+     "a": {
+      "en": "Thick forest giving way to savanna",
+      "fr": "La forêt dense laisse place à la savane"
+     },
+     "b": {
+      "en": "Snowfields giving way to ice",
+      "fr": "La neige laisse place à la glace"
+     },
+     "c": {
+      "en": "No change at all",
+      "fr": "Aucun changement"
+     }
+    },
+    "hint": {
+     "en": "Ezra's sky view showed forest in the south.",
+     "fr": "La vue d'Ezra montrait la forêt au sud."
+    },
+    "feedback": {
+     "en": "The south has dense forest; further north there is savanna sloping towards the Lake Chad basin.",
+     "fr": "Le sud a une forêt dense ; plus au nord, la savane descend vers le bassin du lac Tchad."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brk"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q17",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "official-vs-national-languages",
+    "prompt": {
+     "en": "Which sentence is accurate?",
+     "fr": "Quelle phrase est exacte ?"
+    },
+    "options": {
+     "a": {
+      "en": "English and French are official, and many other languages are also spoken",
+      "fr": "L'anglais et le français sont officiels, et on parle aussi beaucoup d'autres langues"
+     },
+     "b": {
+      "en": "Only two languages are spoken in Cameroon",
+      "fr": "On ne parle que deux langues au Cameroun"
+     },
+     "c": {
+      "en": "Everyone in Cameroon speaks both English and French",
+      "fr": "Tout le monde au Cameroun parle l'anglais et le français"
+     }
+    },
+    "hint": {
+     "en": "'Official' does not mean 'the only ones'.",
+     "fr": "« Officiel » ne veut pas dire « le seul »."
+    },
+    "feedback": {
+     "en": "The Constitution names English and French as official languages and says national languages should be protected. Many languages are spoken.",
+     "fr": "La Constitution fait de l'anglais et du français les langues officielles et prévoit de protéger les langues nationales. On parle beaucoup de langues."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q18",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "unesco-sites",
+    "prompt": {
+     "en": "Which of these is a UNESCO World Heritage site in Cameroon?",
+     "fr": "Lequel est un site du patrimoine mondial de l'UNESCO au Cameroun ?"
+    },
+    "options": {
+     "a": {
+      "en": "Dja Faunal Reserve",
+      "fr": "La réserve de faune du Dja"
+     },
+     "b": {
+      "en": "Mount Fuji",
+      "fr": "Le mont Fuji"
+     },
+     "c": {
+      "en": "The Eiffel Tower",
+      "fr": "La tour Eiffel"
+     }
+    },
+    "hint": {
+     "en": "The other two are in Japan and France.",
+     "fr": "Les deux autres sont au Japon et en France."
+    },
+    "feedback": {
+     "en": "The Dja Faunal Reserve is one of Cameroon's UNESCO World Heritage sites.",
+     "fr": "La réserve de faune du Dja est l'un des sites du patrimoine mondial de l'UNESCO au Cameroun."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-whc"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q19",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "source-disagreement",
+    "prompt": {
+     "en": "Two sources give different heights for Mount Cameroon. What is the best first response?",
+     "fr": "Deux sources donnent des hauteurs différentes pour le mont Cameroun. Quelle est la meilleure première réaction ?"
+    },
+    "options": {
+     "a": {
+      "en": "Say the exact height is uncertain and compare how each was measured",
+      "fr": "Dire que la hauteur exacte est incertaine et comparer comment chacune a été mesurée"
+     },
+     "b": {
+      "en": "Pick the bigger number",
+      "fr": "Choisir le plus grand nombre"
+     },
+     "c": {
+      "en": "Decide the mountain has no height",
+      "fr": "Décider que la montagne n'a pas de hauteur"
+     }
+    },
+    "hint": {
+     "en": "Good researchers ask where numbers come from.",
+     "fr": "Un bon chercheur se demande d'où viennent les nombres."
+    },
+    "feedback": {
+     "en": "When sources disagree, note the uncertainty, cite both, and compare date, method and what 'height' means before deciding.",
+     "fr": "Quand des sources ne sont pas d'accord, on note l'incertitude, on cite les deux et on compare la date, la méthode et ce que « hauteur » veut dire avant de décider."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-brm",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q20",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "source-reliability",
+    "prompt": {
+     "en": "Where is the best place to check what Cameroon's flag officially looks like?",
+     "fr": "Où vérifier au mieux l'apparence officielle du drapeau du Cameroun ?"
+    },
+    "options": {
+     "a": {
+      "en": "The Constitution of Cameroon",
+      "fr": "La Constitution du Cameroun"
+     },
+     "b": {
+      "en": "A random cartoon",
+      "fr": "Un dessin animé au hasard"
+     },
+     "c": {
+      "en": "A guess from memory",
+      "fr": "Un souvenir approximatif"
+     }
+    },
+    "hint": {
+     "en": "Look for the official text.",
+     "fr": "Cherche le texte officiel."
+    },
+    "feedback": {
+     "en": "Article 1 of the Constitution officially describes the flag.",
+     "fr": "L'article 1 de la Constitution décrit officiellement le drapeau."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-con"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q21",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "generalisation-limit",
+    "prompt": {
+     "en": "One fictional class in Douala likes a game. What can we conclude?",
+     "fr": "Une classe fictive à Douala aime un jeu. Que peut-on conclure ?"
+    },
+    "options": {
+     "a": {
+      "en": "That class liked it; we can't say all of Cameroon does",
+      "fr": "Cette classe l'a aimé ; on ne peut pas le dire pour tout le Cameroun"
+     },
+     "b": {
+      "en": "Everyone in Cameroon likes it",
+      "fr": "Tout le monde au Cameroun l'aime"
+     },
+     "c": {
+      "en": "No one else could like it",
+      "fr": "Personne d'autre ne pourrait l'aimer"
+     }
+    },
+    "hint": {
+     "en": "How many people were asked?",
+     "fr": "Combien de personnes ont été interrogées ?"
+    },
+    "feedback": {
+     "en": "One small group tells us about that group only. A country has millions of different people.",
+     "fr": "Un petit groupe ne renseigne que sur ce groupe. Un pays compte des millions de personnes différentes."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "invented-example",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q22",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "date-sensitive-data",
+    "prompt": {
+     "en": "One website says Yaoundé has 'about one million' people. Newer UN data gives a much larger figure. What should you do?",
+     "fr": "Un site dit que Yaoundé compte « environ un million » d'habitants. Des données plus récentes de l'ONU donnent un chiffre bien plus élevé. Que faire ?"
+    },
+    "options": {
+     "a": {
+      "en": "Compare each source's year, method and what area it counts as 'Yaoundé'",
+      "fr": "Comparer l'année, la méthode et la zone que chaque source appelle « Yaoundé »"
+     },
+     "b": {
+      "en": "Average the two",
+      "fr": "Faire la moyenne"
+     },
+     "c": {
+      "en": "Always use the newer number without checking",
+      "fr": "Toujours prendre le chiffre le plus récent sans vérifier"
+     }
+    },
+    "hint": {
+     "en": "Numbers about people depend on the year and on where the city boundary is drawn.",
+     "fr": "Les chiffres de population dépendent de l'année et des limites de la ville."
+    },
+    "feedback": {
+     "en": "Population figures change over time and depend on the method and on the boundary counted (city or wider urban area). Check these before using a number, and say which year it describes.",
+     "fr": "Les chiffres de population évoluent et dépendent de la méthode et de la zone comptée (ville ou agglomération). Vérifie-les avant d'utiliser un nombre, et précise l'année concernée."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-un",
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q23",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "11-13"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "cultural-diversity",
+    "prompt": {
+     "en": "Which statement best avoids a stereotype?",
+     "fr": "Quelle phrase évite le mieux un stéréotype ?"
+    },
+    "options": {
+     "a": {
+      "en": "Cameroon has many communities with different languages and customs",
+      "fr": "Le Cameroun compte de nombreuses communautés aux langues et coutumes différentes"
+     },
+     "b": {
+      "en": "All Cameroonians have the same customs",
+      "fr": "Tous les Camerounais ont les mêmes coutumes"
+     },
+     "c": {
+      "en": "Cameroon is only about wild animals",
+      "fr": "Le Cameroun, ce ne sont que des animaux sauvages"
+     }
+    },
+    "hint": {
+     "en": "Is it fair to describe millions of people with one picture?",
+     "fr": "Est-il juste de décrire des millions de personnes avec une seule image ?"
+    },
+    "feedback": {
+     "en": "Cameroon has more than 200 ethnic groups and many ways of life. One picture can't describe them all.",
+     "fr": "Le Cameroun compte plus de 200 groupes ethniques et de nombreux modes de vie. Une seule image ne peut pas tous les décrire."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-prc"
+    ],
+    "factual": true,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "source-opened-2026-11-09",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  },
+  {
+   "id": "ew.quiz.pilot-cameroon-q24",
+   "type": "quiz-item",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "8-10"
+    ],
+    "modes": [
+     "quiz"
+    ]
+   },
+   "payload": {
+    "responseType": "single-choice",
+    "construct": "map-key-transfer",
+    "prompt": {
+     "en": "On a NEW key, a triangle means school. On the map, the triangle is one step west of Start. Where is the school?",
+     "fr": "Dans une NOUVELLE légende, un triangle représente l'école. Sur le plan, le triangle est à un déplacement à l'ouest de Départ. Où est l'école ?"
+    },
+    "options": {
+     "a": {
+      "en": "One step west of Start",
+      "fr": "À un déplacement à l'ouest de Départ"
+     },
+     "b": {
+      "en": "One step north of Start",
+      "fr": "À un déplacement au nord de Départ"
+     },
+     "c": {
+      "en": "There is no school",
+      "fr": "Il n'y a pas d'école"
+     }
+    },
+    "hint": {
+     "en": "Use the new key and the direction arrows.",
+     "fr": "Utilise la nouvelle légende et les flèches."
+    },
+    "feedback": {
+     "en": "The triangle means school here, and it is one step west of Start.",
+     "fr": "Ici, le triangle représente l'école, à un déplacement à l'ouest de Départ."
+    },
+    "answerKey": "a",
+    "readAloudAllowed": true,
+    "shuffleOptions": true
+   },
+   "evidence": {
+    "sources": [
+     "ew.source.pilot-cameroon-ed"
+    ],
+    "factual": false,
+    "provenance": {
+     "existingFrom10b": false
+    }
+   },
+   "review": {
+    "factCheck": "invented-example",
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+   }
+  }
+ ]
+}

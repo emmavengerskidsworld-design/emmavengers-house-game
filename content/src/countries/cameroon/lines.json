@@ -1,0 +1,384 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Pre-written guide lines (Ari, Ezra). Only these lines are ever shown or spoken.",
+ "records": [
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.arrive",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.arrive",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "We're in Cameroon! What shall we explore?",
+     "fr": "Nous sommes au Cameroun ! Qu'allons-nous découvrir ?"
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.arrive-again",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.arrive-again",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "Welcome back to Cameroon.",
+     "fr": "Bon retour au Cameroun."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.learn",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.learn",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "One card can't show everything. Let's look closely.",
+     "fr": "Une fiche ne peut pas tout montrer. Observons bien."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.model",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.model",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "Watch me first. You can replay it.",
+     "fr": "Regarde-moi d'abord. Tu peux réécouter."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.try",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.try",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "Your turn. Take your time.",
+     "fr": "À toi. Prends ton temps."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.hint",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.hint",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "Let's check the clue together. Trying again is part of learning.",
+     "fr": "Vérifions l'indice ensemble. Réessayer fait partie de l'apprentissage."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.correct",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.correct",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "You checked carefully. Here's why it fits.",
+     "fr": "Tu as bien vérifié. Voici pourquoi ça convient."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.many",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.many",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "One country, many places and many voices.",
+     "fr": "Un pays, beaucoup de lieux et beaucoup de voix."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.source",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.source",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "Good explorers ask: where does this number come from?",
+     "fr": "Les bons explorateurs se demandent : d'où vient ce nombre ?"
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.story",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.story",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "This is a made-up story. Let's read it together.",
+     "fr": "C'est une histoire inventée. Lisons-la ensemble."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.break",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.break",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "Great exploring! You can stop here or keep going.",
+     "fr": "Belle exploration ! Tu peux t'arrêter ici ou continuer."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ari.cm.done",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari.cm.done",
+    "speaker": "ew.character.ari",
+    "text": {
+     "en": "You explored Cameroon today. See you next time!",
+     "fr": "Tu as exploré le Cameroun aujourd'hui. À la prochaine !"
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ezra.fly",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ezra.fly",
+    "speaker": "ew.character.ezra",
+    "text": {
+     "en": "Hold on, Ari! Off to Cameroon!",
+     "fr": "Accroche-toi, Ari ! Direction le Cameroun !"
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ezra.sky",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ezra.sky",
+    "speaker": "ew.character.ezra",
+    "text": {
+     "en": "From up here, I can see Cameroon beside the ocean.",
+     "fr": "D'ici, je vois le Cameroun au bord de l'océan."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ezra.landscapes",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ezra.landscapes",
+    "speaker": "ew.character.ezra",
+    "text": {
+     "en": "Forest, grassland, mountains, beaches. I saw them all!",
+     "fr": "Forêt, savane, montagnes, plages. Je les ai tous vus !"
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ezra.compass",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ezra.compass",
+    "speaker": "ew.character.ezra",
+    "text": {
+     "en": "Use the compass. I'll show you the directions.",
+     "fr": "Utilise la rose des vents. Je te montre les directions."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ezra.celebrate",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ezra.celebrate",
+    "speaker": "ew.character.ezra",
+    "text": {
+     "en": "Wonderful! Let's fly home when you're ready.",
+     "fr": "Formidable ! Rentrons quand tu veux."
+    }
+   }
+  },
+  {
+   "id": "ew.line.pilot-cameroon.ezra.home",
+   "type": "line",
+   "status": "published",
+   "tags": {
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ezra.home",
+    "speaker": "ew.character.ezra",
+    "text": {
+     "en": "Back to the world map!",
+     "fr": "Retour à la carte du monde !"
+    }
+   }
+  }
+ ]
+}

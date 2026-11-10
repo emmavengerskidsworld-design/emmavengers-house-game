@@ -1,0 +1,83 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/common.schema.json",
+ "title": "Emmavengers World content: shared definitions (schema 1.0.0)",
+ "$defs": {
+  "id": {"type": "string", "pattern": "^ew\\.[a-z]+\\.[a-z0-9]+(?:[.-][a-z0-9]+)*$", "maxLength": 128,
+         "description": "Stable record id ew.<type>.<slug>. Never reused, never renamed (retire it in content/registry.lock.json instead)."},
+  "ref": {"$ref": "#/$defs/id", "description": "Reference to another record by id (the build pins the exact revision)."},
+  "locale": {"type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$", "description": "BCP 47 language tag, e.g. en, fr, pt-BR, ar."},
+  "key": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$", "description": "Short local key, unique inside its parent."},
+  "localizedText": {
+   "type": "object", "minProperties": 1, "maxProperties": 400,
+   "propertyNames": {"$ref": "#/$defs/locale"},
+   "additionalProperties": {"type": "string", "minLength": 1, "maxLength": 10000},
+   "description": "One user-facing text in every language it exists in: {\"en\": \"...\", \"fr\": \"...\"}. Any number of languages."
+  },
+  "localizedList": {"type": "array", "maxItems": 50, "items": {"$ref": "#/$defs/localizedText"}},
+  "foreignText": {"type": "object", "additionalProperties": false, "required": ["text", "lang"],
+   "properties": {"text": {"type": "string", "minLength": 1, "maxLength": 200}, "lang": {"$ref": "#/$defs/locale"}},
+   "description": "Text that stays in its own language whatever the app language is (e.g. a greeting taught in Hausa)."},
+  "assetPath": {"type": "string", "pattern": "^(img|voice|icons|fonts)/[A-Za-z0-9_./-]+\\.(webp|jpg|jpeg|png|mp3|ogg|woff2)$", "not": {"pattern": "\\.\\."}},
+  "artName": {"type": "string", "pattern": "^[A-Za-z0-9_-]+\\.(webp|jpg|jpeg|png)$", "description": "Optional new art file in img/world/map2/ (used when listed in ready.json)."},
+  "color": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"},
+  "percent": {"type": "number", "minimum": -10, "maximum": 110},
+  "date": {"type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+  "status": {"enum": ["draft", "checking", "changes-requested", "reviewed", "approved", "published", "withdrawn", "archived"]},
+  "ageBand": {"enum": ["5-7", "8-10", "11-13"]},
+  "mode": {"enum": ["learn", "play", "quiz", "stories"]},
+  "tags": {
+   "type": "object", "additionalProperties": false,
+   "properties": {
+    "land": {"type": ["string", "null"]},
+    "relatedLands": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "topics": {"type": "array", "items": {"$ref": "#/$defs/ref"}, "uniqueItems": true, "maxItems": 100},
+    "ageBands": {"type": "array", "items": {"$ref": "#/$defs/ageBand"}, "uniqueItems": true, "minItems": 1},
+    "modes": {"type": "array", "items": {"$ref": "#/$defs/mode"}, "uniqueItems": true},
+    "subjects": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "regions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "difficulty": {"type": ["string", "null"]},
+    "sensitivity": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "access": {"type": "object", "additionalProperties": false, "required": ["current"],
+     "properties": {"current": {"enum": ["free"]}, "catalogueTier": {"enum": ["free-core", "extra-candidate"]}, "policyRevision": {"type": "integer", "minimum": 1}}},
+    "keywords": {"type": "array", "maxItems": 30, "items": {"$ref": "#/$defs/localizedText"}, "description": "Reviewed search words (Stage 4 kid-safe search)."}
+   },
+   "required": ["ageBands", "modes"],
+   "description": "Values are checked against content/src/taxonomy.json (closed lists)."
+  },
+  "evidence": {
+   "type": "object", "additionalProperties": false,
+   "properties": {
+    "sources": {"type": "array", "items": {"$ref": "#/$defs/ref"}, "maxItems": 50, "description": "ids of source records that support this record's facts"},
+    "factual": {"type": "boolean", "description": "true = states real-world facts, so it must cite sources"},
+    "gaps": {"type": "array", "items": {"type": "string", "maxLength": 500}},
+    "spec": {"type": "string"},
+    "note": {"type": "string", "maxLength": 4000},
+    "provenance": {"type": "object"}
+   }
+  },
+  "review": {
+   "type": "object", "additionalProperties": false,
+   "properties": {
+    "legacy": {"type": "boolean", "description": "true = was live before the review workflow; must be re-reviewed"},
+    "ownerRole": {"type": "string"},
+    "records": {"type": "array", "items": {"type": "string"}},
+    "approvalRef": {"type": ["string", "null"]},
+    "factCheck": {"type": "string"},
+    "checks": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["kind", "result"],
+      "properties": {"kind": {"enum": ["fact", "educator", "culture", "faith", "safeguarding", "language", "rights", "accessibility", "owner"]},
+                     "result": {"enum": ["pending", "passed", "changes-requested"]}, "locale": {"$ref": "#/$defs/locale"}, "on": {"$ref": "#/$defs/date"}, "role": {"type": "string"}, "note": {"type": "string"}}}},
+    "note": {"type": "string", "maxLength": 4000}
+   },
+   "description": "Review state. Roles only - never personal contact details in public packs."
+  },
+  "l10n": {
+   "type": "object",
+   "properties": {"required": {"type": "array", "items": {"$ref": "#/$defs/locale"}, "uniqueItems": true}},
+   "patternProperties": {"^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$": {"type": "object", "additionalProperties": false,
+     "properties": {"status": {"type": "string"}, "sourceRevision": {"type": "integer", "minimum": 1}, "note": {"type": "string"}}}},
+   "additionalProperties": false,
+   "description": "Per-language state of this record. required = languages every text in it must have (adds to the pack's list). sourceRevision = record revision the translation was made from; when the record changes the validator marks the translation stale."
+  }
+ }
+}

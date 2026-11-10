@@ -1,0 +1,1574 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://emmavengerskidsworld-design.github.io/emmavengers-house-game/content/schema/v1/payloads.schema.json",
+ "title": "Payload shapes per record type (schema 1.0.0)",
+ "description": "Closed objects: an unknown field is an error, so typos never silently vanish. lt = a localized text (any number of languages).",
+ "$defs": {
+  "lt": {
+   "$ref": "common.schema.json#/$defs/localizedText"
+  },
+  "ref": {
+   "$ref": "common.schema.json#/$defs/ref"
+  },
+  "key": {
+   "$ref": "common.schema.json#/$defs/key"
+  },
+  "asset": {
+   "$ref": "common.schema.json#/$defs/assetPath"
+  },
+  "refs": {
+   "type": "array",
+   "items": {
+    "$ref": "common.schema.json#/$defs/ref"
+   },
+   "maxItems": 2000
+  },
+  "world": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "title",
+    "img",
+    "intro",
+    "lands"
+   ],
+   "properties": {
+    "formatVersion": {
+     "type": "integer"
+    },
+    "title": {
+     "$ref": "#/$defs/lt"
+    },
+    "img": {
+     "$ref": "#/$defs/asset"
+    },
+    "intro": {
+     "$ref": "#/$defs/lt"
+    },
+    "layout": {
+     "enum": [
+      "five",
+      "six"
+     ]
+    },
+    "bg2": {
+     "$ref": "common.schema.json#/$defs/artName"
+    },
+    "lands": {
+     "$ref": "#/$defs/refs",
+     "minItems": 1
+    }
+   }
+  },
+  "land": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "name",
+    "color",
+    "img",
+    "intro",
+    "layout",
+    "places"
+   ],
+   "properties": {
+    "key": {
+     "$ref": "#/$defs/key"
+    },
+    "name": {
+     "$ref": "#/$defs/lt"
+    },
+    "landType": {
+     "enum": [
+      "library"
+     ]
+    },
+    "color": {
+     "$ref": "common.schema.json#/$defs/color"
+    },
+    "img": {
+     "$ref": "#/$defs/asset"
+    },
+    "music": {
+     "type": "string",
+     "pattern": "^[a-z0-9-]+$"
+    },
+    "intro": {
+     "$ref": "#/$defs/lt"
+    },
+    "layout": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "x": {
+       "$ref": "common.schema.json#/$defs/percent"
+      },
+      "y": {
+       "$ref": "common.schema.json#/$defs/percent"
+      },
+      "sx": {
+       "$ref": "common.schema.json#/$defs/percent"
+      },
+      "sy": {
+       "$ref": "common.schema.json#/$defs/percent"
+      },
+      "w": {
+       "type": "number"
+      },
+      "h": {
+       "type": "number"
+      },
+      "m6": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "x": {
+         "type": "number"
+        },
+        "y": {
+         "type": "number"
+        },
+        "s": {
+         "type": "number"
+        },
+        "art": {
+         "anyOf": [
+          {
+           "$ref": "#/$defs/asset"
+          },
+          {
+           "const": ""
+          }
+         ],
+         "description": "'' = no small picture (uses art2)"
+        },
+        "art2": {
+         "$ref": "common.schema.json#/$defs/artName"
+        }
+       }
+      }
+     }
+    },
+    "places": {
+     "type": "array",
+     "maxItems": 60,
+     "items": {
+      "$ref": "#/$defs/place"
+     }
+    }
+   }
+  },
+  "place": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "name",
+    "type",
+    "x",
+    "y"
+   ],
+   "properties": {
+    "key": {
+     "$ref": "#/$defs/key"
+    },
+    "name": {
+     "$ref": "#/$defs/lt"
+    },
+    "sub": {
+     "$ref": "#/$defs/lt"
+    },
+    "icon": {
+     "$ref": "#/$defs/asset"
+    },
+    "type": {
+     "type": "string"
+    },
+    "x": {
+     "$ref": "common.schema.json#/$defs/percent"
+    },
+    "y": {
+     "$ref": "common.schema.json#/$defs/percent"
+    },
+    "go": {
+     "type": "string"
+    },
+    "deck": {
+     "$ref": "#/$defs/ref"
+    },
+    "objects": {
+     "$ref": "#/$defs/ref"
+    },
+    "country": {
+     "$ref": "#/$defs/ref"
+    },
+    "mode": {
+     "type": "string"
+    },
+    "ask": {
+     "$ref": "#/$defs/lt"
+    },
+    "rounds": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 50
+    },
+    "intro": {
+     "$ref": "#/$defs/lt"
+    },
+    "photo": {
+     "type": "boolean"
+    },
+    "pos": {
+     "type": "string",
+     "pattern": "^[0-9]{1,3}% [0-9]{1,3}%$"
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "link"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "go"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "enum": [
+         "cards",
+         "quiz"
+        ]
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "deck"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "quiz"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "mode",
+       "ask"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "count"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "deck",
+       "objects"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "const": "country"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "country"
+      ]
+     }
+    }
+   ]
+  },
+  "deck": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "kind",
+    "items"
+   ],
+   "properties": {
+    "key": {
+     "$ref": "#/$defs/key"
+    },
+    "kind": {
+     "type": "string"
+    },
+    "done": {
+     "$ref": "#/$defs/lt"
+    },
+    "items": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 500,
+     "items": {
+      "$ref": "#/$defs/deckItem"
+     }
+    }
+   }
+  },
+  "deckItem": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": "string",
+     "maxLength": 40
+    },
+    "n": {
+     "type": "integer"
+    },
+    "word": {
+     "$ref": "#/$defs/lt"
+    },
+    "name": {
+     "$ref": "#/$defs/lt"
+    },
+    "obj": {
+     "type": "string"
+    },
+    "img": {
+     "$ref": "#/$defs/asset"
+    },
+    "flag": {
+     "$ref": "#/$defs/asset"
+    },
+    "foodImg": {
+     "$ref": "#/$defs/asset"
+    },
+    "say": {
+     "$ref": "common.schema.json#/$defs/localizedList"
+    },
+    "fact": {
+     "$ref": "#/$defs/lt"
+    },
+    "text": {
+     "$ref": "#/$defs/lt"
+    },
+    "greeting": {
+     "$ref": "common.schema.json#/$defs/foreignText"
+    },
+    "meaning": {
+     "$ref": "#/$defs/lt"
+    },
+    "language": {
+     "$ref": "#/$defs/lt"
+    },
+    "food": {
+     "$ref": "#/$defs/lt"
+    },
+    "plural": {
+     "$ref": "#/$defs/lt"
+    },
+    "ask": {
+     "$ref": "#/$defs/lt"
+    },
+    "hunt": {
+     "type": "boolean"
+    },
+    "show": {
+     "type": "string",
+     "maxLength": 40
+    }
+   },
+   "anyOf": [
+    {
+     "required": [
+      "id"
+     ]
+    },
+    {
+     "required": [
+      "n"
+     ]
+    }
+   ]
+  },
+  "library": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "prompt",
+    "sections"
+   ],
+   "properties": {
+    "prompt": {
+     "$ref": "#/$defs/lt"
+    },
+    "sections": {
+     "type": "array",
+     "maxItems": 60,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "key",
+       "name",
+       "source"
+      ],
+      "properties": {
+       "key": {
+        "$ref": "#/$defs/key"
+       },
+       "name": {
+        "$ref": "#/$defs/lt"
+       },
+       "color": {
+        "$ref": "common.schema.json#/$defs/color"
+       },
+       "icon": {
+        "$ref": "#/$defs/asset"
+       },
+       "icon2": {
+        "$ref": "common.schema.json#/$defs/artName"
+       },
+       "intro": {
+        "$ref": "#/$defs/lt"
+       },
+       "source": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "deck": {
+          "$ref": "#/$defs/ref"
+         },
+         "module": {
+          "type": "string"
+         },
+         "inline": {
+          "const": true
+         }
+        },
+        "minProperties": 1,
+        "maxProperties": 1
+       },
+       "items": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "name"
+         ],
+         "properties": {
+          "name": {
+           "$ref": "#/$defs/lt"
+          },
+          "img": {
+           "$ref": "#/$defs/asset"
+          },
+          "text": {
+           "$ref": "#/$defs/lt"
+          },
+          "say": {
+           "$ref": "common.schema.json#/$defs/localizedList"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "lexicon": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "language",
+    "entries"
+   ],
+   "properties": {
+    "language": {
+     "$ref": "common.schema.json#/$defs/locale"
+    },
+    "purpose": {
+     "enum": [
+      "voice-production"
+     ]
+    },
+    "entries": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "text",
+       "ipa"
+      ],
+      "properties": {
+       "text": {
+        "type": "string"
+       },
+       "ipa": {
+        "type": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "character": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "name"
+   ],
+   "properties": {
+    "key": {
+     "$ref": "#/$defs/key"
+    },
+    "name": {
+     "$ref": "#/$defs/lt"
+    },
+    "species": {
+     "type": "string"
+    },
+    "images": {
+     "type": "object",
+     "additionalProperties": {
+      "$ref": "#/$defs/asset"
+     }
+    }
+   }
+  },
+  "strings": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "strings"
+   ],
+   "properties": {
+    "strings": {
+     "type": "object",
+     "maxProperties": 2000,
+     "propertyNames": {
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+     },
+     "additionalProperties": {
+      "$ref": "#/$defs/lt"
+     }
+    }
+   }
+  },
+  "country": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "slug",
+    "name",
+    "flag",
+    "hub",
+    "learn",
+    "play",
+    "quiz",
+    "stories",
+    "lines",
+    "media"
+   ],
+   "properties": {
+    "slug": {
+     "type": "string",
+     "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+     "$ref": "#/$defs/lt"
+    },
+    "externalIdentifiers": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "issuer",
+       "code"
+      ],
+      "properties": {
+       "issuer": {
+        "type": "string"
+       },
+       "code": {
+        "type": "string"
+       },
+       "checkedOn": {
+        "$ref": "common.schema.json#/$defs/date"
+       }
+      }
+     }
+    },
+    "flag": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "stripes"
+     ],
+     "properties": {
+      "stripes": {
+       "type": "array",
+       "items": {
+        "$ref": "common.schema.json#/$defs/color"
+       },
+       "minItems": 1,
+       "maxItems": 13
+      },
+      "star": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+        "stripe": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "color": {
+         "$ref": "common.schema.json#/$defs/color"
+        }
+       }
+      },
+      "pole": {
+       "enum": [
+        "left",
+        "top"
+       ]
+      },
+      "colourNote": {
+       "type": "string"
+      }
+     }
+    },
+    "hub": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "intro": {
+       "$ref": "#/$defs/ref"
+      },
+      "introAgain": {
+       "$ref": "#/$defs/ref"
+      },
+      "travel": {
+       "$ref": "#/$defs/ref"
+      }
+     }
+    },
+    "learn": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "little",
+      "big"
+     ],
+     "properties": {
+      "little": {
+       "$ref": "#/$defs/ref"
+      },
+      "big": {
+       "$ref": "#/$defs/ref"
+      }
+     }
+    },
+    "practiceMap": {
+     "type": "object"
+    },
+    "play": {
+     "$ref": "#/$defs/refs"
+    },
+    "stories": {
+     "$ref": "#/$defs/refs"
+    },
+    "lines": {
+     "$ref": "#/$defs/refs"
+    },
+    "media": {
+     "$ref": "#/$defs/refs"
+    },
+    "quiz": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "bank",
+      "pools",
+      "roundSize"
+     ],
+     "properties": {
+      "bank": {
+       "$ref": "#/$defs/ref"
+      },
+      "legacyLocaleKeys": {
+       "type": "array",
+       "items": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        },
+        "minItems": 2,
+        "maxItems": 2
+       }
+      },
+      "pools": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "array",
+        "items": {
+         "$ref": "common.schema.json#/$defs/ageBand"
+        }
+       }
+      },
+      "roundSize": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 30
+       }
+      },
+      "exhausted": {
+       "$ref": "#/$defs/lt"
+      },
+      "finish": {
+       "$ref": "#/$defs/lt"
+      },
+      "practise": {
+       "$ref": "#/$defs/lt"
+      },
+      "practiceLabel": {
+       "$ref": "#/$defs/lt"
+      }
+     }
+    },
+    "breakAfterMinutes": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 120
+    },
+    "ui": {
+     "type": "object",
+     "additionalProperties": {
+      "$ref": "#/$defs/lt"
+     }
+    }
+   }
+  },
+  "topic": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind",
+    "name"
+   ],
+   "properties": {
+    "kind": {
+     "enum": [
+      "region",
+      "theme",
+      "city",
+      "landmark"
+     ]
+    },
+    "name": {
+     "$ref": "#/$defs/lt"
+    },
+    "related": {
+     "$ref": "#/$defs/refs"
+    }
+   },
+   "description": "Reserved for non-country topics (Stage 5 lands)."
+  },
+  "source": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "url",
+    "checkedOn"
+   ],
+   "properties": {
+    "key": {
+     "type": "string"
+    },
+    "title": {
+     "type": "string"
+    },
+    "url": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^https://"
+    },
+    "checkedOn": {
+     "$ref": "common.schema.json#/$defs/date"
+    },
+    "locator": {
+     "type": "string"
+    },
+    "note": {
+     "type": "string"
+    }
+   }
+  },
+  "lesson": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "cards"
+   ],
+   "properties": {
+    "key": {
+     "$ref": "#/$defs/key"
+    },
+    "cards": {
+     "$ref": "#/$defs/refs",
+     "minItems": 1,
+     "maxItems": 50
+    }
+   }
+  },
+  "learnCard": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "kind",
+    "text"
+   ],
+   "properties": {
+    "key": {
+     "$ref": "#/$defs/key"
+    },
+    "kind": {
+     "enum": [
+      "info",
+      "map-intro",
+      "model",
+      "try"
+     ]
+    },
+    "image": {
+     "$ref": "#/$defs/ref"
+    },
+    "text": {
+     "$ref": "#/$defs/lt"
+    },
+    "lines": {
+     "$ref": "#/$defs/refs"
+    }
+   }
+  },
+  "activity": {
+   "type": "object",
+   "required": [
+    "key",
+    "template",
+    "title"
+   ],
+   "properties": {
+    "key": {
+     "$ref": "#/$defs/key"
+    },
+    "template": {
+     "type": "string",
+     "pattern": "^[a-z-]+\\.v[0-9]+$"
+    },
+    "icon": {
+     "type": "string",
+     "maxLength": 16
+    },
+    "title": {
+     "$ref": "#/$defs/lt"
+    },
+    "lines": {
+     "$ref": "#/$defs/refs"
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "template": {
+        "const": "grid-route.v1"
+       }
+      }
+     },
+     "then": {
+      "additionalProperties": false,
+      "required": [
+       "mission",
+       "start",
+       "goal",
+       "feedback"
+      ],
+      "properties": {
+       "key": true,
+       "template": true,
+       "icon": true,
+       "title": true,
+       "lines": true,
+       "mission": {
+        "$ref": "#/$defs/lt"
+       },
+       "start": {
+        "type": "array",
+        "items": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "minItems": 2,
+        "maxItems": 2
+       },
+       "goal": {
+        "type": "string"
+       },
+       "shortest": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "routeHelpAfter": {
+        "type": "integer",
+        "minimum": 1
+       },
+       "countMoves": {
+        "type": "boolean"
+       },
+       "feedback": {
+        "type": "object",
+        "additionalProperties": {
+         "$ref": "#/$defs/lt"
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "template": {
+        "const": "ordered-slots.v1"
+       }
+      }
+     },
+     "then": {
+      "additionalProperties": false,
+      "required": [
+       "prompt",
+       "pieces"
+      ],
+      "properties": {
+       "key": true,
+       "template": true,
+       "icon": true,
+       "title": true,
+       "lines": true,
+       "prompt": {
+        "$ref": "#/$defs/lt"
+       },
+       "hint": {
+        "$ref": "#/$defs/lt"
+       },
+       "success": {
+        "$ref": "#/$defs/lt"
+       },
+       "pieces": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "id",
+          "name",
+          "slot"
+         ],
+         "properties": {
+          "id": {
+           "type": "string"
+          },
+          "name": {
+           "$ref": "#/$defs/lt"
+          },
+          "slot": {
+           "type": [
+            "integer",
+            "string"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "template": {
+        "const": "match.v1"
+       }
+      }
+     },
+     "then": {
+      "additionalProperties": false,
+      "required": [
+       "prompt",
+       "pairs"
+      ],
+      "properties": {
+       "key": true,
+       "template": true,
+       "icon": true,
+       "title": true,
+       "lines": true,
+       "prompt": {
+        "$ref": "#/$defs/lt"
+       },
+       "success": {
+        "$ref": "#/$defs/lt"
+       },
+       "pairs": {
+        "type": "array",
+        "minItems": 2,
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "id",
+          "name"
+         ],
+         "properties": {
+          "id": {
+           "type": "string"
+          },
+          "scene": {
+           "type": "string"
+          },
+          "name": {
+           "$ref": "#/$defs/lt"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "template": {
+        "const": "map-select.v1"
+       }
+      }
+     },
+     "then": {
+      "additionalProperties": false,
+      "required": [
+       "prompts",
+       "neighbours"
+      ],
+      "properties": {
+       "key": true,
+       "template": true,
+       "icon": true,
+       "title": true,
+       "lines": true,
+       "hint": {
+        "$ref": "#/$defs/lt"
+       },
+       "prompts": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "dir",
+          "ask",
+          "accept"
+         ],
+         "properties": {
+          "dir": {
+           "enum": [
+            "n",
+            "ne",
+            "e",
+            "se",
+            "s",
+            "sw",
+            "w",
+            "nw"
+           ]
+          },
+          "ask": {
+           "$ref": "#/$defs/lt"
+          },
+          "accept": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           },
+           "minItems": 1
+          }
+         }
+        }
+       },
+       "neighbours": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "id",
+          "pos",
+          "name"
+         ],
+         "properties": {
+          "id": {
+           "type": "string"
+          },
+          "pos": {
+           "enum": [
+            "n",
+            "ne",
+            "e",
+            "se",
+            "s",
+            "sw",
+            "w",
+            "nw"
+           ]
+          },
+          "name": {
+           "$ref": "#/$defs/lt"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "template": {
+        "const": "evidence-comparison.v1"
+       }
+      }
+     },
+     "then": {
+      "additionalProperties": false,
+      "required": [
+       "table",
+       "questions"
+      ],
+      "properties": {
+       "key": true,
+       "template": true,
+       "icon": true,
+       "title": true,
+       "lines": true,
+       "caption": {
+        "$ref": "#/$defs/lt"
+       },
+       "feedback": {
+        "$ref": "#/$defs/lt"
+       },
+       "table": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "properties": {
+          "source": {
+           "$ref": "#/$defs/lt"
+          },
+          "value": {
+           "$ref": "#/$defs/lt"
+          }
+         }
+        }
+       },
+       "questions": {
+        "type": "array",
+        "items": {
+         "$ref": "#/$defs/choiceQuestion"
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "template": {
+        "const": "inquiry.v1"
+       }
+      }
+     },
+     "then": {
+      "additionalProperties": false,
+      "required": [
+       "table",
+       "task",
+       "claimFromQuiz",
+       "next"
+      ],
+      "properties": {
+       "key": true,
+       "template": true,
+       "icon": true,
+       "title": true,
+       "lines": true,
+       "caption": {
+        "$ref": "#/$defs/lt"
+       },
+       "task": {
+        "$ref": "#/$defs/lt"
+       },
+       "feedback": {
+        "$ref": "#/$defs/lt"
+       },
+       "table": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "properties": {
+          "label": {
+           "$ref": "#/$defs/lt"
+          },
+          "value": {
+           "type": "number"
+          }
+         }
+        }
+       },
+       "claimFromQuiz": {
+        "$ref": "#/$defs/ref"
+       },
+       "next": {
+        "$ref": "#/$defs/choiceQuestion"
+       }
+      }
+     }
+    }
+   ]
+  },
+  "choiceQuestion": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "options"
+   ],
+   "properties": {
+    "ask": {
+     "$ref": "#/$defs/lt"
+    },
+    "key": {
+     "type": "string"
+    },
+    "options": {
+     "type": "object",
+     "minProperties": 2,
+     "maxProperties": 6,
+     "additionalProperties": {
+      "$ref": "#/$defs/lt"
+     }
+    }
+   }
+  },
+  "quizBank": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "items"
+   ],
+   "properties": {
+    "items": {
+     "$ref": "#/$defs/refs",
+     "minItems": 1
+    },
+    "sources": {
+     "$ref": "#/$defs/refs"
+    },
+    "roundRules": {
+     "type": "object"
+    }
+   }
+  },
+  "quizItem": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "responseType",
+    "prompt",
+    "options",
+    "answerKey"
+   ],
+   "properties": {
+    "responseType": {
+     "enum": [
+      "single-choice",
+      "multi-choice",
+      "ordered-choice",
+      "select-pair",
+      "numeric",
+      "adult-rubric"
+     ]
+    },
+    "construct": {
+     "type": "string",
+     "pattern": "^[a-z0-9-]+$"
+    },
+    "prompt": {
+     "$ref": "#/$defs/lt"
+    },
+    "options": {
+     "type": "object",
+     "minProperties": 2,
+     "maxProperties": 6,
+     "propertyNames": {
+      "pattern": "^[a-z0-9-]{1,32}$"
+     },
+     "additionalProperties": {
+      "$ref": "#/$defs/lt"
+     }
+    },
+    "hint": {
+     "$ref": "#/$defs/lt"
+    },
+    "feedback": {
+     "$ref": "#/$defs/lt"
+    },
+    "answerKey": {
+     "type": "string"
+    },
+    "readAloudAllowed": {
+     "type": "boolean"
+    },
+    "shuffleOptions": {
+     "type": "boolean"
+    },
+    "equivalenceGroup": {
+     "type": "string"
+    }
+   }
+  },
+  "story": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "classification",
+    "title",
+    "pages"
+   ],
+   "properties": {
+    "classification": {
+     "type": "string"
+    },
+    "title": {
+     "$ref": "#/$defs/lt"
+    },
+    "banner": {
+     "$ref": "#/$defs/lt"
+    },
+    "pages": {
+     "type": "object",
+     "minProperties": 1,
+     "propertyNames": {
+      "enum": [
+       "all",
+       "little",
+       "big"
+      ]
+     },
+     "additionalProperties": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "text"
+       ],
+       "properties": {
+        "text": {
+         "$ref": "#/$defs/lt"
+        },
+        "scene": {
+         "type": "string"
+        }
+       }
+      }
+     }
+    },
+    "reflection": {
+     "type": "object",
+     "propertyNames": {
+      "enum": [
+       "all",
+       "little",
+       "big"
+      ]
+     },
+     "additionalProperties": {
+      "$ref": "#/$defs/lt"
+     }
+    },
+    "sourcePassages": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "line": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "key",
+    "speaker",
+    "text"
+   ],
+   "properties": {
+    "key": {
+     "type": "string",
+     "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+    },
+    "speaker": {
+     "$ref": "#/$defs/ref"
+    },
+    "text": {
+     "$ref": "#/$defs/lt"
+    }
+   }
+  },
+  "media": {
+   "type": "object",
+   "required": [
+    "key",
+    "kind"
+   ],
+   "properties": {
+    "key": {
+     "$ref": "#/$defs/key"
+    },
+    "kind": {
+     "type": "string"
+    },
+    "assetId": {
+     "type": "string"
+    },
+    "icon": {
+     "type": "string",
+     "maxLength": 16
+    },
+    "label": {
+     "$ref": "#/$defs/lt"
+    },
+    "alt": {
+     "$ref": "#/$defs/lt"
+    },
+    "file": {
+     "$ref": "#/$defs/asset"
+    },
+    "scenes": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "scene": {
+     "type": "string"
+    },
+    "arrow": {
+     "type": "string"
+    },
+    "highlight": {
+     "type": "string"
+    },
+    "interactive": {
+     "type": "boolean"
+    },
+    "goal": {
+     "type": "string"
+    },
+    "n": {
+     "type": "integer"
+    },
+    "cities": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "name": {
+        "type": "string",
+        "description": "proper name, same in every language"
+       },
+       "icon": {
+        "type": "string"
+       }
+      }
+     }
+    },
+    "rows": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "label": {
+        "$ref": "#/$defs/lt"
+       },
+       "value": {
+        "type": "number"
+       }
+      }
+     }
+    }
+   },
+   "additionalProperties": false,
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "placeholder"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "label"
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

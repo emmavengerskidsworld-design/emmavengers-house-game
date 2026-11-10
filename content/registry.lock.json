@@ -1,0 +1,673 @@
+{
+ "records": {
+  "ew.character.ari": {
+   "rev": 1,
+   "hash": "8b8769d6a562d9056f859d2f7e19f7d519e746189f5f2b9de71a6974b08bf98f",
+   "type": "character"
+  },
+  "ew.character.ezra": {
+   "rev": 1,
+   "hash": "87b171595377ca3ba505ec7a0fae5afe12e701e59c5eb4e0c60798c7df9584e4",
+   "type": "character"
+  },
+  "ew.deck.letters": {
+   "rev": 1,
+   "hash": "efad6b082314865b40cd8b1b97abb60be23402c4311616040de3a9e0fa099bed",
+   "type": "deck"
+  },
+  "ew.deck.numbers": {
+   "rev": 1,
+   "hash": "0e9284176a8660270e4770ca3eda749d9e1b24ea69665958a8023936db7196a0",
+   "type": "deck"
+  },
+  "ew.deck.objects": {
+   "rev": 1,
+   "hash": "2763e99b7fd1e79afe2e5d8c48819618a04f1abe3ab4ed8c103e6363e3878fa0",
+   "type": "deck"
+  },
+  "ew.deck.animals": {
+   "rev": 1,
+   "hash": "a9f85425d7a7ce8593c20e08c95dd363279eb997304424d470dc0f28f5f9d508",
+   "type": "deck"
+  },
+  "ew.deck.countries": {
+   "rev": 1,
+   "hash": "cc53c16a60ee97d43ec86fb02cd3ac806a51bf0c90d9d97d797e0d8a1139e921",
+   "type": "deck"
+  },
+  "ew.deck.prayers": {
+   "rev": 1,
+   "hash": "77b10381e6260759f4a763c1da8e7a0b15db094f8f8714541b3a63442c8a8116",
+   "type": "deck"
+  },
+  "ew.land.faith": {
+   "rev": 1,
+   "hash": "52efb4de3d07eeca601ec11e552c7690892ad96839cbb9860c6b772f60afcb16",
+   "type": "land"
+  },
+  "ew.land.letter": {
+   "rev": 1,
+   "hash": "6f1324d8485b8b39f4b65be4574985472502c8702ae80917f66fd280a5e330b3",
+   "type": "land"
+  },
+  "ew.land.number": {
+   "rev": 1,
+   "hash": "e6f9cd1e7f919aa15a638b6a44af20993c0eb0906df7c430c1839301b81e7cfb",
+   "type": "land"
+  },
+  "ew.land.study": {
+   "rev": 1,
+   "hash": "29a4442dac18a1322220347e479d52230c7607f25a06f76eb320d7a2182ab6e1",
+   "type": "land"
+  },
+  "ew.land.nature": {
+   "rev": 1,
+   "hash": "b0c36de017ba3abee104e2357eacad1ca0c9b9c1bc18cb4aa1240cd6def24326",
+   "type": "land"
+  },
+  "ew.land.world": {
+   "rev": 1,
+   "hash": "5aec78dfd88a1a55238aa3a94cd5ab43aa5654b37d5388c0f960c528de084883",
+   "type": "land"
+  },
+  "ew.lexicon.letter-sounds": {
+   "rev": 1,
+   "hash": "9fb8dc4a45c6a00d93763dabfd286e170bb2fc44435b6615fcefe57f2cd7af2b",
+   "type": "lexicon"
+  },
+  "ew.library.study": {
+   "rev": 1,
+   "hash": "93d67e6b17bd156ce27cd03caa63fa7f9b06e3ff207ae84584b5553aaa2d2882",
+   "type": "library"
+  },
+  "ew.ui.country-player": {
+   "rev": 1,
+   "hash": "67a6049e139a4334d9dfeedb4ddb13c1dbb39928fbe09137ed43e9a34a440b83",
+   "type": "strings"
+  },
+  "ew.world.home": {
+   "rev": 1,
+   "hash": "69a672c87d8bf852d3ef970885a9a34be7a410ac98472b83327b4e2deeab6d25",
+   "type": "world"
+  },
+  "ew.country.cameroon": {
+   "rev": 1,
+   "hash": "94a7cdbf41af744be2b5fe240d9551c40d29e1c1cce81f4cc2ab451aabb92074",
+   "type": "country"
+  },
+  "ew.lesson.pilot-cameroon": {
+   "rev": 1,
+   "hash": "89f7e4c2c545ecb72fb862cca0024e6274369c35cfb6145c9c28d508857a13d1",
+   "type": "lesson"
+  },
+  "ew.lesson.pilot-cameroon-big": {
+   "rev": 1,
+   "hash": "4e9b1660f013617dcfdc18589ae1867aa74d3d652f00a5cc2631f38c0f79792b",
+   "type": "lesson"
+  },
+  "ew.card.pilot-cameroon-l1": {
+   "rev": 1,
+   "hash": "19bd67b98cb5369fc9dfa3c6f2011eea006b2136a431c18a2bacda5924796a40",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-l2": {
+   "rev": 1,
+   "hash": "7b9a1638558714173eca0079986a8aa60bd6bb7a9ddc701a6cf9c34a8884bcce",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-l3": {
+   "rev": 1,
+   "hash": "124e0068f2319272521b39217580939287ea94aa5084b9f2a436572abc1ec154",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-l4": {
+   "rev": 1,
+   "hash": "76e70d79e2e5618765c976599306fc07f3c2b4671708463b03857fbf93814c3c",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-l5": {
+   "rev": 1,
+   "hash": "83ed0559cc0c389d1b8d71ef32b83c0dbac72951b7e271c696054c4ab6086e09",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-mi1": {
+   "rev": 1,
+   "hash": "f96db7285ca8f5338ef7462d3bec608cb9be3b7c0e431abbd8170ad2278817ee",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-mi2": {
+   "rev": 1,
+   "hash": "43e8c00e92125a61d6613a1bdf782892fc484630b9b4aeafd0babfd54c615361",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-l6a": {
+   "rev": 1,
+   "hash": "8d07782942a257d5315912019ada73506125c65296a29b673d39dd8b8512bc2e",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-l6b": {
+   "rev": 1,
+   "hash": "9c4240e9c5a47eeae7ea259fd78632ad9e65c599694abcbde614d24f8cce2659",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b1a": {
+   "rev": 1,
+   "hash": "82c8df325a739731c2d199f0491dd68e20d65e002e2f1c201ea2ee4639da7f00",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b1b": {
+   "rev": 1,
+   "hash": "95c075257ac07764e8926a7dc7fa6e1b5ac4ee5e272165bbecba0870a1d3c5f0",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b1c": {
+   "rev": 1,
+   "hash": "c968c71ced400100c65539c52c5fa27bf405784a9b70b10feb52ce0b7566280b",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b2a": {
+   "rev": 1,
+   "hash": "e36a0f64a8cd9adb24b1ae62520d493034f051eefc89e4ae2e9136f45b372432",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b2b": {
+   "rev": 1,
+   "hash": "762a32dd3581892f4a8a9fa9da93cf7ed9cfa921e9cb37187f69c2f92a01e92f",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b3": {
+   "rev": 1,
+   "hash": "bb7c89bfe25c54b6b61c8dbaef8dad88eb31bbcbcb5894ce85cf2c70bc3a6c1e",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b4": {
+   "rev": 1,
+   "hash": "9d0bc09f05bf8cf5d82b1de97ef55705efc8a36131d78602083a41c3f284cbf4",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b5a": {
+   "rev": 1,
+   "hash": "91c9dc61c1d541b11163953ef37740165afecc36a08ac449bbe6f0162d2862ff",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b5b": {
+   "rev": 1,
+   "hash": "530a712efc01597675710fb2117ea44ef6272c4d54df59613385db173a3b6ce7",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b5c": {
+   "rev": 1,
+   "hash": "d5dab6846170740cf13e5184d7cac753a6c302efc995572150675a50e68198ed",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b6a": {
+   "rev": 1,
+   "hash": "e2af6b1864b48b4ef5dbf0c0361d398c29f2dbfdb90af050a434692d2db6afd1",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b6b": {
+   "rev": 1,
+   "hash": "f7c129890ae54f2f5e8e1605b9e91c94bc47ee6a31c8d84eaa83c8023caa10bf",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b7a": {
+   "rev": 1,
+   "hash": "a725957c1e2643cd90a2aef158369bedff9410db5decabcd928bdc6a1e24a8a1",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b7b": {
+   "rev": 1,
+   "hash": "474525103426d0afc1e61d9846c93df21e475f729952c7319cee0853db42fe4f",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b8a": {
+   "rev": 1,
+   "hash": "4bab96ef76dcd58967ff099dff5539fcde9522c328d56fe75cfe1856d585150d",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b8b": {
+   "rev": 1,
+   "hash": "28397d1506fbc3c1a44634419570ea8624f95b598d44152c50f7d8c3c8b52610",
+   "type": "learn-card"
+  },
+  "ew.card.pilot-cameroon-b9": {
+   "rev": 1,
+   "hash": "5b1834ecb2d8912798fcf47f1b1c40dcf5a6b4ec34450bdface5b2c80d942049",
+   "type": "learn-card"
+  },
+  "ew.line.pilot-cameroon.ari.cm.arrive": {
+   "rev": 1,
+   "hash": "3128874188df0f005aeb4576ef5ef928e9bccfad5935def301913517be7a22c7",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.arrive-again": {
+   "rev": 1,
+   "hash": "11ea42b05a477a962eb30c342b76661a5e0488bb96d9078b74dacb7841182867",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.learn": {
+   "rev": 1,
+   "hash": "a3c49518426bc030d85a015993c9b0ebfc1d004cb36343c6a6ed20d21f93dee0",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.model": {
+   "rev": 1,
+   "hash": "6063fea0dcb283cd00c88306e7ffd9174a27ee5f9912dfc920877eeb473bddde",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.try": {
+   "rev": 1,
+   "hash": "f1ba5c0e27e462f1134a323b94e48ec29b915ca2ed500736542da4d026739695",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.hint": {
+   "rev": 1,
+   "hash": "da6c98d9d07bbc64b2f24a659e50e034c47bb66d49bb79bceb2eff22636d44d8",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.correct": {
+   "rev": 1,
+   "hash": "4db21429478197d399483465286e307dc85008ae94321b3cff00b9bc7cfffc0b",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.many": {
+   "rev": 1,
+   "hash": "a06b0507de1736e82e0fe8aec0feee32df8e67e28a7b3c4d73a3bfe083baee5b",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.source": {
+   "rev": 1,
+   "hash": "c2d51bf0643b95591861fe574a085470d69cbd606c88bcc53d5affe41622495d",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.story": {
+   "rev": 1,
+   "hash": "df6db01bdcdbe0e9da11ebd51f3aa094bc58ee73d4801b4c03e5d5deaaf5957e",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.break": {
+   "rev": 1,
+   "hash": "34008016df936ff630cf56c2c748c93a66b29a42a635c3667bbddb7c0ccb4b0e",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ari.cm.done": {
+   "rev": 1,
+   "hash": "72aa864593c8f155209589a14b4d7e2448d7493cdf8e596403cbe33a935d6935",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ezra.fly": {
+   "rev": 1,
+   "hash": "d8877a14f2ad1be580eb92ab4c30f5d62cf593cfd211013b7da1e08c7f8139aa",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ezra.sky": {
+   "rev": 1,
+   "hash": "c4a5f401def34764545b1625c9cb754bffbca2bb14ad1a1d8de0cf163dbc1f21",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ezra.landscapes": {
+   "rev": 1,
+   "hash": "8dc0544c5ea777c3f3b44b9ec29c147c38b122c9cb6f1f3ff856bcb0762bd7a3",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ezra.compass": {
+   "rev": 1,
+   "hash": "188f067160da9ba12bca3af18cd16d454423f6971e271a3fea4b85596a1212e0",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ezra.celebrate": {
+   "rev": 1,
+   "hash": "7ba2787301b5436fb5be0b3663fa8dbf577e7d514e5f6c0ed584a7d9e63c65a8",
+   "type": "line"
+  },
+  "ew.line.pilot-cameroon.ezra.home": {
+   "rev": 1,
+   "hash": "b89b44d41585f77f9385ce0ec7d4c1b7c8c56e621e8d812fc8b15d1aca6e28f8",
+   "type": "line"
+  },
+  "ew.media.pilot-cameroon-locator": {
+   "rev": 1,
+   "hash": "2a99aa4674bfa94bd9b08a8bdb52b15182922cd1a84dbd7403f7c6566d2bfc05",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-flag": {
+   "rev": 1,
+   "hash": "3b98d83da5d72a3f929de7daf76a40d40c7abb264c6691aee108ce381870b131",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-landscapes": {
+   "rev": 1,
+   "hash": "49d356783be672969625178203bee9d65da6f098f03eb1a88d430063fc797917",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-mount": {
+   "rev": 1,
+   "hash": "8971aec34c668f886811a19236eeebe12e09e31e95011847ada674dfa831aabe",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-languages": {
+   "rev": 1,
+   "hash": "6957947a7fd34baaaed9851c428195c57cc38662c1433f32f1ee77f27238ef9b",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-grid": {
+   "rev": 1,
+   "hash": "71a56405bbd8e14f68c99d6bcaa910ccd0e3c34c3fae9f3bfc0fdbccf81a5721",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-grid-model": {
+   "rev": 1,
+   "hash": "dc2902fcd2aca1454551f976a7eb38e5c25d39a4b1f1d0f3c408929e6aeee7c3",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-grid-try": {
+   "rev": 1,
+   "hash": "eea352deacc1dfd837e8a82ec228de18f5061c7b43b6fad1acc1436c1b85b516",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-neighbours": {
+   "rev": 1,
+   "hash": "efed3c1b6b84dd7bc22c423b66a17e712ffe6c1a827bac2bca99d0e2954e98e7",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-cities": {
+   "rev": 1,
+   "hash": "7eb2a8adc1600023857a048e1513d2a24c0ef5b1007b69039789465b5a4792ac",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-regions": {
+   "rev": 1,
+   "hash": "01db876aede6dd308263d27783df80e603f9d839a862d21e126141e3fc77c0fc",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-people": {
+   "rev": 1,
+   "hash": "dd2a099d1e31f48b15575c7a43bfa9e06805a14904ab3c73a52e0549054db16f",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-heritage": {
+   "rev": 1,
+   "hash": "5668d9039964b55a2434aa51fefb3a7db72947db14b87d1ba06cbc2320a31339",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-count": {
+   "rev": 1,
+   "hash": "b6bd1d1b8ca5e0fae767c8df0b7c3a92a93c2263ab71579046f70ae12add71eb",
+   "type": "media"
+  },
+  "ew.media.pilot-cameroon-source-table": {
+   "rev": 1,
+   "hash": "9cbc0fadbc0f590376c1ed1879c5e3b6dce216966bf62f385937151097e2e35b",
+   "type": "media"
+  },
+  "ew.activity.pilot-cameroon-route": {
+   "rev": 1,
+   "hash": "03357d69835549d090c9d5d01007593fcdbebd7cea82adc79943c9d5ce369c60",
+   "type": "activity"
+  },
+  "ew.activity.pilot-cameroon-flag-build": {
+   "rev": 1,
+   "hash": "831906abae290842c2009ffd9fe16afaaad6fc9f6d3df853f37c2e970d2c5488",
+   "type": "activity"
+  },
+  "ew.activity.pilot-cameroon-landscape-match": {
+   "rev": 1,
+   "hash": "e9dfd6a4a6695fe44670325d61cbc45fd247f569a92a409675c525392745c717",
+   "type": "activity"
+  },
+  "ew.activity.pilot-cameroon-grid-list": {
+   "rev": 1,
+   "hash": "53d945896898702629c083ca72be913f0711a3eedbe74b23b0f14c88377a2c70",
+   "type": "activity"
+  },
+  "ew.activity.pilot-cameroon-neighbour-compass": {
+   "rev": 1,
+   "hash": "b5935cebb9425d6abe9cff6332b049fe848746ca3ed0e2c377a5e120d37f352e",
+   "type": "activity"
+  },
+  "ew.activity.pilot-cameroon-source-detective": {
+   "rev": 1,
+   "hash": "44b39069ab75f6f534081e4edaf24d6308adc31003ecb79b4976427c15c274b5",
+   "type": "activity"
+  },
+  "ew.activity.pilot-cameroon-inquiry": {
+   "rev": 1,
+   "hash": "706772e06d30dbddac0e81a846c4dd92b6c9f93da908bf7ae79b142568a14e7d",
+   "type": "activity"
+  },
+  "ew.quizbank.pilot-cameroon": {
+   "rev": 1,
+   "hash": "0d8fc50c95a0c9b67f9a0ad5814fd54315b01b6bd692f454049004ab0b50d944",
+   "type": "quiz-bank"
+  },
+  "ew.quiz.pilot-cameroon-q01": {
+   "rev": 1,
+   "hash": "e5eb5986a29dbfaad49ccc592ca4007bffe362d9855e13961e1c0674182caf52",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q02": {
+   "rev": 1,
+   "hash": "b50115ad7504bb7225ea8c331f7f2d0af87e1ac36c065b6f885a1699e08fb394",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q03": {
+   "rev": 1,
+   "hash": "f4ccb51414baab0a0ba311c83cffa852876997851ddf4d9eb41286f70ed3088f",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q04": {
+   "rev": 1,
+   "hash": "9c805bd4e86db7e75b79b899210b3175c02b10163d757dda76cbe038be0ceec3",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q05": {
+   "rev": 1,
+   "hash": "9c735ba4b731bfc971f4a6d4c29be8d4bd93bc402d4e0926ca48b296c20e7e79",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q06": {
+   "rev": 1,
+   "hash": "ce3ecf83e3fd05d77a17a36780196afb3a3900460c359753d2726df6196a5bd4",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q07": {
+   "rev": 1,
+   "hash": "f289b752fdc030a9ce8c36e5c254c09d221baa60a89e3eef675e1fd7a025fc5f",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q08": {
+   "rev": 1,
+   "hash": "5213bed9c3c9a11f346f9fbb271597db63480bdf2ceed2bf91fe569e878f9d79",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q09": {
+   "rev": 1,
+   "hash": "77e8bab58ce9dd1bd895360204425decd5422c0795d4233c79daca568ffd0dac",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q10": {
+   "rev": 1,
+   "hash": "90d4dd230b5c86dc8939eac47e9a315568a8799b8f294161fb269d0ff651b9e4",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q11": {
+   "rev": 1,
+   "hash": "0a682acb87b475897aad278d4e8b10de14bf2150c4c7015ef5714a22f399c519",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q12": {
+   "rev": 1,
+   "hash": "1130d9fbc9ca29be23766fe575b35c149ec8b797143c1bd97947154ad9cb9987",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q13": {
+   "rev": 1,
+   "hash": "da50087522cc9ce83521ac499168cf6662bd08c1d4723955fa8afe0dd2df1c8a",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q14": {
+   "rev": 1,
+   "hash": "f57bd0a471673106787b1ba9f1e92976ffc22e49d4017e13a3f9ae1f79e0fe7c",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q15": {
+   "rev": 1,
+   "hash": "97c1fb48d4a065ff9c878fbebf05c4f44637199de9fe174cb83f044dae80c260",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q16": {
+   "rev": 1,
+   "hash": "8aaec69c8bc8d76b45639ac15f23e97d7ad0fd5df8940ed887f170f83ddf93d7",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q17": {
+   "rev": 1,
+   "hash": "64ebe8badd8b0ce8297266672b7395ea802e8b8ed55a90c1123d397a316ab7ed",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q18": {
+   "rev": 1,
+   "hash": "b1e7fcdb05300e4aad8ffd8a736c531e54a1f439ec6c002b3ab944b6418661c9",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q19": {
+   "rev": 1,
+   "hash": "189308206eef34d3f9cb85b5faab8ec04d123937c65fa8bcbf980a83eecc1805",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q20": {
+   "rev": 1,
+   "hash": "485f844e78c56da626d713d66827b6b393ad18cc9d71163d8368d8e10afa517b",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q21": {
+   "rev": 1,
+   "hash": "e4a3baf9bead63216fa9d699b027d4f4d80fe93f3f8edfb8ddfad9c535b47820",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q22": {
+   "rev": 1,
+   "hash": "e2e9688c2f11bdddcc819a83a3f9180eb4f2b9d567298aa6f3c8edb9f28023df",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q23": {
+   "rev": 1,
+   "hash": "1b3dd7886c141e2d513b9df21e3e4b1451c9662e05233c04743fc6e91aa74ae2",
+   "type": "quiz-item"
+  },
+  "ew.quiz.pilot-cameroon-q24": {
+   "rev": 1,
+   "hash": "55c096b5509f5a5193b7264e2831e19154559f70f2b85f3b2dc7d783a4f96c46",
+   "type": "quiz-item"
+  },
+  "ew.source.pilot-cameroon-con": {
+   "rev": 1,
+   "hash": "9e700a95d8271e9b832aabb37044a7865325a6ab3b1bc9c7fe64997ded3aa881",
+   "type": "source"
+  },
+  "ew.source.pilot-cameroon-un": {
+   "rev": 1,
+   "hash": "0d60587c80cd491c3e02aa13f6745df626e2096e003b4964a07bdb2f59bcdcb9",
+   "type": "source"
+  },
+  "ew.source.pilot-cameroon-prc": {
+   "rev": 1,
+   "hash": "d9f83cb675e4b9bb03137fe0fda8001ffc3b7a650856d845d6c2b99cbb231e59",
+   "type": "source"
+  },
+  "ew.source.pilot-cameroon-brk": {
+   "rev": 1,
+   "hash": "9f0d0319a91892227f3bcc27e114a8c82a90c7342ac27000ef242ee3b4fd5ddf",
+   "type": "source"
+  },
+  "ew.source.pilot-cameroon-brm": {
+   "rev": 1,
+   "hash": "a3a9f12b264f170d73c575a4ed3d955212258f2b43dc67c3fe821628bf7cf9f9",
+   "type": "source"
+  },
+  "ew.source.pilot-cameroon-whc": {
+   "rev": 1,
+   "hash": "e38b16bfbfc9e03e9d86823f3b050c2ebee161ba6bf1e92fe294b547b386d411",
+   "type": "source"
+  },
+  "ew.source.pilot-cameroon-eth": {
+   "rev": 1,
+   "hash": "c7a58a2e6fa9f90fbd75124895b8d2b3b7045bb8df04110a25e7224552cec39d",
+   "type": "source"
+  },
+  "ew.source.pilot-cameroon-ed": {
+   "rev": 1,
+   "hash": "b0574eb8306b91ac995645e9990b395ef5629d6016b31062ec55b08620d1d59a",
+   "type": "source"
+  },
+  "ew.source.pilot-cameroon-10a": {
+   "rev": 1,
+   "hash": "ff8054c8e6fb10c2d509c8edc18164caaf40728133640895df10a8712f607a4f",
+   "type": "source"
+  },
+  "ew.story.pilot-cameroon": {
+   "rev": 1,
+   "hash": "196974d6d86751387c3d45f61428635e381b75b5ef80154d6b14a0a04bfa47b7",
+   "type": "story"
+  },
+  "ew.story.pilot-cameroon-2": {
+   "rev": 1,
+   "hash": "b7f2c689edb54418969d9da6521b3646516277af1ccfb296397f38aac74ba209",
+   "type": "story"
+  }
+ },
+ "retired": {},
+ "packs": {
+  "core": {
+   "rev": 2,
+   "hash": "44c2113f679d78a243b2c3d1240c6362b29226e84830adc67c7a3a448ed1d2f6"
+  },
+  "country.cameroon": {
+   "rev": 2,
+   "hash": "3023f8127a082354b3cde010d3feaa83eeed215441b2ab4db5438b293ac64d54"
+  }
+ },
+ "releases": [
+  {
+   "sequence": 1,
+   "issued": "2026-11-10T18:44:16Z",
+   "channel": "preview",
+   "contentHash": "f4fcccbe037443edbe0d05b3e18c44046abf50febf67d3922ea0a8615d4505de",
+   "catalogSha256": "28bdb7ffa375f9ca2d9e1cb0d1638d2311d8b036e81bf3e91d35fe9c65ce0f63",
+   "files": [
+    "catalog.json",
+    "indexes/core.2a8c5bbe361bb837.json",
+    "indexes/countries.africa.2e6d8033a2f31064.json",
+    "packs/core.1f085c0c3e632be2.json",
+    "packs/core.assets.c10260af1c872991.json",
+    "packs/core@en.f99f506bcd695a50.json",
+    "packs/core@fr.3e2d1f6deb3ed011.json",
+    "packs/country.cameroon.9ced879719b7615f.json",
+    "packs/country.cameroon.assets.e93acf05b8b468f4.json",
+    "packs/country.cameroon@en.2667d2954e8ebbfc.json",
+    "packs/country.cameroon@fr.91525bb18cf18d5f.json"
+   ]
+  },
+  {
+   "sequence": 2,
+   "issued": "2026-11-10T19:47:01Z",
+   "channel": "live",
+   "contentHash": "0533b14c23e8aba8afc53072f94fb16a41c2dc99dc8b717d9ba6ad5ebcfa8ee9",
+   "catalogSha256": "4c962a1078ce5a0819c5b81faca55e6700fe1052b0bfa9fb335c5b544431f677",
+   "files": [
+    "catalog.json",
+    "indexes/core.1e9c23d2c9b5bcf6.json",
+    "indexes/countries.africa.804ee1b76bc9362e.json",
+    "packs/core.694b3f263fc02681.json",
+    "packs/core.assets.c10260af1c872991.json",
+    "packs/core@en.adf8532af0979541.json",
+    "packs/core@fr.c765eddcd563c3df.json",
+    "packs/country.cameroon.531bcaa945e83704.json",
+    "packs/country.cameroon.assets.e93acf05b8b468f4.json",
+    "packs/country.cameroon@en.334e0a59f758de6d.json",
+    "packs/country.cameroon@fr.2e92937f8fee430e.json"
+   ]
+  }
+ ],
+ "sequence": 2
+}

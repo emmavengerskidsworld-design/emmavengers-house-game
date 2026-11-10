@@ -19,6 +19,28 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_DIRS = {'.git', 'tools', 'node_modules', 'voice-samples'}
 SKIP_FILES = {'sw.js', 'README.md', '.nojekyll', 'bible-manifest.json'}
 SKIP_EXT = ('.bak', '.py', '.log', '.md', '.DS_Store')
+# content library: the app reads only content/library (built by tools/content_build.py). Sources, schemas, docs and
+# the registry lock are never downloaded by the app. Inside content/library only the CURRENT release's catalog,
+# indexes and starter ("preload") packs are precached; other packs are fetched when first opened and then kept in
+# the device copy (IndexedDB) by library.js. Older-release files kept on the server for rollback are not precached.
+SKIP_PATHS = ('content/src/', 'content/schema/', 'docs/')
+SKIP_FILES |= {'content/registry.lock.json'}
+
+def library_precache():
+    lib = os.path.join(ROOT, 'content', 'library')
+    cat_p = os.path.join(lib, 'catalog.json')
+    if not os.path.exists(cat_p): return None
+    cat = json.load(open(cat_p, encoding='utf-8'))
+    keep = {'content/library/catalog.json'}
+    for c in cat.get('collections', []):
+        keep.add('content/library/' + c['index']['path'])
+        ix = json.load(open(os.path.join(lib, c['index']['path']), encoding='utf-8'))
+        for p in ix.get('packs', []):
+            if not p.get('preload'): continue
+            keep.add('content/library/' + p['file']['path'])
+            for l in p.get('locales', {}).values(): keep.add('content/library/' + l['path'])
+    return keep
+LIB_KEEP = library_precache()
 
 def make_thumbs():
     """Small shelf thumbnails for Bible covers (fast Library screen on slow networks)."""
@@ -82,6 +104,7 @@ for slug, b in BIBLE.items():
 book_dirs = {slug: b['dir'].rstrip('/') + '/' for slug, b in BIBLE.items()}
 
 files, total, core_total = [], 0, 0
+revs = []  # SHA-256 prefix of each precached file (same order as ASSETS after './'): lets the SW reuse ONLY unchanged files
 h = hashlib.sha256()
 voice_packs = {}
 books = {slug: {'files': [], 'h': hashlib.sha256(), 'bytes': 0} for slug in BIBLE}
@@ -91,7 +114,9 @@ for d, ds, fs in os.walk(ROOT):
     under_voice_pack = rel_dir.startswith('voice/') and rel_dir != 'voice'
     for f in sorted(fs):
         rel = os.path.relpath(os.path.join(d, f), ROOT).replace(os.sep, '/')
-        if f in SKIP_FILES or f.endswith(SKIP_EXT) or f.startswith('.'):
+        if f in SKIP_FILES or rel in SKIP_FILES or f.endswith(SKIP_EXT) or f.startswith('.') or rel.startswith(SKIP_PATHS):
+            continue
+        if rel.startswith('content/library/') and (LIB_KEEP is None or rel not in LIB_KEEP):
             continue
         data = open(os.path.join(ROOT, rel), 'rb').read()
         total += len(data)
@@ -110,7 +135,7 @@ for d, ds, fs in os.walk(ROOT):
                 if f[:-4] in hs:
                     books[s2]['h'].update(rel.encode() + dig); books[s2]['bytes'] += len(data)
             continue
-        files.append(url); core_total += len(data)
+        files.append(url); revs.append(dig.hex()[:16]); core_total += len(data)
 
 voice_packs['mia'] = [u for u in files if u.startswith('./voice/') and u.endswith('.mp3') and u.count('/') == 2] + \
                      sorted({f'./voice/{x}.mp3' for x in book_only})
@@ -120,6 +145,7 @@ build = h.hexdigest()[:12]
 tpl = open(os.path.join(ROOT, 'tools', 'sw.template.js')).read()
 out = (tpl.replace('__BUILD__', build)
           .replace('__ASSETS__', json.dumps(['./'] + files, separators=(',', ':')))
+          .replace('__REVS__', json.dumps([''] + revs, separators=(',', ':')))
           .replace('__VOICE_PACKS__', json.dumps(voice_packs, separators=(',', ':')))
           .replace('__BOOKS__', json.dumps(manifest, separators=(',', ':'))))
 open(os.path.join(ROOT, 'sw.js'), 'w').write(out)

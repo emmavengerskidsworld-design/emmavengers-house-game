@@ -1,0 +1,22 @@
+{
+ "$schema": "../../schema/v1/pack-source.schema.json",
+ "id": "core",
+ "collection": "core",
+ "preload": true,
+ "title": {
+  "en": "Emmavengers World: home map, six lands and shared parts"
+ },
+ "locales": {
+  "required": [
+   "en"
+  ]
+ },
+ "defaults": {
+  "status": "published",
+  "sourceLanguage": "en",
+  "review": {
+   "legacy": true,
+   "note": "Live on the main site before the Stage-1 review workflow existed. Not yet re-reviewed under blueprint 05 (facts, sources, age bands are provisional)."
+  }
+ }
+}

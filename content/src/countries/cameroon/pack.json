@@ -1,0 +1,71 @@
+{
+ "$schema": "../../../schema/v1/pack-source.schema.json",
+ "id": "country.cameroon",
+ "collection": "countries.africa",
+ "preload": true,
+ "summary": "ew.country.cameroon",
+ "title": {
+  "en": "Cameroon pilot (World Land)",
+  "fr": "Pilote Cameroun (Terre du monde)"
+ },
+ "locales": {
+  "required": [
+   "en",
+   "fr"
+  ]
+ },
+ "defaults": {
+  "status": "published",
+  "sourceLanguage": "en",
+  "tags": {
+   "land": "world",
+   "topics": [
+    "ew.country.cameroon"
+   ],
+   "regions": [
+    "africa"
+   ],
+   "subjects": [
+    "geography"
+   ]
+  },
+  "l10n": {
+   "fr": {
+    "status": "draft-pending-fluent-french-review"
+   }
+  },
+  "review": {
+   "ownerRole": "product-owner",
+   "approvalRef": "owner-approval-2026-11-10-chat",
+   "checks": [
+    {
+     "kind": "owner",
+     "result": "passed",
+     "on": "2026-11-10",
+     "role": "product-owner",
+     "note": "Approved for live by Emmanuel CLETUS"
+    },
+    {
+     "kind": "language",
+     "locale": "fr",
+     "result": "pending",
+     "note": "French pending fluent review"
+    },
+    {
+     "kind": "educator",
+     "result": "pending"
+    },
+    {
+     "kind": "culture",
+     "result": "pending"
+    },
+    {
+     "kind": "rights",
+     "result": "pending",
+     "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+    }
+   ],
+   "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: Pilot draft: needs educator, cultural and Emmanuel review; French needs a fluent reviewer."
+  }
+ }
+}

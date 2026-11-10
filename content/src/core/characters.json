@@ -1,0 +1,145 @@
+{
+ "$schema": "../../schema/v1/source-file.schema.json",
+ "note": "Guide characters. Lines live with each topic (e.g. countries/cameroon/lines.json).",
+ "records": [
+  {
+   "id": "ew.character.ari",
+   "type": "character",
+   "status": "published",
+   "tags": {
+    "land": null,
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ari",
+    "name": {
+     "en": "Ari",
+     "fr": "Ari"
+    },
+    "species": "lion cub",
+    "images": {
+     "hello": "img/world/guides/ari-hello.webp",
+     "map": "img/world/guides/ari-map.webp",
+     "cheer": "img/world/guides/ari-cheer.webp",
+     "think": "img/world/guides/ari-think.webp",
+     "thumbs": "img/world/guides/ari-thumbs.webp"
+    }
+   },
+   "evidence": {
+    "note": "Ari the Emmavenger (Hebrew: lion). Speaks only pre-written, checked lines. Name clearance pending (lawyer)."
+   },
+   "l10n": {
+    "required": [
+     "en",
+     "fr"
+    ]
+   },
+   "review": {
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending."
+   }
+  },
+  {
+   "id": "ew.character.ezra",
+   "type": "character",
+   "status": "published",
+   "tags": {
+    "land": null,
+    "ageBands": [
+     "5-7",
+     "8-10",
+     "11-13"
+    ],
+    "modes": []
+   },
+   "payload": {
+    "key": "ezra",
+    "name": {
+     "en": "Ezra",
+     "fr": "Ezra"
+    },
+    "species": "eagle",
+    "images": {
+     "face": "img/world/guides/ezra-face.webp",
+     "carry": "img/world/guides/ezra-carry.webp"
+    }
+   },
+   "evidence": {
+    "note": "Ezra (Hebrew: help), eagle companion: travel, sky view, celebrations. Isaiah 40:31."
+   },
+   "l10n": {
+    "required": [
+     "en",
+     "fr"
+    ]
+   },
+   "review": {
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending."
+   }
+  }
+ ]
+}
