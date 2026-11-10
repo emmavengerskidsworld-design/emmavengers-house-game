@@ -116,7 +116,7 @@ function ctry(a){if(ctRequire(a,ctry))return;const pk=CT.cur,P=ctPrefs(),pr=ctPr
   main.querySelectorAll('.cage').forEach(b=>b.onclick=()=>{sfx.tap();ctSetPrefs({age:b.dataset.age});go('ctry',ctA({from:fromLand?'land':''}))});ctLangBind(()=>go('ctry',ctA({from:fromLand?'land':''})));return}
  const modes=[['learn','📖','clearn'],['play','🧩','cplay'],['quiz','❓','cquiz'],['stories','📚','cstory']];
  main.innerHTML=`<div class="chub">
-  <div class="cdraft">${esc(UT('draft'))}</div>
+  ${pk.status!=='published'?`<div class="cdraft">${esc(UT('draft'))}</div>`:''}
   <div class="ccard"><div class="cflagbox">${ctFlag(pk.payload.flag)}</div><div class="cname"><b>${esc(LT(pk.payload.name))}</b>${me.stamp?`<span class="cstamp">🏅 ${esc(UT('visited'))}</span>`:''}</div><img class="cari" src="img/world/guides/ari-map.webp" alt="Ari"></div>
   ${GUIDE_HTML}<div class="cmodes">${modes.map(([k,ic,s])=>`<button class="cmode" data-go="${s}" data-mode="${k}"><i>${ic}</i><b>${esc(UT(k))}</b></button>`).join('')}</div>
   <div class="crow csettings"><div class="cseg" role="group"><button class="cagebtn${P.age==='little'?' on':''}" data-age="little" aria-pressed="${P.age==='little'}">${esc(UT('littleShort'))}</button><button class="cagebtn${P.age==='big'?' on':''}" data-age="big" aria-pressed="${P.age==='big'}">${esc(UT('bigShort'))}</button></div>

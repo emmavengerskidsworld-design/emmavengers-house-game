@@ -5,7 +5,7 @@
   {
    "id": "ew.quizbank.pilot-cameroon",
    "type": "quiz-bank",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "5-7",
@@ -67,7 +67,7 @@
   {
    "id": "ew.quiz.pilot-cameroon-q01",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "5-7"
@@ -120,13 +120,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q02",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "5-7"
@@ -179,13 +209,43 @@
    },
    "review": {
     "factCheck": "invented-example",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q03",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -238,13 +298,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q04",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -297,13 +387,43 @@
    },
    "review": {
     "factCheck": "invented-example",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q05",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "11-13"
@@ -356,13 +476,43 @@
    },
    "review": {
     "factCheck": "invented-example",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q06",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "11-13"
@@ -415,13 +565,43 @@
    },
    "review": {
     "factCheck": "invented-example",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q07",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "5-7"
@@ -474,13 +654,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q08",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "5-7"
@@ -533,13 +743,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q09",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "5-7"
@@ -592,13 +832,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q10",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "5-7"
@@ -651,13 +921,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q11",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "5-7"
@@ -710,13 +1010,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q12",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -769,13 +1099,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q13",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -828,13 +1188,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q14",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -887,13 +1277,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q15",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -946,13 +1366,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q16",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -1005,13 +1455,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q17",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -1064,13 +1544,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q18",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -1123,13 +1633,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q19",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "11-13"
@@ -1183,13 +1723,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q20",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "11-13"
@@ -1242,13 +1812,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q21",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "11-13"
@@ -1301,13 +1901,43 @@
    },
    "review": {
     "factCheck": "invented-example",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q22",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "11-13"
@@ -1361,13 +1991,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q23",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "11-13"
@@ -1420,13 +2080,43 @@
    },
    "review": {
     "factCheck": "source-opened-2026-11-09",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   },
   {
    "id": "ew.quiz.pilot-cameroon-q24",
    "type": "quiz-item",
-   "status": "draft",
+   "status": "published",
    "tags": {
     "ageBands": [
      "8-10"
@@ -1479,7 +2169,37 @@
    },
    "review": {
     "factCheck": "invented-example",
-    "note": "draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
+    "ownerRole": "product-owner",
+    "approvalRef": "owner-approval-2026-11-10-chat",
+    "checks": [
+     {
+      "kind": "owner",
+      "result": "passed",
+      "on": "2026-11-10",
+      "role": "product-owner",
+      "note": "Approved for live by Emmanuel CLETUS"
+     },
+     {
+      "kind": "language",
+      "locale": "fr",
+      "result": "pending",
+      "note": "French pending fluent review"
+     },
+     {
+      "kind": "educator",
+      "result": "pending"
+     },
+     {
+      "kind": "culture",
+      "result": "pending"
+     },
+     {
+      "kind": "rights",
+      "result": "pending",
+      "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+     }
+    ],
+    "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: draft-not-approved: needs educator (distractors/hints), cultural, Emmanuel; FR needs fluent speaker"
    }
   }
  ]

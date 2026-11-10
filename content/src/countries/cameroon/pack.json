@@ -15,7 +15,7 @@
   ]
  },
  "defaults": {
-  "status": "draft",
+  "status": "published",
   "sourceLanguage": "en",
   "tags": {
    "land": "world",
@@ -35,7 +35,37 @@
    }
   },
   "review": {
-   "note": "Pilot draft: needs educator, cultural and Emmanuel review; French needs a fluent reviewer."
+   "ownerRole": "product-owner",
+   "approvalRef": "owner-approval-2026-11-10-chat",
+   "checks": [
+    {
+     "kind": "owner",
+     "result": "passed",
+     "on": "2026-11-10",
+     "role": "product-owner",
+     "note": "Approved for live by Emmanuel CLETUS"
+    },
+    {
+     "kind": "language",
+     "locale": "fr",
+     "result": "pending",
+     "note": "French pending fluent review"
+    },
+    {
+     "kind": "educator",
+     "result": "pending"
+    },
+    {
+     "kind": "culture",
+     "result": "pending"
+    },
+    {
+     "kind": "rights",
+     "result": "pending",
+     "note": "Placeholder art and synthetic voice; final art and recordings to replace them"
+    }
+   ],
+   "note": "Approved for the live site by Emmanuel CLETUS (product owner, sole approver) on 2026-11-10. Known limits at approval: French text pending fluent-speaker review; most pictures are labelled placeholder art (Ari/Ezra are concept-art crops); voices are synthetic (computer-generated). Educator and cultural review still pending. Earlier note: Pilot draft: needs educator, cultural and Emmanuel review; French needs a fluent reviewer."
   }
  }
 }

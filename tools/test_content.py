@@ -42,6 +42,15 @@ def rec(d, rid): return next(r for r in d['records'] if r['id'] == rid)
 def quiet(f, *a):
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()): return f(*a)
 
+# Release 1 (2026-11-10): Emmanuel approved Cameroon for live, so review-state fields (status, reviewStatus, per-language
+# status, editorial approval ref) legitimately differ from the frozen pre-Stage-1 drafts. Nothing the app renders differs.
+def editorial_free(o, path=''):
+    if isinstance(o, dict):
+        return {k: editorial_free(v, path + '.' + k) for k, v in o.items()
+                if not (k in ('status', 'reviewStatus') or (k == 'approvalRef' and path.endswith('.editorial')))}
+    if isinstance(o, list): return [editorial_free(v, path + '[]') for v in o]
+    return o
+
 def fixtures(): return {k: load_json(os.path.join(FIX, k + '.json')) for k in ('lands', 'index', 'ui', 'cameroon', 'cameroon-quiz')}
 
 def legacy_set(recs, locales):
@@ -79,7 +88,7 @@ for dd in ('core', 'countries/cameroon'):
 migrate_v0.main(FIX, src)
 S, V, iss = validate(src)
 ok(not errors(iss), f'migrated content is valid ({len(S.records)} records)')
-B = Build(S, V, None).run(); B.write(os.path.join(d, 'lib'), os.path.join(d, 'lock.json'))
+B = Build(S, V, None, channel='preview').run(); B.write(os.path.join(d, 'lib'), os.path.join(d, 'lock.json'))
 cat, recs = hydrate.load(os.path.join(d, 'lib'))
 got = legacy_set(recs, ['en', 'fr'])
 for k in FX:
@@ -89,7 +98,7 @@ same_src = all(open(os.path.join(dp, f), 'rb').read() == open(os.path.join(SRC, 
 if same_src:
     cat, recs = hydrate.load(os.path.join(ROOT, 'content/library'))
     got = legacy_set(recs, ['en', 'fr'])
-    ok(all(got[k] == FX[k] for k in FX), 'committed content/library gives the app exactly the pre-Stage-1 data')
+    ok(all(editorial_free(got[k]) == editorial_free(FX[k]) for k in FX), 'committed content/library gives the app exactly the pre-Stage-1 data (review-state fields aside)')
 else:
     print('  note content/src was edited after the migration: parity with the legacy files is no longer expected (skipped)')
 
@@ -145,6 +154,15 @@ ok(not errors(iss), 'the same content is valid for the live channel (drafts are 
 
 print('4. channels')
 t = tmp_src(); s = os.path.join(t, 'src')
+S, V, iss = validate(s, 'live'); B = Build(S, V, None, channel='live').run(); B.write(os.path.join(t, 'lib'), os.path.join(t, 'lock.json'))
+cat, recs = hydrate.load(os.path.join(t, 'lib'))
+ok(recs.get('ew.country.cameroon', {}).get('status') == 'published', 'published (owner-approved) Cameroon pilot is in the live library')
+L = legacy.lands(recs, ['en', 'fr']); wl = next(x for x in L['lands'] if x['id'] == 'world')
+ok(any(q.get('country') == 'cameroon' for q in wl['places']), 'World Land on live links to the published Cameroon')
+shutil.rmtree(t)
+# a country still in draft must not reach live (simulate by putting Cameroon back to draft)
+t = tmp_src(); s = os.path.join(t, 'src')
+edit(s, 'countries/cameroon/country.json', lambda d: rec(d, 'ew.country.cameroon').update({'status': 'draft'}))
 S, V, iss = validate(s, 'live'); B = Build(S, V, None, channel='live').run(); B.write(os.path.join(t, 'lib'), os.path.join(t, 'lock.json'))
 cat, recs = hydrate.load(os.path.join(t, 'lib'))
 ok(all(r['status'] == 'published' for r in recs.values()), f'live library holds only published records ({len(recs)})')

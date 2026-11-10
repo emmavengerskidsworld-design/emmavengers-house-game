@@ -82,6 +82,9 @@ Optional: `python3 tools/run_tests.py --install-hook` makes git run the quick te
 
 ## Publishing to the live site
 
-The build setting `channel` in `content/src/build.json` is `preview` (drafts included) on the test site. The live site
-must be built with `python3 tools/content_build.py --channel live` (published only) — see the Stage 1 report's open
-question about how to switch this automatically.
+`main` is the live site (GitHub Pages), so on `main` the build setting `channel` in `content/src/build.json` is `live`
+(published records only). The test site must be built with `python3 tools/content_build.py --channel preview`
+(drafts included). Release 1 (2026-11-10): the Cameroon pilot, Ari/Ezra and the country-player buttons were approved
+for live by Emmanuel CLETUS, with French pending fluent review, placeholder art and synthetic voices recorded in each
+record's `review`. The hub's "Draft for testing" badge only shows for a country that is not `published`.
+

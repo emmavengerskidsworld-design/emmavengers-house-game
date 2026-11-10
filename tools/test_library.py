@@ -74,6 +74,15 @@ URL = f'http://127.0.0.1:{srv.server_port}/t.html'
 MK = """async ([db, base, extra]) => { const L = EWLibrary.create(Object.assign({ db, base: base || '/lib-test/', autoUpdate: false, retries: 0, timeoutMs: 3000 }, extra || {}));
   window.__L = L; try { await L.ready; return { ok: true, st: L.status() } } catch (e) { return { ok: false, code: e.code, msg: e.message, st: L.status() } } }"""
 
+# Release 1 (2026-11-10): Emmanuel approved Cameroon for live, so review-state fields (status, reviewStatus, per-language
+# status, editorial approval ref) legitimately differ from the frozen pre-Stage-1 drafts. Nothing the app renders differs.
+def editorial_free(o, path=''):
+    if isinstance(o, dict):
+        return {k: editorial_free(v, path + '.' + k) for k, v in o.items()
+                if not (k in ('status', 'reviewStatus') or (k == 'approvalRef' and path.endswith('.editorial')))}
+    if isinstance(o, list): return [editorial_free(v, path + '[]') for v in o]
+    return o
+
 async def main():
     async with async_playwright() as pw:
         br = await pw.chromium.launch(); ctx = await br.new_context(); pg = await ctx.new_page(); errs = []
@@ -86,10 +95,10 @@ async def main():
         got = json.loads(await pg.evaluate("""async () => { const L = window.__L, c = await L.legacy.country('cameroon');
             return JSON.stringify({ lands: L.legacy.lands(), index: L.legacy.countryIndex(), ui: L.legacy.uiStrings(), cameroon: c.pack, 'cameroon-quiz': c.bank }) }"""))
         for k in ('lands', 'index', 'ui', 'cameroon', 'cameroon-quiz'):
-            want = load_json(os.path.join(FIX, k + '.json'))
+            want = editorial_free(load_json(os.path.join(FIX, k + '.json'))); got[k] = editorial_free(got[k])
             same = got[k] == want
             strict = json.dumps(got[k]) == json.dumps(want) if k != 'lands' else json.dumps({**got[k], 'lands': None}) == json.dumps({**want, 'lands': None})
-            ok(same and strict, f'{k}: identical' + (' (values and key order)' if strict else ''))
+            ok(same and strict, f'{k}: identical' + (' (values and key order)' if strict else '') + ' (review-state fields aside)')
 
         print('2. first visit, then offline start')
         SERVE['rel'] = 'A'; LOG.clear()
