@@ -1,0 +1,229 @@
+{
+ "schemaVersion": "1.0.0",
+ "id": "ew.ui.country-player",
+ "revision": 1,
+ "status": "draft",
+ "note": "Shared buttons and labels for every country pack. App drafts written during the build, NOT from the reviewed spec: English awaits Emmanuel's approval, French awaits a fluent French reviewer.",
+ "strings": {
+  "learn": {
+   "en": "Learn",
+   "fr": "Apprendre"
+  },
+  "play": {
+   "en": "Play",
+   "fr": "Jouer"
+  },
+  "quiz": {
+   "en": "Quiz",
+   "fr": "Quiz"
+  },
+  "stories": {
+   "en": "Stories",
+   "fr": "Histoires"
+  },
+  "little": {
+   "en": "Little Explorers 5–7",
+   "fr": "Petits explorateurs 5–7"
+  },
+  "bigx": {
+   "en": "Big Explorers 8–13",
+   "fr": "Grands explorateurs 8–13"
+  },
+  "whoIsPlaying": {
+   "en": "Who is exploring?",
+   "fr": "Qui explore ?"
+  },
+  "next": {
+   "en": "Next",
+   "fr": "Suivant"
+  },
+  "prev": {
+   "en": "Back",
+   "fr": "Retour"
+  },
+  "replay": {
+   "en": "Replay",
+   "fr": "Réécouter"
+  },
+  "readAloud": {
+   "en": "Read aloud",
+   "fr": "Lire à voix haute"
+  },
+  "hint": {
+   "en": "Help",
+   "fr": "Aide"
+  },
+  "skip": {
+   "en": "Skip",
+   "fr": "Passer"
+  },
+  "undo": {
+   "en": "Undo",
+   "fr": "Annuler"
+  },
+  "reset": {
+   "en": "Start again",
+   "fr": "Recommencer"
+  },
+  "done": {
+   "en": "Done",
+   "fr": "Terminé"
+  },
+  "flyHome": {
+   "en": "Fly home",
+   "fr": "Rentrer"
+  },
+  "again": {
+   "en": "Play again",
+   "fr": "Rejouer"
+  },
+  "moves": {
+   "en": "Moves",
+   "fr": "Déplacements"
+  },
+  "shorter": {
+   "en": "A shorter route uses 3 moves: north, north, west.",
+   "fr": "Un itinéraire plus court utilise 3 déplacements : nord, nord, ouest."
+  },
+  "question": {
+   "en": "Question",
+   "fr": "Question"
+  },
+  "of": {
+   "en": "of",
+   "fr": "sur"
+  },
+  "page": {
+   "en": "Page",
+   "fr": "Page"
+  },
+  "quizBig": {
+   "en": "Explorer quiz (8–10)",
+   "fr": "Quiz des explorateurs (8–10)"
+  },
+  "quizDeep": {
+   "en": "Thinker quiz (11–13)",
+   "fr": "Quiz des penseurs (11–13)"
+  },
+  "quizLittle": {
+   "en": "Start the quiz",
+   "fr": "Commencer le quiz"
+  },
+  "practice": {
+   "en": "Practice",
+   "fr": "Entraînement"
+  },
+  "older": {
+   "en": "11–13 challenge",
+   "fr": "Défi 11–13"
+  },
+  "optional": {
+   "en": "Optional",
+   "fr": "Facultatif"
+  },
+  "draft": {
+   "en": "Draft for testing: not yet reviewed",
+   "fr": "Brouillon de test : pas encore relu"
+  },
+  "placeholder": {
+   "en": "Placeholder picture",
+   "fr": "Image provisoire"
+  },
+  "notMap": {
+   "en": "Direction picture, not a real map",
+   "fr": "Schéma des directions, pas une vraie carte"
+  },
+  "colourWords": {
+   "en": "Show colour words",
+   "fr": "Afficher les mots des couleurs"
+  },
+  "guideOn": {
+   "en": "Ari talks: on",
+   "fr": "Ari parle : oui"
+  },
+  "guideOff": {
+   "en": "Ari talks: off",
+   "fr": "Ari parle : non"
+  },
+  "stripe": {
+   "en": "Stripe",
+   "fr": "Bande"
+  },
+  "pickPiece": {
+   "en": "Pick a piece, then tap where it goes.",
+   "fr": "Choisis une pièce, puis touche sa place."
+  },
+  "pickPicture": {
+   "en": "Pick a picture, then tap its name.",
+   "fr": "Choisis une image, puis touche son nom."
+  },
+  "source": {
+   "en": "Source",
+   "fr": "Source"
+  },
+  "height": {
+   "en": "Height given",
+   "fr": "Hauteur donnée"
+  },
+  "visitors": {
+   "en": "Visitors in one hour",
+   "fr": "Visiteurs en une heure"
+  },
+  "chooseClaim": {
+   "en": "Which claim fits?",
+   "fr": "Quelle affirmation convient ?"
+  },
+  "needToKnow": {
+   "en": "What do we still need to know?",
+   "fr": "Que faut-il encore savoir ?"
+  },
+  "key": {
+   "en": "Key",
+   "fr": "Légende"
+  },
+  "map": {
+   "en": "Practice map",
+   "fr": "Plan d'entraînement"
+  },
+  "north": {
+   "en": "North",
+   "fr": "Nord"
+  },
+  "south": {
+   "en": "South",
+   "fr": "Sud"
+  },
+  "east": {
+   "en": "East",
+   "fr": "Est"
+  },
+  "west": {
+   "en": "West",
+   "fr": "Ouest"
+  },
+  "seaSW": {
+   "en": "Gulf of Guinea (ocean)",
+   "fr": "Golfe de Guinée (océan)"
+  },
+  "capital": {
+   "en": "capital",
+   "fr": "capitale"
+  },
+  "port": {
+   "en": "port city",
+   "fr": "ville portuaire"
+  },
+  "regions10": {
+   "en": "10 regions",
+   "fr": "10 régions"
+  },
+  "littleShort": {
+   "en": "Little 5–7",
+   "fr": "Petits 5–7"
+  },
+  "bigShort": {
+   "en": "Big 8–13",
+   "fr": "Grands 8–13"
+  }
+ }
+}

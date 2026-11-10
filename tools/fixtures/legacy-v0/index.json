@@ -1,0 +1,15 @@
+{
+ "schemaVersion": "1.0.0",
+ "id": "ew.index.countries",
+ "revision": 1,
+ "status": "draft",
+ "countries": [
+  {
+   "id": "ew.country.cameroon",
+   "slug": "cameroon",
+   "revision": 1,
+   "file": "content/countries/cameroon.json",
+   "land": "world"
+  }
+ ]
+}
